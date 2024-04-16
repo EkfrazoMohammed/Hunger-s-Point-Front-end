@@ -1,0 +1,134 @@
+.menu1 {
+  height: 417px;
+  width: 417px;
+  position: absolute;
+  margin: 0 !important;
+  top: -130px;
+  left: -209px;
+  border-radius: 50%;
+  background-color: #600;
+}
+.what-we-believe3 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 160%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: inherit;
+}
+.what-we-believe-container {
+  height: 53px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+}
+.frame-with-butons-states-dark {
+  width: 10px;
+  height: 5px;
+  position: relative;
+  border-radius: 20px;
+  background-color: #e5b638;
+}
+.heading3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+  z-index: 1;
+}
+.we-believe-in1 {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: 25px;
+  line-height: 160%;
+  font-weight: 400;
+  font-family: inherit;
+  z-index: 1;
+}
+.button79 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px 0;
+  min-width: 341px;
+  max-width: 100%;
+}
+.ante-eget-vel6,
+.ante-eget-vel7,
+.lorem-ipsum-dolor4 {
+  margin: 0;
+}
+.lorem-ipsum-dolor-container3 {
+  flex: 1;
+  position: relative;
+  font-size: 24px;
+  display: inline-block;
+  min-width: 341px;
+  max-width: 100%;
+}
+.basket-button2 {
+  width: 1280px;
+  border-radius: 30px;
+  background-color: #1d1d1d;
+  border: 1px solid #4a4a4a;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 50px 81px 50px 79px;
+  position: relative;
+  gap: 0 70px;
+  max-width: 100%;
+  z-index: 1;
+  margin-top: -70px;
+  text-align: left;
+  font-size: 36px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1350px) {
+  .basket-button2 {
+    gap: 0 70px;
+    padding-left: 39px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+  }
+}
+@media screen and (max-width: 800px) {
+  .what-we-believe3 {
+    font-size: 29px;
+    line-height: 46px;
+  }
+  .button79,
+  .lorem-ipsum-dolor-container3 {
+    min-width: 100%;
+  }
+  .basket-button2 {
+    gap: 0 70px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .what-we-believe3 {
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .we-believe-in1 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .lorem-ipsum-dolor-container3 {
+    font-size: 19px;
+  }
+}

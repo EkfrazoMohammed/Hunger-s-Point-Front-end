@@ -1,0 +1,80 @@
+.order-details1 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.delivered,
+.order-details1,
+.order-no-123 {
+  position: relative;
+  line-height: 130%;
+}
+.order-no-123 {
+  flex: 1;
+  display: inline-block;
+  min-width: 77px;
+}
+.delivered {
+  color: #0dcd43;
+}
+.alberta-label {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 20px;
+}
+.iconamoonlocation-light {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.alberta7 {
+  position: relative;
+  line-height: 130%;
+}
+.oreo-shake-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 5px;
+}
+.orders2 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.orders2,
+.x-chola-puri,
+.x-mango-shake,
+.x-oreo-shake {
+  position: relative;
+  line-height: 130%;
+}
+.my-orders1,
+.order-detail-frame,
+.order-no-label {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.order-no-label {
+  gap: 10px 0;
+}
+.my-orders1,
+.order-detail-frame {
+  border-radius: 10px;
+}
+.my-orders1 {
+  border: 2px solid #5f5f5f;
+  overflow: hidden;
+  padding: 20px 22px 20px 18px;
+  text-align: left;
+  font-size: 14px;
+  color: #fff;
+  font-family: Poppins;
+  width: 50%;
+}

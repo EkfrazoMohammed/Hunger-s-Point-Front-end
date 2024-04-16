@@ -1,0 +1,42 @@
+.button {
+  position: relative;
+  line-height: 130%;
+}
+.property-1filledprimary {
+  border-radius: 6px;
+  background-color: #c21f24;
+  height: 49px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  font-family: Inter;
+}
+.property-1filledprimary:hover {
+  background-color: #424242 !important;
+  border: 3px solid #424242 !important;
+  box-sizing: border-box;
+}
+.property-1filledprimary.button-design{
+  display: inline-block;
+  font-family: Poppins;
+  text-transform: unset;
+  font-weight: unset;
+  font-size: 18px;
+  right: 230px;
+}
+.property-1filledprimary.button {
+  display: inline-block;
+  font-family: Inter;
+  text-transform: unset;
+  font-weight: unset;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

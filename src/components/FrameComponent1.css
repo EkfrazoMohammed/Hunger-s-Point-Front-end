@@ -1,0 +1,103 @@
+.our-delivery-partners3 {
+  align-self: stretch;
+  position: relative;
+  font-weight: 600;
+}
+.frame-child20 {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  object-fit: cover;
+}
+.rectangle-wrapper12 {
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #cecece;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-child21 {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  object-fit: cover;
+}
+.rectangle-wrapper13 {
+  cursor: pointer;
+  border: 1px solid #cecece;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-child22 {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  object-fit: cover;
+}
+.rectangle-wrapper14 {
+  cursor: pointer;
+  border: 1px solid #cecece;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-child23 {
+  height: 60px;
+  width: 60px;
+  position: relative;
+  object-fit: cover;
+}
+.rectangle-wrapper15 {
+  cursor: pointer;
+  border: 1px solid #cecece;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frame-parent62,
+.our-delivery-partners-parent1 {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.frame-parent62 {
+  width: 460px;
+  overflow-x: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 0 20px;
+}
+.our-delivery-partners-parent1 {
+  align-self: stretch;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px 0;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: 18px;
+  color: #fff;
+  font-family: Poppins;
+}

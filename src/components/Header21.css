@@ -1,0 +1,128 @@
+.header-child {
+  height: 110px;
+  width: 110px;
+  position: absolute;
+  margin: 0 !important;
+  top: -60px;
+  left: 20px;
+}
+.wrapper-ellipse-2-child {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  position: absolute;
+  left: 0;
+  top: 4px;
+  transform: scale(1.377);
+}
+.wrapper-ellipse-2 {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  margin: 0 !important;
+  right: 194px;
+  bottom: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.lorem-ipsum-dolor2 {
+  position: relative;
+  letter-spacing: -0.01em;
+  line-height: 100%;
+}
+.basket-button {
+  flex: 1;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  min-width: 775px;
+  max-width: 100%;
+  z-index: 1;
+}
+.alberta-container-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.facebook-icon2,
+.instagram-icon {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  z-index: 1;
+}
+.facebook-icon2 {
+  left: 56px;
+}
+.alberta-container1 {
+  margin-bottom: -50px;
+  align-self: stretch;
+  height: 110px;
+  position: relative;
+}
+.call-to-action-button {
+  height: 60px;
+  width: 109px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+}
+.close-icon2 {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  margin: 0 !important;
+  top: calc(50% - 12px);
+  left: 1394px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.header6 {
+  align-self: stretch;
+  background: radial-gradient(
+    50% 50%at 50% 50%,
+    #c21f1f,
+    rgba(194, 158, 31, 0.73)
+  );
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 53px 0 80px;
+  box-sizing: border-box;
+  position: relative;
+  gap: 0 6px;
+  max-width: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1125px) {
+  .basket-button {
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .header6 {
+    padding-left: 40px;
+    padding-right: 26px;
+    box-sizing: border-box;
+  }
+}

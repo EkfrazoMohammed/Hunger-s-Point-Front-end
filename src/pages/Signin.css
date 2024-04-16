@@ -1,0 +1,98 @@
+.vector-frame-icon {
+  height: 1px;
+  width: 924px;
+  position: absolute;
+  margin: 0 !important;
+  top: 413px;
+  right: 80px;
+}
+.wallpaper-icon {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  max-height: 100%;
+  width: 1784px;
+  object-fit: cover;
+}
+.the-hungers-point-final-logo- {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 50px 0;
+  width: 194px;
+  height: 194px;
+  object-fit: cover;
+  z-index: 1;
+}
+.main-frame {
+  height: 990px;
+  width: 647px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-width: 647px;
+  max-width: 100%;
+}
+.inner-frame,
+.signin1 {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.inner-frame {
+  width: 665px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 20px 0;
+  box-sizing: border-box;
+  min-width: 665px;
+  max-width: 100%;
+  z-index: 1;
+}
+.signin1 {
+  width: 100%;
+  position: relative;
+  background-color: #252525;
+  flex-direction: row;
+  gap: 0 73px;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1325px) {
+  .inner-frame,
+  .main-frame {
+    flex: 1;
+  }
+  .signin1 {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 960px) {
+  .signin1 {
+    width: null;
+    height: auto;
+  }
+}
+@media screen and (max-width: 800px) {
+  .inner-frame,
+  .main-frame {
+    min-width: 100%;
+  }
+  .signin1 {
+    gap: 0 73px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .main-frame {
+    flex: 1;
+    align-self: stretch;
+    height: auto;
+  }
+  .signin1 {
+    gap: 0 73px;
+  }
+}

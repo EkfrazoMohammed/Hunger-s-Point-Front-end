@@ -1,0 +1,101 @@
+.location-icon8 {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hospital-st-fort5 {
+  flex: 1;
+  position: relative;
+}
+.location-parent3 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 10px;
+}
+.call-icon5,
+.div15 {
+  position: relative;
+  flex-shrink: 0;
+}
+.call-icon5 {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+}
+.div15 {
+  width: 151px;
+  display: inline-block;
+}
+.call-parent2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 10px;
+}
+.time-icon {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.am-9pm,
+.mon-fri,
+.time-icon {
+  position: relative;
+}
+.northindiandishesframe {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 20px;
+}
+.sat-sun {
+  position: relative;
+}
+.desertsframe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.am-11pm {
+  position: relative;
+}
+.allframesframe,
+.ampmtext,
+.beveragesframe,
+.locationhospitalframe {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 20px;
+}
+.allframesframe,
+.ampmtext,
+.locationhospitalframe {
+  flex-direction: column;
+  gap: 5px 0;
+}
+.ampmtext,
+.locationhospitalframe {
+  flex-direction: row;
+  gap: 0 10px;
+}
+.locationhospitalframe {
+  align-self: stretch;
+  flex-direction: column;
+  gap: 16px 0;
+  text-align: left;
+  font-size: 14px;
+  color: #fff;
+  font-family: Poppins;
+}

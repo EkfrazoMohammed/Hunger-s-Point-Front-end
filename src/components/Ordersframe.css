@@ -1,0 +1,183 @@
+.profile1 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.02em;
+  line-height: 120%;
+  font-weight: 400;
+  font-family: inherit;
+}
+.your-profile-details {
+  position: relative;
+  font-size: 20px;
+  line-height: 130%;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+}
+.contactframe {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.divider12 {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  left: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-top: 2px solid #e6e6e6;
+  box-sizing: border-box;
+  opacity: 0.45;
+}
+.dividerline,
+.john-smithtext-icon {
+  align-self: stretch;
+  position: relative;
+}
+.dividerline {
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.john-smithtext-icon {
+  flex: 1;
+  border-radius: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.emptyspace,
+.john-smith1 {
+  position: relative;
+  line-height: 130%;
+}
+.john-smith1 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+}
+.emptyspace {
+  font-size: 14px;
+}
+.summary2,
+.summary3,
+.summarydetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.summarydetails {
+  width: 210px;
+  align-items: center;
+  gap: 10px 0;
+}
+.summary2,
+.summary3 {
+  border-radius: 24px;
+  background-color: #363636;
+  border: 2px solid #5f5f5f;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.summary2 {
+  height: 319px;
+  width: 290px;
+  overflow: hidden;
+  align-items: center;
+  padding: 0 0 30px;
+  gap: 20px 0;
+  min-width: 290px;
+}
+.summary3 {
+  width: 640px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding: 20px 22px 20px 18px;
+  min-width: 640px;
+  max-width: 100%;
+  font-size: 18px;
+}
+.rightframe {
+  flex: 1;
+  flex-direction: row;
+  gap: 0 20px;
+}
+.ordersframe,
+.ordersummary,
+.rightframe {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.ordersummary {
+  align-self: stretch;
+  flex-direction: row;
+  font-size: 24px;
+}
+.ordersframe {
+  width: 1320px;
+  flex-direction: column;
+  padding: 0 20px;
+  box-sizing: border-box;
+  gap: 20px 0;
+  text-align: left;
+  font-size: 36px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1150px) {
+  .summary2,
+  .summary3 {
+    flex: 1;
+  }
+  .rightframe {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 800px) {
+  .profile1 {
+    font-size: 29px;
+    line-height: 35px;
+  }
+  .summary3 {
+    min-width: 100%;
+  }
+  .ordersummary {
+    gap: 0 32px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .profile1 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .your-profile-details {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .john-smith1 {
+    font-size: 19px;
+    line-height: 25px;
+  }
+}
+.summary3::-webkit-scrollbar {
+  display: none;
+}
+.summary3 {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+@media screen and (max-width: 450px){
+  .summary3{
+    margin-top: 30px ;
+  }
+}

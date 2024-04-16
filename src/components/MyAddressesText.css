@@ -1,0 +1,56 @@
+.epback-icon2 {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.my-addresses {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: -0.02em;
+  line-height: 120%;
+  font-weight: 400;
+  font-family: inherit;
+}
+.address-details {
+  width: 183px;
+  position: relative;
+  font-size: 20px;
+  line-height: 130%;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: flex-end;
+}
+.my-addresses-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 10px;
+  gap: 20px 0;
+  text-align: left;
+  font-size: 36px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 800px) {
+  .my-addresses {
+    font-size: 29px;
+    line-height: 35px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .my-addresses {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .address-details {
+    font-size: 16px;
+    line-height: 21px;
+  }
+}

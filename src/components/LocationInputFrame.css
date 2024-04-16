@@ -1,0 +1,63 @@
+.john-smith6 {
+  color: #e5b638;
+}
+.canada,
+.edit-icon-frame,
+.john-smith6 {
+  position: relative;
+  line-height: 130%;
+}
+.edit-icon-frame {
+  white-space: nowrap;
+}
+.canada {
+  font-weight: 500;
+}
+.john-smith-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px 0;
+  min-width: 412px;
+  max-width: 100%;
+}
+.material-symbols-lightedit-ou-icon {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.location-input-frame,
+.user-frame1 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.user-frame1 {
+  flex-direction: row;
+  gap: 0 10px;
+}
+.location-input-frame {
+  border-radius: 10px;
+  border: 1px solid #e5b638;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 20px 21px 20px 19px;
+  text-align: left;
+  font-size: 14px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 800px) {
+  .john-smith-frame {
+    min-width: 100%;
+  }
+  .user-frame1 {
+    flex-wrap: wrap;
+  }
+}

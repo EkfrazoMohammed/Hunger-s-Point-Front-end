@@ -1,0 +1,345 @@
+.location2 {
+  position: relative;
+  line-height: 130%;
+  color: rgba(255, 255, 255, 0.5);
+}
+.iconamoonlocation-light1 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.alberta8 {
+  position: relative;
+  line-height: 130%;
+}
+.delivery-person-frame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 5px;
+}
+.orders3,
+.x-chola-puri1 {
+  position: relative;
+  line-height: 130%;
+}
+.orders3 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.x-chola-puri1 {
+  flex: 1;
+  display: inline-block;
+  min-width: 71px;
+  max-width: 100%;
+}
+.payment-method-frame {
+  position: relative;
+  line-height: 130%;
+  white-space: nowrap;
+}
+.tax-frame7 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 10px;
+  max-width: 100%;
+}
+.div27,
+.x-oreo-shake1 {
+  position: relative;
+  line-height: 130%;
+}
+.x-oreo-shake1 {
+  flex: 1;
+  display: inline-block;
+  min-width: 78px;
+  max-width: 100%;
+}
+.div27 {
+  white-space: nowrap;
+}
+.tax-frame8 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 10px;
+  max-width: 100%;
+}
+.div28,
+.x-mango-shake1 {
+  position: relative;
+  line-height: 130%;
+}
+.x-mango-shake1 {
+  flex: 1;
+  display: inline-block;
+  min-width: 90px;
+  max-width: 100%;
+}
+.div28 {
+  white-space: nowrap;
+}
+.mango-shake-frame,
+.subtotal-frame5,
+.tax-frame9 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.tax-frame9 {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 10px;
+}
+.mango-shake-frame,
+.subtotal-frame5 {
+  flex-direction: column;
+}
+.subtotal-frame5 {
+  gap: 10px 0;
+}
+.mango-shake-frame {
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.divider25 {
+  align-self: stretch;
+  height: 2px;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-top: 2px solid #e6e6e6;
+  box-sizing: border-box;
+  opacity: 0.45;
+}
+.payment-frame,
+.subtotal2 {
+  position: relative;
+  line-height: 130%;
+}
+.subtotal2 {
+  flex: 1;
+  display: inline-block;
+  min-width: 52px;
+  max-width: 100%;
+}
+.payment-frame {
+  text-align: right;
+  white-space: nowrap;
+}
+.tax-frame10 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.delivery6,
+.shipping5 {
+  position: relative;
+  line-height: 130%;
+}
+.shipping5 {
+  font-weight: 600;
+}
+.delivery6 {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.shipping-label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 215px;
+  max-width: 100%;
+}
+.divider-line2 {
+  position: relative;
+  line-height: 130%;
+  text-align: right;
+  white-space: nowrap;
+}
+.delivery-frame2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+  color: #e5b638;
+}
+.div29,
+.tax2 {
+  position: relative;
+  line-height: 130%;
+}
+.tax2 {
+  flex: 1;
+  display: inline-block;
+  min-width: 21px;
+  max-width: 100%;
+}
+.div29 {
+  text-align: right;
+  white-space: nowrap;
+}
+.tax-frame11 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.div30,
+.total2 {
+  position: relative;
+  line-height: 130%;
+  font-weight: 600;
+}
+.total2 {
+  flex: 1;
+  display: inline-block;
+  min-width: 31px;
+  max-width: 100%;
+}
+.div30 {
+  text-align: right;
+  white-space: nowrap;
+}
+.tax-frame12 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.amount,
+.paid {
+  position: relative;
+  line-height: 130%;
+}
+.amount {
+  flex: 1;
+  display: inline-block;
+  min-width: 50px;
+  max-width: 100%;
+}
+.paid {
+  color: #ff1010;
+  text-align: right;
+}
+.tax-frame13 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.payment-method,
+.upi {
+  position: relative;
+  line-height: 130%;
+}
+.payment-method {
+  flex: 1;
+  display: inline-block;
+  min-width: 107px;
+  max-width: 100%;
+}
+.upi {
+  text-align: right;
+}
+.tax-frame14 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.delivery-person,
+.sugan {
+  position: relative;
+  line-height: 130%;
+}
+.delivery-person {
+  flex: 1;
+  display: inline-block;
+  min-width: 96px;
+  max-width: 100%;
+}
+.sugan {
+  text-align: right;
+}
+.subtotal-frame6,
+.tax-frame15 {
+  align-self: stretch;
+  align-items: flex-start;
+}
+.tax-frame15 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 20px;
+  max-width: 100%;
+}
+.subtotal-frame6 {
+  gap: 15px 0;
+}
+.delivery-details-frame,
+.my-orders3,
+.subtotal-frame6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.delivery-details-frame {
+  align-self: stretch;
+  align-items: flex-start;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.my-orders3 {
+  width: 420px;
+  border-radius: 10px;
+  border: 2px solid #5f5f5f;
+  box-sizing: border-box;
+  overflow: hidden;
+  align-items: center;
+  padding: 20px 18px;
+  gap: 20px 0;
+  text-align: left;
+  font-size: 14px;
+  color: #fff;
+  font-family: Poppins;
+}

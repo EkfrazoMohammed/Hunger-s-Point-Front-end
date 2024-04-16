@@ -1,0 +1,75 @@
+.shipping-details-icon2 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 24px;
+}
+.shipping-method2 {
+  flex: 1;
+  position: relative;
+  font-size: 14px;
+  line-height: 130%;
+  font-weight: 500;
+  font-family: Poppins;
+  color: #fff;
+  text-align: left;
+  display: inline-block;
+  min-width: 94px;
+  max-width: 100%;
+}
+.down-icon11 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.divider20,
+.shippingprofileframe {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.shippingprofileframe {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1px;
+  gap: 0 10px;
+}
+.divider20 {
+  height: 1px;
+  width: 709px;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid #e6e6e6;
+  display: none;
+  opacity: 0.45;
+}
+.shipping3 {
+  cursor: pointer;
+  border: 1px solid #545454;
+  padding: 18px;
+  background-color: #363636;
+  width: 748px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0 15px;
+}
+@media screen and (max-width: 800px) {
+  .tax-frame5 {
+    flex-wrap: wrap;
+  }
+  .shipping3 {
+    height: auto;
+  }
+}

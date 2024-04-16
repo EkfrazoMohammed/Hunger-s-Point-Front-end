@@ -1,0 +1,18 @@
+.button2 {
+  position: relative;
+  line-height: 130%;
+}
+.property-1filledprimary1 {
+  border-radius: 6px;
+  background-color: #c21f24;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  font-family: Inter;
+}

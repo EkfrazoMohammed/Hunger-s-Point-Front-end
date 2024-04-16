@@ -1,0 +1,280 @@
+.ed-o-neil-avvdzlhdowa-unsplash-icon5 {
+  height: 80px;
+  width: 80px;
+  position: relative;
+  object-fit: cover;
+}
+.child-frame {
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: ow;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.oreo-shake1 {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 130%;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+.title-text {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.blank-space,
+.price1 {
+  position: relative;
+  line-height: 130%;
+}
+.price1 {
+  align-self: stretch;
+}
+.blank-space {
+  font-size: 24px;
+  color: #e5b638;
+  text-align: center;
+  white-space: nowrap;
+}
+.price-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px 0;
+  min-width: 187px;
+  min-height: 71px;
+}
+.quantity2 {
+  align-self: stretch;
+  position: relative;
+  line-height: 130%;
+}
+.container-with-minus-add,
+.minus-icon5 {
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.minus-icon5 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  margin: 0 !important;
+  top: 8px;
+  right: 8px;
+}
+.container-with-minus-add {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #e5b638;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+}
+.close-instance1 {
+  position: relative;
+  line-height: 130%;
+}
+.add-icon6 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  margin: 0 !important;
+  top: 8px;
+  right: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.container-with-minus-add1,
+.frame-with-subtraction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-with-minus-add1 {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 1px solid #e5b638;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: 10px;
+  position: relative;
+}
+.frame-with-subtraction {
+  flex-direction: row;
+  gap: 0 10px;
+  text-align: center;
+  font-size: 24px;
+}
+.minus-add-frame1 {
+  width: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px 0;
+  text-align: right;
+}
+.addons-frame,
+.frame-with-divider {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.addons-frame {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 20px;
+}
+.frame-with-divider {
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+.close-icon1 {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  margin: 0 !important;
+  top: -10px;
+  right: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.addon-frame,
+.child-frame-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.child-frame-parent {
+  flex: 1;
+  flex-direction: column;
+  position: relative;
+  gap: 20px 0;
+}
+.addon-frame {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 25px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 24px;
+  color: #fff;
+  font-family: Inter;
+}
+.button-instance1,
+.items-added {
+  position: relative;
+  line-height: 130%;
+}
+.addon-frame1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px 0;
+}
+.button30 {
+  position: relative;
+  font-size: 16px;
+  line-height: 130%;
+  font-family: Inter;
+  color: #fff;
+  text-align: center;
+}
+.component-19 {
+  cursor: pointer;
+  border: 2px solid #e5b638;
+  padding: 14px;
+  background-color: transparent;
+  flex: 1;
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 107px;
+}
+.component-19:hover {
+  background-color: rgba(179, 130, 5, 0.09);
+  border: 2px solid #b38205;
+  box-sizing: border-box;
+}
+.addon-frame-parent,
+.w-addon,
+.w-addon-inner {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.addon-frame-parent {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 32px;
+}
+.w-addon,
+.w-addon-inner {
+  box-sizing: border-box;
+}
+.w-addon-inner {
+  align-self: stretch;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 0 0 37px;
+}
+.w-addon {
+  width: 500px;
+  position: relative;
+  border-radius: 20px 0 0 20px;
+  background-color: #363636;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px 48px 15px;
+  gap: 29px 0;
+  letter-spacing: normal;
+  max-height: 100%;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  font-family: Inter;
+}
+@media screen and (max-width: 450px) {
+  .blank-space,
+  .close-instance1,
+  .oreo-shake1 {
+    font-size: 19px;
+    line-height: 25px;
+  }
+  .addon-frame-parent {
+    gap: 0 32px;
+  }
+}

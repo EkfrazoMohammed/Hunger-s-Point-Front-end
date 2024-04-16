@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+.buttons-states-dark61:hover {
+  background-color: #b38205;
+  border: 3px solid #b38205;
+  box-sizing: border-box;
+}
+.property-1filledprimary:hover {
+  background-color: #424242;
+  border: 3px solid #424242;
+  box-sizing: border-box;
+}
+.buttons-states-dark24:hover {
+  background-color: #424242;
+  border: 3px solid #424242;
+  box-sizing: border-box;
+}
+.buttons-states-dark26:hover {
+  background-color: #424242;
+  border: 3px solid #424242;
+  box-sizing: border-box;
+}
+.buttons-states-dark27:hover {
+  background-color: #424242;
+  border: 3px solid #424242;
+  box-sizing: border-box;
+}
+.buttons-states-dark28:hover {
+  background-color: #b38205;
+  border: 3px solid #b38205;
+  box-sizing: border-box;
+}
+.buttons-states-dark29:hover {
+  background-color: #b38205;
+  border: 3px solid #b38205;
+  box-sizing: border-box;
+}

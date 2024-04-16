@@ -1,0 +1,122 @@
+.review-section-frame {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0 68px;
+  box-sizing: border-box;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.image-4-icon1 {
+  height: 840px;
+  width: 1804px;
+  position: absolute;
+  margin: 0 !important;
+  top: calc(50% - 503px);
+  left: calc(50% - 842px);
+  object-fit: cover;
+}
+.mappin-icon4,
+.mappin-icon5,
+.mappin-icon6,
+.mappin-icon7 {
+  height: 24px;
+  width: 24px;
+  position: absolute;
+  margin: 0 !important;
+  top: calc(50% - 62px);
+  left: calc(50% - 212px);
+  z-index: 1;
+}
+.mappin-icon5,
+.mappin-icon6,
+.mappin-icon7 {
+  top: calc(50% + 88px);
+  left: calc(50% - 162px);
+}
+.mappin-icon6,
+.mappin-icon7 {
+  top: calc(50% - 42px);
+  left: calc(50% + 398px);
+}
+.mappin-icon7 {
+  top: calc(50% + 59px);
+  left: calc(50% - 532px);
+}
+.location-pin-map {
+  width: 110%;
+  height: 400px;
+  overflow: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  gap: 0 40px;
+}
+.homepage1,
+.location1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.location1 {
+  width: 1320px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding: 0 20px 148px;
+  box-sizing: border-box;
+  gap: 50px 0;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.homepage1 {
+  width: 100%;
+  position: relative;
+  background-color: #252525;
+  overflow: hidden;
+  align-items: center;
+  gap: 12px 0;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1350px) {
+  .location1 {
+    padding-bottom: 96px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1125px) {
+  .location1,
+  .review-section-frame {
+    padding-bottom: 44px;
+    box-sizing: border-box;
+  }
+  .location1 {
+    padding-bottom: 62px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .location1 {
+    gap: 50px 0;
+  }
+}
+@media screen and (max-width: 450px) {
+  .location1,
+  .review-section-frame {
+    padding-bottom: 29px;
+    box-sizing: border-box;
+  }
+  .location1 {
+    padding-bottom: 40px;
+  }
+}
+.location-pin-map{
+    -ms-overflow-style: none; 
+    scrollbar-width: none;     
+  }
+.location-pin-map::-webkit-scrollbar {
+    display: none;
+}

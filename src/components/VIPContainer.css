@@ -1,0 +1,114 @@
+.become-a-vip {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 160%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: inherit;
+}
+.recieve-updates-on {
+  align-self: stretch;
+  position: relative;
+  line-height: 160%;
+  z-index: 1;
+}
+.instagram-facebook-mail-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 26px 0 0;
+  box-sizing: border-box;
+  min-width: 411px;
+  max-width: 100%;
+}
+.button73 {
+  position: relative;
+  font-size: 24px;
+  line-height: 130%;
+  font-family: Inter;
+  color: #fff;
+  text-align: center;
+}
+.buttons-states-dark61 {
+  cursor: pointer;
+  border: 3px solid #e5b638;
+  padding: 14px 14px 15px;
+  background-color: transparent;
+  width: 330px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  z-index: 1;
+}
+.buttons-states-dark61:hover {
+  background-color: rgba(179, 130, 5, 0.09);
+  border: 3px solid #b38205;
+  box-sizing: border-box;
+}
+.update-notifications-frame,
+.v-i-p-frame {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.update-notifications-frame {
+  align-self: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 63px;
+  margin-top: -16px;
+  text-align: left;
+  font-size: 24px;
+  color: #fff;
+}
+.v-i-p-frame {
+  width: 1066px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 20px 68px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 36px;
+  color: #e5b638;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1125px) {
+  .update-notifications-frame {
+    gap: 0 63px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .become-a-vip {
+    font-size: 29px;
+    line-height: 46px;
+  }
+  .instagram-facebook-mail-frame {
+    min-width: 100%;
+  }
+  .update-notifications-frame {
+    gap: 0 63px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .become-a-vip {
+    font-size: 22px;
+    line-height: 35px;
+  }
+  .button73,
+  .recieve-updates-on {
+    font-size: 19px;
+    line-height: 31px;
+  }
+  .button73 {
+    line-height: 25px;
+  }
+}

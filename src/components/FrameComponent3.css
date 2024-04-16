@@ -1,0 +1,81 @@
+.menu-icon7 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button80 {
+  position: relative;
+  font-size: 18px;
+  line-height: 130%;
+  font-weight: 600;
+  font-family: Poppins;
+  color: #fff;
+  text-align: center;
+}
+.buttons-states-dark67 {
+  cursor: pointer;
+  border: 0;
+  padding: 0 12px;
+  background-color: #363636;
+  flex: 1;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 0 20px;
+  min-width: 169px;
+  min-height: 60px;
+  white-space: nowrap;
+}
+.buttons-states-dark67:hover {
+  background-color: #5c5c5c;
+}
+.basket-icon8 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button81 {
+  position: relative;
+  font-size: 18px;
+  line-height: 130%;
+  font-family: Poppins;
+  color: #fff;
+  text-align: center;
+}
+.buttons-states-dark68 {
+  cursor: pointer;
+  border: 0;
+  padding: 0 12px;
+  background-color: #c21f24;
+  flex: 1;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 0 10px;
+  min-width: 169px;
+  min-height: 60px;
+  white-space: nowrap;
+}
+.buttons-states-dark68:hover {
+  background-color: #e8454a;
+}
+.buttons-states-dark-parent6 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 20px;
+  flex-shrink: 0;
+}

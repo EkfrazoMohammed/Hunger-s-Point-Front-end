@@ -1,0 +1,183 @@
+.logo-icon3 {
+  height: 80px;
+  width: 80px;
+  position: relative;
+  object-fit: contain;
+  cursor: pointer;
+}
+.view-all-stores-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.location-icon11 {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 16px;
+}
+.select-location3 {
+  flex: 1;
+  position: relative;
+  line-height: 130%;
+  text-transform: uppercase;
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+}
+.phcopyrightthin {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 4px;
+  max-width: 100%;
+}
+.set-your-location3 {
+  flex: 1;
+  position: relative;
+  line-height: 130%;
+  white-space: nowrap;
+}
+.category-container,
+.location-frame2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.location-frame2 {
+  flex: 1;
+}
+.category-container {
+  align-self: stretch;
+  gap: 0 20px;
+  font-size: 16px;
+  color: #fff;
+}
+.buttons-states5 {
+  width: 400px;
+  border-radius: 5px;
+  background-color: #363636;
+  border: 1px solid #424242;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px 11px 10px 9px;
+  max-width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.button71 {
+  position: relative;
+  line-height: 130%;
+  text-transform: uppercase;
+}
+.buttons-states-dark59 {
+  height: 49px;
+  border-radius: 5px;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+.user-icon3 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button72 {
+  width: 11px;
+  position: relative;
+  font-size: 16px;
+  line-height: 130%;
+  display: none;
+  font-family: Inter;
+  color: #000;
+  text-align: center;
+}
+.buttons-states-dark60 {
+  cursor: pointer;
+  border: 0;
+  padding: 0 13px;
+  background-color: #e5b638;
+  align-self: stretch;
+  border-radius: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0 10px;
+}
+.buttons-states-dark60:hover {
+  background-color: #b38205;
+}
+.john-smith8 {
+  position: relative;
+  line-height: 130%;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.our-delivery-partners-containe {
+  height: 49px;
+  gap: 0 5px;
+  cursor: pointer;
+}
+.hospital-st-fort-mc-murray-sta1,
+.location3,
+.our-delivery-partners-containe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.location3 {
+  height: 63px;
+  gap: 0 20px;
+}
+.hospital-st-fort-mc-murray-sta1 {
+  flex: 1;
+  gap: 0 30px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.header4,
+.menu-button {
+  align-self: stretch;
+  display: flex;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.header4 {
+  height: 100px;
+  background: radial-gradient(50% 50%at 50% 50%, #252525, #380000);
+  box-shadow: 0 4px 16.8px rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+.menu-button {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  font-family: Poppins;
+}

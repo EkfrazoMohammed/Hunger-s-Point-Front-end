@@ -1,0 +1,386 @@
+.divider28 {
+  width: 2px;
+  flex: 1;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-right: 2px solid #fff;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+.addons-container {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 122px 0 0;
+  box-sizing: border-box;
+}
+.addons,
+.almonds,
+.almonds-almonds,
+.dry-fruits {
+  position: relative;
+  line-height: 130%;
+  font-family: Inter;
+  text-align: left;
+}
+.addons {
+  align-self: stretch;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.almonds,
+.almonds-almonds,
+.dry-fruits {
+  color: #fff;
+}
+.dry-fruits {
+  align-self: stretch;
+  font-size: 20px;
+}
+.almonds,
+.almonds-almonds {
+  font-size: 16px;
+}
+.almonds {
+  width: 89px;
+  display: flex;
+  align-items: center;
+}
+.almonds-almonds {
+  white-space: nowrap;
+}
+.addons1,
+.almonds-parent {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.almonds-parent {
+  border-radius: 5px;
+  border: 2px solid #e5b638;
+  align-items: center;
+  padding: 20px 18px;
+  gap: 0 10px;
+}
+.addons1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  align-items: flex-start;
+  min-width: 117px;
+}
+.almonds-almonds1,
+.almonds1 {
+  font-family: Inter;
+  font-size: 16px;
+  position: relative;
+  line-height: 130%;
+  color: #fff;
+  text-align: left;
+}
+.almonds1 {
+  flex: 1;
+}
+.almonds-almonds1 {
+  width: 41px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.addons-addons,
+.addons2,
+.almonds-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.almonds-group {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid silver;
+  align-items: center;
+  padding: 20px 21px 20px 19px;
+  gap: 0 10px;
+}
+.addons-addons,
+.addons2 {
+  align-items: flex-start;
+}
+.addons2 {
+  flex: 1;
+  min-width: 117px;
+}
+.addons-addons {
+  align-self: stretch;
+  gap: 0 20px;
+}
+.almonds2,
+.input11 {
+  font-family: Inter;
+  font-size: 16px;
+  position: relative;
+  line-height: 130%;
+  color: #fff;
+  text-align: left;
+}
+.almonds2 {
+  flex: 1;
+}
+.input11 {
+  width: 41px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.addons3,
+.almonds-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.almonds-container {
+  border-radius: 5px;
+  border: 1px solid silver;
+  align-items: center;
+  padding: 20px 21px 20px 19px;
+  gap: 0 10px;
+}
+.addons3 {
+  align-items: flex-start;
+  min-width: 117px;
+}
+.almonds3 {
+  flex: 1;
+  position: relative;
+  font-size: 16px;
+  line-height: 130%;
+  font-family: Inter;
+  color: #fff;
+  text-align: left;
+}
+.almonds-parent1,
+.input12 {
+  display: flex;
+  align-items: center;
+}
+.input12 {
+  width: 41px;
+  border: 0;
+  outline: 0;
+  font-family: Inter;
+  font-size: 16px;
+  background-color: transparent;
+  height: 21px;
+  position: relative;
+  line-height: 130%;
+  color: #fff;
+  text-align: left;
+  white-space: nowrap;
+}
+.almonds-parent1 {
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid silver;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 20px 21px 20px 19px;
+  gap: 0 10px;
+}
+.addons-addons-parent,
+.addons-addons1,
+.addons4,
+.dry-fruits-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.addons4 {
+  flex: 1;
+  min-width: 117px;
+}
+.addons-addons-parent,
+.addons-addons1,
+.dry-fruits-parent {
+  align-self: stretch;
+  gap: 0 20px;
+}
+.addons-addons-parent,
+.dry-fruits-parent {
+  flex-direction: column;
+  gap: 10px 0;
+}
+.dry-fruits-parent {
+  gap: 20px 0;
+}
+.almonds4,
+.fudges,
+.input13 {
+  font-family: Inter;
+  position: relative;
+  line-height: 130%;
+  color: #fff;
+  text-align: left;
+}
+.fudges {
+  align-self: stretch;
+  font-size: 20px;
+}
+.almonds4,
+.input13 {
+  font-size: 16px;
+}
+.almonds4 {
+  flex: 1;
+}
+.input13 {
+  width: 41px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.addons5,
+.items-added1 {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.items-added1 {
+  border-radius: 5px;
+  border: 1px solid silver;
+  align-items: center;
+  padding: 20px 21px 20px 19px;
+  gap: 0 10px;
+}
+.addons5 {
+  align-items: flex-start;
+  min-width: 117px;
+}
+.almonds5,
+.div35 {
+  position: relative;
+  font-size: 16px;
+  line-height: 130%;
+  font-family: Inter;
+  color: #fff;
+  text-align: left;
+}
+.almonds5 {
+  width: 89px;
+  display: flex;
+  align-items: center;
+}
+.div35 {
+  white-space: nowrap;
+}
+.addons-group,
+.addons6,
+.almonds-parent2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.almonds-parent2 {
+  flex: 1;
+  border-radius: 5px;
+  border: 2px solid #e5b638;
+  align-items: center;
+  padding: 20px 18px;
+  gap: 0 10px;
+}
+.addons-group,
+.addons6 {
+  align-items: flex-start;
+}
+.addons6 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  flex: 1;
+  min-width: 117px;
+}
+.addons-group {
+  align-self: stretch;
+  gap: 0 20px;
+}
+.frame-wrapper4 {
+  align-self: stretch;
+  flex-direction: column;
+}
+.addons-parent,
+.child-frame1,
+.frame-wrapper4,
+.fudges-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.fudges-parent {
+  align-self: stretch;
+  flex-direction: column;
+  gap: 20px 0;
+}
+.addons-parent,
+.child-frame1 {
+  max-width: 100%;
+}
+.addons-parent {
+  margin: 0;
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  overflow-y: auto;
+  flex-direction: column;
+  padding: 20px 19px;
+  gap: 20px 0;
+  min-width: 273px;
+  min-height: 526px;
+}
+.child-frame1 {
+  align-self: stretch;
+  flex-direction: row;
+  gap: 0 25px;
+}
+@media screen and (max-width: 450px) {
+  .dry-fruits {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .addons-addons,
+  .addons-addons1 {
+    flex-wrap: wrap;
+  }
+  .fudges {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .addons-group {
+    flex-wrap: wrap;
+  }
+  .addons-parent {
+    min-height: auto;
+  }
+  .child-frame1 {
+    flex-wrap: wrap;
+  }
+}

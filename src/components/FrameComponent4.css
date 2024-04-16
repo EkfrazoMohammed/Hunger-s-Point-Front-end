@@ -1,0 +1,103 @@
+.alberta9 {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+  color: #fff;
+}
+.alberta9:hover {
+  color: #e5b638;
+}
+.alberta-wrapper2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 100%;
+  font-size: 36px;
+}
+.location-icon14 {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hospital-st-fort7 {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  min-width: 318px;
+  max-width: 100%;
+}
+.location-parent5 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0 10px;
+  max-width: 100%;
+}
+.call-icon7 {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.div36 {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  min-width: 141px;
+  max-width: 100%;
+}
+.call-parent4 {
+  align-self: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 10px;
+}
+.call-parent4,
+.category-2-inner2,
+.frame-parent64 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.frame-parent64 {
+  flex: 1;
+  flex-direction: column;
+  gap: 15px 0;
+}
+.category-2-inner2 {
+  align-self: stretch;
+  flex-direction: row;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: 24px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 800px) {
+  .alberta9 {
+    font-size: 29px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .alberta9 {
+    font-size: 22px;
+  }
+  .div36,
+  .hospital-st-fort7 {
+    font-size: 19px;
+  }
+}

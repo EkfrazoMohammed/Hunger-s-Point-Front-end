@@ -1,0 +1,269 @@
+.cartitem06-icon {
+  height: 160px;
+  width: 160px;
+  position: relative;
+  object-fit: cover;
+}
+.oreo-shake6 {
+  position: relative;
+  line-height: 130%;
+  font-weight: 600;
+}
+.choco-chips-hot,
+.input-field3 {
+  position: relative;
+  font-size: 12px;
+  line-height: 130%;
+}
+.input-field3 {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+.chocochipshotchocolatefudgetex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px 0;
+}
+.input-field5 {
+  width: 63px;
+  height: 26px;
+  line-height: 130%;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+}
+.icon1,
+.input-field5,
+.qty1 {
+  position: relative;
+}
+.qty1 {
+  line-height: 130%;
+}
+.icon1 {
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+}
+.cart-item1 {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.deleteinstance,
+.input-field4,
+.order-details3,
+.tomato-frame {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.deleteinstance {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 8px 0 16px;
+  font-size: 16px;
+  color: #fff;
+}
+.input-field4,
+.order-details3,
+.tomato-frame {
+  flex-direction: column;
+}
+.input-field4 {
+  width: 128px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #444;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 0 0 4px;
+  gap: 19px 0;
+  cursor: pointer;
+  color: #c21f24;
+}
+.order-details3,
+.tomato-frame {
+  gap: 20px 0;
+  min-width: 204px;
+}
+.tomato-frame {
+  flex-direction: row;
+  align-items: center;
+  gap: 0 24px;
+  min-width: 388px;
+  max-width: 100%;
+}
+.input-field-frame {
+  position: relative;
+  line-height: 130%;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.delete-icon1,
+.input-field6 {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.delete-icon1 {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  border-radius: 5px;
+}
+.input-field6 {
+  width: 34px;
+  height: 32px;
+  border-radius: 20px;
+  background-color: #c60303;
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4px 7px 4px 3px;
+}
+.shipping-method-frame {
+  height: 131px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 63px 0;
+}
+.ginger,
+.onion-frame,
+.shipping-method-frame {
+  display: flex;
+  justify-content: flex-start;
+}
+.onion-frame {
+  width: 267px;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 174px;
+  text-align: right;
+}
+.ginger {
+  align-self: stretch;
+  border-radius: 20px;
+  background-color: #363636;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 30px 5px 0;
+  box-sizing: border-box;
+  gap: 0 63px;
+  max-width: 100%;
+}
+.Tomato{
+  align-self: stretch;
+  border-radius: 20px;
+  background-color: #363636;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 30px 5px 0;
+  box-sizing: border-box;
+  gap: 0 63px;
+  max-width: 100%;
+}
+.user-instance12 {
+
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+.oreo-shake5,
+.user-instance {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+  
+}
+.oreo-shake5 {
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 31px 0;
+  min-width: 486px;
+}
+.user-instance {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0 32px;
+  text-align: left;
+  font-size: 20px;
+  color: #fff;
+  font-family: Poppins;
+}
+@media screen and (max-width: 1150px) {
+  .user-instance {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 800px) {
+  .tomato-frame {
+    flex: 1;
+    min-width: 100%;
+  }
+  .ginger {
+    flex-wrap: wrap;
+    gap: 0 63px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  .oreo-shake5 {
+    gap: 31px 0;
+    min-width: 100%;
+  }
+  .user-instance {
+    gap: 0 32px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .cartitem06-icon {
+    flex: 1;
+  }
+  .input-field5,
+  .oreo-shake6 {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .order-details3 {
+    flex: 1;
+  }
+  .tomato-frame {
+    flex-wrap: wrap;
+  }
+  .input-field-frame {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .ginger {
+    gap: 0 63px;
+  }
+}
+@media screen and (max-width: 800px){
+  .Tomato {
+    flex-wrap: wrap;
+    gap: 0 63px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px){
+  .Tomato {
+    gap: 0 63px;
+  }
+}
