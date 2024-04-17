@@ -16,6 +16,7 @@ const Property1FilledPrimary = ({
   buttonTextTransform,
   buttonFontWeight,
   buttonFontSize,
+  handleSubmit
 }) => {
   const property1FilledPrimaryStyle = useMemo(() => {
     return {
@@ -61,7 +62,7 @@ const Property1FilledPrimary = ({
     <div
       className="property-1filledprimary"
       style={property1FilledPrimaryStyle}
-      onClick={onUserpage}
+      onClick={handleSubmit}
     >
       <b className="button button-design" style={buttonStyle}>
         {button}

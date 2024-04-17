@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Property1FilledPrimary from "./Property1FilledPrimary";
 import "./CATEGORY.css";
@@ -15,6 +15,74 @@ const CATEGORY = () => {
     navigate("/homepage1");
   }, [navigate]);
 
+  const [email, setEmail] = useState('');
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+
+
+  const CheckUserexistsData = async () => {
+    console.log(user?.email, 'user?.email==>')
+    if (user?.email) {
+      if (isAuthenticated) {
+        const data = {
+          'email': user?.email,
+          'user_name': user?.name
+        }
+        API.getInstance().menu.post('api/register', data)
+          .then((res) => {
+            console.log(res, 'res=====>1221312')
+            console.log(res.data.result, 'res=====>code')
+            if (res.data.result.code == 2){
+              CheckUserOffer(['First User','ALL','Registered User'])
+            }
+            else{
+              CheckUserOffer(['Registered User','ALL'])
+            }
+            localStorage.setItem('credentials', JSON.stringify(res.data.result) );
+            GetBasketData()
+          })
+          .catch((error) => {
+            console.log(error, 'error=====>1221312')
+          })
+          .finally(() => {
+          });
+      }
+    }
+  }
+  
+  const handleSubmit = () => {
+    // Call your API with the email state
+    console.log('Email:', email);
+    if (user?.email) {
+      if (isAuthenticated) {
+        const data = {
+          'email': user?.email,
+          'user_name': user?.name
+        }
+        API.getInstance().menu.post('api/register', data)
+          .then((res) => {
+            console.log(res, 'res=====>1221312')
+            console.log(res.data.result, 'res=====>code')
+            if (res.data.result.code == 2){
+              CheckUserOffer(['First User','ALL','Registered User'])
+            }
+            else{
+              CheckUserOffer(['Registered User','ALL'])
+            }
+            localStorage.setItem('credentials', JSON.stringify(res.data.result) );
+            GetBasketData()
+          })
+          .catch((error) => {
+            console.log(error, 'error=====>1221312')
+          })
+          .finally(() => {
+          });
+      }
+    }
+  };
   return (
     <div className="category-26">
       <div className="signin-text-wrapper">
@@ -30,14 +98,18 @@ const CATEGORY = () => {
         </div>
       </div>
       <div className="input10">
-        <div className="input-inner5">
-          <input
-            className="frame-child24"
-            placeholder="Email Address"
-            type="text"
-          />
-        </div>
+      <div className="input-inner5">
+        <input
+        style={{fontSize:'18px',paddingLeft:'20px'}}
+          className="input-inner5"
+          placeholder="Email Address"
+          type="text"
+          value={email}
+          onChange={handleEmailChange}
+        />
       </div>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+    </div>
       <Property1FilledPrimary
         button="Sign in"
         property1FilledPrimaryBorder="none"
@@ -51,6 +123,7 @@ const CATEGORY = () => {
         buttonFontWeight="unset"
         buttonFontSize="18px"
         onButtonsStatesDarkContainerClick={onButtonsStatesDarkClick}
+        handleSubmit={handleSubmit}
       />
       <div className="o-rvector-parent">
         <img
@@ -68,11 +141,11 @@ const CATEGORY = () => {
         <b className="sign-up-here1">Sign up here</b>
       </div>
       <div className="signupcalltoaction">
-        <button onClick={() => loginWithRedirect()} className="buttons-states-dark63">
+        <button onClick={() => loginWithRedirect()} className="buttons-states-dark64">
           <img className="google-icon1" alt="" src={google} />
           <div className="button75">Continue with Google</div>
         </button>
-        <button className="buttons-states-dark64">
+        <button onClick={() => loginWithRedirect()} className="buttons-states-dark64">
           <img className="facebook-icon1" alt="" src={facebook2} />
           <div className="button76">Continue with Facebook</div>
         </button>

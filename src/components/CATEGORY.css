@@ -82,7 +82,7 @@
   border: 1px solid #929292;
   box-sizing: border-box;
   justify-content: flex-start;
-  padding: 20px;
+  /* padding: 20px; */
   position: relative;
 }
 .input10 {
@@ -195,6 +195,7 @@
   align-items: center;
   justify-content: center;
   gap: 0 20px;
+  width: auto;
 }
 .category-26,
 .signupcalltoaction {

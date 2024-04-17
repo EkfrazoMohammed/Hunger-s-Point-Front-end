@@ -48,7 +48,7 @@ const Button = () => {
   
   const [addresslist, setAddresslist] = useState([]);
   const [selectedState, setSelectedState] = useState('');
-  const [selectMethod, setSelectMethod] = useState(1);
+  const [selectMethod, setSelectMethod] = useState(2);
   const [isVisibleSM, setIsVisibleSM] = useState(true);
   const [isValidForm, setIsValidForm] = useState(false); 
   const [address_initialValues, setAddressinitialValues] = useState({
@@ -403,16 +403,16 @@ const onEpbackIconClick = useCallback(() => {
               <div className="divider19" />
 
               <div className="location-call-frame">
-                <div className={selectMethod === 1 ? "" : "delivery-frame1"}>
+                <div className={selectMethod === 2 ? "" : "delivery-frame1"}>
                   <div className="hospital-state-parent">
-                    <div className="delivery-delivery-frame">
+                    {/* <div className="delivery-delivery-frame">
                       <div
                         className="delivery5 cursor-pointer"
                         onClick={() => onShippingMethodClick(1,'Delivery') }
                       >
                         Delivery
                       </div>
-                    </div>
+                    </div> */}
                     <div className="hospital-state">
                       <div
                         className="delivery5 cursor-pointer"
@@ -426,7 +426,7 @@ const onEpbackIconClick = useCallback(() => {
                 </div>
               </div>
               <div className="w-full">
-                {selectMethod === 1 ? (
+                {/* {selectMethod === 1 ? (
                    <Formik
                    enableReinitialize
                    initialValues={address_initialValues}
@@ -445,7 +445,6 @@ const onEpbackIconClick = useCallback(() => {
                      <Form >
                       
                        <div className="input-email-address">
-                         {/* <div className="contact-detail3">Contact detail</div> */}
                          <div className="frame-button-dropdown">
                            <div className="input5">
                              <Field
@@ -530,18 +529,11 @@ const onEpbackIconClick = useCallback(() => {
                            </div>
                          </div>
                        </div>
-                       {/* <div className="buttons-states4">
-                         <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[49px] px-3 text-[#fff]" disabled={isSubmitting}>
-                           <b className="button70">{method == "ADD" ? "Add New Address" : "Edit Address"}</b>
-                         </button>
-                       </div> */}
-
                       <div className="component-frame">
                       <div
                         className="oreo-shake-component"
-                        // onClick={onOreoShakeComponentClick}
                       >
-                        <button className="font-inter font-bold text-base leading-5 items-center border border-[#fff] rounded-md h-[49px] px-3 text-[#fff]">
+                        <button style={{border:'1px solid #fff'}}  className="font-inter font-bold text-base leading-5 items-center border border-[#fff] rounded-md h-[49px] px-3 text-[#fff]">
                           <div className="button53">Back</div>
                         </button>
                         <button type="submit" className="font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[49px] px-3 text-[#fff]">
@@ -552,7 +544,7 @@ const onEpbackIconClick = useCallback(() => {
                      </Form>
                    )}
                  </Formik>
-                ) : (
+                ) : ( */}
                   <div className="w-full gap-4 flex flex-col">
                     {/* <div className="dropdown-wrapper">
                       <div className="dropdown2">
@@ -616,7 +608,7 @@ const onEpbackIconClick = useCallback(() => {
                         className="cart-checkout"
                         
                       >
-                        <button className="font-inter font-bold text-base leading-5 items-center border border-[#fff] rounded-md h-[49px] px-3 text-[#fff]">
+                        <button style={{border:'1px solid #fff'}} className="font-inter font-bold text-base leading-5 items-center border border-[#fff] rounded-md h-[49px] px-3 text-[#fff]">
                           <div className="button61">Back</div>
                         </button>
                         <button className="font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[49px] px-3 text-[#fff]" disabled={selectedState ? false : true} onClick={() => onCartCheckoutContainerClick()} >
@@ -625,7 +617,7 @@ const onEpbackIconClick = useCallback(() => {
                       </div>
                     </div>
                   </div>
-                )}
+                {/* )} */}
               </div>
             </div>
           </div>

@@ -38,6 +38,7 @@ import SaveIcon from "../assets/saveIcon.svg";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
+import CATEGORY from "../components/CATEGORY";
 
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
@@ -263,80 +264,81 @@ const ProductPage = () => {
             switch (reactionType) {
               case 'LOVEIT':
                 UpdateReactionInDB(item_data, 'loveit')
-                  .then(reactionResult => {
-                    if (reactionResult) {
-                      console.log('UpdateReactionInDB===', react_state);
-                      updatedItem = {
-                        ...updatedItem,
-                        loveit: !updatedItem.loveit,
-                        loveit_count: updatedItem.loveit ? updatedItem.loveit_count - 1 : updatedItem.loveit_count + 1
-                      };
-                      reactionUpdated = true;
-                    }
-                  })
-                  .catch(error => {
-                    // Handle error
-                    console.error('Failed to update reaction:', error);
-                  });
+                updatedItem = {
+                  ...updatedItem,
+                  loveit: !updatedItem.loveit,
+                  loveit_count: updatedItem.loveit ? updatedItem.loveit_count - 1 : updatedItem.loveit_count + 1
+                };
+                reactionUpdated = true;
+                
                 break;
               case 'LIKEIT':
-                // UpdateReactionInDB(item_data,'likeit')
-                UpdateReactionInDB(item_data, 'likeit')
-                  .then(reactionResult => {
-                    if (reactionResult) {
-                      updatedItem = {
-                        ...updatedItem,
-                        likeit: !updatedItem.likeit,
-                        likeit_count: updatedItem.likeit ? updatedItem.likeit_count - 1 : updatedItem.likeit_count + 1
-                      };
-                      reactionUpdated = true;
-                    }
-                  })
-                  .catch(error => {
-                    // Handle error
-                    console.error('Failed to update reaction:', error);
-                  });
+                UpdateReactionInDB(item_data,'likeit')
+                updatedItem = {
+                  ...updatedItem,
+                  likeit: !updatedItem.likeit,
+                  likeit_count: updatedItem.likeit ? updatedItem.likeit_count - 1 : updatedItem.likeit_count + 1
+                };
+                reactionUpdated = true;
+
+                
                 break;
               case 'DISLIKE':
-                // UpdateReactionInDB(item_data,'dislikeit')
-                UpdateReactionInDB(item_data, 'dislikeit')
-                  .then(reactionResult => {
-                    if (reactionResult) {
-                      updatedItem = {
-                        ...updatedItem,
-                        dislikeit: !updatedItem.dislikeit,
-                        dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
-                      };
-                      reactionUpdated = true;
-                    }
-                  })
-                  .catch(error => {
-                    // Handle error
-                    console.error('Failed to update reaction:', error);
-                  });
+                UpdateReactionInDB(item_data,'dislikeit')
+                updatedItem = {
+                  ...updatedItem,
+                  dislikeit: !updatedItem.dislikeit,
+                  dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
+                };
+                reactionUpdated = true;
+                // UpdateReactionInDB(item_data, 'dislikeit')
+                //   .then(reactionResult => {
+                //     if (reactionResult) {
+                //       updatedItem = {
+                //         ...updatedItem,
+                //         dislikeit: !updatedItem.dislikeit,
+                //         dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
+                //       };
+                //       reactionUpdated = true;
+                //     }
+                //   })
+                //   .catch(error => {
+                //     // Handle error
+                //     console.error('Failed to update reaction:', error);
+                //   });
 
                 break;
               case 'SAVEIT':
-                // UpdateReactionInDB(item_data,'saveit')
-                UpdateReactionInDB(item_data, 'saveit')
-                  .then(reactionResult => {
-                    if (reactionResult) {
-                      updatedItem = {
-                        ...updatedItem,
-                        saveit: !updatedItem.saveit,
-                        saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
-                      };
-                      reactionUpdated = true;
-                    }
-                  })
-                  .catch(error => {
-                    // Handle error
-                    console.error('Failed to update reaction:', error);
-                  });
+                UpdateReactionInDB(item_data,'saveit')
+                updatedItem = {
+                  ...updatedItem,
+                  saveit: !updatedItem.saveit,
+                  saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
+                };
+                reactionUpdated = true;
+                // UpdateReactionInDB(item_data, 'saveit')
+                //   .then(reactionResult => {
+                //     if (reactionResult) {
+                //       updatedItem = {
+                //         ...updatedItem,
+                //         saveit: !updatedItem.saveit,
+                //         saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
+                //       };
+                //       reactionUpdated = true;
+                //     }
+                //   })
+                //   .catch(error => {
+                //     // Handle error
+                //     console.error('Failed to update reaction:', error);
+                //   });
                 break;
               default:
                 break;
             }
+            if (reactionUpdated) {
+              updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
+          }
+          return updatedItem;
             updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
             return updatedItem;
           } else {
@@ -922,9 +924,7 @@ const ProductPage = () => {
 
         {
     !loggedin && ( <Modal isOpen={!loggedin} onClose={closeModal}>
-      <h2>Modal Title</h2>
-              <p>This is the content of the modal.</p>
-              <button onClick={closeModal}>Close Modal</button>
+      <CATEGORY />
 
     </Modal>)
   }

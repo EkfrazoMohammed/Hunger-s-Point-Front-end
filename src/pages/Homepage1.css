@@ -19,18 +19,7 @@
 }
 
 
-input,
-button {
-  display: block;
-  width: 240px;
-  height: 48px;
-  margin: 0 70px;
-  border-radius: 24px;
-  font-size: 16px;
-  font-family: inherit;
-  outline-color: #3181f8;
-  text-align: center;
-}
+
 
 input {
   border: 1px solid rgba(255, 255, 255, 0.2);
