@@ -7,6 +7,8 @@
 body {
   margin: 0;
   line-height: normal;
+  background-color: #252525;
+  color: #fff;
 }
 .buttons-states-dark61:hover {
   background-color: #b38205;
@@ -42,4 +44,160 @@ body {
   background-color: #b38205;
   border: 3px solid #b38205;
   box-sizing: border-box;
+}
+
+.navbar--wrap {
+  height: 100px;
+  padding: 10px 10px;
+}
+
+.submenu {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  width: 100%;
+  top: 153px;
+  z-index: 10;
+  transition: all 0.2s ease-in;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.submenu.open {
+  display: flex;
+  padding: 20px;
+  max-height: 300px;
+  opacity: 1
+}
+.hamburger-sub{
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+}
+.hamburger-sub:hover{
+  background-color:#e5b638;
+}
+.burger-line {
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+}
+
+.header-right-action--w{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* slider */
+.review-section-frame .slick-next {
+  right: 25px;
+  z-index: 9;
+}
+.review-section-frame .slick-prev {
+  left: 25px;
+  z-index: 9;
+}
+.review-section-frame .slick-slide img {
+  display: block;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  height: 80vh;
+  object-fit: cover;
+  background-position: center;
+}
+
+.review-section-frame .slider-item {
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+}
+.review-section-frame .order-action {
+  border: 2px solid #e5b638;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+.review-section-frame .basket-button2 {
+  margin: -75px auto auto;
+}
+.review-section-frame .order-action {
+  border: 2px solid #e5b638;
+  padding: 10px 20px;
+  margin-top: 20px;
+  transition: all 0.2s ease-in;
+}
+.review-section-frame .order-action:hover {
+  background-color:#e5b638;
+  
+}
+.review-section-frame .slick-prev:before,
+.review-section-frame .slick-next:before {
+  font-family: "slick";
+  font-size: 40px;
+  line-height: 1;
+  opacity: 0.75;
+  color: rgba(255, 255, 255, 0.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.banner-action--wrapper {
+  position: absolute;
+  min-width: 400px;
+  min-height: 200px;
+  background: #0e0e0e47;
+  top: 30%;
+  left: 10%;
+  padding: 20px 40px;
+  z-index: 9;
+}
+
+
+/* common classes */
+.fp-container-main{
+  max-width: 100%;
+}
+.fp-wrapper-main{
+  max-width: 90%;
+  margin: 40px auto;
+}
+
+.sec-info--w{
+  display: flex;
+  justify-content: space-between;
+
+}
+.side--w{
+  flex: 0 0 48%;
+  max-width: 50%;
+
+}
+
+.fp-para-section-title-sm{
+  font-size: 20px;
+
+}
+.fp-para-section-title{
+  font-size: 30px;
+  font-weight: 700;
+
+}
+
+@media (max-width: 767px) {
+  .sec-info--w{
+    flex-direction: column;
+  }
+  .sec-info--w.info_event{
+    flex-direction: column-reverse;
+  }
 }

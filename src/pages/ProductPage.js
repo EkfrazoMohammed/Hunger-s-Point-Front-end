@@ -36,6 +36,9 @@ import LikeIcon from "../assets/likeIcon.svg";
 import DislikeIcon from "../assets/dislikeIcon.svg";
 import SaveIcon from "../assets/saveIcon.svg";
 
+import { useAuth0 } from "@auth0/auth0-react";
+import Modal from "../components/Modal";
+
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -54,6 +57,8 @@ const ProductPage = () => {
 
   const [isLikeMenu, setIsLikeMenu] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const [loggedin, setLoggedin] = useState(true);
 
   useEffect(() => {
     GetLocationData();
@@ -133,6 +138,7 @@ const ProductPage = () => {
     console.log("UpdateBasket==called");
     GetBasketData();
   }, []);
+  
 
   const GetMenuTagData = async (menu_id, tag_id) => {
     GetMenuTagItemData(menu_id, tag_id);
@@ -205,67 +211,148 @@ const ProductPage = () => {
     
   }, []);
 
+
+
+  const UpdateReactionInDB = async (menu_data, reaction) => {
+    if (!isAuthenticated) {
+      toast.error("Please Login to React");
+      setLoggedin(false)
+      return false; // Return false if not authenticated
+    } else {
+      const credentials = JSON.parse(localStorage.getItem("credentials"));
+    
+      const body = {
+        cuser_id: credentials?.user_id,
+        menu_items_id: menu_data.id,
+        reaction: reaction
+      };
+  
+      console.log(body, "body=====>UpdateReactionInDB");
+      
+      try {
+        const res = await API.getInstance().menu.post("api/user-items-reaction", body);
+        console.log(res, 'response======>');
+        setLoggedin(true)
+        return true; // Return true if update is successful
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to update reaction");
+        setLoggedin(false)
+        return false; // Return false if there's an error
+      }
+    }
+  };
+
+
+
   const OnClickAddButton = async (menu_item) => {
     setMenuitemdata(menu_item);
     openWoAddon(true);
   };
 
-  const [isReactedLoveit, setIsReactedLoveit] = useState(false);
-  const [isReactedLikeit, setIsReactedLikeit] = useState(false);
-  const [isReactedDisLikeit, setIsReactedDisLikeit] = useState(false);
-  const [isReactedSaveit, setIsReactedSaveit] = useState(false);
-
   const OnClickReactionpopup = async (item_data, reactionType) => {
+    
     setRestorentMenuTagItemdata(prevState => {
-        // Find the index of the item in restorentmenutagitemdata
-        const dataIndex = prevState.findIndex(menu => menu.menu_item_info_list.some(item => item.id === item_data.id));
+      // Find the index of the item in restorentmenutagitemdata
+      const newData = prevState.map(menu => {
         // Find the index of the item in menu_item_info_list
-        const itemIndex = prevState[dataIndex].menu_item_info_list.findIndex(item => item.id === item_data.id);
-        
-        // Check if the item has already been reacted
-        let isReacted = false;
+        const newItemList = menu.menu_item_info_list.map(item => {
+          if (item.id === item_data.id) {
+            let updatedItem = { ...item };
+            let reactionUpdated = false;
+            switch (reactionType) {
+              case 'LOVEIT':
+                UpdateReactionInDB(item_data, 'loveit')
+                  .then(reactionResult => {
+                    if (reactionResult) {
+                      console.log('UpdateReactionInDB===', react_state);
+                      updatedItem = {
+                        ...updatedItem,
+                        loveit: !updatedItem.loveit,
+                        loveit_count: updatedItem.loveit ? updatedItem.loveit_count - 1 : updatedItem.loveit_count + 1
+                      };
+                      reactionUpdated = true;
+                    }
+                  })
+                  .catch(error => {
+                    // Handle error
+                    console.error('Failed to update reaction:', error);
+                  });
+                break;
+              case 'LIKEIT':
+                // UpdateReactionInDB(item_data,'likeit')
+                UpdateReactionInDB(item_data, 'likeit')
+                  .then(reactionResult => {
+                    if (reactionResult) {
+                      updatedItem = {
+                        ...updatedItem,
+                        likeit: !updatedItem.likeit,
+                        likeit_count: updatedItem.likeit ? updatedItem.likeit_count - 1 : updatedItem.likeit_count + 1
+                      };
+                      reactionUpdated = true;
+                    }
+                  })
+                  .catch(error => {
+                    // Handle error
+                    console.error('Failed to update reaction:', error);
+                  });
+                break;
+              case 'DISLIKE':
+                // UpdateReactionInDB(item_data,'dislikeit')
+                UpdateReactionInDB(item_data, 'dislikeit')
+                  .then(reactionResult => {
+                    if (reactionResult) {
+                      updatedItem = {
+                        ...updatedItem,
+                        dislikeit: !updatedItem.dislikeit,
+                        dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
+                      };
+                      reactionUpdated = true;
+                    }
+                  })
+                  .catch(error => {
+                    // Handle error
+                    console.error('Failed to update reaction:', error);
+                  });
 
-        switch (reactionType) {
-            case 'LOVEIT':
-              console.log(prevState[dataIndex].menu_item_info_list[itemIndex].loveit,'loveit_flag===>')
-              console.log(isReacted,'isReacted===>')
-              console.log(prevState[dataIndex].menu_item_info_list[itemIndex].loveit_count,'loveit_count===>')
-                isReacted = prevState[dataIndex].menu_item_info_list[itemIndex].loveit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].loveit = !isReactedLoveit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].loveit_count += isReacted ? -1 : 1;
-                setIsReactedLoveit(!isReactedLoveit);
                 break;
-            case 'LIKEIT':
-              console.log(prevState[dataIndex].menu_item_info_list[itemIndex].likeit,'loveit_flag===>')
-              console.log(isReacted,'isReacted===>')
-              console.log(prevState[dataIndex].menu_item_info_list[itemIndex].likeit_count,'loveit_count===>')
-                isReacted = prevState[dataIndex].menu_item_info_list[itemIndex].likeit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].likeit = !isReactedLikeit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].likeit_count += isReacted ? -1 : 1;
-                setIsReactedLikeit(!isReactedLikeit);
+              case 'SAVEIT':
+                // UpdateReactionInDB(item_data,'saveit')
+                UpdateReactionInDB(item_data, 'saveit')
+                  .then(reactionResult => {
+                    if (reactionResult) {
+                      updatedItem = {
+                        ...updatedItem,
+                        saveit: !updatedItem.saveit,
+                        saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
+                      };
+                      reactionUpdated = true;
+                    }
+                  })
+                  .catch(error => {
+                    // Handle error
+                    console.error('Failed to update reaction:', error);
+                  });
                 break;
-            case 'DISLIKE':
-                isReacted = prevState[dataIndex].menu_item_info_list[itemIndex].dislikeit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].dislikeit = !isReactedDisLikeit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].dislikeit_count += isReacted ? -1 : 1;
-                setIsReactedDisLikeit(!isReactedDisLikeit);
+              default:
                 break;
-            case 'SAVEIT':
-                isReacted = prevState[dataIndex].menu_item_info_list[itemIndex].saveit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].saveit = !isReactedSaveit;
-                prevState[dataIndex].menu_item_info_list[itemIndex].saveit_count += isReacted ? -1 : 1;
-                setIsReactedSaveit(!isReactedSaveit);
-                break;
-            default:
-                break;
-        }
-
-        // Update total_reaction_count
-        prevState[dataIndex].menu_item_info_list[itemIndex].total_reaction_count += isReacted ? -1 : 1;
-
-        return [...prevState]; // Return a new array to trigger state update
+            }
+            updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
+            return updatedItem;
+          } else {
+            return item;
+          }
+        });
+        return {
+          ...menu,
+          menu_item_info_list: newItemList
+        };
+      });
+      return [...newData]; // Return a new array to trigger state update
     });
 };
+
+
 
 
 
@@ -282,6 +369,12 @@ const ProductPage = () => {
     
     
   };
+
+
+
+  const closeModal = () => {
+    setLoggedin(true)
+  }
 
 
   return (
@@ -613,6 +706,12 @@ const ProductPage = () => {
                                               style={{
                                                 width: "50%",
                                                 marginTop: "10%",
+                                                border: "3px solid #E5B638", // Add border style
+                                                color: "#fff", // Set text color
+                                                backgroundColor: "transparent", // Set transparent background
+                                                borderRadius: "5px", // Add border radius
+                                                padding: "8px", // Add padding
+                                                cursor: "pointer", // Add cursor style
                                               }}
                                               className="border-[3px] border-[#E5B638] px-8 text-[#fff] rounded-md hover:bg-[#E5B638] py-2"
                                               onClick={() =>
@@ -692,7 +791,7 @@ const ProductPage = () => {
                                                   className="p-2 flex justify-center items-center gap-7 h-full"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
-                                                  <li>
+                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LOVEIT')} >
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={RedHeartIcon}
@@ -707,7 +806,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li>
+                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LIKEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={LikeIcon}
@@ -722,7 +821,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li>
+                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={DislikeIcon}
@@ -737,7 +836,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li>
+                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'SAVEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={SaveIcon}
@@ -786,6 +885,12 @@ const ProductPage = () => {
                                                 style={{
                                                   width: "50%",
                                                   marginTop: "10%",
+                                                  border: "3px solid #E5B638", // Add border style
+                                                  color: "#fff", // Set text color
+                                                  backgroundColor: "transparent", // Set transparent background
+                                                  borderRadius: "5px", // Add border radius
+                                                  padding: "8px", // Add padding
+                                                  cursor: "pointer", // Add cursor style
                                                 }}
                                                 className="border-[3px] border-[#E5B638] px-8 text-[#fff] rounded-md hover:bg-[#E5B638] py-2"
                                                 onClick={() =>
@@ -814,6 +919,15 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
+
+        {
+    !loggedin && ( <Modal isOpen={!loggedin} onClose={closeModal}>
+      <h2>Modal Title</h2>
+              <p>This is the content of the modal.</p>
+              <button onClick={closeModal}>Close Modal</button>
+
+    </Modal>)
+  }
       </div>
       {isWoAddonOpen && (
         <PortalPopup
@@ -830,6 +944,8 @@ const ProductPage = () => {
           />
         </PortalPopup>
       )}
+
+ 
     </>
   );
 };
