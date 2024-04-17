@@ -30,6 +30,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import Modal from "../components/Modal";
 import SimpleSlider from "../components/HomeSlider";
+import AdModalPopup from "../components/AdModalPopup";
 // import { Modal, Button } from 'react-bootstrap';
 
 
@@ -110,9 +111,10 @@ const Homepage1 = () => {
   return (
     <div className="homepage1">
       {/* <CategoryFrame /> */}
+      {/* <AdModalPopup/> */}
       <section className="review-section-frame">
-        {/* <SimpleSlider /> */}
-        <Header3 />
+        <SimpleSlider />
+        {/* <Header3 /> */}
         <FrameComponent6 />
       </section>
 

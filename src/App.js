@@ -27,6 +27,7 @@ import CheckoutContact1 from "./pages/CheckoutContact1";
 import Header from "./components/Header";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Events } from "./pages/sub-menu-pages/events_page/Events";
 
 function App() {
   const action = useNavigationType();
@@ -168,6 +169,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/deliveryPartner" element={<DeliveryPartner />} />
         <Route path="/checkoutcontact1" element={<CheckoutContact1 />} />
+        {/* submenu */}
+        <Route path="/events" element={<Events />} />
       </Routes>
     </>
   );
