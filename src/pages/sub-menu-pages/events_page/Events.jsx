@@ -7,7 +7,6 @@ import pageBannerImg from "../../../assets/image-5@2x.png";
 import sideImg1 from "../../../assets/images/event-img-1.png";
 import sideImg2 from "../../../assets/images/event-img-2.png";
 import sideImg3 from "../../../assets/images/event-img-3.png";
-import sectionBanner from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
