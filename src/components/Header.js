@@ -384,7 +384,7 @@ const Header = () => {
       </header>
       <div className={`submenu ${isOpen ? 'open' : ''}`}>
                 <Link to="events">Event</Link>
-                <Link to="/">Careers</Link>
+                <Link to="careers">Careers</Link>
                 <Link to="/">Franchise</Link>
                 <Link to="/">Contact Us</Link>
                 <Link to="/">Our Story</Link>
