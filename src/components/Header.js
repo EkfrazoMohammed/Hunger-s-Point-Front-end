@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/logo@2x.png"
@@ -28,6 +28,9 @@ const Header = () => {
   const [target, settarget] = useState(""); 
   const location = useLocation();
 
+  const [isOpen, setIsOpen] = useState(false);
+
+
   useEffect(() => {
     // Check if the current location pathname contains "/location"
     if (location.pathname.includes("/location")){
@@ -38,6 +41,11 @@ const Header = () => {
     }
     
   }, [location]);
+
+
+  const toggleSubMenu = () => {
+    setIsOpen(!isOpen);
+};
 
 
   console.log(user?.picture,'user?.picture===>')
@@ -80,7 +88,7 @@ const Header = () => {
     }
     API.getInstance().menu.post(`/api/check-offers`,data)
       .then((res) => {
-        // console.log(res.data.result.data,'GetUserData======>')
+        console.log(res.data.result.data,'GetUserData======>')
         
       })
       .catch((error) => {
@@ -94,7 +102,7 @@ const Header = () => {
     if (user?.email){
       API.getInstance().menu.get(`/api/custom-user?email_id=${user?.email}`)
       .then((res) => {
-        // console.log(res.data.result.data,'GetUserData======>')
+        console.log(res.data.result.data,'GetUserData======>')
         dispatch(setUserdata(res.data.result.data[0]));
         CheckUserexistsData()
       })
@@ -115,8 +123,8 @@ const Header = () => {
         }
         API.getInstance().menu.post('api/register', data)
           .then((res) => {
-            // console.log(res, 'res=====>1221312')
-            // console.log(res.data.result, 'res=====>code')
+            console.log(res, 'res=====>1221312')
+            console.log(res.data.result, 'res=====>code')
             if (res.data.result.code == 2){
               CheckUserOffer(['First User','ALL','Registered User'])
             }
@@ -145,8 +153,8 @@ const Header = () => {
     if (credentials){
       API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
       .then((res) => {
-        // console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
-        // console.log(res.data.result.basket_count, 'GetBasketData===res.data.result.data===>')
+        console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
+        console.log(res.data.result.basket_count, 'GetBasketData===res.data.result.data===>')
         dispatch(setBasketcount(res.data.result.basket_count));
         // CheckUserexistsData()
       })
@@ -200,7 +208,7 @@ const Header = () => {
         <img className="close-icon2" loading="eager" alt="" src={close} />
       </div>
       <header>
-        <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 bg-gradient-to-r from-[#252525] to-[#380000] w-full min-w-fit mb-2">
+        <nav className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r from-[#252525] to-[#380000] w-full min-w-fit">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <img
               className="mr-3 h-20 w-20"
@@ -210,7 +218,7 @@ const Header = () => {
               onClick={() => handleRout("/homepage")}
             />
             <div className="flex items-center lg:order-2">
-              <div className="h-[63px] justify-end gap-x-5 font-inter flex">
+              <div className="header-right-action--w font-inter">
                 <div
                   className="buttons-states-dark7 h-[49px] rounded-[56px] border-[3px] border-[#e5b638] box-border flex flex-row items-center justify-end py-0 pl-[10px] pr-4 relative gap-x-[5px] hover:bg-[#b38205] hover:border-[#b38205]"
                   onClick={() => onbasketclick()}
@@ -260,10 +268,11 @@ const Header = () => {
                    Login
                   </div>
                 </div>)}
-                
-
-
-
+                <button onClick={toggleSubMenu} className="hamburger-sub">
+                  <div className="burger-line"></div>
+                  <div className="burger-line"></div>
+                  <div className="burger-line"></div>
+                </button>
                 <button
                   data-collapse-toggle="mobile-menu-2"
                   type="button"
@@ -373,6 +382,13 @@ const Header = () => {
           </div>
         </nav>
       </header>
+      <div className={`submenu ${isOpen ? 'open' : ''}`}>
+                <Link to="events">Event</Link>
+                <Link to="/">Careers</Link>
+                <Link to="/">Franchise</Link>
+                <Link to="/">Contact Us</Link>
+                <Link to="/">Our Story</Link>
+            </div>
     </>
   );
 };

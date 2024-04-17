@@ -20,6 +20,7 @@ import mappin21 from  "../assets/mappin-2.svg"
 import mappin22 from  "../assets/mappin-2.svg"
 
 import {X, Download} from 'lucide-react'
+import SimpleSlider from "../components/HomeSlider";
 
 
 const Homepage1 = () => {
@@ -48,7 +49,8 @@ const Homepage1 = () => {
     <div className="homepage1">
       {/* <CategoryFrame /> */}
       <section className="review-section-frame">
-        <Header3 />
+        <SimpleSlider />
+        {/* <Header3 /> */}
         <FrameComponent6 />
       </section>
 
