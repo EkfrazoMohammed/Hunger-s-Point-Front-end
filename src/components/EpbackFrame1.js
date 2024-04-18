@@ -19,8 +19,12 @@ const EpbackFrame1 = () => {
 
 
   const GetUserAddressdata = async () => {
-    if (user?.email){
-      API.getInstance().menu.get(`/api/custom-user?email_id=${user?.email}`)
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    let emailToFetch = ""
+    if ((user && user.email) || (credentials && credentials.email_id)) {
+      emailToFetch = user?.email || credentials?.email_id;
+    
+      API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
       .then((res) => {
         // console.log(res.data.result.data,'GetUserData======>')
         setAddresslist(res.data.result.data[0].address_list)

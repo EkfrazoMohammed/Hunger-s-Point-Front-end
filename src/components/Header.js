@@ -73,16 +73,19 @@ const Header = () => {
     setSelectedRoute(rout)
   };
 
+  const credentials = JSON.parse(localStorage.getItem("credentials"));
+  let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
+
   useEffect(() => {
     SettargetUser()
     GetBasketData()
     CheckUserexistsData()
     GetUserData()
-  }, [isAuthenticated]);
+  }, [emailToFetch]);
 
   useEffect(() => {
     CheckUserOffer(['UnRegistered User','ALL'])
-  }, [!isAuthenticated]);
+  }, [!emailToFetch]);
 
   const SettargetUser = async () => {
     
@@ -104,8 +107,13 @@ const Header = () => {
   }
 
   const GetUserData = async () => {
-    if (user?.email){
-      API.getInstance().menu.get(`/api/custom-user?email_id=${user?.email}`)
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    let emailToFetch = ""
+    if ((user && user.email) || (credentials && credentials.email_id)) {
+      emailToFetch = user?.email || credentials?.email_id;
+    
+    
+      API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
       .then((res) => {
         console.log(res.data.result.data,'GetUserData======>')
         dispatch(setUserdata(res.data.result.data[0]));
@@ -119,12 +127,16 @@ const Header = () => {
       
   }
   const CheckUserexistsData = async () => {
-    console.log(user?.email, 'user?.email==>')
-    if (user?.email) {
-      if (isAuthenticated) {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    // console.log(user?.email, 'user?.email==>')
+    let emailToFetch = ""
+    if ((user && user.email) || (credentials && credentials.email_id)) {
+      emailToFetch = user?.email || credentials?.email_id;
+    
+      if (emailToFetch) {
         const data = {
-          'email': user?.email,
-          'user_name': user?.name
+          'email': emailToFetch,
+          'user_name': emailToFetch
         }
         API.getInstance().menu.post('api/register', data)
           .then((res) => {
@@ -238,15 +250,15 @@ const Header = () => {
                 </div>
 
 
-                {user && (<div
+                {emailToFetch && (<div
                   className="h-[49px] gap-x-[5px] justify-end cursor-pointer font-poppins flex items-center"
                   onClick={() => handleRout("/profile")}
                 >
                   <div className="relative uppercase whitespace-nowrap leading-[130%] text-[#fff]">
-                  {user && (
+                  {emailToFetch && (
                     <div>
                       {/* <img src={user.picture} alt={user.name} /> */}
-                      <h2>{user.name}</h2>
+                      <h2>{emailToFetch}</h2>
                       {/* <p>{user.email}</p> */}
                     </div>
                   )}
@@ -268,7 +280,7 @@ const Header = () => {
 
                 
 
-                {!user && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
+                {!emailToFetch && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
                   <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
                    Login
                   </div>

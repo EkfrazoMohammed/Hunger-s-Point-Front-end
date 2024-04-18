@@ -79,7 +79,7 @@
 .input-inner5 {
   height: 67px;
   border-radius: 5px;
-  border: 1px solid #929292;
+  /* border: 1px solid #929292; */
   box-sizing: border-box;
   justify-content: flex-start;
   /* padding: 20px; */

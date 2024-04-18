@@ -32,7 +32,11 @@ import Modal from "../components/Modal";
 import SimpleSlider from "../components/HomeSlider";
 import AdModalPopup from "../components/AdModalPopup";
 import CATEGORY from "../components/CATEGORY";
-// import { Modal, Button } from 'react-bootstrap';
+import MetaDecorator from "../utils/MetaDecorator";
+const content = require("../data/content.json");
+import metaThumbnail from "../data/images/meta/punjabi.jpeg";
+import { BiEdit, BiShow } from 'react-icons/bi';
+import { toast } from "react-toastify";
 
 
 const Homepage1 = () => {
@@ -55,8 +59,15 @@ const Homepage1 = () => {
   };
   const [copySuccess, setCopySuccess] = useState(false);
   const inputRef = useRef(null);
+  useEffect(() => {
+    if(copySuccess){
+      toast.success('Copied to clipboard!');
+    }
+    
+  }, [copySuccess]);
 
-  const handleCopyToClipboard = () => {
+
+  const handleCopyToClipboard = (inputValue) => {
     const tempInput = document.createElement('input');
     document.body.appendChild(tempInput);
     tempInput.value = inputValue;
@@ -84,7 +95,8 @@ const Homepage1 = () => {
   const dummyData = [
     {
       id: 1,
-      imageUrl: "https://cdn.vectorstock.com/i/1000x1000/88/12/banner-online-store-special-offer-50-percent-vector-23838812.webp",
+      // imageUrl: "https://img.freepik.com/free-vector/flat-design-food-landing-page_23-2149126180.jpg?w=1380&t=st=1713435738~exp=1713436338~hmac=dd39ed933a9dead689672e9f23e99d8a106e21bfcc16b7a6008ae9a98ba30a98",
+      imageUrl: "https://placehold.co/920x600",
       title: "Create Account",
       subtitle: "Tell us who you are",
       inputType: "text",
@@ -93,25 +105,35 @@ const Homepage1 = () => {
     },
     {
       id: 2,
-      imageUrl: "https://cdn.vectorstock.com/i/1000x1000/88/12/banner-online-store-special-offer-50-percent-vector-23838812.webp",
+      imageUrl: "https://placehold.co/920x600",
       title: "Security Info",
       subtitle: "Enter a strong password",
       inputType: "password",
       inputPlaceholder: "Your password",
       copyToClipboard: false // No copy to clipboard feature for this slide
     },
-    {
-      id: 3,
-      imageUrl: "https://cdn.vectorstock.com/i/1000x1000/88/12/banner-online-store-special-offer-50-percent-vector-23838812.webp",
-      title: "Get Started",
-      subtitle: "You're all set and ready",
-      buttonText: "Let's Go"
-    }
+    // {
+    //   id: 3,
+    //   imageUrl: "https://graphicsfamily.com/wp-content/uploads/edd/2023/05/Website-Food-Banner-Design-1180x664.jpg",
+    //   title: "Get Started",
+    //   subtitle: "You're all set and ready",
+    //   buttonText: "Let's Go"
+    // }
   ];
   
   return (
+    <>
+    <MetaDecorator
+        description={content.pageDescription}
+        title={content.pageTitle}
+        imageUrl={metaThumbnail}
+        imageAlt={content.metaImageAlt}
+      /> 
+    
     <div className="homepage1">
-      
+
+    
+
       {/* <CategoryFrame /> */}
       {/* <AdModalPopup/> */}
       <section className="review-section-frame">
@@ -120,43 +142,48 @@ const Homepage1 = () => {
         <FrameComponent6 />
       </section>
 
+    
 
       <div>
       <button onClick={openModal}>Open Modal</button>
     </div>
     
 
-    <Modal isOpen={isOpen} onClose={closeModal}>
+    <Modal isOpen={isOpen} onClose={closeModal} width="50%">
+      
     <Swiper
       pagination={{
         dynamicBullets: true,
       }}
       modules={[Pagination]}
-      className="mySwiper"
+      className="category-10"
       centeredSlides={true}
     >
+      
       {dummyData.map((item) => (
         <SwiperSlide key={item.id}>
-          <div className="slide-content">
+          <div className="category-10">
             <img src={item.imageUrl} alt={`Slide ${item.id}`} />
-            <h2>{item.title}</h2>
-            <h3>{item.subtitle}</h3>
+            <div style={{fontSize:'16px'}}>{item.title}</div>
+            {/* <h3>{item.subtitle}</h3> */}
             {item.inputType ? (
               <>
-                <input
-                  type={item.inputType}
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-                <button onClick={() => handleCopyToClipboard(item.inputDefaultValue)}>
-                  Copy
-                </button>
-                {copySuccess && <span style={{ color: 'green' }}>Copied to clipboard!</span>}
+                <div class="shareLink">
+              <div class="permalink">
+                <input class="textLink" type="text" name="shortlink" value={item.title} id="copy-link" />
+                <span onClick={() => handleCopyToClipboard(item.title)} class="copyLink" id="copy" tooltip="Copy to clipboard">
+                  <BiEdit style={{ color: 'white', fontSize: '20px' }} />
+                </span>           
+              </div>  
+            </div>
               </>
             ) : (
               <button>{item.buttonText}</button>
             )}
+
+
           </div>
+          
         </SwiperSlide>
       ))}
     </Swiper>
@@ -249,7 +276,10 @@ const Homepage1 = () => {
       <MapPinSection />
       <VIPContainer />
       <DarkMode1 />
+      
     </div>
+    </>
+    
   );
 };
 

@@ -30,9 +30,11 @@ const AddressesFrame = ({method,selected_item_id}) => {
     GetUserAddress()
   }, []);
   const GetUserAddress = async () => {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
     try {
-      if (user?.email){
-        API.getInstance().menu.get(`/api/custom-user?email_id=${user?.email}`)
+      if ((user && user.email) || (credentials && credentials.email_id)) {
+        const emailToFetch = user?.email || credentials?.email_id;
+        API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
         .then((res) => {
           // console.log(res.data.result.data[0].address_list,'GetUserAddress===>');
             // const main_data = res.data.result.data[0].address_list
@@ -87,12 +89,13 @@ const AddressesFrame = ({method,selected_item_id}) => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     console.log(values,'=======>')
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
     try {
       setSubmitting(false)
       console.log(method,'method=====')
         const body = {
           'id':values.id,
-          "email_id":user?.email,
+          "email_id":user?.email || credentials?.email_id,
           "complete_address":values.complete_address,
           "city":values.city,
           "phone_number":values.phone_number,

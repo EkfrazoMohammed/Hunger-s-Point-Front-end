@@ -85,7 +85,9 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
 
 
   const StoreAddtoBasket = async (menu_data) => {
-    if (!isAuthenticated) {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+    if (!credentials) {
       toast.error("Please Login to Add to basket");
     } else {
       const credentials = JSON.parse(localStorage.getItem("credentials"));

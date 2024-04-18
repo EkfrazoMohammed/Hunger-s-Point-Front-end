@@ -11,16 +11,16 @@ import oops from "../assets/oops@2x.png";
 
 import { toast } from "react-toastify";
 import { useAuth0 } from "@auth0/auth0-react";
+import CATEGORY from "./CATEGORY";
+import Modal from "./Modal";
 
 const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedToBasket }) => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-
   const basket_count = useSelector((state) => state.data.basket_count);
   const [count, setCount] = useState(1);
-  
-
   const [selectedItems, setSelectedItems] = useState([]);
+  const [loggedin, setLoggedin] = useState(true);
 
   const setDefaultSelectedItems = () => {
     const defaultSelectedItems = [
@@ -86,9 +86,14 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
     console.log(menu_item?.item_image, "menu_item?.item_image");
   }, []);
   const StoreAddtoBasket = async (menu_data) => {
-    if (!isAuthenticated) {
-      toast.error("Please Login to Add to basket");
-    } else {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+      let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
+
+      if (!emailToFetch) {
+        toast.error("Please Login to Add to basket");
+        setLoggedin(false)
+      }
+     else {
       const credentials = JSON.parse(localStorage.getItem("credentials"));
       const location_id = localStorage.getItem("location_id");
       const body = {
@@ -109,14 +114,23 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
           onClose();
           UpdateBasket();
           AddedToBasket();
+          setLoggedin(true)
         })
-        .catch((error) => {})
+        .catch((error) => {setLoggedin(false)})
         .finally(() => {});
     }
   };
- 
+  const closeModal = () => {
+    setLoggedin(true)
+  }
+
   return (
     <div className="wo-addon">
+      {
+        !loggedin && (<Modal isOpen={!loggedin} onClose={closeModal}>
+          <CATEGORY />
+        </Modal>)
+      }
       <section className="first-addon-frame">
         <div className="inner-frame-parent">
           <div className="inner-frame1">
