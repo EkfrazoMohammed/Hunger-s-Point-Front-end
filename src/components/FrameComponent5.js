@@ -14,9 +14,8 @@ const FrameComponent5 = () => {
     <div className="review-form">
       <div className="heading4">
         <div className="what-we-believe-frame">
-          <h1 className="what-we-believe4">OUR LOCATIONS</h1>
+          <h1 className="what-we-believe4 fp-para-section-title bottom-a-line">OUR LOCATIONS</h1>
         </div>
-        <div className="heading-item" />
       </div>
       <div className="contact-us-frame">
         <div onClick={() => OncardClick()} className="our-delivery-partners5">

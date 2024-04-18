@@ -81,8 +81,8 @@ button {
   width: 1804px;
   position: absolute;
   margin: 0 !important;
-  top: calc(50% - 503px);
-  left: calc(50% - 842px);
+  top: calc(66% - 503px);
+  left: calc(66% - 842px);
   object-fit: cover;
 }
 .mappin-icon4,
@@ -93,24 +93,24 @@ button {
   width: 24px;
   position: absolute;
   margin: 0 !important;
-  top: calc(50% - 62px);
-  left: calc(50% - 212px);
+  top: calc(66% - 62px);
+  left: calc(66% - 470px);
   z-index: 1;
 }
 .mappin-icon5,
 .mappin-icon6,
 .mappin-icon7 {
-  top: calc(50% + 88px);
-  left: calc(50% - 162px);
+  top: calc(66% + 88px);
+  left: calc(66% - 418px);
 }
 .mappin-icon6,
 .mappin-icon7 {
-  top: calc(50% - 42px);
-  left: calc(50% + 398px);
+  top: calc(66% - 42px);
+  left: calc(66% + 120px);
 }
 .mappin-icon7 {
-  top: calc(50% + 59px);
-  left: calc(50% - 532px);
+  top: calc(66% + 59px);
+  left: calc(66% - 787px);
 }
 .location-pin-map {
   width: 110%;

@@ -11,9 +11,8 @@ const FrameComponent1 = () => {
     <section className="map-pin-section">
       <div className="heading2">
         <div className="what-we-believe-text">
-          <h1 className="what-we-believe2">Give us your review</h1>
+          <h1 className="what-we-believe2 fp-para-section-title bottom-a-line">Give us your review</h1>
         </div>
-        <div className="hospital-st-f-m" />
       </div>
       <div className="give-your-feedback-below-parent">
         <div className="give-your-feedback-below">

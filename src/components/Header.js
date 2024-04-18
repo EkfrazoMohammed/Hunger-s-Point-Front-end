@@ -15,6 +15,7 @@ import location1 from "../assets/location.svg"
 import { setBasketcount, setUserdata } from "../redux/actions/dataActions";
 import { API } from "../api/api";
 import { useAuth0 } from "@auth0/auth0-react";
+import SubMenu from "./SubMenu";
 
 
 const Header = () => {
@@ -29,6 +30,10 @@ const Header = () => {
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+      setIsOpen(false);
+  };
 
 
   useEffect(() => {
@@ -382,13 +387,7 @@ const Header = () => {
           </div>
         </nav>
       </header>
-      <div className={`submenu ${isOpen ? 'open' : ''}`}>
-                <Link to="events">Event</Link>
-                <Link to="careers">Careers</Link>
-                <Link to="/">Franchise</Link>
-                <Link to="/">Contact Us</Link>
-                <Link to="/">Our Story</Link>
-            </div>
+      <SubMenu isOpen={isOpen} handleClose={handleClose}  />
     </>
   );
 };
