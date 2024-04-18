@@ -24,3 +24,7 @@ const convertToBase64 = (imageFile) => {
   export const findObjectById = (dataList, searchId) => {
     return dataList.find(item => item.id === searchId);
   };
+
+  export const APP_NAME = "Hunger's Point";
+export const APP_LANGUAGE = "en";
+export const HOME = "Home";

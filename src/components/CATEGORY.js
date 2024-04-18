@@ -6,89 +6,122 @@ import vector892 from '../assets/vector-892.svg'
 import google from '../assets/google1.svg'
 import facebook2 from '../assets/facebook2.svg'
 import { useAuth0 } from "@auth0/auth0-react";
+import { setBasketcount } from "../redux/actions/dataActions";
+import { useDispatch } from "react-redux";
+import { API } from "../api/api";
 
 const CATEGORY = () => {
-  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const { user, isAuthenticated, isLoading,loginWithRedirect } = useAuth0();
+  const dispatch = useDispatch();
 
   const onButtonsStatesDarkClick = useCallback(() => {
     navigate("/homepage1");
   }, [navigate]);
 
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(true); // State to track email validation
+
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    const emailValue = event.target.value;
+    setEmail(emailValue);
+    validateEmail(emailValue);
+  };
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+    const isValid = regex.test(email);
+    setIsValidEmail(isValid);
   };
 
 
-
-  const CheckUserexistsData = async () => {
-    console.log(user?.email, 'user?.email==>')
-    if (user?.email) {
-      if (isAuthenticated) {
-        const data = {
-          'email': user?.email,
-          'user_name': user?.name
-        }
-        API.getInstance().menu.post('api/register', data)
-          .then((res) => {
-            console.log(res, 'res=====>1221312')
-            console.log(res.data.result, 'res=====>code')
-            if (res.data.result.code == 2){
-              CheckUserOffer(['First User','ALL','Registered User'])
-            }
-            else{
-              CheckUserOffer(['Registered User','ALL'])
-            }
-            localStorage.setItem('credentials', JSON.stringify(res.data.result) );
-            GetBasketData()
-          })
-          .catch((error) => {
-            console.log(error, 'error=====>1221312')
-          })
-          .finally(() => {
-          });
-      }
+  const CheckUserOffer = async (target) => {
+    const data = {
+      'target':target
     }
+    API.getInstance().menu.post(`/api/check-offers`,data)
+      .then((res) => {
+        console.log(res.data.result.data,'GetUserData======>')
+        
+      })
+      .catch((error) => {
+      })
+      .finally(() => {
+      });
+      
   }
-  
+  const GetBasketData = async () => {
+    // if (!user){
+    //   CheckUserOffer(['UnRegistered User','ALL'])
+    // }
+    
+
+    const credentials = JSON.parse(localStorage.getItem('credentials'));
+    if (credentials){
+      API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
+      .then((res) => {
+        console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
+        console.log(res.data.result.basket_count, 'GetBasketData===res.data.result.data===>')
+        dispatch(setBasketcount(res.data.result.basket_count));
+        // CheckUserexistsData()
+      })
+      .catch((error) => {
+      })
+      .finally(() => {
+      });
+    }
+    
+  }
   const handleSubmit = () => {
     // Call your API with the email state
     console.log('Email:', email);
-    if (user?.email) {
+    
+    let data = {}
+    
+    if (isValidEmail) {
       if (isAuthenticated) {
-        const data = {
+        data = {
           'email': user?.email,
           'user_name': user?.name
         }
-        API.getInstance().menu.post('api/register', data)
-          .then((res) => {
-            console.log(res, 'res=====>1221312')
-            console.log(res.data.result, 'res=====>code')
-            if (res.data.result.code == 2){
-              CheckUserOffer(['First User','ALL','Registered User'])
-            }
-            else{
-              CheckUserOffer(['Registered User','ALL'])
-            }
-            localStorage.setItem('credentials', JSON.stringify(res.data.result) );
-            GetBasketData()
-          })
-          .catch((error) => {
-            console.log(error, 'error=====>1221312')
-          })
-          .finally(() => {
-          });
       }
-    }
+      else{
+        data = {
+          'email': email,
+          'user_name': email
+        }
+      }
+      API.getInstance().menu.post('api/register', data)
+        .then((res) => {
+          console.log(res, 'res=====>1221312')
+          console.log(res.data.result, 'res=====>code')
+          if (res.data.result.code == 2){
+            CheckUserOffer(['First User','ALL','Registered User'])
+          }
+          else{
+            CheckUserOffer(['Registered User','ALL'])
+          }
+          localStorage.setItem('credentials', JSON.stringify(res.data.result) );
+          GetBasketData()
+          window.location.reload()
+        })
+        .catch((error) => {
+          console.log(error, 'error=====>1221312')
+        })
+        .finally(() => {
+        });
+  }    
+    
+
+
   };
   return (
     <div className="category-26">
       <div className="signin-text-wrapper">
         <div className="signin-text1">
           <div className="sign-in-wrapper">
-            <h1 className="sign-in1">Sign in</h1>
+            <h1 className="sign-in1">Sign up</h1>
           </div>
           <div className="a-few-more-questions-to-help-b-wrapper">
             <div className="a-few-more1">
@@ -99,15 +132,19 @@ const CATEGORY = () => {
       </div>
       <div className="input10">
       <div className="input-inner5">
-        <input
-        style={{fontSize:'18px',paddingLeft:'20px'}}
+      <input
+          style={{ fontSize: '18px', paddingLeft: '20px', borderColor: isValidEmail ? 'initial' : 'red' }}
           className="input-inner5"
           placeholder="Email Address"
           type="text"
           value={email}
           onChange={handleEmailChange}
         />
+        
       </div>
+      {!isValidEmail && (
+        <p style={{ color: 'red', fontSize: '14px', marginTop: '5px' }}>Invalid email address</p>
+      )}
       {/* <button onClick={handleSubmit}>Submit</button> */}
     </div>
       <Property1FilledPrimary

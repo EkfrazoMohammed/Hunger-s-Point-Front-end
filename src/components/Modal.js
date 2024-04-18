@@ -1,12 +1,16 @@
 import React from 'react';
 import './Modal.css';
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, width, children }) => {
+  const modalStyle = {
+    width: width || '35%', // Set the width to the passed prop or default to 50%
+  };
+  
   return (
     <>
       {isOpen && (
         <div className="modal-overlay" onClick={onClose}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content" style={modalStyle} onClick={(e) => e.stopPropagation()}>
           <span className="close" onClick={onClose}>
               &times;
             </span>

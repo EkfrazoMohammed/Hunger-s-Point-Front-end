@@ -215,12 +215,14 @@ const ProductPage = () => {
 
 
   const UpdateReactionInDB = async (menu_data, reaction) => {
-    if (!isAuthenticated) {
+
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+    if (!credentials) {
       toast.error("Please Login to React");
       setLoggedin(false)
       return false; // Return false if not authenticated
     } else {
-      const credentials = JSON.parse(localStorage.getItem("credentials"));
     
       const body = {
         cuser_id: credentials?.user_id,

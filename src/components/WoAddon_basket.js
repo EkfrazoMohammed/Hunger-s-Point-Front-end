@@ -62,7 +62,9 @@ const WoAddonBasket = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, 
     console.log(menu_item?.item_image, "menu_item?.item_image");
   }, []);
   const StoreAddtoBasket = async (menu_data) => {
-    if (!isAuthenticated) {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+    if (!credentials) {
       toast.error("Please Login to Add to basket");
     } else {
       const credentials = JSON.parse(localStorage.getItem("credentials"));

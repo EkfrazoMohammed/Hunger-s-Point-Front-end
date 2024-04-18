@@ -7,7 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from "./redux/store";
 import { Auth0Provider } from '@auth0/auth0-react';
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // Wait for the DOM content to be loaded before rendering
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');

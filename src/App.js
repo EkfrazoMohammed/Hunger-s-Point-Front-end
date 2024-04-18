@@ -29,6 +29,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Events } from "./pages/sub-menu-pages/events_page/Events";
 import { Careers } from "./pages/sub-menu-pages/careers_page/Careers";
+import {Helmet} from "react-helmet";
 
 function App() {
   const action = useNavigationType();

@@ -116,12 +116,17 @@ const validationSchema = Yup.object().shape({
 });
 
 const handleSubmit = async (values, { setSubmitting }) => {
+  let emailToFetch = ""
+  const credentials = JSON.parse(localStorage.getItem("credentials"));
+  if ((user && user.email) || (credentials && credentials.email_id)) {
+    emailToFetch = user?.email || credentials?.email_id;
+  }
   try {
     setSubmitting(false)
     setIsVisibleNew(false)
       const body = {
         'id':values.id,
-        "email_id":user?.email,
+        "email_id":emailToFetch,
         "complete_address":values.complete_address,
         "city":values.city,
         "phone_number":values.phone_number,
