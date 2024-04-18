@@ -263,7 +263,7 @@ const Homepage1 = () => {
 
       <div className="location1">
         <FrameComponent5 />
-        <div className="location-pin-map">
+        <div className="location-pin-map w-full">
           <img className="image-4-icon1" alt="" src={image4} />
           <img className="mappin-icon4" alt="" src={mappin} key="mappin1" />
           <img className="mappin-icon5" alt="" src={mappin2} />

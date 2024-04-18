@@ -1,18 +1,23 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { motion } from "framer-motion";
+import {
+  routeVariants,
+  childVariants,
+} from "../../../variants/framerMotionVariants";
 
+import instagramdark from "../../../assets/instagram-dark.svg";
+import facebookdark from "../../../assets/facebook-dark.svg";
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
 import pageBannerImg from "../../../assets/image-5@2x.png";
-import sideImg1 from "../../../assets/images/event-img-1.png";
-import sideImg2 from "../../../assets/images/event-img-2.png";
-import sideImg3 from "../../../assets/images/event-img-3.png";
-import sectionBanner from "../../../assets/images/sectiob-banner-img-1.jpg";
+import contactUsImg2 from "../../../assets/images/contact-us-side-img-2.png";
+import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
 
-export const Events = () => {
+export const ContactUs = () => {
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -43,67 +48,72 @@ export const Events = () => {
 
   return (
     <>
-      <div className="fp-container-main container--events">
+      <motion.div
+        variants={routeVariants}
+        initial="initial"
+        animate="final"
+        className="fp-container-main container--events"
+      >
         <SubMenuPagesHeader bannerImg={pageBannerImg} />
-        <DescriptionSection
-          Title="Events"
-          rightImg={sideImg1}
-          leftDescription={
-            <>
-              <p className="mt-4">
-                Dolore ullamco mollit elit non ea pariatur mollit magna
-                cupidatat labore sunt consequat elit. Est ad cupidatat velit
-                anim aliquip in anim mollit. Excepteur incididunt ex sint labore
-                velit ut aliquip ad magna exercitation qui dolor laborum. Veniam
-                ad consectetur aliquip cupidatat aute sunt cupidatat ea.
-                Pariatur pariatur qui esse cupidatat commodo ullamco ex. Nulla
-                officia veniam ex culpa officia ad ex dolor nostrud in. Ullamco
-                labore nulla proident nisi. Cupidatat sit aute esse id.
-              </p>
-
-              <p className="mt-4">
-                Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
-                anim veniam enim laboris id ad adipisicing laboris aliqua.
-                Veniam commodo reprehenderit mollit cupidatat minim officia
-                voluptate dolor minim proident et magna dolore. Ea proident sit
-                laborum amet amet veniam. Labore Lorem et quis fugiat sint
-                fugiat. Enim ad proident nisi ipsum nostrud duis.
-              </p>
-            </>
-          }
-        />
         {/* types: side_section(rightImg, leftImg), banner(bannerImg) , banner_with_text(bannerText1, bannerText2)*/}
-        <ImagesSection
-          type="side_section"
-          rightImg={sideImg2}
-          leftImg={sideImg3}
-        />
-        {/* <ImagesSection type="banner" bannerImg={sideImg2} /> */}
-        {/* <ImagesSection
-          type="banner_with_text"
-          bannerImg={sectionBanner}
-          bannerText={
-            <h1 className="text-[30px] text-center">
-              Wait is over! Own a Store at your convenient location now.
-            </h1>
-          }
-        /> */}
 
         <section className="fp-wrapper-main bottom-form-container">
-          <div className="sec-info--w gap-6 justify-between">
-            <div className="side--w">
-              <div className="para-container">
-                <div className="fp-para-section-title-sm w-2/3">
-                  Fill us a simple form to get in souch
-                </div>
-                <div className="fp-para-section-title w-2/3">
-                  Fill us a simple form to get in souch
+          <div className="para-container">
+            <div className="fp-para-section-title fp-para-section-title-md bottom-a-line w-2/3 uppercase font-bold">
+              CONTACT US
+            </div>
+          </div>
+          <div className="sec-info--w gap-6 justify-between mt-10">
+            <div className="side--w relative">
+              <img
+                src={contactUsImg2}
+                alt="contact us"
+                className="absolute top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
+              />
+              <div className="contact-info-container relative z-[2] p-10">
+                <h2 className="text-[30px]">Customer Care</h2>
+                <hr className="my-4" />
+                <p className="mb-2">
+                  Please email your detailed inquiry and deadline for response
+                  to the following:
+                </p>
+                <address>
+                  <ul className="font-bold text-lg">
+                    <li>info@hungerpoints.in</li>
+                    <li>marketing@hungerpoints.in</li>
+                  </ul>
+                </address>
+                <hr className="my-4" />
+                <div className="follow-us">
+                  <div className="header-title">
+                    <span className="text-lg">Follow us on</span>
+                  </div>
+                  <div className="social-links flex gap-3 mt-3">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <img
+                        className="instagram-dark-icon"
+                        loading="eager"
+                        alt=""
+                        src={instagramdark}
+                      />
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <img
+                        className="facebook-dark-icon"
+                        loading="eager"
+                        alt=""
+                        src={facebookdark}
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="side--w">
               <form onSubmit={formik.handleSubmit} className="fp-form-common">
-                <h2 className="text-xl">Give your feedback below</h2>
+                <h2 className="text-xl font-bold">
+                  To get in touch with our team you can submit a query here.
+                </h2>
                 <div className="fp-input-group">
                   <div className="fp-input-w">
                     <input
@@ -138,16 +148,6 @@ export const Events = () => {
                 </div>
                 <div className="fp-input-w">
                   <input
-                    type="text"
-                    name="subject"
-                    className="user-field-input-common"
-                    placeholder="Subject"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                </div>
-                <div className="fp-input-w">
-                  <input
                     type="email"
                     name="email"
                     className="user-field-input-common"
@@ -176,43 +176,7 @@ export const Events = () => {
                     </p>
                   )}
                 </div>
-                <div className="fp-input-w">
-                  <input
-                    type="number"
-                    name="no_of_guests"
-                    className="user-field-input-common"
-                    placeholder="No of Guests"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.no_of_guests &&
-                    formik.touched.no_of_guests && (
-                      <p className="fp-error-text text-red-300 mt-1 ml-1">
-                        {formik.errors.no_of_guests}
-                      </p>
-                    )}
-                </div>
-                <div className="fp-input-w">
-                  <select
-                    name="event_ocation"
-                    value={formik.values.email}
-                    className="user-field-input-common user-field-select-common"
-                    onChange={formik.handleChange}
-                  >
-                    <option value="" label="Event Location">
-                      Event Location
-                    </option>
-                    <option value="red" label="red">
-                      red
-                    </option>
-                    <option value="blue" label="blue">
-                      blue
-                    </option>
-                    <option value="green" label="green">
-                      green
-                    </option>
-                  </select>
-                </div>
+
                 <div className="fp-input-w">
                   <textarea
                     type="text"
@@ -232,7 +196,7 @@ export const Events = () => {
             </div>
           </div>
         </section>
-      </div>
+      </motion.div>
       <DarkMode />
     </>
   );

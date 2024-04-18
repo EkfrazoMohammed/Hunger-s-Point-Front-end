@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-
+import { AnimatePresence } from "framer-motion";
 import ProductPage from "./pages/ProductPage";
 import CheckoutShippingAddress from "./pages/CheckoutShippingAddress";
 import CheckoutShippingAddress1 from "./pages/CheckoutShippingAddress1";
@@ -27,10 +27,11 @@ import CheckoutContact1 from "./pages/CheckoutContact1";
 import Header from "./components/Header";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Events } from "./pages/sub-menu-pages/events_page/Events";
-import { Careers } from "./pages/sub-menu-pages/careers_page/Careers";
+import { Events } from "./pages/sub-menu-pages/events/Events";
+import { Careers } from "./pages/sub-menu-pages/careers/Careers";
+import { Franchise } from "./pages/sub-menu-pages/franchise/Franchise";
+import { ContactUs } from "./pages/sub-menu-pages/contact_us/ContactUs";
 import {Helmet} from "react-helmet";
-
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -139,43 +140,64 @@ function App() {
 
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       {pathname !== "/signin" && <Header />}
-      <Routes>
-        
-        <Route path="/" element={<Homepage1 />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/productpage" element={<ProductPage />} />
-        <Route
-          path="/checkoutshippingaddress1"
-          element={<CheckoutShippingAddress />}
-        />
-        <Route
-          path="/checkoutshippingaddress"
-          element={<CheckoutShippingAddress1 />}
-        />
-        <Route
-          path="/checkoutshippingmethod"
-          element={<CheckoutShippingMethod />}
-        />
-        <Route path="/checkoutcontact" element={<CheckoutContact />} />
-        <Route path="/checkoutpayment" element={<CheckoutPayment />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders1" element={<Orders1 />} />
-        <Route path="/myaddress1" element={<MyAddress />} />
-        <Route path="/myaddress" element={<MyAddress1 />} />
-        <Route path="/homepage1" element={<Homepage />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/location" element={<Location1 />} />
-        <Route path="/homepage" element={<Homepage1 />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/deliveryPartner" element={<DeliveryPartner />} />
-        <Route path="/checkoutcontact1" element={<CheckoutContact1 />} />
-        {/* submenu */}
-        <Route path="/events" element={<Events />} />
-        <Route path="/careers" element={<Careers />} />
-      </Routes>
+      <LocationProvider>
+        <Routes>
+          <Route path="/" element={<Homepage1 />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/productpage" element={<ProductPage />} />
+          <Route
+            path="/checkoutshippingaddress1"
+            element={<CheckoutShippingAddress />}
+          />
+          <Route
+            path="/checkoutshippingaddress"
+            element={<CheckoutShippingAddress1 />}
+          />
+          <Route
+            path="/checkoutshippingmethod"
+            element={<CheckoutShippingMethod />}
+          />
+          <Route path="/checkoutcontact" element={<CheckoutContact />} />
+          <Route path="/checkoutpayment" element={<CheckoutPayment />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders1" element={<Orders1 />} />
+          <Route path="/myaddress1" element={<MyAddress />} />
+          <Route path="/myaddress" element={<MyAddress1 />} />
+          <Route path="/homepage1" element={<Homepage />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/location" element={<Location1 />} />
+          <Route path="/homepage" element={<Homepage1 />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/deliveryPartner" element={<DeliveryPartner />} />
+          <Route path="/checkoutcontact1" element={<CheckoutContact1 />} />
+          {/* submenu */}
+          {/* <Route path="/events" element={<Events />} /> */}
+          {/* <Route path="/careers" element={<Careers />} /> */}
+        </Routes>
+        <RoutesWithAnimation />
+      </LocationProvider>
     </>
+  );
+}
+
+function LocationProvider({ children }) {
+  return <AnimatePresence>{children}</AnimatePresence>;
+}
+
+function RoutesWithAnimation() {
+  const location = useLocation();
+  console.log(location);
+
+  return (
+    <Routes>
+      <Route path="/events" element={<Events />} />
+      <Route path="/careers" element={<Careers />} />
+      <Route path="/franchise" element={<Franchise />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/our-story" element={<Careers />} />
+    </Routes>
   );
 }
 export default App;

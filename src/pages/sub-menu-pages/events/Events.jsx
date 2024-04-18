@@ -1,16 +1,21 @@
 import React from "react";
-import { useFormik, FormikErrors } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import { motion } from "framer-motion";
+import { routeVariants } from '../../../variants/framerMotionVariants';
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
 import pageBannerImg from "../../../assets/image-5@2x.png";
-import sideImg1 from "../../../assets/images/career-img-1.png"
-import sectionBanner from "../../../assets/images/sectiob-banner-img-2.png";
+import sideImg1 from "../../../assets/images/event-img-1.png";
+import sideImg2 from "../../../assets/images/event-img-2.png";
+import sideImg3 from "../../../assets/images/event-img-3.png";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
 
-export const Careers = () => {
+
+
+export const Events = () => {
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -18,7 +23,6 @@ export const Careers = () => {
       email: "",
       phone_no: "",
       no_of_guests: "",
-      errors: "",
     },
     validationSchema: Yup.object({
       first_name: Yup.string()
@@ -34,7 +38,6 @@ export const Careers = () => {
         .email("Invalid email format")
         .required("Required!"),
       no_of_guests: Yup.string().required("Please enter number of guest!"),
-      errors: Yup.string().required("Please enter number of guest!"),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -43,14 +46,21 @@ export const Careers = () => {
 
   return (
     <>
-      <div className="fp-container-main container--events">
+      <motion.div
+        variants={routeVariants}
+        initial="initial"
+        animate="final"
+        className="fp-container-main container--events"
+      >
         <SubMenuPagesHeader bannerImg={pageBannerImg} />
         <DescriptionSection
-          Title="Careers"
+          Title="Events"
           rightImg={sideImg1}
           leftDescription={
             <>
-              <p className="mt-4">
+              <p
+                className="mt-4"
+              >
                 Dolore ullamco mollit elit non ea pariatur mollit magna
                 cupidatat labore sunt consequat elit. Est ad cupidatat velit
                 anim aliquip in anim mollit. Excepteur incididunt ex sint labore
@@ -61,7 +71,9 @@ export const Careers = () => {
                 labore nulla proident nisi. Cupidatat sit aute esse id.
               </p>
 
-              <p className="mt-4">
+              <p
+                className="mt-4"
+              >
                 Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
                 anim veniam enim laboris id ad adipisicing laboris aliqua.
                 Veniam commodo reprehenderit mollit cupidatat minim officia
@@ -73,17 +85,31 @@ export const Careers = () => {
           }
         />
         {/* types: side_section(rightImg, leftImg), banner(bannerImg) , banner_with_text(bannerText1, bannerText2)*/}
-        <ImagesSection type="banner" bannerImg={sectionBanner} />
+        <ImagesSection
+          type="side_section"
+          rightImg={sideImg2}
+          leftImg={sideImg3}
+        />
+        {/* <ImagesSection type="banner" bannerImg={sideImg2} /> */}
+        {/* <ImagesSection
+          type="banner_with_text"
+          bannerImg={sectionBanner}
+          bannerText={
+            <h1 className="text-[30px] text-center">
+              Wait is over! Own a Store at your convenient location now.
+            </h1>
+          }
+        /> */}
 
         <section className="fp-wrapper-main bottom-form-container">
           <div className="sec-info--w gap-6 justify-between">
             <div className="side--w">
               <div className="para-container">
                 <div className="fp-para-section-title-sm w-2/3">
-                  Fill the details and our team will get back to you shortly
+                  Fill us a simple form to get in souch
                 </div>
                 <div className="fp-para-section-title w-2/3">
-                  JOIN OUR TEAM NOW
+                  Fill us a simple form to get in souch
                 </div>
               </div>
             </div>
@@ -163,25 +189,20 @@ export const Careers = () => {
                   )}
                 </div>
                 <div className="fp-input-w">
-                  <select
-                    name="event_ocation"
+                  <input
+                    type="number"
+                    name="no_of_guests"
+                    className="user-field-input-common"
+                    placeholder="No of Guests"
                     value={formik.values.email}
-                    className="user-field-input-common user-field-select-common"
                     onChange={formik.handleChange}
-                  >
-                    <option value="" label="Event Location">
-                      Event Location
-                    </option>
-                    <option value="red" label="red">
-                      red
-                    </option>
-                    <option value="blue" label="blue">
-                      blue
-                    </option>
-                    <option value="green" label="green">
-                      green
-                    </option>
-                  </select>
+                  />
+                  {formik.errors.no_of_guests &&
+                    formik.touched.no_of_guests && (
+                      <p className="fp-error-text text-red-300 mt-1 ml-1">
+                        {formik.errors.no_of_guests}
+                      </p>
+                    )}
                 </div>
                 <div className="fp-input-w">
                   <select
@@ -190,8 +211,8 @@ export const Careers = () => {
                     className="user-field-input-common user-field-select-common"
                     onChange={formik.handleChange}
                   >
-                    <option value="" label="Apply For">
-                      Apply For
+                    <option value="" label="Event Location">
+                      Event Location
                     </option>
                     <option value="red" label="red">
                       red
@@ -214,66 +235,6 @@ export const Careers = () => {
                     onChange={formik.handleChange}
                   />
                 </div>
-                <div className="fp-input-group">
-                  <div className="fp-input-w">
-                    <div className="file-upload-w">
-                      <input
-                        type="file"
-                        name="image"
-                        className="fp-input-file"
-                        // set supported file types here,
-                        // could also check again within formik validation or backend
-                        accept="image/png, .svg"
-                        onChange={(e) => {
-                          // Object is possibly null error w/o check
-                          if (e.currentTarget.files) {
-                            setFieldValue("image", e.currentTarget.files[0]);
-                          }
-                        }}
-                      />
-                      <div className="file-u-overlay">
-                        <span className="text-gray-100">Upload</span>
-                        <span className="text-gray-100">Coverletter</span>
-                      </div>
-                    </div>
-                    {formik.errors.image && (
-                      <>
-                        <br />
-                        <span id="error">{formik.errors.image}</span>
-                        <br />
-                      </>
-                    )}
-                  </div>
-                  <div className="fp-input-w">
-                    <div className="file-upload-w">
-                      <input
-                        type="file"
-                        name="image"
-                        className="fp-input-file"
-                        // set supported file types here,
-                        // could also check again within formik validation or backend
-                        accept="image/png, .svg"
-                        onChange={(e) => {
-                          // Object is possibly null error w/o check
-                          if (e.currentTarget.files) {
-                            setFieldValue("image", e.currentTarget.files[0]);
-                          }
-                        }}
-                      />
-                      <div className="file-u-overlay">
-                        <span className="text-gray-100">Upload</span>
-                        <span className="text-gray-100">Coverletter</span>
-                      </div>
-                    </div>
-                    {formik.errors.image && (
-                      <>
-                        <br />
-                        <span id="error">{formik.errors.image}</span>
-                        <br />
-                      </>
-                    )}
-                  </div>
-                </div>
                 <div>
                   <button type="submit" className="fp-primary-btn">
                     Submit
@@ -283,7 +244,7 @@ export const Careers = () => {
             </div>
           </div>
         </section>
-      </div>
+      </motion.div>
       <DarkMode />
     </>
   );

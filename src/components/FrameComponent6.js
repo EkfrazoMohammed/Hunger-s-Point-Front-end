@@ -7,9 +7,8 @@ const FrameComponent6 = () => {
       <div className="button79">
         <div className="heading3">
           <div className="what-we-believe-container">
-            <h1 className="what-we-believe3">WHAT WE BELIEVE</h1>
+            <h1 className="what-we-believe3 fp-para-section-title bottom-a-line">WHAT WE BELIEVE</h1>
           </div>
-          <div className="frame-with-butons-states-dark" />
         </div>
         <h3 className="we-believe-in1">
           We believe in produce. Tasty produce. Produce like:
