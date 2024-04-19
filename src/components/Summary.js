@@ -50,20 +50,34 @@ const Summary = ({
             <div className="subtotal3">Subtotal</div>
             <div className="div32">${basket_summary?.subtotal}</div>
           </div>
-          <div className="text-frame-parent">
+          {/* <div className="text-frame-parent">
             <div className="text-frame1">
               <div className="shipping6">Shipping</div>
               <div className="choose-your-method1">Choose your method</div>
             </div>
             <div className="text-frame2">${basket_summary?.shipping}</div>
-          </div>
+          </div> */}
+          <div className="text-frame-parent">
+            <div className="text-frame1">
+              <div className="subtotal3">Platform fee</div>
+            </div>
+            <div className="div32">${basket_summary?.shipping}</div>
+          </div> 
           <div className="tax-parent">
             <div className="tax3">Tax</div>
             <div className="div33">${basket_summary?.taxes}</div>
           </div>
           <div className="total-parent">
-            <div className="total3">Total</div>
+            <div className="total3">Grand Total</div>
             <div className="div34">${basket_summary?.total}</div>
+          </div>
+          <div className="tax-parent">
+            <div style={{color:'#c21f24', fontWeight:'bolder'}} className="tax3">Coupon Discount</div>
+            <div style={{color:'#c21f24',fontWeight:'bolder'}} className="div33">-${basket_summary?.discount_amount}</div>
+          </div>
+          <div className="tax-parent">
+            <div className="total3 b20">To pay</div>
+            <div className="div34 b20">${basket_summary?.final_total}</div>
           </div>
         </div>
         {screen == "checkout" ? 

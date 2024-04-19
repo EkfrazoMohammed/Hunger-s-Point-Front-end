@@ -39,7 +39,11 @@ import SaveIcon from "../assets/saveIcon.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
 import CATEGORY from "../components/CATEGORY";
-
+import { Calendar,DateRangePicker,DateRange } from 'react-date-range';
+import { format } from 'date-fns';
+import { Formik } from "formik";
+import * as Yup from 'yup';
+import { Button, Form } from "react-bootstrap";
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -60,6 +64,39 @@ const ProductPage = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [loggedin, setLoggedin] = useState(true);
+  const [savemodal, setSavemodal] = useState(false);
+  const [savedate, setSavedate] = useState({
+    saveit_date: { // Initialize saveit_date
+      startDate: null,
+      endDate: null,
+      key: 'selection1'
+    }
+  });
+  const [metadata, setMetadata] = useState(null);
+  const [reaction, setReaction] = useState(null);
+
+  const [initialData, setInitialData] = useState({
+    saveit_date: { // Initialize saveit_date
+      startDate: null,
+      endDate: null,
+      key: 'selection1'
+    }
+  });
+  const [isValidForm, setIsValidForm] = useState(false); // State variable to store isValid value
+
+  // const UpdateData = async () => {
+  //   setInitialData(prevState => ({
+  //     ...prevState,
+  //     offer_duration: offer_duration
+  //   }));
+  //   // console.log(initialData['default_tax_rate'], 'default_tax_rate=====22')
+  // }
+
+  // useEffect(() => {
+  //   UpdateData()
+  // }, []);
+
+
 
   useEffect(() => {
     GetLocationData();
@@ -212,37 +249,93 @@ const ProductPage = () => {
     
   }, []);
 
+  const SaveModalFunction = async (menu_data, reaction,flag) => {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+    if (!credentials) {
+      toast.error("Please Login to React");
+      setLoggedin(false)
+      return false; 
+    }else{
+      if (flag){
+        setSavemodal(true)
+      }
+      setMetadata(menu_data)
+      setReaction(reaction)
+      
+    }
+  
+  };
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log(values.saveit_date,'saveit_date---->') 
+    console.log(metadata,reaction,'menu_data,reaction---->') 
+    UpdateReactionInDB(metadata,'SAVEIT',values.saveit_date)
+  }
+
+  const validationSchema = Yup.object().shape({
+
+  });
 
 
-  const UpdateReactionInDB = async (menu_data, reaction) => {
+  const handleDateChange = (item) => {
+    const formattedDate = format(item, 'dd/MM/yyyy');
+    console.log('Formatted Date:', formattedDate);
+    setSavedate(item);
+  };
+
+  const UpdateReactionInDB = async (menu_data, reaction,saveit_date) => {
 
     const credentials = JSON.parse(localStorage.getItem("credentials"));
 
     if (!credentials) {
       toast.error("Please Login to React");
       setLoggedin(false)
-      return false; // Return false if not authenticated
+      return false; 
     } else {
-    
-      const body = {
-        cuser_id: credentials?.user_id,
-        menu_items_id: menu_data.id,
-        reaction: reaction
-      };
-  
-      console.log(body, "body=====>UpdateReactionInDB");
-      
-      try {
-        const res = await API.getInstance().menu.post("api/user-items-reaction", body);
-        console.log(res, 'response======>');
-        setLoggedin(true)
-        return true; // Return true if update is successful
-      } catch (error) {
-        console.error(error);
-        toast.error("Failed to update reaction");
-        setLoggedin(false)
-        return false; // Return false if there's an error
+      if (reaction == 'saveit'){
+        setSavemodal(true)
+        setMetadata(menu_data)
+        setReaction(reaction)
+        return false;
       }
+      else {
+
+        let body = {};
+
+        if (reaction == 'SAVEIT'){
+          
+            body = {
+              cuser_id: credentials?.user_id,
+              menu_items_id: menu_data.id,
+              reaction: 'saveit',
+              saveit_date:saveit_date
+            };
+          }
+          else{
+            body = {
+              cuser_id: credentials?.user_id,
+              menu_items_id: menu_data.id,
+              reaction: reaction
+            }
+          }
+        console.log(body, "body=====>UpdateReactionInDB");
+        
+        try {
+          const res = await API.getInstance().menu.post("api/user-items-reaction", body);
+          console.log(res, 'response======>');
+          setLoggedin(true)
+          setSavemodal(false)
+          return true; // Return true if update is successful
+        } catch (error) {
+          console.error(error);
+          toast.error("Failed to update reaction");
+          setLoggedin(false)
+          return false; // Return false if there's an error
+        }
+
+      }
+
+      
     }
   };
 
@@ -310,31 +403,27 @@ const ProductPage = () => {
                 //   });
 
                 break;
-              case 'SAVEIT':
-                UpdateReactionInDB(item_data,'saveit')
-                updatedItem = {
-                  ...updatedItem,
-                  saveit: !updatedItem.saveit,
-                  saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
-                };
-                reactionUpdated = true;
-                // UpdateReactionInDB(item_data, 'saveit')
-                //   .then(reactionResult => {
-                //     if (reactionResult) {
-                //       updatedItem = {
-                //         ...updatedItem,
-                //         saveit: !updatedItem.saveit,
-                //         saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
-                //       };
-                //       reactionUpdated = true;
-                //     }
-                //   })
-                //   .catch(error => {
-                //     // Handle error
-                //     console.error('Failed to update reaction:', error);
-                //   });
-                break;
-              default:
+                case 'SAVEIT':
+                  // UpdateReactionInDB(item_data,'saveit')
+                  if (!updatedItem.saveit) {
+                    console.log(updatedItem.saveit, 'updatedItem.saveit==true');
+                    SaveModalFunction(item_data, 'saveit', true);
+                  } else {
+                    console.log(updatedItem.saveit, 'updatedItem.saveit==false');
+                    SaveModalFunction(item_data, 'saveit', false);
+                    UpdateReactionInDB(item_data,'SAVEIT')
+                  }
+                  updatedItem = {
+                    ...updatedItem,
+                    saveit: !updatedItem.saveit,
+                    saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
+                  };
+                  
+                  reactionUpdated = true;
+                  break;
+                
+              
+                default:
                 break;
             }
             if (reactionUpdated) {
@@ -380,7 +469,13 @@ const ProductPage = () => {
     setLoggedin(true)
   }
 
+  const closeSaveModal = () => {
+    setSavemodal(false)
+  }
 
+
+
+  
   return (
     <>
       <div className="bg-[#252525] h-fit min-h-[100vh] ">
@@ -845,6 +940,7 @@ const ProductPage = () => {
                                                       <img
                                                         src={SaveIcon}
                                                         alt="hertIcon"
+                                                       
                                                       />
                                                       <span className="text-xs font-normal text-white pt-2">
                                                       {
@@ -923,6 +1019,77 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
+        
+        
+        
+        
+        
+        
+        {
+          savemodal && ( <Modal isOpen={savemodal} onClose={closeSaveModal} width={'30%'}>
+        <div style={{margin: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className="category-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="signin-text-wrapper">
+              <div className="signin-text1">
+                <div className="sign-in-wrapper">
+                  <h1 className="sign-in1">Save Item</h1>
+                </div>
+                <div className="a-few-more-questions-to-help-b-wrapper">
+                  <div className="a-few-more1">Get email notification on the saved date</div>
+                </div>
+              </div>
+            </div>
+            <Formik
+                    enableReinitialize
+                    initialValues={initialData}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}
+                    validateOnChange={true} // Validate on change to update isValidForm state
+                    validateOnBlur={false} // Disable onBlur validation to prevent unexpected form state changes
+                    validate={(values) => {
+                      // Manually validate the form on change
+                      validationSchema.validate(values)
+                        .then(() => setIsValidForm(true))
+                        .catch(() => setIsValidForm(false));
+                    }}
+                  >
+                    {({ isValid, values, handleChange, handleSubmit, setFieldValue, errors, touched, isSubmitting }) => (
+                      <Form onSubmit={handleSubmit}>
+                
+                        <Form.Group className="mb-3">
+                          <DateRange
+                          // style={{fontSize:'8px'}}
+                          // dateDisplayFormat='dd/MM/yyyy'
+                            className='date_picker_style'
+                            onChange={range => {
+                              // Update Formik field values for saveit_date
+                              setFieldValue('saveit_date', range.selection1);
+                            }}
+                            ranges={[values.saveit_date]}
+                          />
+                          {errors.saveit_date && touched.saveit_date && <div className="error-message">{errors.saveit_date}</div>}
+                        </Form.Group>
+                      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
+                        <button className="buttons-states-dark20" style={{ backgroundColor: 'red' }}>
+                          <b style={{ lineHeight: '30%', fontSize: '14px' }} className="button28">SAVE</b>
+                        </button>
+                      </div>
+                      </Form>
+                    )}
+                    
+                  </Formik>
+
+          </div>
+        </div>
+
+
+          </Modal>)
+        }
+
+
+
+
+
 
         {
     !loggedin && ( <Modal isOpen={!loggedin} onClose={closeModal}>

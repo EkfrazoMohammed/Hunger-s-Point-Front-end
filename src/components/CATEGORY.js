@@ -14,6 +14,20 @@ const CATEGORY = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading,loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const [text, setText] = useState('Sign In');
+  const [textaccount, setTextaccount] = useState('Sign up');
+
+  const TextChangeFuction = async () => {
+    if (text == 'Sign In'){
+      setText('Sign up')
+      setTextaccount('Sign In')
+    }
+    else{
+      setText('Sign In')
+      setTextaccount('Sign up')
+    }
+   
+  }
 
   const onButtonsStatesDarkClick = useCallback(() => {
     navigate("/homepage1");
@@ -121,14 +135,18 @@ const CATEGORY = () => {
       <div className="signin-text-wrapper">
         <div className="signin-text1">
           <div className="sign-in-wrapper">
-            <h1 className="sign-in1">Sign up</h1>
+            <h1 className="sign-in1">{text} to Engage</h1>
           </div>
           <div className="a-few-more-questions-to-help-b-wrapper">
             <div className="a-few-more1">
-              A few more questions to help better communicate to you
+             It only takes 5 seconds
             </div>
           </div>
+          <div style={{fontSize:'16px',color:'green'}}>
+            The more items you engage with the closer you get to loyalty rewards, personalized recommendations and exclusive offers.
+            </div>
         </div>
+        
       </div>
       <div className="input10">
       <div className="input-inner5">
@@ -148,7 +166,7 @@ const CATEGORY = () => {
       {/* <button onClick={handleSubmit}>Submit</button> */}
     </div>
       <Property1FilledPrimary
-        button="Sign in"
+        button={text}
         property1FilledPrimaryBorder="none"
         property1FilledPrimaryAlignSelf="stretch"
         property1FilledPrimaryBackgroundColor="#c21f24"
@@ -175,7 +193,7 @@ const CATEGORY = () => {
       </div>
       <div className="dont-have-an-container1">
         <span>{`Dont have an account ? `}</span>
-        <b className="sign-up-here1">Sign up here</b>
+        <b onClick={()=> TextChangeFuction()} className="sign-up-here1">{textaccount} here</b>
       </div>
       <div className="signupcalltoaction">
         <button onClick={() => loginWithRedirect()} className="buttons-states-dark64">

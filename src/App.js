@@ -31,7 +31,10 @@ import { Events } from "./pages/sub-menu-pages/events/Events";
 import { Careers } from "./pages/sub-menu-pages/careers/Careers";
 import { Franchise } from "./pages/sub-menu-pages/franchise/Franchise";
 import { ContactUs } from "./pages/sub-menu-pages/contact_us/ContactUs";
-import {Helmet} from "react-helmet";
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();

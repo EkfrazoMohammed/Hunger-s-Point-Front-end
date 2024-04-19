@@ -189,18 +189,21 @@ const UserInstance = () => {
                   {basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info && Array.isArray(basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info) && basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info.map((product, index) => (
                     <div key={index} className="bg-[#363636] border border-[#8F8F8F] rounded-md flex gap-3 w-[35%] min-w-[288px] h-fit">
                       <img src={product.item_image} alt={product.item_image} className="h-[100px] w-[109px] rounded-md" />
-                      <div className="flex gap-[10px] justify-center flex-col w-full h-fit">
+                      <div className="flex mt-2 gap-[10px] justify-center flex-col w-full h-fit">
                         <div className="flex justify-between items-center font-poppins font-bold text-xs text-[#E5B638] w-full pr-[10px]">
                           {product.name}
-                          <span>
+                          {/* <span>
                             <img src="./hertIcon.svg" alt="hertIcon" />
-                          </span>
+                          </span> */}
                         </div>
                         <div className="font-poppins font-normal text-[11px] text-[#fff]">
-                          {product.amount}
+                          $ {product.amount}
                         </div>
                         <button
-                          className="border-[1px] border-[#E5B638] px-5 text-[#fff] text-[10px] rounded-md hover:bg-[#E5B638] py-2 w-fit"
+                        style={{
+                          border: "1px solid #E5B638", // Add border style
+                        }}
+                          className="border-[1px] border-[#E5B638] px-5 text-[#fff] text-[10px] rounded-md hover:bg-[#E5B638] py-1 w-fit"
                           onClick={() => OnClickAddButton(product)}
                         >
                           ADD

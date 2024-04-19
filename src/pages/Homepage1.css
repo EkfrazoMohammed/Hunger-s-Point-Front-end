@@ -54,7 +54,7 @@
 .shareLink .permalink .copyLink {
   position: absolute;
   top: 21%;
-  right: 25%;
+  right: 26%;
   cursor: pointer;
   transform: translateY(-50%);
 }

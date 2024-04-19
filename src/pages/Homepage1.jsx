@@ -37,13 +37,43 @@ const content = require("../data/content.json");
 import metaThumbnail from "../data/images/meta/punjabi.jpeg";
 import { BiEdit, BiShow } from 'react-icons/bi';
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const Homepage1 = () => {
   const dispatch = useDispatch();
   // const locationData = useSelector(state => state.data.location);
   const [inputValue, setInputValue] = useState('');
-  
+  const [offerdata, setOfferData] = useState(false);
+  const navigate = useNavigate();
+  const navigationtomenu = () => {
+    console.log("navigate")
+    navigate("/productpage?id=1");
+  }
+  useEffect(() => {
+    const credentials = JSON.parse(localStorage.getItem('credentials'));
+    if (credentials){
+      CheckUserOffer(['Registered User','ALL'])
+    }
+  }, []);
+
+  const CheckUserOffer = async (target) => {
+    const data = {
+      'target':target
+    }
+    API.getInstance().menu.post(`/api/check-offers`,data)
+      .then((res) => {
+        console.log(res.data.result.data,'GetUserData======>')
+        setOfferData(res.data.result.data)
+        setIsOpen(true)
+      })
+      .catch((error) => {
+      })
+      .finally(() => {
+      });
+      
+  }
+
   useEffect(() => {
     GetRestaurentData()
   }, []);
@@ -144,9 +174,9 @@ const Homepage1 = () => {
 
     
 
-      <div>
+      {/* <div>
       <button onClick={openModal}>Open Modal</button>
-    </div>
+    </div> */}
     
 
     <Modal isOpen={isOpen} onClose={closeModal} width="50%">
@@ -160,32 +190,32 @@ const Homepage1 = () => {
       centeredSlides={true}
     >
       
-      {dummyData.map((item) => (
-        <SwiperSlide key={item.id}>
-          <div className="category-10">
-            <img src={item.imageUrl} alt={`Slide ${item.id}`} />
-            <div style={{fontSize:'16px'}}>{item.title}</div>
-            {/* <h3>{item.subtitle}</h3> */}
-            {item.inputType ? (
-              <>
-                <div class="shareLink">
-              <div class="permalink">
-                <input class="textLink" type="text" name="shortlink" value={item.title} id="copy-link" />
-                <span onClick={() => handleCopyToClipboard(item.title)} class="copyLink" id="copy" tooltip="Copy to clipboard">
-                  <BiEdit style={{ color: 'white', fontSize: '20px' }} />
-                </span>           
-              </div>  
-            </div>
-              </>
-            ) : (
-              <button>{item.buttonText}</button>
-            )}
+      {offerdata && offerdata.map((item) => (
+            <SwiperSlide key={item.id}>
+              <div className="category-10">
+                <img src={item.banner_image} alt={`Slide ${item.id}`} onClick={() => navigationtomenu()} />
+                {/* <div style={{fontSize:'16px'}}>{item.title}</div> */}
+                {/* <h3>{item.subtitle}</h3> */}
+                {item.promo_code ? (
+                  <>
+                    <div class="shareLink">
+                      <div class="permalink">
+                        <input class="textLink" type="text" name="shortlink" value={item.promo_code} id="copy-link" readOnly="" />
+                        <span onClick={() => handleCopyToClipboard(item.promo_code)} class="copyLink" id="copy" tooltip="Copy to clipboard">
+                          <BiEdit style={{ color: 'white', fontSize: '20px' }} />
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <button>{item.promo_code}</button>
+                )}
 
 
-          </div>
-          
-        </SwiperSlide>
-      ))}
+              </div>
+
+            </SwiperSlide>
+          ))}
     </Swiper>
 
       </Modal>

@@ -90,13 +90,20 @@ const Button = () => {
   });
 
   useEffect(() => {
-    GetBasketData()
+    GetBasketData(false)
     GetLocationData()
   }, []);
 
-  const GetBasketData = async () => {
+  const GetBasketData = async (flag,code) => {
     const credentials = JSON.parse(localStorage.getItem('credentials'));
-    API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
+    let updated_url =""
+    if(flag){
+      updated_url = `/api/cart-items?customer_user_id=${credentials?.user_id}&promo_code=${code}`
+    }
+    else{
+      updated_url = `/api/cart-items?customer_user_id=${credentials?.user_id}`
+    }
+    API.getInstance().menu.get(updated_url)
       .then((res) => {
         const credentials = JSON.parse(localStorage.getItem('credentials'));
         // console.log(res.data.result.data,'GetBasketData===res.data.result.data===>')
@@ -235,7 +242,7 @@ const Button = () => {
   API.getInstance().menu.post('api/user-place-orders',order)
     .then((res) => {
      console.log(res,'res===>')
-     GetBasketData()
+     GetBasketData(false)
      toast.success('Order placed successfully!');
      navigate('/orders')
     })
@@ -313,10 +320,11 @@ const Button = () => {
 
 const onPromoClick = useCallback((promo_code) => {
   console.log(promo_code,'promo_code===>')
-  setOrder(prevOrder => ({
-    ...prevOrder,
-    promo_code: promo_code
-  }));
+  GetBasketData(true,promo_code)
+  // setOrder(prevOrder => ({
+  //   ...prevOrder,
+  //   promo_code: promo_code
+  // }));
   
 }, []);
 
