@@ -10,6 +10,11 @@ export default function SimpleSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 3500,
+    pauseOnHover: false,
+    cssEase: "ease-in-out",
   };
   return (
     <Slider {...settings}>
