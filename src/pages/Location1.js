@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { API } from "../api/api";
 import vector891  from '../assets/vector-891.svg'
 import rectangle8  from '../assets//rectangle-8@2x.png'
-
+import bike  from '../assets/bike.png'
 
 const Location1 = () => {
   const navigate = useNavigate();
@@ -174,7 +174,12 @@ const FrameCard = ({ location, onClick }) => {
     console.log(id,'location====')
     navigate(`/productpage?id=${id}`);
   };
-
+  const dummyData = [
+    { id: 1, imageUrl:bike  },
+    { id: 2, imageUrl: 'https://i.pinimg.com/originals/58/df/e6/58dfe63ba312325759e6570ac55b77aa.jpg' },
+    { id: 3, imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzAMLdI3d85d82BX9BwjYkEBScFCBZXvTcB3mXUvretQ&s' },
+    { id: 4, imageUrl: rectangle8 }
+  ];
   return (
     <div style={{ backgroundColor: 'rgb(54,54,54)', padding: '20px', borderRadius: '10px' }} className={`category-2-wrapper`} onClick={()=>OncardClick(location.id)}>
       <div className={`category-frame`}>
@@ -203,9 +208,9 @@ const FrameCard = ({ location, onClick }) => {
         <div className={`our-delivery-partners-parent`}>
           <div className={`our-delivery-partners`} style={{ textAlign: 'left' }}>Our Delivery Partners</div>
           <div style={{ marginBottom: '20px' }} className={`frame-parent`}>
-            {[...Array(5)].map((_, index) => (
+          {dummyData.map((item,index) => (
               <button key={index} style={{ marginRight: '10px', width: '60px' }} className="map-pin-group-wrapper">
-                <img className="map-pin-group1" alt="" src={rectangle8} />
+                <img className="map-pin-group1" alt="" src={item.imageUrl} />
               </button>
             ))}
           </div>

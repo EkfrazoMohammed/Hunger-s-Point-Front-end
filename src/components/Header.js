@@ -185,7 +185,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header6">
+      {/* <div className="header6">
         <img className="header-child" alt="" src={group1} />
         <div className="wrapper-ellipse-2">
           <img
@@ -223,7 +223,7 @@ const Header = () => {
           </div>
         </div>
         <img className="close-icon2" loading="eager" alt="" src={close} />
-      </div>
+      </div> */}
       <header>
         <nav className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r from-[#252525] to-[#380000] w-full min-w-fit">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
@@ -268,7 +268,7 @@ const Header = () => {
                       className="user-icon1"
                       loading="eager"
                       alt=""
-                      src={user?.picture}
+                      src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
                       style={{height: '50px',width: '50px',borderRadius:'50%',border:'3px solid #e5b638'}}
                     />
                   {/* </button> */}
@@ -332,7 +332,7 @@ const Header = () => {
               id="mobile-menu-2"
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                <li>
+                {/* <li>
                   <div
                     className="buttons-states w-[400px] rounded-[5px] bg-[#363636] border border-[#424242] box-border flex flex-col items-start justify-center p-[10px] max-w-full cursor-pointer text-left text-[10px] "
                     onClick={() => handleRout("/location")}
@@ -362,7 +362,7 @@ const Header = () => {
                       </div>
                     </div>
                   </div>
-                </li>
+                </li> */}
 
                 <li className="flex items-center">
                   <div
@@ -386,6 +386,37 @@ const Header = () => {
                 </li>
                 <li className="flex items-center">
                   <div
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    onClick={() => handleRout("/ourstory")}
+                  >
+                    <div className="relative  leading-[130%] uppercase text-[#fff]">
+                      OUR STORY
+                    </div>
+                  </div>
+                </li>
+                <li className="flex items-center">
+                  <div
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/events' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    onClick={() => handleRout("/events")}
+                  >
+                    <div className="relative  leading-[130%] uppercase text-[#fff]">
+                      EVENT
+                    </div>
+                  </div>
+                </li>
+                {/* <li className="flex items-center">
+                  <div
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    onClick={() => handleRout("/location")}
+                  >
+                    <div className="relative  leading-[130%] uppercase text-[#fff]">
+                      FRANCHISE
+                    </div>
+                  </div>
+                </li> */}
+                
+                {/* <li className="flex items-center">
+                  <div
                     className="h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] hover:border-[#424242] hover:box-border"
                     onClick={() => handleRout("/productpage?id=1")}
                   >
@@ -393,7 +424,7 @@ const Header = () => {
                       ORDER NOW
                     </div>
                   </div>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

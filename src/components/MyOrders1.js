@@ -41,12 +41,20 @@ const MyOrders1 = ({Orderdata}) => {
             <div className="div29">${Orderdata.order_summary.taxes}</div>
           </div>
           <div className="tax-frame12">
-            <div className="total2">Total</div>
+            <div className="total2">Grand Total</div>
             <div className="div30">${Orderdata.order_summary.total}</div>
+          </div>
+          <div className="tax-frame12">
+            <div className="total2">Coupon Discount</div>
+            <div className="div30">${Orderdata.order_summary.discount_amount}</div>
+          </div>
+          <div className="tax-frame12">
+            <div style={{color:'#e5b638'}} className="total2">To pay</div>
+            <div style={{color:'#e5b638'}} className="div30">${Orderdata.order_summary.final_total}</div>
           </div>
           <div className="tax-frame13">
             <div className="amount">Amount</div>
-            <b className="paid">Paid</b>
+            <b style={{color:'green'}} className="paid">Paid</b>
           </div>
           <div className="tax-frame14">
             <div className="payment-method">Payment Method</div>

@@ -29,8 +29,8 @@ const Ordersframe = () => {
               className="john-smithtext-icon"
               loading="eager"
               alt=""
-              src={user?.picture}
-            />
+              src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
+              />
             <div className="summarydetails">
               <h3 className="john-smith1">{userdata?.user_name}</h3>
               {userdata?.phone_number && (<div className="emptyspace">{userdata?.phone_number}</div>)}

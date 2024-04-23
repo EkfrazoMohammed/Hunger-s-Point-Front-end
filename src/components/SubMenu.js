@@ -23,7 +23,7 @@ const SubMenu = ({ isOpen, handleClose }) => {
       <Link to="careers" onClick={handleClose} >Careers</Link>
       <Link to="franchise" onClick={handleClose} >Franchise</Link>
       <Link to="contact-us" onClick={handleClose} >Contact Us</Link>
-      <Link to="/" onClick={handleClose} >Our Story</Link>
+      <Link to="ourstory" onClick={handleClose} >Our Story</Link>
     </div>
   )
 }

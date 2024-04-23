@@ -23,9 +23,9 @@ const WoAddonBasket = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, 
   const [selectedItems, setSelectedItems] = useState([]);
 
 
-  console.log('menu_item?.menu_items_add_on====>complete',menu_item?.menu_items_add_on)
+  console.log('menu_item?.menu_items_add_on====>complete',menu_item)
   const handleCategorySelect = (category, itemName) => {
-    const updatedMenuItems = menu_item.menu_add_on.map((cat) => {
+    const updatedMenuItems = menu_item?.menu_add_on.map((cat) => {
         if (cat.key === category) {
             const updatedValue = cat.value.map((item) => {
                 if (item.name === itemName) {
@@ -180,30 +180,33 @@ const WoAddonBasket = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, 
 
             <div>
             {
-              (menu_item?.menu_add_on && menu_item?.menu_add_on?.length > 0 ? menu_item.menu_add_on : menu_item?.menu_add_on).map((category, index) => (
-                <div key={index}>
-                  <div className="font-bold text-l text-white text-start my-5">
-                    {category.key}
-                  </div>
-                  <div style={{ justifyContent: 'center' }} className="flex flex-wrap">
-                    {category?.value && category?.value.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className={`flex flex-col justify-center items-center font-normal text-base text-white border py-3 rounded-sm ${
-                          item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'
-                        }`}
-                        style={{ minWidth: '45%', margin: '3px', cursor: 'pointer' }}
-                        onClick={() => handleCategorySelect(category.key, item.name)}
-                      >
-                        <div className="flex">
-                          <span>{item.name}{item.selected}</span>
-                          <span style={{ marginLeft: '20px' }}>$ {item.price}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+  menu_item?.menu_add_on && Array.isArray(menu_item?.menu_add_on) && menu_item?.menu_add_on.map((category, index) => (
+    <div key={index}>
+      <div className="font-bold text-l text-white text-start my-5">
+        {category.key}
+      </div>
+      <div style={{ justifyContent: 'center' }} className="flex flex-wrap">
+        {category?.value && category.value.map((item, itemIndex) => (
+          <div
+            key={itemIndex}
+            className={`flex flex-col justify-center items-center font-normal text-base text-white border py-3 rounded-sm ${
+              item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'
+            }`}
+            style={{ minWidth: '45%', margin: '3px', cursor: 'pointer' }}
+            onClick={() => handleCategorySelect(category.key, item.name)}
+          >
+            <div className="flex">
+              <span>{item.name}{item.selected}</span>
+              <span style={{ marginLeft: '20px' }}>$ {item.price}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))
+}
+
+
           </div>
           }
           {/* Opps screen */}

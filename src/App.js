@@ -30,6 +30,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Events } from "./pages/sub-menu-pages/events/Events";
 import { Careers } from "./pages/sub-menu-pages/careers/Careers";
 import { Franchise } from "./pages/sub-menu-pages/franchise/Franchise";
+import { Ourstory } from "./pages/sub-menu-pages/ourstory/Ourstory";
 import { ContactUs } from "./pages/sub-menu-pages/contact_us/ContactUs";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -198,6 +199,7 @@ function RoutesWithAnimation() {
       <Route path="/events" element={<Events />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/franchise" element={<Franchise />} />
+      <Route path="/ourstory" element={<Ourstory />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/our-story" element={<Careers />} />
     </Routes>
