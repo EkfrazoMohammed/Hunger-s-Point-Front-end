@@ -30,7 +30,7 @@ const FrameComponent1 = () => {
             src={customerservicemanansweringquestion}
           />
         </div>
-        <div style={{width:'50%'}}>
+        <div className="dash-feedback">
         <FeedbackForm />
         </div>
        

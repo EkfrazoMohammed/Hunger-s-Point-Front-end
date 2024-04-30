@@ -146,7 +146,7 @@ function App() {
     <>
       <ToastContainer />
       {pathname !== "/signin" && <Header />}
-      <LocationProvider>
+      <LocationProvider> </LocationProvider>
         <Routes>
           <Route path="/" element={<Homepage1 />} />
           <Route path="/signin" element={<Signin />} />
@@ -176,12 +176,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/deliveryPartner" element={<DeliveryPartner />} />
           <Route path="/checkoutcontact1" element={<CheckoutContact1 />} />
-          {/* submenu */}
-          {/* <Route path="/events" element={<Events />} /> */}
-          {/* <Route path="/careers" element={<Careers />} /> */}
         </Routes>
         <RoutesWithAnimation />
-      </LocationProvider>
+     
     </>
   );
 }
@@ -192,8 +189,6 @@ function LocationProvider({ children }) {
 
 function RoutesWithAnimation() {
   const location = useLocation();
-  console.log(location);
-
   return (
     <Routes>
       <Route path="/events" element={<Events />} />

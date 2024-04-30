@@ -24,7 +24,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 35%;
   }
-  
+  /* Media query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Adjust width for smaller screens */
+    margin: auto; /* Center the modal horizontally */
+  }
+}
+@media (min-width: 769px) {
+  .modal-content {
+    width: 50%; /* Adjust width for smaller screens */
+    margin: auto; /* Center the modal horizontally */
+  }
+}
   .close {
     position: absolute;
     top: 10px;

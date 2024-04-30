@@ -59,7 +59,7 @@ export const ContactUs = () => {
         <SubMenuPagesHeader bannerImg={pageBannerImg} />
         {/* types: side_section(rightImg, leftImg), banner(bannerImg) , banner_with_text(bannerText1, bannerText2)*/}
 
-        <section className="fp-wrapper-main bottom-form-container">
+        <section className="fp-wrapper-main fp-main--contact-us bottom-form-container">
           <div className="para-container">
             <div className="fp-para-section-title fp-para-section-title-md bottom-a-line w-2/3 uppercase font-bold">
               CONTACT US
@@ -70,7 +70,7 @@ export const ContactUs = () => {
               <img
                 src={contactUsImg2}
                 alt="contact us"
-                className="absolute top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
+                className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
               />
               <div className="contact-info-container relative z-[2] p-10">
                 <h2 className="text-[30px]">Customer Care</h2>

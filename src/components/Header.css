@@ -10,6 +10,10 @@
   --droup-down-bg:rgb(37,37,37);
   --header-bg:rgb(49,13,13);
 }
+
+.responsive-font-size{
+  font-size: clamp(.7rem, 2vw, .9rem);
+}
 .links {
   list-style: none;
   margin: 0 20px 0 auto;
@@ -423,5 +427,60 @@
 @media screen and (max-width: 1350px) {
   .user-frame {
     display: none;
+  }
+}
+
+
+/* Media queries for different viewport widths */
+/* Media queries for different viewport widths */
+@media (max-width: 576px) {
+  .responsive-image {
+    height: 35px;
+    width: 35px;
+  }
+  .basket-view{
+    height: 10px;
+  } 
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .responsive-image {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .responsive-image {
+    height: 45px;
+    width: 45px;
+  }
+  .basket-view{
+    height: 10px;
+  } 
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .responsive-image {
+    height: 45px;
+    width: 45px;
+  }
+  .basket-view{
+    height: 49px;
+  } 
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+  .responsive-image {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+/* Example of another breakpoint */
+@media (min-width: 1401px) {
+  .responsive-image {
+    height: 45px;
+    width: 45px;
   }
 }

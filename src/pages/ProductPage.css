@@ -2,6 +2,9 @@
   width: 100%;
   color: #000;
 }
+.responsive-font-size{
+  font-size: clamp(.7rem, 2vw, .9rem);
+}
 .button5 {
   position: relative;
   font-size: 16px;

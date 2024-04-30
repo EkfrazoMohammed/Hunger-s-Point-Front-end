@@ -40,11 +40,13 @@ import SaveIcon from "../assets/saveIcon.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
 import CATEGORY from "../components/CATEGORY";
-import { Calendar,DateRangePicker,DateRange } from 'react-date-range';
-import { format } from 'date-fns';
+import { Calendar, DateRangePicker, DateRange } from "react-date-range";
+import { format } from "date-fns";
 import { Formik } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
+import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
+import DarkMode from "../components/DarkMode";
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -67,21 +69,23 @@ const ProductPage = () => {
   const [loggedin, setLoggedin] = useState(true);
   const [savemodal, setSavemodal] = useState(false);
   const [savedate, setSavedate] = useState({
-    saveit_date: { // Initialize saveit_date
+    saveit_date: {
+      // Initialize saveit_date
       startDate: null,
       endDate: null,
-      key: 'selection1'
-    }
+      key: "selection1",
+    },
   });
   const [metadata, setMetadata] = useState(null);
   const [reaction, setReaction] = useState(null);
 
   const [initialData, setInitialData] = useState({
-    saveit_date: { // Initialize saveit_date
+    saveit_date: {
+      // Initialize saveit_date
       startDate: null,
       endDate: null,
-      key: 'selection1'
-    }
+      key: "selection1",
+    },
   });
   const [isValidForm, setIsValidForm] = useState(false); // State variable to store isValid value
 
@@ -96,8 +100,6 @@ const ProductPage = () => {
   // useEffect(() => {
   //   UpdateData()
   // }, []);
-
-
 
   useEffect(() => {
     GetLocationData();
@@ -177,7 +179,6 @@ const ProductPage = () => {
     console.log("UpdateBasket==called");
     GetBasketData();
   }, []);
-  
 
   const GetMenuTagData = async (menu_id, tag_id) => {
     GetMenuTagItemData(menu_id, tag_id);
@@ -245,102 +246,89 @@ const ProductPage = () => {
 
   const AddedToBasket = useCallback(() => {
     console.log("AddedToBasket===>");
-    OnClickMenu("ALL", "all", selectedTagIndex, activetag)
+    OnClickMenu("ALL", "all", selectedTagIndex, activetag);
     toast.success("Item Added to basket successfully!");
-    
   }, []);
 
-  const SaveModalFunction = async (menu_data, reaction,flag) => {
+  const SaveModalFunction = async (menu_data, reaction, flag) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
 
     if (!credentials) {
       toast.error("Please Login to React");
-      setLoggedin(false)
-      return false; 
-    }else{
-      if (flag){
-        setSavemodal(true)
+      setLoggedin(false);
+      return false;
+    } else {
+      if (flag) {
+        setSavemodal(true);
       }
-      setMetadata(menu_data)
-      setReaction(reaction)
-      
+      setMetadata(menu_data);
+      setReaction(reaction);
     }
-  
   };
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values.saveit_date,'saveit_date---->') 
-    console.log(metadata,reaction,'menu_data,reaction---->') 
-    UpdateReactionInDB(metadata,'SAVEIT',values.saveit_date)
-  }
+    console.log(values.saveit_date, "saveit_date---->");
+    console.log(metadata, reaction, "menu_data,reaction---->");
+    UpdateReactionInDB(metadata, "SAVEIT", values.saveit_date);
+  };
 
-  const validationSchema = Yup.object().shape({
-
-  });
-
+  const validationSchema = Yup.object().shape({});
 
   const handleDateChange = (item) => {
-    const formattedDate = format(item, 'dd/MM/yyyy');
-    console.log('Formatted Date:', formattedDate);
+    const formattedDate = format(item, "dd/MM/yyyy");
+    console.log("Formatted Date:", formattedDate);
     setSavedate(item);
   };
 
-  const UpdateReactionInDB = async (menu_data, reaction,saveit_date) => {
-
+  const UpdateReactionInDB = async (menu_data, reaction, saveit_date) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
 
     if (!credentials) {
       toast.error("Please Login to React");
-      setLoggedin(false)
-      return false; 
+      setLoggedin(false);
+      return false;
     } else {
-      if (reaction == 'saveit'){
-        setSavemodal(true)
-        setMetadata(menu_data)
-        setReaction(reaction)
+      if (reaction == "saveit") {
+        setSavemodal(true);
+        setMetadata(menu_data);
+        setReaction(reaction);
         return false;
-      }
-      else {
-
+      } else {
         let body = {};
 
-        if (reaction == 'SAVEIT'){
-          
-            body = {
-              cuser_id: credentials?.user_id,
-              menu_items_id: menu_data.id,
-              reaction: 'saveit',
-              saveit_date:saveit_date
-            };
-          }
-          else{
-            body = {
-              cuser_id: credentials?.user_id,
-              menu_items_id: menu_data.id,
-              reaction: reaction
-            }
-          }
+        if (reaction == "SAVEIT") {
+          body = {
+            cuser_id: credentials?.user_id,
+            menu_items_id: menu_data.id,
+            reaction: "saveit",
+            saveit_date: saveit_date,
+          };
+        } else {
+          body = {
+            cuser_id: credentials?.user_id,
+            menu_items_id: menu_data.id,
+            reaction: reaction,
+          };
+        }
         console.log(body, "body=====>UpdateReactionInDB");
-        
+
         try {
-          const res = await API.getInstance().menu.post("api/user-items-reaction", body);
-          console.log(res, 'response======>');
-          setLoggedin(true)
-          setSavemodal(false)
+          const res = await API.getInstance().menu.post(
+            "api/user-items-reaction",
+            body
+          );
+          console.log(res, "response======>");
+          setLoggedin(true);
+          setSavemodal(false);
           return true; // Return true if update is successful
         } catch (error) {
           console.error(error);
           toast.error("Failed to update reaction");
-          setLoggedin(false)
+          setLoggedin(false);
           return false; // Return false if there's an error
         }
-
       }
-
-      
     }
   };
-
-
 
   const OnClickAddButton = async (menu_item) => {
     setMenuitemdata(menu_item);
@@ -348,43 +336,47 @@ const ProductPage = () => {
   };
 
   const OnClickReactionpopup = async (item_data, reactionType) => {
-    
-    setRestorentMenuTagItemdata(prevState => {
+    setRestorentMenuTagItemdata((prevState) => {
       // Find the index of the item in restorentmenutagitemdata
-      const newData = prevState.map(menu => {
+      const newData = prevState.map((menu) => {
         // Find the index of the item in menu_item_info_list
-        const newItemList = menu.menu_item_info_list.map(item => {
+        const newItemList = menu.menu_item_info_list.map((item) => {
           if (item.id === item_data.id) {
             let updatedItem = { ...item };
             let reactionUpdated = false;
             switch (reactionType) {
-              case 'LOVEIT':
-                UpdateReactionInDB(item_data, 'loveit')
+              case "LOVEIT":
+                UpdateReactionInDB(item_data, "loveit");
                 updatedItem = {
                   ...updatedItem,
                   loveit: !updatedItem.loveit,
-                  loveit_count: updatedItem.loveit ? updatedItem.loveit_count - 1 : updatedItem.loveit_count + 1
-                };
-                reactionUpdated = true;
-                
-                break;
-              case 'LIKEIT':
-                UpdateReactionInDB(item_data,'likeit')
-                updatedItem = {
-                  ...updatedItem,
-                  likeit: !updatedItem.likeit,
-                  likeit_count: updatedItem.likeit ? updatedItem.likeit_count - 1 : updatedItem.likeit_count + 1
+                  loveit_count: updatedItem.loveit
+                    ? updatedItem.loveit_count - 1
+                    : updatedItem.loveit_count + 1,
                 };
                 reactionUpdated = true;
 
-                
                 break;
-              case 'DISLIKE':
-                UpdateReactionInDB(item_data,'dislikeit')
+              case "LIKEIT":
+                UpdateReactionInDB(item_data, "likeit");
+                updatedItem = {
+                  ...updatedItem,
+                  likeit: !updatedItem.likeit,
+                  likeit_count: updatedItem.likeit
+                    ? updatedItem.likeit_count - 1
+                    : updatedItem.likeit_count + 1,
+                };
+                reactionUpdated = true;
+
+                break;
+              case "DISLIKE":
+                UpdateReactionInDB(item_data, "dislikeit");
                 updatedItem = {
                   ...updatedItem,
                   dislikeit: !updatedItem.dislikeit,
-                  dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
+                  dislikeit_count: updatedItem.dislikeit
+                    ? updatedItem.dislikeit_count - 1
+                    : updatedItem.dislikeit_count + 1,
                 };
                 reactionUpdated = true;
                 // UpdateReactionInDB(item_data, 'dislikeit')
@@ -404,34 +396,43 @@ const ProductPage = () => {
                 //   });
 
                 break;
-                case 'SAVEIT':
-                  // UpdateReactionInDB(item_data,'saveit')
-                  if (!updatedItem.saveit) {
-                    console.log(updatedItem.saveit, 'updatedItem.saveit==true');
-                    SaveModalFunction(item_data, 'saveit', true);
-                  } else {
-                    console.log(updatedItem.saveit, 'updatedItem.saveit==false');
-                    SaveModalFunction(item_data, 'saveit', false);
-                    UpdateReactionInDB(item_data,'SAVEIT')
-                  }
-                  updatedItem = {
-                    ...updatedItem,
-                    saveit: !updatedItem.saveit,
-                    saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
-                  };
-                  
-                  reactionUpdated = true;
-                  break;
-                
-              
-                default:
+              case "SAVEIT":
+                // UpdateReactionInDB(item_data,'saveit')
+                if (!updatedItem.saveit) {
+                  console.log(updatedItem.saveit, "updatedItem.saveit==true");
+                  SaveModalFunction(item_data, "saveit", true);
+                } else {
+                  console.log(updatedItem.saveit, "updatedItem.saveit==false");
+                  SaveModalFunction(item_data, "saveit", false);
+                  UpdateReactionInDB(item_data, "SAVEIT");
+                }
+                updatedItem = {
+                  ...updatedItem,
+                  saveit: !updatedItem.saveit,
+                  saveit_count: updatedItem.saveit
+                    ? updatedItem.saveit_count - 1
+                    : updatedItem.saveit_count + 1,
+                };
+
+                reactionUpdated = true;
+                break;
+
+              default:
                 break;
             }
             if (reactionUpdated) {
-              updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
-          }
-          return updatedItem;
-            updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
+              updatedItem.total_reaction_count =
+                updatedItem.loveit_count +
+                updatedItem.likeit_count +
+                updatedItem.dislikeit_count +
+                updatedItem.saveit_count;
+            }
+            return updatedItem;
+            updatedItem.total_reaction_count =
+              updatedItem.loveit_count +
+              updatedItem.likeit_count +
+              updatedItem.dislikeit_count +
+              updatedItem.saveit_count;
             return updatedItem;
           } else {
             return item;
@@ -439,46 +440,33 @@ const ProductPage = () => {
         });
         return {
           ...menu,
-          menu_item_info_list: newItemList
+          menu_item_info_list: newItemList,
         };
       });
       return [...newData]; // Return a new array to trigger state update
     });
-};
-
-
-
-
-
-
-
-
-
-  const OnClickLikepopup = async (id) => {
-    if (selectedItemIndex == id){
-      setSelectedItemIndex(0)
-    }else{
-      setSelectedItemIndex(id)
-    }
-    
-    
   };
 
-
+  const OnClickLikepopup = async (id) => {
+    if (selectedItemIndex == id) {
+      setSelectedItemIndex(0);
+    } else {
+      setSelectedItemIndex(id);
+    }
+  };
 
   const closeModal = () => {
-    setLoggedin(true)
-  }
+    setLoggedin(true);
+  };
 
   const closeSaveModal = () => {
-    setSavemodal(false)
-  }
+    setSavemodal(false);
+  };
 
-
-
-  
   return (
     <>
+      {/* <SubMenuPagesHeader bannerImg={productHeadImg} /> */}
+
       <div className="bg-[#252525] h-fit min-h-[100vh] ">
         {/* <Header /> */}
 
@@ -522,7 +510,108 @@ const ProductPage = () => {
                 </svg>
               </button>
               <div className="h-full" onClick={() => setIsVisible(false)}>
-                <Sidebar isOpen={isVisible} />
+                {/* <Sidebar isOpen={isVisible} /> */}
+
+
+
+                <div className={`${isVisible ? "" : "hidden"}`}>
+                <nav
+                  id="sidenav-1"
+                  style={{ height: "-webkit-fill-available" }}
+                  className="absolute bg-[#252525] left-0 mt-10 z-[1035]  w-[50%] sm:w-[40%] md:w-[35%]  lg:hidden -translate-x-full overflow-hidden shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+                  data-te-sidenav-init
+                  data-te-sidenav-hidden="false"
+                  data-te-sidenav-position="absolute"
+                >
+                  <ul
+                    className="relative m-0 list-none px-[0.2rem]"
+                    data-te-sidenav-menu-ref
+                  >
+                    <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-6 pr-12 gap-5 flex flex-col">
+                      <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
+                      {locationdata.published_name}
+                      </div>
+                      <div className="flex items-center gap-[10px]">
+                      <img src={locationIconOrenge} alt="locationIcon" />
+
+                        <span className="font-poppins font-normal text-sm text-[#fff]">
+                        {locationdata.address_info}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-[10px]">
+                            <img src={callIconOrenge} alt="locationIcon" />
+                                            
+                        <span className="font-poppins font-normal text-sm text-[#fff]">
+                        {locationdata.phone}
+                        </span>
+                      </div>
+                      <div className="flex items-start gap-[10px]">
+                      <img src={watchIconOrenge} alt="locationIcon" />
+
+                        <div className="font-poppins font-normal text-sm text-[#fff]">
+                          <div className="flex gap-[10px]">
+                            Mon - Fri <span>10am - 9pm</span>
+                          </div>
+                          <div className="flex gap-[10px]">
+                            Sat - Sun <span>10am - 11pm</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-[85%]  flex flex-col gap-[10px]">
+                      <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
+                        Filters
+                      </div>
+                      <button
+                        onClick={() =>
+                          OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
+                        }
+                        className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[50px] px-5 flex items-center cursor-pointer ${
+                          activetag === "all"
+                            ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
+                            : "hover:bg-[#C21F24] hover:border-[#C21F24]"
+                        }`}
+                      >
+                        All Dishes
+                      </button>
+
+                      {restorentmenutagdata.length > 0 ? (
+                        <>
+                          {restorentmenutagdata &&
+                            restorentmenutagdata.map((tag, index) => (
+                              <button
+                                key={index}
+                                onClick={() =>
+                                  OnClickMenu(
+                                    activemenu,
+                                    selectedMenuIndex,
+                                    index,
+                                    tag.id
+                                  )
+                                }
+                                className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[40px] px-5 flex items-center cursor-pointer ${
+                                  activetag === tag.id
+                                    ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
+                                    : "hover:bg-[#C21F24] hover:border-[#C21F24]"
+                                }`}
+                              >
+                                <img
+                                  src={vegLefIcon}
+                                  alt="addicon"
+                                  style={{ marginRight: "10px" }}
+                                />{" "}
+                                {tag.name}
+                              </button>
+                            ))}
+                        </>
+                      ) : null}
+                    </div>
+                  </ul>
+                </nav>
+              </div>
+
+
+
               </div>
               <div className="w-[30%] hidden sm:hidden md:hidden lg:flex">
                 <div className="bg-[#363636] rounded-[20px] w-[25%] py-5 pl-6 pr-12 gap-4 flex flex-col absolute top-[10vh] left-[2%]">
@@ -565,30 +654,15 @@ const ProductPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[85%] my-[25vh] flex flex-col gap-[10px]">
+                <div className="w-[85%] my-[33vh] flex flex-col gap-[10px]">
                   <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
                     Filters
                   </div>
-                  {/* <div className={`font-poppins font-semibold text-lg leading-[23px] text-[#fff] h-[50px] px-10 flex items-center ${selectedMenuIndex === 'all' ? 'bg-[#C21F24]' : 'hover:bg-[#C21F24]'
-                    }`} onClick={() => OnClickMenu('ALL', 'all', selectedTagIndex, activetag)}>
-                    All
-                  </div> */}
-                  {/* {restorentmenudata && restorentmenudata.map((menu, index) => (
-                    <div
-                      key={index}
-                      className={`font-poppins font-semibold text-lg leading-[23px] text-[#fff] h-[50px] px-10 flex items-center ${selectedMenuIndex === index ? 'bg-[#C21F24]' : 'hover:bg-[#C21F24]'
-                        }`}
-                      onClick={() => OnClickMenu(menu.id, index, selectedTagIndex, activetag)}
-                    >
-                      {menu.menu_title}
-                    </div>
-                  ))} */}
-
                   <button
                     onClick={() =>
                       OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
                     }
-                    className={`font-poppins font-semibold text-lg leading-[23px] text-[#fff] h-[50px] px-10 flex items-center cursor-pointer ${
+                    className={`font-poppins font-semibold leading-[23px] text-[#fff] h-[50px] px-10 flex items-center cursor-pointer ${
                       activetag === "all"
                         ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
                         : "hover:bg-[#C21F24] hover:border-[#C21F24]"
@@ -648,7 +722,8 @@ const ProductPage = () => {
                   } */}
 
                   <div
-                    className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer ${
+                  style={{fontSize:'12px'}}
+                    className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${
                       selectedMenuIndex === "all"
                         ? "bg-[#C21F24]"
                         : "hover:bg-[#C21F24] cursor-pointer"
@@ -662,8 +737,9 @@ const ProductPage = () => {
                   {restorentmenudata &&
                     restorentmenudata.map((menu, index) => (
                       <div
+                      style={{fontSize:'12px'}}
                         key={index}
-                        className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer ${
+                        className={`border-[1px] border-[#E5B638] px-4 rounded-md py-2 text-base text-[#fff] flex gap-[5px] responsive-font-size cursor-pointer ${
                           selectedMenuIndex === index
                             ? "bg-[#C21F24]"
                             : "hover:bg-[#C21F24] "
@@ -728,7 +804,7 @@ const ProductPage = () => {
                                               marginBottom: "20px",
                                             }}
                                           >
-                                            <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] w-full pr-[10px] relative">
+                                            <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
                                             {item.name}
                                               <div
                                                 className={`${
@@ -796,7 +872,7 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                            <div className="flex justify-between items-center font-poppins font-normal text-lg text-[#fff] pr-[18px]">
+                                            <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px]responsive-font-size">
                                               $ {item.amount}
                                               <span>
                                                 {item.total_reaction_count}
@@ -874,7 +950,7 @@ const ProductPage = () => {
                                                   />
                                                 </span>
                                               </div> */}
-                                              <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] w-full pr-[10px] relative">
+                                              <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
                                               {
                                                 menu.menu_item_info_list[
                                                   itemIndex + 1
@@ -967,7 +1043,7 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                              <div className="flex justify-between items-center font-poppins font-normal text-lg text-[#fff] pr-[18px]">
+                                              <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size">
                                                 ${" "}
                                                 {
                                                   menu.menu_item_info_list[
@@ -1020,84 +1096,113 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
-        
-        
-        
-        
-        
-        
-        {
-          savemodal && ( <Modal isOpen={savemodal} onClose={closeSaveModal} width={'30%'}>
-        <div style={{margin: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="category-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="signin-text-wrapper">
-              <div className="signin-text1">
-                <div className="sign-in-wrapper">
-                  <h1 className="sign-in1">Save Item</h1>
+
+        {savemodal && (
+          <Modal isOpen={savemodal} onClose={closeSaveModal} width={"30%"}>
+            <div
+              style={{
+                margin: "30px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className="category-10"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div className="signin-text-wrapper">
+                  <div className="signin-text1">
+                    <div className="sign-in-wrapper">
+                      <h1 className="sign-in1">Save Item</h1>
+                    </div>
+                    <div className="a-few-more-questions-to-help-b-wrapper">
+                      <div className="a-few-more1">
+                        Get email notification on the saved date
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="a-few-more-questions-to-help-b-wrapper">
-                  <div className="a-few-more1">Get email notification on the saved date</div>
-                </div>
-              </div>
-            </div>
-            <Formik
-                    enableReinitialize
-                    initialValues={initialData}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                    validateOnChange={true} // Validate on change to update isValidForm state
-                    validateOnBlur={false} // Disable onBlur validation to prevent unexpected form state changes
-                    validate={(values) => {
-                      // Manually validate the form on change
-                      validationSchema.validate(values)
-                        .then(() => setIsValidForm(true))
-                        .catch(() => setIsValidForm(false));
-                    }}
-                  >
-                    {({ isValid, values, handleChange, handleSubmit, setFieldValue, errors, touched, isSubmitting }) => (
-                      <Form onSubmit={handleSubmit}>
-                
-                        <Form.Group className="mb-3">
-                          <DateRange
+                <Formik
+                  enableReinitialize
+                  initialValues={initialData}
+                  validationSchema={validationSchema}
+                  onSubmit={handleSubmit}
+                  validateOnChange={true} // Validate on change to update isValidForm state
+                  validateOnBlur={false} // Disable onBlur validation to prevent unexpected form state changes
+                  validate={(values) => {
+                    // Manually validate the form on change
+                    validationSchema
+                      .validate(values)
+                      .then(() => setIsValidForm(true))
+                      .catch(() => setIsValidForm(false));
+                  }}
+                >
+                  {({
+                    isValid,
+                    values,
+                    handleChange,
+                    handleSubmit,
+                    setFieldValue,
+                    errors,
+                    touched,
+                    isSubmitting,
+                  }) => (
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3">
+                        <DateRange
                           // style={{fontSize:'8px'}}
                           // dateDisplayFormat='dd/MM/yyyy'
-                            className='date_picker_style'
-                            onChange={range => {
-                              // Update Formik field values for saveit_date
-                              setFieldValue('saveit_date', range.selection1);
-                            }}
-                            ranges={[values.saveit_date]}
-                          />
-                          {errors.saveit_date && touched.saveit_date && <div className="error-message">{errors.saveit_date}</div>}
-                        </Form.Group>
-                      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
-                        <button className="buttons-states-dark20" style={{ backgroundColor: 'red' }}>
-                          <b style={{ lineHeight: '30%', fontSize: '14px' }} className="button28">SAVE</b>
+                          className="date_picker_style"
+                          onChange={(range) => {
+                            // Update Formik field values for saveit_date
+                            setFieldValue("saveit_date", range.selection1);
+                          }}
+                          ranges={[values.saveit_date]}
+                        />
+                        {errors.saveit_date && touched.saveit_date && (
+                          <div className="error-message">
+                            {errors.saveit_date}
+                          </div>
+                        )}
+                      </Form.Group>
+                      <div
+                        style={{
+                          marginTop: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "100%",
+                        }}
+                      >
+                        <button
+                          className="buttons-states-dark20"
+                          style={{ backgroundColor: "red" }}
+                        >
+                          <b
+                            style={{ lineHeight: "30%", fontSize: "14px" }}
+                            className="button28"
+                          >
+                            SAVE
+                          </b>
                         </button>
                       </div>
-                      </Form>
-                    )}
-                    
-                  </Formik>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+            </div>
+          </Modal>
+        )}
 
-          </div>
-        </div>
-
-
-          </Modal>)
-        }
-
-
-
-
-
-
-        {
-    !loggedin && ( <Modal isOpen={!loggedin} onClose={closeModal}>
-      <CATEGORY />
-
-    </Modal>)
-  }
+        {!loggedin && (
+          <Modal isOpen={!loggedin} onClose={closeModal}>
+            <CATEGORY />
+          </Modal>
+        )}
       </div>
       {isWoAddonOpen && (
         <PortalPopup
@@ -1114,8 +1219,7 @@ const ProductPage = () => {
           />
         </PortalPopup>
       )}
-
- 
+      <DarkMode />
     </>
   );
 };

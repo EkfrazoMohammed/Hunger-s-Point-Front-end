@@ -398,3 +398,16 @@
     box-sizing: border-box;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .dash-feedback{
+    width: 100%;
+  }
+
+}
+@media screen and (min-width: 751px) {
+  .dash-feedback{
+    width: 50%;
+  }
+
+}

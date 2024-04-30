@@ -3,7 +3,7 @@ import './Modal.css';
 
 const Modal = ({ isOpen, onClose, width, children }) => {
   const modalStyle = {
-    width: width || '35%', // Set the width to the passed prop or default to 50%
+    // width: width || '35%', // Set the width to the passed prop or default to 50%
   };
   
   return (
