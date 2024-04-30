@@ -8,7 +8,7 @@ import FrameComponent3 from "../components/FrameComponent3";
 
 
 
-import image5 from  "../assets/image-5@2x.png" 
+import image5 from  "../assets/top_banner.jpg" 
 import location11 from  "../assets/location-11.svg"
 import call1 from  "../assets/call1.svg"
 import vector from  "../assets/vector-891.svg"
@@ -21,6 +21,7 @@ import { API } from "../api/api";
 import vector891  from '../assets/vector-891.svg'
 import rectangle8  from '../assets//rectangle-8@2x.png'
 import bike  from '../assets/bike.png'
+import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
 
 const Location1 = () => {
   const navigate = useNavigate();
@@ -76,9 +77,7 @@ const Location1 = () => {
       /> */}
       {/* <Header /> */}
       <section className="locationinstances">
-        <div className="locationinstances1">
-          <img className="image-5-icon" alt="" src={image5} />
-        </div>
+      <SubMenuPagesHeader bannerImg={image5} />
       </section>
       <div className="nearbystorestext">
         <div className="categoryinstance">

@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import bannerImg1 from "../assets/header@3x.png"
-import banner1 from "../assets/banner1_quality.jpg"
+import banner1 from "../assets/home_banner.jpg"
 import banner2 from "../assets/banner2_quality.jpg"
 import banner3 from "../assets/banner3_quality.jpg"
 import banner4 from "../assets/banner4_quality.jpg"
@@ -36,19 +36,7 @@ export default function SimpleSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner2,
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
       imgSrc: banner3,
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
-      imgSrc: banner4,
     }
   ];
   

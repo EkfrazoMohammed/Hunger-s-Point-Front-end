@@ -1,6 +1,8 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import "./VIPContainer.css";
 
 const VIPContainer = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <section className="v-i-p-frame">
       <h1 className="become-a-vip">BECOME A VIP</h1>
@@ -11,7 +13,7 @@ const VIPContainer = () => {
             !
           </div>
         </div>
-        <button className="buttons-states-dark61">
+        <button  onClick={() => loginWithRedirect()} className="buttons-states-dark61">
           <div className="button73">Sign up Now!</div>
         </button>
       </div>

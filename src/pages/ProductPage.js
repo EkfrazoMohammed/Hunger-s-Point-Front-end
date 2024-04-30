@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import locationIconOrenge from "../assets/locationIconOrenge.svg";
 import productHeadImg from "../assets/productHeadImg.png";
+import bannerTop1 from "../assets/banner_top_2.jpg";
 
 import callIconOrenge from "../assets/callIconOrenge.svg";
 import watchIconOrenge from "../assets/watchIconOrenge.svg";
@@ -483,7 +484,7 @@ const ProductPage = () => {
 
         <div>
           <div className="w-full relative">
-            <img src={productHeadImg} alt="productPage" />
+            <img src={bannerTop1} alt="productPage" />
             <div className="w-full flex justify-between ">
               <button
                 data-collapse-toggle="mobile-menu-2 "
@@ -760,7 +761,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item,'DISLIKE')}>
+                                                  {/* <li onClick={() => OnClickReactionpopup(item,'DISLIKE')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={DislikeIcon}
@@ -770,7 +771,7 @@ const ProductPage = () => {
                                                       {item.dislikeit_count}
                                                       </span>
                                                     </div>
-                                                  </li>
+                                                  </li> */}
                                                   <li onClick={() => OnClickReactionpopup(item,'SAVEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
@@ -920,7 +921,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
+                                                  {/* <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={DislikeIcon}
@@ -934,7 +935,7 @@ const ProductPage = () => {
                                                       }
                                                       </span>
                                                     </div>
-                                                  </li>
+                                                  </li> */}
                                                   <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'SAVEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img

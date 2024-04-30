@@ -1,3 +1,107 @@
+:root{
+  scroll-behavior: smooth;
+  --primary: #C21F24;
+  --second:#E5B638;
+  --bgColor:rgb(45,45,45);
+  --primary-text-color:rgb(255,255,255);
+  --primary-text-color-light:rgb(123,123,123);
+  --card-dark-shade:rgb(50,50,50);
+  --text:rgb(255,255,255);
+  --droup-down-bg:rgb(37,37,37);
+  --header-bg:rgb(49,13,13);
+}
+.links {
+  list-style: none;
+  margin: 0 20px 0 auto;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dropdown5 {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown5 > a {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 72px;
+}
+
+.dropdown5 > a > span {
+  font-size: 20px;
+  color: rgb(255 255 255 / 24%);
+  translate: 0 2px;
+}
+
+.menu2 {
+  position: absolute;
+  top: 60px;
+  right: -20px;
+  width: 180px;
+  border-radius: 10px;
+  border: 1px solid var(--second);
+  padding: 8px 0;
+  display: grid;
+  background: var(--header-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 999;
+
+}
+
+.menu2::before {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-top: 1px solid var(--second);
+  border-right: 1px solid var(--second);
+  top: -7px;
+  right: 22px;
+  width: 12px;
+  height: 12px;
+  rotate: -45deg;
+}
+
+.dropdown5:hover .menu2 {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu2 > a {
+  padding: 12px 20px;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.menu2 > a:hover {
+  background: rgb(0,0,0);
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.menu_active {
+  background: rgb(0,0,0);
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+
+
+
+
+/* ------- END */
+
 .logo-icon1 {
   height: 80px;
   width: 80px;

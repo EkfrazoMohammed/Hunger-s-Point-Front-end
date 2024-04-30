@@ -8,12 +8,14 @@ import {
 } from "../../../variants/framerMotionVariants";
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
-import pageBannerImg from "../../../assets/image-5@2x.png";
+import pageBannerImg from "../../../assets/top_banner.jpg";
 import contactUsImg from "../../../assets/images/contact-us-side-img.png";
 import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
+import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
+import DarkMode1 from "../../../components/DarkMode1";
 
 export const Franchise = () => {
   const formik = useFormik({
@@ -102,97 +104,17 @@ export const Franchise = () => {
               excepteur eu. Duis reprehenderit
             </div>
           </div>
-          <div className="sec-info--w gap-6 justify-between mt-10 h-[520px]">
+          <div className="sec-info--w gap-6 justify-between mt-10">
             <div className="side--w h-full">
               <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" />
             </div>
             <div className="side--w h-full">
-              <form onSubmit={formik.handleSubmit} className="fp-form-common">
-                <h2 className="text-xl font-bold">To get in touch with our team you can submit a query here.</h2>
-                <div className="fp-input-group">
-                  <div className="fp-input-w">
-                    <input
-                      type="text"
-                      name="first_name"
-                      placeholder="First name"
-                      className="user-field-input-common"
-                      value={formik.values.full_name}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.errors.first_name && formik.touched.first_name && (
-                      <p className="fp-error-text text-red-300 mt-1 ml-1">
-                        {formik.errors.first_name}
-                      </p>
-                    )}
-                  </div>
-                  <div className="fp-input-w">
-                    <input
-                      type="text"
-                      name="last_name"
-                      placeholder="Last name"
-                      className="user-field-input-common"
-                      value={formik.values.last_name}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.errors.last_name && formik.touched.last_name && (
-                      <p className="fp-error-text text-red-300 mt-1 ml-1">
-                        {formik.errors.last_name}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className="fp-input-w">
-                  <input
-                    type="email"
-                    name="email"
-                    className="user-field-input-common"
-                    placeholder="Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.email && formik.touched.email && (
-                    <p className="fp-error-text text-red-300 mt-1 ml-1">
-                      {formik.errors.email}
-                    </p>
-                  )}
-                </div>
-                <div className="fp-input-w">
-                  <input
-                    type="number"
-                    name="phone_no"
-                    className="user-field-input-common"
-                    placeholder="Phone Number"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.email && formik.touched.email && (
-                    <p className="fp-error-text text-red-300 mt-1 ml-1">
-                      {formik.errors.email}
-                    </p>
-                  )}
-                </div>
-               
-                <div className="fp-input-w">
-                  <textarea
-                    type="text"
-                    name="message"
-                    className="user-field-textarea-common h-[130px]"
-                    placeholder="Message"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                </div>
-                <div>
-                  <button type="submit" className="fp-primary-btn">
-                    Submit
-                  </button>
-                </div>
-              </form>
+             <FeedbackForm />
             </div>
           </div>
         </section>
       </motion.div>
-      <DarkMode />
+      <DarkMode1 />
     </>
   );
 };

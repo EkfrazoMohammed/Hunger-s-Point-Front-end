@@ -14,6 +14,9 @@ import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
+import DarkMode1 from "../../../components/DarkMode1";
+import top_banner from "../../../assets/top_banner.jpg"
+
 
 export const Ourstory = () => {
   const formik = useFormik({
@@ -52,7 +55,7 @@ export const Ourstory = () => {
         animate="final"
         className="fp-container-main container--events"
       >
-        <SubMenuPagesHeader bannerImg={pageBannerImg} />
+        <SubMenuPagesHeader bannerImg={top_banner} />
         <DescriptionSection
           Title="OUR STORY"
           leftDescription={
@@ -192,7 +195,7 @@ export const Ourstory = () => {
           </div>
         </section> */}
       </motion.div>
-      <DarkMode />
+      <DarkMode1 />
     </>
   );
 };

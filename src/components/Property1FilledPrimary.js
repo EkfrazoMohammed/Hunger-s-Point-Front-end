@@ -64,9 +64,12 @@ const Property1FilledPrimary = ({
       style={property1FilledPrimaryStyle}
       onClick={handleSubmit}
     >
+      
       <b className="button button-design" style={buttonStyle}>
         {button}
       </b>
+
+      
     </div>
   );
 };

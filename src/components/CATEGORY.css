@@ -72,18 +72,29 @@
 .input-inner5,
 .input10 {
   align-self: stretch;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  margin-top: 5px;
 }
 .input-inner5 {
-  height: 67px;
+  height: 50px;
   border-radius: 5px;
   /* border: 1px solid #929292; */
   box-sizing: border-box;
   justify-content: flex-start;
   /* padding: 20px; */
   position: relative;
+}
+.input-inner-group{
+  align-self: stretch;
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  margin-top: 5px;
+  flex-grow: 1;
+  height: 50px;
+  border-radius: 5px;
 }
 .input10 {
   justify-content: center;

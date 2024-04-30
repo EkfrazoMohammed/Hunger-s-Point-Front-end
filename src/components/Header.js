@@ -16,6 +16,7 @@ import { setBasketcount, setUserdata } from "../redux/actions/dataActions";
 import { API } from "../api/api";
 import { useAuth0 } from "@auth0/auth0-react";
 import SubMenu from "./SubMenu";
+import { BiChevronDown } from "react-icons/bi";
 
 
 const Header = () => {
@@ -69,6 +70,7 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleRout = (rout) => {
+    console.log(rout,'rout====>')
     navigate(`${rout}`);
     setSelectedRoute(rout)
   };
@@ -285,11 +287,11 @@ const Header = () => {
                    Login
                   </div>
                 </div>)}
-                <button onClick={toggleSubMenu} className="hamburger-sub">
+                {/* <button onClick={toggleSubMenu} className="hamburger-sub">
                   <div className="burger-line"></div>
                   <div className="burger-line"></div>
                   <div className="burger-line"></div>
-                </button>
+                </button> */}
                 <button
                   data-collapse-toggle="mobile-menu-2"
                   type="button"
@@ -384,17 +386,17 @@ const Header = () => {
                     </div>
                   </div>
                 </li>
-                <li className="flex items-center">
+                {/* <li className="flex items-center">
                   <div
                     className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
-                    onClick={() => handleRout("/ourstory")}
+                    
                   >
                     <div className="relative  leading-[130%] uppercase text-[#fff]">
                       OUR STORY
                     </div>
                   </div>
-                </li>
-                <li className="flex items-center">
+                </li> */}
+                {/* <li className="flex items-center">
                   <div
                     className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/events' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
                     onClick={() => handleRout("/events")}
@@ -403,7 +405,29 @@ const Header = () => {
                       EVENT
                     </div>
                   </div>
-                </li>
+                </li> */}
+                
+                <ul className="links">
+                <div
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory'|| selectedRoute === '/events' || selectedRoute === '/careers' || selectedRoute === '/franchise' || selectedRoute === '/contact-us' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                  
+                  >
+                        <div className="dropdown5">
+                          <a>
+                            <p>ABOUT US</p>
+                            <span  style={{alignItems:'center'}}> <BiChevronDown fontSize={"30px"} color="white"/>
+                          </span></a>
+                          <div className="menu2">
+                          <a className={`${selectedRoute == '/ourstory' ? 'menu_active' : ''}`} onClick={() => handleRout("/ourstory")}>OUR STORY</a>
+                            <a className={`${selectedRoute == '/events' ? 'menu_active' : ''}`}  onClick={() => handleRout("/events")}>EVENT/CATERING</a>
+                            <a className={`${selectedRoute == '/careers' ? 'menu_active' : ''}`} onClick={() => handleRout("/careers")}>CAREERS</a>
+                            <a className={`${selectedRoute == '/franchise' ? 'menu_active' : ''}`} onClick={() => handleRout("/franchise")}>FRANCHISE</a>
+                            <a className={`${selectedRoute == '/contact-us' ? 'menu_active' : ''}`} onClick={() => handleRout("/contact-us")}> CONTACT US</a>
+                          </div>
+                          </div>
+                  </div> 
+                    </ul>
+
                 {/* <li className="flex items-center">
                   <div
                     className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}

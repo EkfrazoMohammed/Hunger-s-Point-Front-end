@@ -4,6 +4,7 @@ import ellipse4 from  "../assets/ellipse-4.svg";
 
 import customerservicemanansweringquestion from  "../assets/customer-service-man-answering-question@2x.png";
 import uiwdown from  "../assets/uiwdown.svg";
+import FeedbackForm from "./FeedbackForm/feedbackform";
 
 
 const FrameComponent1 = () => {
@@ -29,36 +30,10 @@ const FrameComponent1 = () => {
             src={customerservicemanansweringquestion}
           />
         </div>
-        <div className="give-your-feedback-below1">
-          <div className="give-your-feedback">Give your feedback below</div>
-          <div className="comment-your-review-parent">
-            <div className="comment-your-review">
-              <div className="which-location-did">
-                Which location did you visit
-              </div>
-              <img className="uiwdown-icon" alt="" src={uiwdown} />
-            </div>
-            <div className="updates-menu">
-              <input
-                className="which-item-did"
-                placeholder="Which Item did you try"
-                type="text"
-              />
-            </div>
-            <textarea
-              className="group-frame"
-              placeholder="Comment your review"
-              rows={7}
-              cols={27}
-            />
-            <div className="ellipse-group">
-              <input className="email-id" placeholder="Email ID" type="text" />
-            </div>
-            <button className="buttons-states-dark12">
-              <b className="button12">Submit your details</b>
-            </button>
-          </div>
+        <div style={{width:'50%'}}>
+        <FeedbackForm />
         </div>
+       
       </div>
       <div className="feedback-forms-parent">
         <div className="feedback-forms">

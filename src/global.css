@@ -301,6 +301,7 @@ body {
   border: 1px solid #C1C1C1;
   border-radius: 6px;
   background-color: transparent;
+  font-size: 12px;
 }
 .fp-form-common .user-field-textarea-common {
   width: 100%;
@@ -309,6 +310,7 @@ body {
   border: 1px solid #C1C1C1;
   border-radius: 6px;
   background-color: transparent;
+  font-size: 12px;
 }
 
 .fp-form-common .user-field-select-common {

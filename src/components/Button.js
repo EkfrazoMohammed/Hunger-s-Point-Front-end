@@ -67,7 +67,7 @@ const Button = () => {
     menu_items: {},
     order_summary: {},
     promo_code: '',
-    shipping_method: "Delivery",
+    shipping_method: "Takeaway",
     location_address:{}
   });
 
@@ -282,10 +282,10 @@ const Button = () => {
         toast.error('Please log in to proceed with the order.');
         return;
       }
-      if (Object.keys(order.user_address).length === 0) {
-        toast.error('Please provide the contact information for takeaway.');
-        return;
-      }
+      // if (Object.keys(order.user_address).length === 0) {
+      //   toast.error('Please provide the contact information for takeaway.');
+      //   return;
+      // }
       if (Object.keys(order.location_address).length === 0) {
         toast.error('Please select location information for takeaway.');
         return;
@@ -312,7 +312,7 @@ const Button = () => {
     console.log(index,'index1111====>',shipping,'shipping=====>')
     setOrder(prevOrder => ({
       ...prevOrder,  
-      shipping_method: shipping
+      shipping_method: 'Takeaway'
     }));
     setSelectMethod(index)
     
@@ -631,7 +631,7 @@ const onEpbackIconClick = useCallback(() => {
           </div>
           {/* <ContactInformation1 contactInformation="Contact Information" /> */}
           <div className="w-full flex flex-col gap-[20px]">
-            <ButtonStateLight confirmnextstep={confirmnextstep} onContactClick={onContactClick}/>
+            {/* <ButtonStateLight confirmnextstep={confirmnextstep} onContactClick={onContactClick}/> */}
             <HeaderInstance onPromoClick={onPromoClick} />
           </div>
           {/* <ContactInformation

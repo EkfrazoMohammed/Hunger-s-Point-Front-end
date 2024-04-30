@@ -1,48 +1,109 @@
-import React from "react";
-import { useFormik, FormikErrors } from "formik";
+import React, { useState } from "react";
+import { useFormik, FormikErrors, Formik,Form ,Field, ErrorMessage} from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 import { routeVariants, childVariants } from '../../../variants/framerMotionVariants';
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
-import pageBannerImg from "../../../assets/image-5@2x.png";
+import pageBannerImg from "../../../assets/top_banner.jpg";
 import sideImg1 from "../../../assets/images/career-img-1.png"
 import sectionBanner from "../../../assets/images/sectiob-banner-img-2.png";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
+import { API } from "../../../api/api";
+import { convertToBase64 } from "../../../utils/Appconstants";
+import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
+import DarkMode1 from "../../../components/DarkMode1";
 
 export const Careers = () => {
-  const formik = useFormik({
-    initialValues: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone_no: "",
-      no_of_guests: "",
-      errors: "",
-    },
-    validationSchema: Yup.object({
-      first_name: Yup.string()
-        .min(2, "Mininum 2 characters")
-        .max(15, "Maximum 15 characters")
-        .required("Required!"),
-      last_name: Yup.string()
-        .min(2, "Mininum 2 characters")
-        .max(15, "Maximum 15 characters")
-        .required("Required!"),
-      email: Yup.string().email("Invalid email format").required("Required!"),
-      phone_no: Yup.string()
-        .email("Invalid email format")
-        .required("Required!"),
-      no_of_guests: Yup.string().required("Please enter number of guest!"),
-      errors: Yup.string().required("Please enter number of guest!"),
-    }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const [coverLetterUploaded, setCoverLetterUploaded] = useState(false);
+  const [resumeUploaded, setResumeUploaded] = useState(false);
+  const [isValidForm, setIsValidForm] = useState(false); // State variable to store isValid value
 
+  const validationSchema = Yup.object().shape({
+    first_name: Yup.string().required('First name is required'),
+    last_name: Yup.string().required('Last name is required'),
+    phone_number: Yup.string().required('Phone number is required'),
+    message: Yup.string().required('Message is required'),
+    email_id: Yup.string().email('Invalid email').required('Email is required'),
+    feedboack_opt: Yup.string().required('Please select an option'),
+    // resume: Yup.mixed().when('feedboack_opt', {
+    //   is: 'Careers',
+    //   then: Yup.mixed().required('Resume is required'),
+    //   otherwise: Yup.mixed()
+    // })
+  });
+  
+  const initialValues = {
+    first_name: '',
+    last_name: '',
+    phone_number: '',
+    email_id: '',
+    feedboack_opt: '',
+    message:'',
+    cover_letter: null,
+    resume: null,
+  };
+  const handleSubmit = async (values, { setSubmitting }) => {
+
+    // Prepare data for API call
+    const formData = new FormData();
+    console.log('First Name:', values.first_name);
+    formData.append('first_name', values.first_name || '');
+    formData.append('last_name', values.last_name);
+    formData.append('phone_number', values.phone_number);
+    formData.append('email_id', values.email_id);
+    formData.append('feedboack_opt', values.feedboack_opt);
+    // if (values.feedboack_opt === 'Careers') {
+    //   formData.append('cover_letter', values.cover_letter);
+    // }
+    // formData.append('resume', values.resume);
+    console.log(values.first_name, 'formData========>values.first_name');
+    console.log(formData, 'formData========>');
+    console.log(values, 'values========>111');
+
+
+    // Check if photo exists and convert it to base64 if it does
+    console.log(values.cover_letter,'cover_letter==>outside' )
+    if (values.cover_letter && values.cover_letter instanceof Blob) {
+      console.log(values.cover_letter,'cover_letter==>inside' )
+      const base64Image = await convertToBase64(values.cover_letter);
+      // Update the values with the base64-encoded image
+      values.cover_letter = base64Image;
+    } else {
+      // If photo doesn't exist or is not a Blob, remove it from the values object
+      delete values.cover_letter;
+    }
+    // Check if photo exists and convert it to base64 if it does
+    if (values.resume && values.resume instanceof Blob) {
+      const base64Image = await convertToBase64(values.resume);
+      // Update the values with the base64-encoded image
+      values.resume = base64Image;
+    } else {
+      // If photo doesn't exist or is not a Blob, remove it from the values object
+      delete values.resume;
+    }
+
+
+    // Optional: Set submitting state to true while making the API call
+    setSubmitting(true);
+  
+    API.getInstance().menu.post(`/api/submit-form`,values)
+        .then((res) => {
+          console.log(res,'response');
+        
+        })
+        .catch((error) => {
+        })
+  };
+  const options = [
+    { value: '', label: 'Apply For' },
+    { value: 'Careers', label: 'Careers' },
+    { value: 'Franchises', label: 'Franchises' },
+    { value: 'Feedback', label: 'Feedback' },
+    { value: 'Event', label: 'Event' }
+  ];
   return (
     <>
       <motion.div
@@ -80,7 +141,7 @@ export const Careers = () => {
           }
         />
         {/* types: side_section(rightImg, leftImg), banner(bannerImg) , banner_with_text(bannerText1, bannerText2)*/}
-        <ImagesSection type="banner" bannerImg={sectionBanner} />
+        <ImagesSection type="banner" bannerImg={'https://placehold.co/1280x380'} />
 
         <section className="fp-wrapper-main bottom-form-container">
           <div className="sec-info--w gap-6 justify-between">
@@ -95,203 +156,12 @@ export const Careers = () => {
               </div>
             </div>
             <div className="side--w">
-              <form onSubmit={formik.handleSubmit} className="fp-form-common">
-                <h2 className="text-xl">Give your feedback below</h2>
-                <div className="fp-input-group">
-                  <div className="fp-input-w">
-                    <input
-                      type="text"
-                      name="first_name"
-                      placeholder="First name"
-                      className="user-field-input-common"
-                      value={formik.values.full_name}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.errors.first_name && formik.touched.first_name && (
-                      <p className="fp-error-text text-red-300 mt-1 ml-1">
-                        {formik.errors.first_name}
-                      </p>
-                    )}
-                  </div>
-                  <div className="fp-input-w">
-                    <input
-                      type="text"
-                      name="last_name"
-                      placeholder="Last name"
-                      className="user-field-input-common"
-                      value={formik.values.last_name}
-                      onChange={formik.handleChange}
-                    />
-                    {formik.errors.last_name && formik.touched.last_name && (
-                      <p className="fp-error-text text-red-300 mt-1 ml-1">
-                        {formik.errors.last_name}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className="fp-input-w">
-                  <input
-                    type="text"
-                    name="subject"
-                    className="user-field-input-common"
-                    placeholder="Subject"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                </div>
-                <div className="fp-input-w">
-                  <input
-                    type="email"
-                    name="email"
-                    className="user-field-input-common"
-                    placeholder="Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.email && formik.touched.email && (
-                    <p className="fp-error-text text-red-300 mt-1 ml-1">
-                      {formik.errors.email}
-                    </p>
-                  )}
-                </div>
-                <div className="fp-input-w">
-                  <input
-                    type="number"
-                    name="phone_no"
-                    className="user-field-input-common"
-                    placeholder="Phone Number"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.email && formik.touched.email && (
-                    <p className="fp-error-text text-red-300 mt-1 ml-1">
-                      {formik.errors.email}
-                    </p>
-                  )}
-                </div>
-                <div className="fp-input-w">
-                  <select
-                    name="event_ocation"
-                    value={formik.values.email}
-                    className="user-field-input-common user-field-select-common"
-                    onChange={formik.handleChange}
-                  >
-                    <option value="" label="Event Location">
-                      Event Location
-                    </option>
-                    <option value="red" label="red">
-                      red
-                    </option>
-                    <option value="blue" label="blue">
-                      blue
-                    </option>
-                    <option value="green" label="green">
-                      green
-                    </option>
-                  </select>
-                </div>
-                <div className="fp-input-w">
-                  <select
-                    name="event_ocation"
-                    value={formik.values.email}
-                    className="user-field-input-common user-field-select-common"
-                    onChange={formik.handleChange}
-                  >
-                    <option value="" label="Apply For">
-                      Apply For
-                    </option>
-                    <option value="red" label="red">
-                      red
-                    </option>
-                    <option value="blue" label="blue">
-                      blue
-                    </option>
-                    <option value="green" label="green">
-                      green
-                    </option>
-                  </select>
-                </div>
-                <div className="fp-input-w">
-                  <textarea
-                    type="text"
-                    name="message"
-                    className="user-field-textarea-common h-[130px]"
-                    placeholder="Message"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                  />
-                </div>
-                <div className="fp-input-group">
-                  <div className="fp-input-w">
-                    <div className="file-upload-w">
-                      <input
-                        type="file"
-                        name="image"
-                        className="fp-input-file"
-                        // set supported file types here,
-                        // could also check again within formik validation or backend
-                        accept="image/png, .svg"
-                        onChange={(e) => {
-                          // Object is possibly null error w/o check
-                          if (e.currentTarget.files) {
-                            setFieldValue("image", e.currentTarget.files[0]);
-                          }
-                        }}
-                      />
-                      <div className="file-u-overlay">
-                        <span className="text-gray-100">Upload</span>
-                        <span className="text-gray-100">Coverletter</span>
-                      </div>
-                    </div>
-                    {formik.errors.image && (
-                      <>
-                        <br />
-                        <span id="error">{formik.errors.image}</span>
-                        <br />
-                      </>
-                    )}
-                  </div>
-                  <div className="fp-input-w">
-                    <div className="file-upload-w">
-                      <input
-                        type="file"
-                        name="image"
-                        className="fp-input-file"
-                        // set supported file types here,
-                        // could also check again within formik validation or backend
-                        accept="image/png, .svg"
-                        onChange={(e) => {
-                          // Object is possibly null error w/o check
-                          if (e.currentTarget.files) {
-                            setFieldValue("image", e.currentTarget.files[0]);
-                          }
-                        }}
-                      />
-                      <div className="file-u-overlay">
-                        <span className="text-gray-100">Upload</span>
-                        <span className="text-gray-100">Coverletter</span>
-                      </div>
-                    </div>
-                    {formik.errors.image && (
-                      <>
-                        <br />
-                        <span id="error">{formik.errors.image}</span>
-                        <br />
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <button type="submit" className="fp-primary-btn">
-                    Submit
-                  </button>
-                </div>
-              </form>
+            <FeedbackForm/>
             </div>
           </div>
         </section>
       </motion.div>
-      <DarkMode />
+      <DarkMode1 />
     </>
   );
 };
