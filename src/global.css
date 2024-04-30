@@ -401,8 +401,21 @@ body {
   width: calc(50% - 15px);
   background-color: var(--hp-grey-500);
   border-radius: 10px;
+  gap: 20px;
 }
+.menu-side-option-c{
+  display: flex;
+  flex-direction: column;
+}
+.menu-store-info{
+ background-color: #363636;
+ padding: 30px;
+ border-radius: 10px;
+ margin-top: 24px;
+}
+.menu-filter-option-w{
 
+}
 
 @media (max-width: 767px) {
   .sec-info--w {
@@ -423,6 +436,24 @@ body {
   .pi-items-list{
     gap: 15px;
   }
+  .menu-side-option-c{
+    display: none;
+  }
+  nav#sidenav-1 {
+    width: 80%;
+    top: 21px;
+    margin: auto;
+    left: 60px;
+    height: -moz-fit-content;
+    height: fit-content;
+    background: #262525fc;
+    border-radius: 10px;
+    z-index: 1;
+}
+.mob-menu-filter-option{
+  z-index: 2;
+  margin-top: 24px;
+}
   .pi-row .pi-each{
     height: 190px;
     width: 100%;

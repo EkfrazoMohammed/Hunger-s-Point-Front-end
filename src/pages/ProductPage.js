@@ -475,43 +475,47 @@ const ProductPage = () => {
               <button
                 data-collapse-toggle="mobile-menu-2 "
                 type="button"
-                className=" inline-flex items-center h-fit top-0 p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className={`mob-menu-filter-option ${
+                  isVisible ? "hf-close-icon" : ""
+                } inline-flex items-center h-fit top-0 p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600`}
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
                 onClick={() => setIsVisible(!isVisible)}
               >
                 <span className="sr-only">Open main menu</span>
-
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  className="hidden w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
+                {!isVisible ? (
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                )}
               </button>
               <div className="h-full" onClick={() => setIsVisible(false)}>
                 <Sidebar isOpen={isVisible} />
               </div>
-              <div className="w-[30%] hidden sm:hidden md:hidden lg:flex">
-                <div className="bg-[#363636] rounded-[20px] w-[25%] py-5 pl-6 pr-12 gap-4 flex flex-col absolute top-[10vh] left-[2%]">
+              <div className="menu-side-option-c">
+                <div className="bg-[#363636] menu-store-info">
                   <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
                     {locationdata.published_name}
                   </div>
@@ -551,7 +555,7 @@ const ProductPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[85%] my-[25vh] flex flex-col gap-[10px]">
+                <div className="menu-filter-option-w">
                   <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
                     Filters
                   </div>
@@ -616,7 +620,7 @@ const ProductPage = () => {
                 </div>
               </div>
               <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-[70%] sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col lg:items-start">
-                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-10 lg:p-0 px-10">
+                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-10 lg:p-0 pr-10 pl-5">
                   {/* <button onClick={() => OnClickMenu(activemenu, selectedMenuIndex, 'all', 'all')} className={`border-[3px] border-[#E5B638] px-8 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] ${activetag === 'all' ? 'bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]' : 'hover:bg-[#C21F24] hover:border-[#C21F24]'
                     }`}>
                     All Dishes
@@ -669,7 +673,7 @@ const ProductPage = () => {
                 </div>
                 <div className="w-[90%] flex flex-col gap-6 border-t border-t-[#FFFFFF]">
                   <div>
-                    <div className="w-full flex flex-col gap-y-[30px] mt-6 mb-12">
+                    <div className="w-full flex flex-col gap-y-[10px] md:gap-y-[30px] mt-6 mb-12">
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
@@ -681,10 +685,7 @@ const ProductPage = () => {
                                 menu.menu_item_info_list.map(
                                   (item, itemIndex) =>
                                     itemIndex % 2 === 0 && (
-                                      <div
-                                        key={itemIndex}
-                                        className="pi-row"
-                                      >
+                                      <div key={itemIndex} className="pi-row">
                                         {/* First Item */}
                                         <div className="pi-each">
                                           <img
@@ -714,9 +715,9 @@ const ProductPage = () => {
                                             }}
                                           >
                                             <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] w-full pr-[10px] relative">
-                                            <div className="pi-item-name">
-                                            {item.name}
-                                            </div>
+                                              <div className="pi-item-name">
+                                                {item.name}
+                                              </div>
                                               <div
                                                 className={`${
                                                   selectedItemIndex === item.id

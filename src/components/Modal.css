@@ -38,16 +38,13 @@
     text-align: center;
   }
   
-  /* button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+  
+  @media (max-width: 768px) {
+    .modal-overlay .modal-content{
+      width: 90% !important;
+    }
+    .modal-body .category-26{
+      width: 100%;
+    }
   }
-  
-  button:hover {
-    background-color: #0056b3;
-  } */
-  
