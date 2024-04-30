@@ -1,17 +1,9 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/logo@2x.png"
 import basket from "../assets/basket.svg"
-import group1 from "../assets/group-1.svg"
-import ellipse2 from "../assets/ellipse-2@2x.png"
-import group2 from "../assets/group-2.svg"
-import instagram from "../assets/instagram.svg"
-import facebook from "../assets/facebook.svg"
-import close from "../assets/close.svg"
-import user1 from "../assets/user.svg"
-import location1 from "../assets/location.svg"
 import { setBasketcount, setUserdata } from "../redux/actions/dataActions";
 import { API } from "../api/api";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -19,41 +11,42 @@ import SubMenu from "./SubMenu";
 
 
 const Header = () => {
-  const { user, isAuthenticated, isLoading,loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const toggleSubMenuRef = useRef(null);
   const basket_count = useSelector(state => state.data.basket_count);
-  
 
-  const [selectedRoute, setSelectedRoute] = useState(""); 
-  const [target, settarget] = useState(""); 
+
+  const [selectedRoute, setSelectedRoute] = useState("");
+  const [target, settarget] = useState("");
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => {
-      setIsOpen(false);
+    setIsOpen(false);
+    console.log("current path====>:", location.pathname)
+  };
+
+  const toggleSubMenu = () => {
+    setIsOpen(!isOpen);
   };
 
 
   useEffect(() => {
     // Check if the current location pathname contains "/location"
-    if (location.pathname.includes("/location")){
+    if (location.pathname.includes("/location")) {
       setSelectedRoute('/location')
     }
-    if (location.pathname.includes("/productpage")){
+    if (location.pathname.includes("/productpage")) {
       setSelectedRoute('/productpage')
     }
-    
+
   }, [location]);
 
 
-  const toggleSubMenu = () => {
-    setIsOpen(!isOpen);
-};
-
-
-  console.log(user?.picture,'user?.picture===>')
+  console.log(user?.picture, 'user?.picture===>')
   const onLogoImageClick = useCallback(() => {
     navigate("/homepage");
   }, [navigate]);
@@ -84,26 +77,26 @@ const Header = () => {
   }, [emailToFetch]);
 
   useEffect(() => {
-    CheckUserOffer(['UnRegistered User','ALL'])
+    CheckUserOffer(['UnRegistered User', 'ALL'])
   }, [!emailToFetch]);
 
   const SettargetUser = async () => {
-    
+
   }
   const CheckUserOffer = async (target) => {
     const data = {
-      'target':target
+      'target': target
     }
-    API.getInstance().menu.post(`/api/check-offers`,data)
+    API.getInstance().menu.post(`/api/check-offers`, data)
       .then((res) => {
-        console.log(res.data.result.data,'GetUserData======>')
-        
+        console.log(res.data.result.data, 'GetUserData======>')
+
       })
       .catch((error) => {
       })
       .finally(() => {
       });
-      
+
   }
 
   const GetUserData = async () => {
@@ -111,20 +104,20 @@ const Header = () => {
     let emailToFetch = ""
     if ((user && user.email) || (credentials && credentials.email_id)) {
       emailToFetch = user?.email || credentials?.email_id;
-    
-    
+
+
       API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
-      .then((res) => {
-        console.log(res.data.result.data,'GetUserData======>')
-        dispatch(setUserdata(res.data.result.data[0]));
-        CheckUserexistsData()
-      })
-      .catch((error) => {
-      })
-      .finally(() => {
-      });
+        .then((res) => {
+          console.log(res.data.result.data, 'GetUserData======>')
+          dispatch(setUserdata(res.data.result.data[0]));
+          CheckUserexistsData()
+        })
+        .catch((error) => {
+        })
+        .finally(() => {
+        });
     }
-      
+
   }
   const CheckUserexistsData = async () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
@@ -132,7 +125,7 @@ const Header = () => {
     let emailToFetch = ""
     if ((user && user.email) || (credentials && credentials.email_id)) {
       emailToFetch = user?.email || credentials?.email_id;
-    
+
       if (emailToFetch) {
         const data = {
           'email': emailToFetch,
@@ -142,13 +135,13 @@ const Header = () => {
           .then((res) => {
             console.log(res, 'res=====>1221312')
             console.log(res.data.result, 'res=====>code')
-            if (res.data.result.code == 2){
-              CheckUserOffer(['First User','ALL','Registered User'])
+            if (res.data.result.code == 2) {
+              CheckUserOffer(['First User', 'ALL', 'Registered User'])
             }
-            else{
-              CheckUserOffer(['Registered User','ALL'])
+            else {
+              CheckUserOffer(['Registered User', 'ALL'])
             }
-            localStorage.setItem('credentials', JSON.stringify(res.data.result) );
+            localStorage.setItem('credentials', JSON.stringify(res.data.result));
             GetBasketData()
           })
           .catch((error) => {
@@ -164,23 +157,23 @@ const Header = () => {
     // if (!user){
     //   CheckUserOffer(['UnRegistered User','ALL'])
     // }
-    
+
 
     const credentials = JSON.parse(localStorage.getItem('credentials'));
-    if (credentials){
+    if (credentials) {
       API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
-      .then((res) => {
-        console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
-        console.log(res.data.result.basket_count, 'GetBasketData===res.data.result.data===>')
-        dispatch(setBasketcount(res.data.result.basket_count));
-        // CheckUserexistsData()
-      })
-      .catch((error) => {
-      })
-      .finally(() => {
-      });
+        .then((res) => {
+          console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
+          console.log(res.data.result.basket_count, 'GetBasketData===res.data.result.data===>')
+          dispatch(setBasketcount(res.data.result.basket_count));
+          // CheckUserexistsData()
+        })
+        .catch((error) => {
+        })
+        .finally(() => {
+        });
     }
-    
+
   }
 
   return (
@@ -255,40 +248,44 @@ const Header = () => {
                   onClick={() => handleRout("/profile")}
                 >
                   <div className="relative uppercase whitespace-nowrap leading-[130%] text-[#fff]">
-                  {emailToFetch && (
-                    <div>
-                      {/* <img src={user.picture} alt={user.name} /> */}
-                      <h2>{emailToFetch}</h2>
-                      {/* <p>{user.email}</p> */}
-                    </div>
-                  )}
-                </div>
+                    {emailToFetch && (
+                      <div>
+                        {/* <img src={user.picture} alt={user.name} /> */}
+                        <h2>{emailToFetch}</h2>
+                        {/* <p>{user.email}</p> */}
+                      </div>
+                    )}
+                  </div>
                   {/* <button className="cursor-pointer px-[13px] bg-[#e5b638] self-stretch rounded-[56px] flex flex-row items-center justify-end hover:bg-[#b38205]"> */}
-                    <img
-                      className="user-icon1"
-                      loading="eager"
-                      alt=""
-                      src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
-                      style={{height: '50px',width: '50px',borderRadius:'50%',border:'3px solid #e5b638'}}
-                    />
+                  <img
+                    className="user-icon1"
+                    loading="eager"
+                    alt=""
+                    src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
+                    style={{ height: '50px', width: '50px', borderRadius: '50%', border: '3px solid #e5b638' }}
+                  />
                   {/* </button> */}
 
 
                 </div>)}
-                
 
 
-                
+
+
 
                 {!emailToFetch && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
                   <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
-                   Login
+                    Login
                   </div>
                 </div>)}
-                <button onClick={toggleSubMenu} className="hamburger-sub">
+                <button onClick={toggleSubMenu} className={`hamburger-sub ${isOpen ? "sub-open" : ""}`} ref={toggleSubMenuRef}>
+                  <div className="burger-line bl-close"></div>
                   <div className="burger-line"></div>
-                  <div className="burger-line"></div>
-                  <div className="burger-line"></div>
+                  <div className="bl-open-w">
+                    <div className="burger-line bl-open-left"></div>
+                    <div className="burger-line bl-open-mid"></div>
+                    <div className="burger-line bl-open-right"></div>
+                  </div>
                 </button>
                 <button
                   data-collapse-toggle="mobile-menu-2"
@@ -414,7 +411,7 @@ const Header = () => {
                     </div>
                   </div>
                 </li> */}
-                
+
                 {/* <li className="flex items-center">
                   <div
                     className="h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] hover:border-[#424242] hover:box-border"
@@ -430,7 +427,7 @@ const Header = () => {
           </div>
         </nav>
       </header>
-      <SubMenu isOpen={isOpen} handleClose={handleClose}  />
+      <SubMenu isOpen={isOpen} handleClose={handleClose} toggleSubMenuRef={toggleSubMenuRef} />
     </>
   );
 };

@@ -21,6 +21,7 @@ import { API } from "../api/api";
 import vector891  from '../assets/vector-891.svg'
 import rectangle8  from '../assets//rectangle-8@2x.png'
 import bike  from '../assets/bike.png'
+import DarkMode from "../components/DarkMode";
 
 const Location1 = () => {
   const navigate = useNavigate();
@@ -181,6 +182,7 @@ const FrameCard = ({ location, onClick }) => {
     { id: 4, imageUrl: rectangle8 }
   ];
   return (
+    <>
     <div style={{ backgroundColor: 'rgb(54,54,54)', padding: '20px', borderRadius: '10px' }} className={`category-2-wrapper`} onClick={()=>OncardClick(location.id)}>
       <div className={`category-frame`}>
         <div className="sample">
@@ -218,7 +220,10 @@ const FrameCard = ({ location, onClick }) => {
         </div>
         <FrameComponent3 />
       </div>
+      
     </div>
+    <DarkMode />
+    </>
 
   );
 };

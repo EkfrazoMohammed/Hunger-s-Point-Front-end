@@ -39,11 +39,13 @@ import SaveIcon from "../assets/saveIcon.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
 import CATEGORY from "../components/CATEGORY";
-import { Calendar,DateRangePicker,DateRange } from 'react-date-range';
-import { format } from 'date-fns';
+import { Calendar, DateRangePicker, DateRange } from "react-date-range";
+import { format } from "date-fns";
 import { Formik } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
+import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
+import DarkMode from "../components/DarkMode";
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -66,21 +68,23 @@ const ProductPage = () => {
   const [loggedin, setLoggedin] = useState(true);
   const [savemodal, setSavemodal] = useState(false);
   const [savedate, setSavedate] = useState({
-    saveit_date: { // Initialize saveit_date
+    saveit_date: {
+      // Initialize saveit_date
       startDate: null,
       endDate: null,
-      key: 'selection1'
-    }
+      key: "selection1",
+    },
   });
   const [metadata, setMetadata] = useState(null);
   const [reaction, setReaction] = useState(null);
 
   const [initialData, setInitialData] = useState({
-    saveit_date: { // Initialize saveit_date
+    saveit_date: {
+      // Initialize saveit_date
       startDate: null,
       endDate: null,
-      key: 'selection1'
-    }
+      key: "selection1",
+    },
   });
   const [isValidForm, setIsValidForm] = useState(false); // State variable to store isValid value
 
@@ -95,8 +99,6 @@ const ProductPage = () => {
   // useEffect(() => {
   //   UpdateData()
   // }, []);
-
-
 
   useEffect(() => {
     GetLocationData();
@@ -176,7 +178,6 @@ const ProductPage = () => {
     console.log("UpdateBasket==called");
     GetBasketData();
   }, []);
-  
 
   const GetMenuTagData = async (menu_id, tag_id) => {
     GetMenuTagItemData(menu_id, tag_id);
@@ -244,102 +245,89 @@ const ProductPage = () => {
 
   const AddedToBasket = useCallback(() => {
     console.log("AddedToBasket===>");
-    OnClickMenu("ALL", "all", selectedTagIndex, activetag)
+    OnClickMenu("ALL", "all", selectedTagIndex, activetag);
     toast.success("Item Added to basket successfully!");
-    
   }, []);
 
-  const SaveModalFunction = async (menu_data, reaction,flag) => {
+  const SaveModalFunction = async (menu_data, reaction, flag) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
 
     if (!credentials) {
       toast.error("Please Login to React");
-      setLoggedin(false)
-      return false; 
-    }else{
-      if (flag){
-        setSavemodal(true)
+      setLoggedin(false);
+      return false;
+    } else {
+      if (flag) {
+        setSavemodal(true);
       }
-      setMetadata(menu_data)
-      setReaction(reaction)
-      
+      setMetadata(menu_data);
+      setReaction(reaction);
     }
-  
   };
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values.saveit_date,'saveit_date---->') 
-    console.log(metadata,reaction,'menu_data,reaction---->') 
-    UpdateReactionInDB(metadata,'SAVEIT',values.saveit_date)
-  }
+    console.log(values.saveit_date, "saveit_date---->");
+    console.log(metadata, reaction, "menu_data,reaction---->");
+    UpdateReactionInDB(metadata, "SAVEIT", values.saveit_date);
+  };
 
-  const validationSchema = Yup.object().shape({
-
-  });
-
+  const validationSchema = Yup.object().shape({});
 
   const handleDateChange = (item) => {
-    const formattedDate = format(item, 'dd/MM/yyyy');
-    console.log('Formatted Date:', formattedDate);
+    const formattedDate = format(item, "dd/MM/yyyy");
+    console.log("Formatted Date:", formattedDate);
     setSavedate(item);
   };
 
-  const UpdateReactionInDB = async (menu_data, reaction,saveit_date) => {
-
+  const UpdateReactionInDB = async (menu_data, reaction, saveit_date) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
 
     if (!credentials) {
       toast.error("Please Login to React");
-      setLoggedin(false)
-      return false; 
+      setLoggedin(false);
+      return false;
     } else {
-      if (reaction == 'saveit'){
-        setSavemodal(true)
-        setMetadata(menu_data)
-        setReaction(reaction)
+      if (reaction == "saveit") {
+        setSavemodal(true);
+        setMetadata(menu_data);
+        setReaction(reaction);
         return false;
-      }
-      else {
-
+      } else {
         let body = {};
 
-        if (reaction == 'SAVEIT'){
-          
-            body = {
-              cuser_id: credentials?.user_id,
-              menu_items_id: menu_data.id,
-              reaction: 'saveit',
-              saveit_date:saveit_date
-            };
-          }
-          else{
-            body = {
-              cuser_id: credentials?.user_id,
-              menu_items_id: menu_data.id,
-              reaction: reaction
-            }
-          }
+        if (reaction == "SAVEIT") {
+          body = {
+            cuser_id: credentials?.user_id,
+            menu_items_id: menu_data.id,
+            reaction: "saveit",
+            saveit_date: saveit_date,
+          };
+        } else {
+          body = {
+            cuser_id: credentials?.user_id,
+            menu_items_id: menu_data.id,
+            reaction: reaction,
+          };
+        }
         console.log(body, "body=====>UpdateReactionInDB");
-        
+
         try {
-          const res = await API.getInstance().menu.post("api/user-items-reaction", body);
-          console.log(res, 'response======>');
-          setLoggedin(true)
-          setSavemodal(false)
+          const res = await API.getInstance().menu.post(
+            "api/user-items-reaction",
+            body
+          );
+          console.log(res, "response======>");
+          setLoggedin(true);
+          setSavemodal(false);
           return true; // Return true if update is successful
         } catch (error) {
           console.error(error);
           toast.error("Failed to update reaction");
-          setLoggedin(false)
+          setLoggedin(false);
           return false; // Return false if there's an error
         }
-
       }
-
-      
     }
   };
-
-
 
   const OnClickAddButton = async (menu_item) => {
     setMenuitemdata(menu_item);
@@ -347,43 +335,47 @@ const ProductPage = () => {
   };
 
   const OnClickReactionpopup = async (item_data, reactionType) => {
-    
-    setRestorentMenuTagItemdata(prevState => {
+    setRestorentMenuTagItemdata((prevState) => {
       // Find the index of the item in restorentmenutagitemdata
-      const newData = prevState.map(menu => {
+      const newData = prevState.map((menu) => {
         // Find the index of the item in menu_item_info_list
-        const newItemList = menu.menu_item_info_list.map(item => {
+        const newItemList = menu.menu_item_info_list.map((item) => {
           if (item.id === item_data.id) {
             let updatedItem = { ...item };
             let reactionUpdated = false;
             switch (reactionType) {
-              case 'LOVEIT':
-                UpdateReactionInDB(item_data, 'loveit')
+              case "LOVEIT":
+                UpdateReactionInDB(item_data, "loveit");
                 updatedItem = {
                   ...updatedItem,
                   loveit: !updatedItem.loveit,
-                  loveit_count: updatedItem.loveit ? updatedItem.loveit_count - 1 : updatedItem.loveit_count + 1
-                };
-                reactionUpdated = true;
-                
-                break;
-              case 'LIKEIT':
-                UpdateReactionInDB(item_data,'likeit')
-                updatedItem = {
-                  ...updatedItem,
-                  likeit: !updatedItem.likeit,
-                  likeit_count: updatedItem.likeit ? updatedItem.likeit_count - 1 : updatedItem.likeit_count + 1
+                  loveit_count: updatedItem.loveit
+                    ? updatedItem.loveit_count - 1
+                    : updatedItem.loveit_count + 1,
                 };
                 reactionUpdated = true;
 
-                
                 break;
-              case 'DISLIKE':
-                UpdateReactionInDB(item_data,'dislikeit')
+              case "LIKEIT":
+                UpdateReactionInDB(item_data, "likeit");
+                updatedItem = {
+                  ...updatedItem,
+                  likeit: !updatedItem.likeit,
+                  likeit_count: updatedItem.likeit
+                    ? updatedItem.likeit_count - 1
+                    : updatedItem.likeit_count + 1,
+                };
+                reactionUpdated = true;
+
+                break;
+              case "DISLIKE":
+                UpdateReactionInDB(item_data, "dislikeit");
                 updatedItem = {
                   ...updatedItem,
                   dislikeit: !updatedItem.dislikeit,
-                  dislikeit_count: updatedItem.dislikeit ? updatedItem.dislikeit_count - 1 : updatedItem.dislikeit_count + 1
+                  dislikeit_count: updatedItem.dislikeit
+                    ? updatedItem.dislikeit_count - 1
+                    : updatedItem.dislikeit_count + 1,
                 };
                 reactionUpdated = true;
                 // UpdateReactionInDB(item_data, 'dislikeit')
@@ -403,34 +395,43 @@ const ProductPage = () => {
                 //   });
 
                 break;
-                case 'SAVEIT':
-                  // UpdateReactionInDB(item_data,'saveit')
-                  if (!updatedItem.saveit) {
-                    console.log(updatedItem.saveit, 'updatedItem.saveit==true');
-                    SaveModalFunction(item_data, 'saveit', true);
-                  } else {
-                    console.log(updatedItem.saveit, 'updatedItem.saveit==false');
-                    SaveModalFunction(item_data, 'saveit', false);
-                    UpdateReactionInDB(item_data,'SAVEIT')
-                  }
-                  updatedItem = {
-                    ...updatedItem,
-                    saveit: !updatedItem.saveit,
-                    saveit_count: updatedItem.saveit ? updatedItem.saveit_count - 1 : updatedItem.saveit_count + 1
-                  };
-                  
-                  reactionUpdated = true;
-                  break;
-                
-              
-                default:
+              case "SAVEIT":
+                // UpdateReactionInDB(item_data,'saveit')
+                if (!updatedItem.saveit) {
+                  console.log(updatedItem.saveit, "updatedItem.saveit==true");
+                  SaveModalFunction(item_data, "saveit", true);
+                } else {
+                  console.log(updatedItem.saveit, "updatedItem.saveit==false");
+                  SaveModalFunction(item_data, "saveit", false);
+                  UpdateReactionInDB(item_data, "SAVEIT");
+                }
+                updatedItem = {
+                  ...updatedItem,
+                  saveit: !updatedItem.saveit,
+                  saveit_count: updatedItem.saveit
+                    ? updatedItem.saveit_count - 1
+                    : updatedItem.saveit_count + 1,
+                };
+
+                reactionUpdated = true;
+                break;
+
+              default:
                 break;
             }
             if (reactionUpdated) {
-              updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
-          }
-          return updatedItem;
-            updatedItem.total_reaction_count = updatedItem.loveit_count + updatedItem.likeit_count + updatedItem.dislikeit_count + updatedItem.saveit_count;
+              updatedItem.total_reaction_count =
+                updatedItem.loveit_count +
+                updatedItem.likeit_count +
+                updatedItem.dislikeit_count +
+                updatedItem.saveit_count;
+            }
+            return updatedItem;
+            updatedItem.total_reaction_count =
+              updatedItem.loveit_count +
+              updatedItem.likeit_count +
+              updatedItem.dislikeit_count +
+              updatedItem.saveit_count;
             return updatedItem;
           } else {
             return item;
@@ -438,52 +439,38 @@ const ProductPage = () => {
         });
         return {
           ...menu,
-          menu_item_info_list: newItemList
+          menu_item_info_list: newItemList,
         };
       });
       return [...newData]; // Return a new array to trigger state update
     });
-};
-
-
-
-
-
-
-
-
-
-  const OnClickLikepopup = async (id) => {
-    if (selectedItemIndex == id){
-      setSelectedItemIndex(0)
-    }else{
-      setSelectedItemIndex(id)
-    }
-    
-    
   };
 
-
+  const OnClickLikepopup = async (id) => {
+    if (selectedItemIndex == id) {
+      setSelectedItemIndex(0);
+    } else {
+      setSelectedItemIndex(id);
+    }
+  };
 
   const closeModal = () => {
-    setLoggedin(true)
-  }
+    setLoggedin(true);
+  };
 
   const closeSaveModal = () => {
-    setSavemodal(false)
-  }
+    setSavemodal(false);
+  };
 
-
-
-  
   return (
     <>
+      <SubMenuPagesHeader bannerImg={productHeadImg} />
+
       <div className="bg-[#252525] h-fit min-h-[100vh] ">
         {/* <Header /> */}
 
         <div>
           <div className="w-full relative">
-            <img src={productHeadImg} alt="productPage" />
             <div className="w-full flex justify-between ">
               <button
                 data-collapse-toggle="mobile-menu-2 "
@@ -689,18 +676,17 @@ const ProductPage = () => {
                             <div className="font-poppins font-normal text-lg text-[#fff] bg-[#4C4C4C] flex items-center py-[10px] justify-center mt-6">
                               {menu.menu_title}
                             </div>
-                            <div className="w-full flex flex-col gap-y-[30px] mt-6">
+                            <div className="w-full flex flex-col gap-y-[30px] mt-6 pi-items-list">
                               {menu.menu_item_info_list &&
                                 menu.menu_item_info_list.map(
                                   (item, itemIndex) =>
                                     itemIndex % 2 === 0 && (
                                       <div
-                                      style={{height:'160px'}}
                                         key={itemIndex}
-                                        className="flex flex-col lg:flex-row gap-3"
+                                        className="pi-row"
                                       >
                                         {/* First Item */}
-                                        <div className="bg-[#363636] flex gap-3 rounded-[10px] lg:w-1/2">
+                                        <div className="pi-each">
                                           <img
                                             src={
                                               item.item_image &&
@@ -728,57 +714,89 @@ const ProductPage = () => {
                                             }}
                                           >
                                             <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] w-full pr-[10px] relative">
+                                            <div className="pi-item-name">
                                             {item.name}
+                                            </div>
                                               <div
                                                 className={`${
-                                                  selectedItemIndex === item.id  ? "flex" : "hidden"
+                                                  selectedItemIndex === item.id
+                                                    ? "flex"
+                                                    : "hidden"
                                                 } absolute z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
                                               >
                                                 <ul
                                                   className="p-2 flex justify-center items-center gap-7 h-full"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
-                                                  <li onClick={() => OnClickReactionpopup(item,'LOVEIT')}>
+                                                  <li
+                                                    onClick={() =>
+                                                      OnClickReactionpopup(
+                                                        item,
+                                                        "LOVEIT"
+                                                      )
+                                                    }
+                                                  >
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={RedHeartIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-1">
-                                                      {item.loveit_count}
+                                                        {item.loveit_count}
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item,'LIKEIT')}>
+                                                  <li
+                                                    onClick={() =>
+                                                      OnClickReactionpopup(
+                                                        item,
+                                                        "LIKEIT"
+                                                      )
+                                                    }
+                                                  >
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={LikeIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
-                                                      {item.likeit_count}
+                                                        {item.likeit_count}
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item,'DISLIKE')}>
+                                                  <li
+                                                    onClick={() =>
+                                                      OnClickReactionpopup(
+                                                        item,
+                                                        "DISLIKE"
+                                                      )
+                                                    }
+                                                  >
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={DislikeIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
-                                                      {item.dislikeit_count}
+                                                        {item.dislikeit_count}
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item,'SAVEIT')}>
+                                                  <li
+                                                    onClick={() =>
+                                                      OnClickReactionpopup(
+                                                        item,
+                                                        "SAVEIT"
+                                                      )
+                                                    }
+                                                  >
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={SaveIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-2">
-                                                      {item.saveit_count}
+                                                        {item.saveit_count}
                                                       </span>
                                                     </div>
                                                   </li>
@@ -826,7 +844,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                          <div className="bg-[#363636] flex gap-3 rounded-[10px] lg:w-1/2">
+                                          <div className="pi-each">
                                             <img
                                               src={
                                                 menu.menu_item_info_list[
@@ -874,98 +892,146 @@ const ProductPage = () => {
                                                 </span>
                                               </div> */}
                                               <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] w-full pr-[10px] relative">
-                                              {
-                                                menu.menu_item_info_list[
-                                                  itemIndex + 1
-                                                ].name
-                                              }
-                                              <div
-                                                className={`${
-                                                  selectedItemIndex === menu.menu_item_info_list[
+                                                {
+                                                  menu.menu_item_info_list[
                                                     itemIndex + 1
-                                                  ].id  ? "flex" : "hidden"
-                                                } absolute Z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
-                                              >
-                                                <ul
-                                                  className="p-2 flex justify-center items-center gap-7 h-full"
-                                                  aria-labelledby="dropdownDividerButton"
-                                                >
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LOVEIT')} >
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={RedHeartIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-1">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].loveit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LIKEIT')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={LikeIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-0">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].likeit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={DislikeIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-0">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].dislikeit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'SAVEIT')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={SaveIcon}
-                                                        alt="hertIcon"
-                                                       
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-2">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].saveit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                              <span
-                                                onClick={() =>
-                                                  OnClickLikepopup(menu.menu_item_info_list[
-                                                    itemIndex + 1
-                                                  ].id)
+                                                  ].name
                                                 }
-                                              >
-                                                <img
-                                                  src={hertIcon}
-                                                  alt="hertIcon"
-                                                />
-                                              </span>
-                                            </div>
+                                                <div
+                                                  className={`${
+                                                    selectedItemIndex ===
+                                                    menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ].id
+                                                      ? "flex"
+                                                      : "hidden"
+                                                  } absolute Z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
+                                                >
+                                                  <ul
+                                                    className="p-2 flex justify-center items-center gap-7 h-full"
+                                                    aria-labelledby="dropdownDividerButton"
+                                                  >
+                                                    <li
+                                                      onClick={() =>
+                                                        OnClickReactionpopup(
+                                                          menu
+                                                            .menu_item_info_list[
+                                                            itemIndex + 1
+                                                          ],
+                                                          "LOVEIT"
+                                                        )
+                                                      }
+                                                    >
+                                                      <div className="flex flex-col justify-center items-center">
+                                                        <img
+                                                          src={RedHeartIcon}
+                                                          alt="hertIcon"
+                                                        />
+                                                        <span className="text-xs font-normal text-white pt-1">
+                                                          {
+                                                            menu
+                                                              .menu_item_info_list[
+                                                              itemIndex + 1
+                                                            ].loveit_count
+                                                          }
+                                                        </span>
+                                                      </div>
+                                                    </li>
+                                                    <li
+                                                      onClick={() =>
+                                                        OnClickReactionpopup(
+                                                          menu
+                                                            .menu_item_info_list[
+                                                            itemIndex + 1
+                                                          ],
+                                                          "LIKEIT"
+                                                        )
+                                                      }
+                                                    >
+                                                      <div className="flex flex-col justify-center items-center">
+                                                        <img
+                                                          src={LikeIcon}
+                                                          alt="hertIcon"
+                                                        />
+                                                        <span className="text-xs font-normal text-white pt-0">
+                                                          {
+                                                            menu
+                                                              .menu_item_info_list[
+                                                              itemIndex + 1
+                                                            ].likeit_count
+                                                          }
+                                                        </span>
+                                                      </div>
+                                                    </li>
+                                                    <li
+                                                      onClick={() =>
+                                                        OnClickReactionpopup(
+                                                          menu
+                                                            .menu_item_info_list[
+                                                            itemIndex + 1
+                                                          ],
+                                                          "DISLIKE"
+                                                        )
+                                                      }
+                                                    >
+                                                      <div className="flex flex-col justify-center items-center">
+                                                        <img
+                                                          src={DislikeIcon}
+                                                          alt="hertIcon"
+                                                        />
+                                                        <span className="text-xs font-normal text-white pt-0">
+                                                          {
+                                                            menu
+                                                              .menu_item_info_list[
+                                                              itemIndex + 1
+                                                            ].dislikeit_count
+                                                          }
+                                                        </span>
+                                                      </div>
+                                                    </li>
+                                                    <li
+                                                      onClick={() =>
+                                                        OnClickReactionpopup(
+                                                          menu
+                                                            .menu_item_info_list[
+                                                            itemIndex + 1
+                                                          ],
+                                                          "SAVEIT"
+                                                        )
+                                                      }
+                                                    >
+                                                      <div className="flex flex-col justify-center items-center">
+                                                        <img
+                                                          src={SaveIcon}
+                                                          alt="hertIcon"
+                                                        />
+                                                        <span className="text-xs font-normal text-white pt-2">
+                                                          {
+                                                            menu
+                                                              .menu_item_info_list[
+                                                              itemIndex + 1
+                                                            ].saveit_count
+                                                          }
+                                                        </span>
+                                                      </div>
+                                                    </li>
+                                                  </ul>
+                                                </div>
+                                                <span
+                                                  onClick={() =>
+                                                    OnClickLikepopup(
+                                                      menu.menu_item_info_list[
+                                                        itemIndex + 1
+                                                      ].id
+                                                    )
+                                                  }
+                                                >
+                                                  <img
+                                                    src={hertIcon}
+                                                    alt="hertIcon"
+                                                  />
+                                                </span>
+                                              </div>
                                               <div className="flex justify-between items-center font-poppins font-normal text-lg text-[#fff] pr-[18px]">
                                                 ${" "}
                                                 {
@@ -987,7 +1053,8 @@ const ProductPage = () => {
                                                   marginTop: "10%",
                                                   border: "3px solid #E5B638", // Add border style
                                                   color: "#fff", // Set text color
-                                                  backgroundColor: "transparent", // Set transparent background
+                                                  backgroundColor:
+                                                    "transparent", // Set transparent background
                                                   borderRadius: "5px", // Add border radius
                                                   padding: "8px", // Add padding
                                                   cursor: "pointer", // Add cursor style
@@ -1019,84 +1086,113 @@ const ProductPage = () => {
             </div>
           </div>
         </div>
-        
-        
-        
-        
-        
-        
-        {
-          savemodal && ( <Modal isOpen={savemodal} onClose={closeSaveModal} width={'30%'}>
-        <div style={{margin: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div className="category-10" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className="signin-text-wrapper">
-              <div className="signin-text1">
-                <div className="sign-in-wrapper">
-                  <h1 className="sign-in1">Save Item</h1>
+
+        {savemodal && (
+          <Modal isOpen={savemodal} onClose={closeSaveModal} width={"30%"}>
+            <div
+              style={{
+                margin: "30px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className="category-10"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div className="signin-text-wrapper">
+                  <div className="signin-text1">
+                    <div className="sign-in-wrapper">
+                      <h1 className="sign-in1">Save Item</h1>
+                    </div>
+                    <div className="a-few-more-questions-to-help-b-wrapper">
+                      <div className="a-few-more1">
+                        Get email notification on the saved date
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="a-few-more-questions-to-help-b-wrapper">
-                  <div className="a-few-more1">Get email notification on the saved date</div>
-                </div>
-              </div>
-            </div>
-            <Formik
-                    enableReinitialize
-                    initialValues={initialData}
-                    validationSchema={validationSchema}
-                    onSubmit={handleSubmit}
-                    validateOnChange={true} // Validate on change to update isValidForm state
-                    validateOnBlur={false} // Disable onBlur validation to prevent unexpected form state changes
-                    validate={(values) => {
-                      // Manually validate the form on change
-                      validationSchema.validate(values)
-                        .then(() => setIsValidForm(true))
-                        .catch(() => setIsValidForm(false));
-                    }}
-                  >
-                    {({ isValid, values, handleChange, handleSubmit, setFieldValue, errors, touched, isSubmitting }) => (
-                      <Form onSubmit={handleSubmit}>
-                
-                        <Form.Group className="mb-3">
-                          <DateRange
+                <Formik
+                  enableReinitialize
+                  initialValues={initialData}
+                  validationSchema={validationSchema}
+                  onSubmit={handleSubmit}
+                  validateOnChange={true} // Validate on change to update isValidForm state
+                  validateOnBlur={false} // Disable onBlur validation to prevent unexpected form state changes
+                  validate={(values) => {
+                    // Manually validate the form on change
+                    validationSchema
+                      .validate(values)
+                      .then(() => setIsValidForm(true))
+                      .catch(() => setIsValidForm(false));
+                  }}
+                >
+                  {({
+                    isValid,
+                    values,
+                    handleChange,
+                    handleSubmit,
+                    setFieldValue,
+                    errors,
+                    touched,
+                    isSubmitting,
+                  }) => (
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3">
+                        <DateRange
                           // style={{fontSize:'8px'}}
                           // dateDisplayFormat='dd/MM/yyyy'
-                            className='date_picker_style'
-                            onChange={range => {
-                              // Update Formik field values for saveit_date
-                              setFieldValue('saveit_date', range.selection1);
-                            }}
-                            ranges={[values.saveit_date]}
-                          />
-                          {errors.saveit_date && touched.saveit_date && <div className="error-message">{errors.saveit_date}</div>}
-                        </Form.Group>
-                      <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
-                        <button className="buttons-states-dark20" style={{ backgroundColor: 'red' }}>
-                          <b style={{ lineHeight: '30%', fontSize: '14px' }} className="button28">SAVE</b>
+                          className="date_picker_style"
+                          onChange={(range) => {
+                            // Update Formik field values for saveit_date
+                            setFieldValue("saveit_date", range.selection1);
+                          }}
+                          ranges={[values.saveit_date]}
+                        />
+                        {errors.saveit_date && touched.saveit_date && (
+                          <div className="error-message">
+                            {errors.saveit_date}
+                          </div>
+                        )}
+                      </Form.Group>
+                      <div
+                        style={{
+                          marginTop: "20px",
+                          display: "flex",
+                          justifyContent: "center",
+                          width: "100%",
+                        }}
+                      >
+                        <button
+                          className="buttons-states-dark20"
+                          style={{ backgroundColor: "red" }}
+                        >
+                          <b
+                            style={{ lineHeight: "30%", fontSize: "14px" }}
+                            className="button28"
+                          >
+                            SAVE
+                          </b>
                         </button>
                       </div>
-                      </Form>
-                    )}
-                    
-                  </Formik>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+            </div>
+          </Modal>
+        )}
 
-          </div>
-        </div>
-
-
-          </Modal>)
-        }
-
-
-
-
-
-
-        {
-    !loggedin && ( <Modal isOpen={!loggedin} onClose={closeModal}>
-      <CATEGORY />
-
-    </Modal>)
-  }
+        {!loggedin && (
+          <Modal isOpen={!loggedin} onClose={closeModal}>
+            <CATEGORY />
+          </Modal>
+        )}
       </div>
       {isWoAddonOpen && (
         <PortalPopup
@@ -1113,8 +1209,7 @@ const ProductPage = () => {
           />
         </PortalPopup>
       )}
-
- 
+      <DarkMode />
     </>
   );
 };

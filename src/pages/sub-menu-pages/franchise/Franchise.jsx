@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { motion } from "framer-motion";
 import {
   routeVariants,
-  childVariants,
 } from "../../../variants/framerMotionVariants";
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
@@ -102,7 +101,7 @@ export const Franchise = () => {
               excepteur eu. Duis reprehenderit
             </div>
           </div>
-          <div className="sec-info--w gap-6 justify-between mt-10 h-[520px]">
+          <div className="sec-info--w gap-6 justify-between mt-10 md:h-[520px]">
             <div className="side--w h-full">
               <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" />
             </div>
