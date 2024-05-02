@@ -171,9 +171,18 @@ body {
 @media (max-width: 1024px) {
   .hamburger-sub {
     display: flex; /* Show the button on mobile screens */
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }
 
+@media (max-width: 764px) {
+  .hamburger-sub {
+    display: flex; /* Show the button on mobile screens */
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
 @media (min-width: 1024px) {
   .hamburger-sub {
     display: none;
@@ -194,8 +203,8 @@ body {
   width: 100%;
   z-index: 1;
   position: relative;
-  height: 70vh;
-  object-fit: cover;
+  /* height: 70vh; */
+  object-fit: contain;
   background-position: center;
 }
 

@@ -186,7 +186,7 @@ button {
   position: absolute;
   margin: 0 !important;
   top: calc(66% - 503px);
-  left: calc(66% - 842px);
+  /* left: calc(66% - 842px); */
   object-fit: cover;
 }
 .mappin-icon4,

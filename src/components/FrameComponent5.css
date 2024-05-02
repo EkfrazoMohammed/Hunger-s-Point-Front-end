@@ -58,7 +58,7 @@
   color: #e5b638;
 }
 .review-form {
-  width: 1280px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;

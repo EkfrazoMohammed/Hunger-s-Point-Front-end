@@ -26,8 +26,8 @@ const SubMenu = ({ isOpen, handleClose, toggleSubMenuRef }) => {
       <Link to="contact-us" preventScrollReset={true} onClick={handleClose} >Contact Us</Link>
       <Link to="ourstory" preventScrollReset={true} onClick={handleClose}  >Our Story</Link>
       <span className='submenu-divider'></span>
-      <Link to="location" className='on-mob-vis h-link location-btn ' preventScrollReset={true} onClick={handleClose} >Location</Link>
-      <Link to="/productpage?id=1" className='on-mob-vis h-link menu-btn' preventScrollReset={true} onClick={handleClose} >Menu</Link>
+      <Link to="location" className=' h-link location-btn ' preventScrollReset={true} onClick={handleClose} >Location</Link>
+      <Link to="/productpage?id=1" className=' h-link menu-btn' preventScrollReset={true} onClick={handleClose} >Menu</Link>
     </div >
   )
 }

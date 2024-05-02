@@ -527,7 +527,7 @@ const ProductPage = () => {
                     className="relative m-0 list-none px-[0.2rem]"
                     data-te-sidenav-menu-ref
                   >
-                    <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-6 pr-12 gap-5 flex flex-col">
+                    <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-1 pr-1 gap-5 flex flex-col">
                       <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
                       {locationdata.published_name}
                       </div>
@@ -654,7 +654,7 @@ const ProductPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[85%] my-[33vh] flex flex-col gap-[10px]">
+                <div className="w-[85%] my-[25vh] flex flex-col gap-[10px]">
                   <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
                     Filters
                   </div>
@@ -872,7 +872,7 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                            <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px]responsive-font-size">
+                                            <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] mt-4">
                                               $ {item.amount}
                                               <span>
                                                 {item.total_reaction_count}
@@ -1043,7 +1043,7 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                              <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size">
+                                              <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size mt-4">
                                                 ${" "}
                                                 {
                                                   menu.menu_item_info_list[

@@ -330,41 +330,10 @@ const Header = () => {
             <div
               className={`${isVisible ? "" : "hidden"
                 } "justify-between items-center w-full lg:flex lg:w-auto lg:order-1"`}
-              id="mobile-menu-2"
+              // id="mobile-menu-2"
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                {/* <li>
-                  <div
-                    className="buttons-states w-[400px] rounded-[5px] bg-[#363636] border border-[#424242] box-border flex flex-col items-start justify-center p-[10px] max-w-full cursor-pointer text-left text-[10px] "
-                    onClick={() => handleRout("/location")}
-                  >
-                    <div className="self-stretch flex flex-row items-center justify-start gap-x-1 max-w-full">
-                      <img
-                        className="location-icon7"
-                        loading="eager"
-                        alt=""
-                        src={location1}
-                      />
-                      <div className="flex-1 relative leading-[130%] uppercase inline-block max-w-full whitespace-nowrap text-[#fff] text-[10px]">
-                        SELECT Location
-                      </div>
-                    </div>
-                    <div className="text-[#fff] text-base gap-x-5 justify-start self-stretch flex">
-                      <div className="divider-line flex-1 flex flex-row items-center justify-start">
-                        <div className="flex-1 relative top-4 leading-[20px] whitespace-nowrap text-base font-normal uppercase font-poppins">
-                          Set your location here
-                        </div>
-                      </div>
-
-                      <div className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 py-2 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border">
-                        <div className="relative leading-[13px] uppercase text-[#fff] text-[10px] font-normal">
-                          LOCATE STORE
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li> */}
-
+                
                 <li className="flex items-center">
                   <div
                     className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
