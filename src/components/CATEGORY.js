@@ -127,10 +127,10 @@ const CATEGORY = () => {
   }
   const handleSubmit = () => {
     // Validation check
-    if (!isValidForm()) {
-      console.log('Form data is not valid');
-      return;
-    }
+    // if (!isValidForm()) {
+    //   console.log('Form data is not valid');
+    //   return;
+    // }
   
     // Prepare data for API call
     const data = {
