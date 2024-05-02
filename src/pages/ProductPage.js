@@ -757,7 +757,7 @@ const ProductPage = () => {
                       </div>
                     ))}
                 </div>
-                <div className="w-[90%] flex flex-col gap-6 border-t border-t-[#FFFFFF]">
+                <div className="pdp-list-container w-[90%] flex flex-col gap-6 border-t border-t-[#FFFFFF]">
                   <div>
                     <div className="w-full flex flex-col gap-y-[30px] mt-6 mb-12">
                       {restorentmenutagitemdata &&
@@ -772,12 +772,11 @@ const ProductPage = () => {
                                   (item, itemIndex) =>
                                     itemIndex % 2 === 0 && (
                                       <div
-                                      style={{height:'160px'}}
                                         key={itemIndex}
-                                        className="flex flex-col lg:flex-row gap-3"
+                                        className="pi-row"
                                       >
                                         {/* First Item */}
-                                        <div className="bg-[#363636] flex gap-3 rounded-[10px] lg:w-1/2">
+                                        <div className="pi-each">
                                           <img
                                             src={
                                               item.item_image &&
@@ -879,17 +878,7 @@ const ProductPage = () => {
                                               </span>
                                             </div>
                                             <button
-                                              style={{
-                                                width: "50%",
-                                                marginTop: "10%",
-                                                border: "3px solid #E5B638", // Add border style
-                                                color: "#fff", // Set text color
-                                                backgroundColor: "transparent", // Set transparent background
-                                                borderRadius: "5px", // Add border radius
-                                                padding: "8px", // Add padding
-                                                cursor: "pointer", // Add cursor style
-                                              }}
-                                              className="border-[3px] border-[#E5B638] px-8 text-[#fff] rounded-md hover:bg-[#E5B638] py-2"
+                                              className="menu-action-cart-btn"
                                               onClick={() =>
                                                 OnClickAddButton(item)
                                               }
@@ -903,7 +892,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                          <div className="bg-[#363636] flex gap-3 rounded-[10px] lg:w-1/2">
+                                          <div className="pi-each">
                                             <img
                                               src={
                                                 menu.menu_item_info_list[
@@ -1059,17 +1048,7 @@ const ProductPage = () => {
                                                 </span>
                                               </div>
                                               <button
-                                                style={{
-                                                  width: "50%",
-                                                  marginTop: "10%",
-                                                  border: "3px solid #E5B638", // Add border style
-                                                  color: "#fff", // Set text color
-                                                  backgroundColor: "transparent", // Set transparent background
-                                                  borderRadius: "5px", // Add border radius
-                                                  padding: "8px", // Add padding
-                                                  cursor: "pointer", // Add cursor style
-                                                }}
-                                                className="border-[3px] border-[#E5B638] px-8 text-[#fff] rounded-md hover:bg-[#E5B638] py-2"
+                                                className="menu-action-cart-btn"
                                                 onClick={() =>
                                                   OnClickAddButton(
                                                     menu.menu_item_info_list[
