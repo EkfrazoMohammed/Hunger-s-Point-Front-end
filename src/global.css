@@ -29,6 +29,9 @@ body {
 
 /* custom scrollbar start */
 /* width */
+body::-webkit-scrollbar {
+  display: none;
+}
 ::-webkit-scrollbar {
   width: 3px;
   height: 3px;
@@ -459,6 +462,55 @@ body {
 .menu-action-cart-btn:focus {
   outline: none;
 }
+/* w-[30%] hidden sm:hidden md:hidden lg:flex  */
+.menu-side-filter-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+/* bg-[#363636] rounded-[20px] w-[25%] py-5 pl-6 pr-12 gap-4 flex flex-col absolute top-[10vh] left-[2%] */
+.menu-side-filter-wrapper {
+  background-color: #4c4c4c;
+  padding: 30px;
+  border-radius: 16px;
+  margin-top: 20px;
+}
+/* font-poppins font-semibold text-3xl text-[#E5B638] ml-3 */
+.menu-locaion-detail-title {
+  display: flex;
+  font-size: 20px;
+}
+.menu-side-filter-list-w {
+  margin-top: 20px;
+}
+
+/* flex items-center gap-[10px]  */
+.filter-option-lis {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .menu-side-filter-options {
+    display: none;
+  }
+  .m-filter-toggle-btn {
+    margin-top: 20px;
+    z-index: 3;
+  }
+  body .m-filter-toggle-btn:focus-visible,
+  body .m-filter-toggle-btn:focus {
+    outline: none;
+    border: none;
+  }
+  .filter-menu-open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .filer-available #sidenav-1 {
+    border-top-left-radius: 0;
+  }
+}
 
 @media (max-width: 767px) {
   .sec-info--w {
@@ -483,8 +535,8 @@ body {
     display: none;
   }
   nav#sidenav-1 {
-    width: 80%;
-    top: 60px;
+    width: 54%;
+    top: 88px;
     margin: auto;
     left: 0px;
     height: -moz-fit-content;
@@ -497,288 +549,321 @@ body {
     z-index: 2;
     margin-top: 24px;
   }
-    .pi-row .pi-each {
-      height: 190px;
-      width: 100%;
-      gap: 20px;
-    }
-    .pi-row .pi-item-name {
-      width: 85%;
-    }
-    .on-mob-vis,
-    .submenu-divider {
-      display: block;
-    }
-    .submenu-divider {
-      background-color: var(--hp-btn-secondary);
-      width: 20%;
-      display: block;
-      height: 2px;
-    }
-    .h-link.menu-btn,
-    .h-link.location-btn {
-      color: var(--hp-btn-secondary);
-    }
-    .h-link.menu-btn {
-      width: 50%;
-      border: 1px solid var(--hp-btn-secondary);
-    }
-    [data-collapse-toggle="mobile-menu-2"] {
-      display: none;
-    }
-    .banner-action--wrapper {
-      position: absolute;
-      min-width: 189px;
-      width: 100%;
-      min-height: 100%;
-      top: 0%;
-      left: 3%;
-      font-size: 17px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      padding-bottom: 29%;
-    }
-    .basket-button2 {
-      border-radius: 17px;
-      border: none;
-    }
-    .ante-eget-vel6,
-    .ante-eget-vel7,
-    .lorem-ipsum-dolor4,
-    .we-believe-in1 {
-      font-size: 17px;
-    }
-    .review-section-frame .slick-prev:before,
-    .review-section-frame .slick-next:before {
-      font-size: 30px;
-      width: 30px;
-      height: 40px;
-    }
-    .fp-para-section-title {
-      font-size: 24px;
-      line-height: normal;
-    }
-    .button79 {
-      gap: 0;
-    }
-    .submenu {
-      width: 100%;
-      top: var(--navbar-mob-height);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transform: translateY(-600px);
-      transition: all 0.5s ease-out;
-      padding-bottom: 20px;
-    }
-    .submenu a {
-      width: 100%;
-      text-align: center;
-      padding: 10px;
-    }
+  .pi-row .pi-each {
+    height: 190px;
+    width: 100%;
+    gap: 20px;
+  }
+  .pi-row .pi-item-name {
+    width: 85%;
+  }
+  .on-mob-vis,
+  .submenu-divider {
+    display: block;
+  }
+  .submenu-divider {
+    background-color: var(--hp-btn-secondary);
+    width: 20%;
+    display: block;
+    height: 2px;
+  }
+  .h-link.menu-btn,
+  .h-link.location-btn {
+    color: var(--hp-btn-secondary);
+  }
+  .h-link.menu-btn {
+    width: 50%;
+    border: 1px solid var(--hp-btn-secondary);
+  }
+  [data-collapse-toggle="mobile-menu-2"] {
+    display: none;
+  }
+  .banner-action--wrapper {
+    position: absolute;
+    min-width: 189px;
+    width: 100%;
+    min-height: 100%;
+    top: 0%;
+    left: 3%;
+    font-size: 17px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-bottom: 29%;
+  }
+  .basket-button2 {
+    border-radius: 17px;
+    border: none;
+  }
+  .ante-eget-vel6,
+  .ante-eget-vel7,
+  .lorem-ipsum-dolor4,
+  .we-believe-in1 {
+    font-size: 17px;
+  }
+  .review-section-frame .slick-prev:before,
+  .review-section-frame .slick-next:before {
+    font-size: 30px;
+    width: 30px;
+    height: 40px;
+  }
+  .fp-para-section-title {
+    font-size: 24px;
+    line-height: normal;
+  }
+  .button79 {
+    gap: 0;
+  }
+  .submenu {
+    width: 100%;
+    top: var(--navbar-mob-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-600px);
+    transition: all 0.5s ease-out;
+    padding-bottom: 20px;
+  }
+  .submenu a {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
 
-    .review-form {
-      width: 100%;
-      font-size: 13px;
-    }
+  .review-form {
+    width: 100%;
+    font-size: 13px;
+  }
 
-    .view-all-stores2 {
-      font-size: 12px;
-      line-height: normal;
-    }
-    .location-pin-map {
-      position: relative;
-      height: 175px;
-      border-radius: 10px;
-    }
-    .location-pin-map img {
-      width: 100%;
-      height: auto;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-    .location-pin-map .mappin-icon4,
-    .location-pin-map .mappin-icon5,
-    .location-pin-map .mappin-icon6,
-    .location-pin-map .mappin-icon7 {
-      height: 10px;
-      width: 10px;
-      position: absolute;
-      z-index: 1;
-    }
-    .location-pin-map .mappin-icon4 {
-      top: calc(100% - 61px);
-      left: calc(100% - 310px);
-    }
-    .location-pin-map .mappin-icon5 {
-      top: calc(100% - 53px);
-      left: calc(100% - 233px);
-    }
-    .location-pin-map .mappin-icon6 {
-      top: calc(100% - 83px);
-      left: calc(100% - 242px);
-    }
-    .location-pin-map .mappin-icon7 {
-      top: calc(100% - 91px);
-      left: calc(100% - 124px);
-    }
-    .homepage1 .location1 {
-      gap: 10px 0;
-    }
-    .homepage1 .frame-parent65 .category-2-wrapper {
-      width: 100%;
-      margin: 2px !important;
-      padding: 17px !important;
-      border-radius: 10px !important;
-    }
-    .homepage1 .frame-parent65 {
-      max-width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .homepage1 .map-pin-section {
-      padding-bottom: 5px;
-    }
-    .homepage1 .category-2-wrapper .button80,
-    .homepage1 .category-2-wrapper .button81 {
-      font-size: 14px;
-    }
-    .call-parent4,
-    .category-2-inner2,
-    .frame-parent64 {
-      align-items: center;
-    }
-    .call-parent4 .call-icon7,
-    .location-parent5 .location-icon14 {
-      height: 32px;
-      width: 32px;
-    }
-    .call-parent4 .div36,
-    .location-parent5 .hospital-st-fort7 {
-      font-size: 12px;
-      position: relative;
-      display: inline-block;
-      min-width: auto;
-      max-width: 70%;
-    }
-    .buttons-states-dark67 {
-      background-color: var(--hp-yellow-500);
-      margin-bottom: 15px;
-      gap: 0 10px;
-    }
-    .map-pin-section {
-      gap: 10px 0;
-    }
-    .customer-service-man-answering {
-      height: 352px;
-      width: 325px;
-      top: 0;
-      left: 0%;
-    }
-    .give-your-feedback-below {
-      height: 220px;
-    }
-    .v-i-p-frame {
-      width: 1066px;
-      width: 100%;
-      padding: 24px;
-    }
-    .update-notifications-frame {
-      gap: 15px;
-    }
-    .buttons-states-dark61 {
-      width: 100%;
-    }
-    .button73,
-    .recieve-updates-on {
-      font-size: 15px;
-      line-height: normal;
-    }
-    .instagram-facebook-mail-frame {
-      padding: 13px 0 0;
-    }
-    .buttons-states-dark61:hover {
-      border: 2px solid var(--hp-yellow-600);
-    }
-    .buttons-states-dark61 {
-      border: 2px solid var(--hp-yellow-600);
-    }
-    .lorem-ipsum-dolor-container3 {
-      font-size: 15px;
-    }
-    .ante-eget-vel6,
-    .ante-eget-vel7,
-    .lorem-ipsum-dolor4,
-    .we-believe-in1 {
-      font-size: 15px;
-    }
-    .fp-main--contact-us .contact-us-side-img {
-      height: 100%;
-      object-fit: cover;
-    }
-    .locationinstances .locationinstances1 {
-      padding: 0;
-    }
-    .locationinstances img.image-5-icon {
-      width: 100%;
-      height: 100%;
-      position: initial;
-    }
-    .nearbystorestext {
-      padding: 0 20px;
-    }
-    .nearbystorestext .categoryinstance .frame-parent65 {
-      display: flex;
-      flex-direction: column;
-    }
-    .review-section-frame .slick-next {
-      right: 34px;
-    }
-    .review-section-frame .basket-button2 {
-      margin: 23px auto auto;
-      padding: 23px;
-      z-index: 0;
-    }
-    .ordersframe {
-      width: 100%;
-      margin-top: 22px;
-    }
-    .summary2 {
-      min-height: 140px;
-      max-height: 210px;
-      width: 100%;
-      min-width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex: none;
-      justify-content: flex-start;
-      align-items: center;
-      flex-wrap: wrap;
-      column-gap: 20px;
-      padding: 20px;
-    }
-    .john-smithtext-icon {
-      width: 100px;
-      height: 100px;
-      max-width: 100px;
-      max-height: 100px;
-      object-fit: cover;
-      border-radius: 100px;
-      flex: auto;
-      align-self: center;
-    }
-    .summarydetails {
-      width: fit-content;
-    }
-    .john-smith1 {
-      font-size: 16px;
-      line-height: normal;
-    }
-    .frame-button-dropdown {
-      row-gap: 20px;
-    }
+  .view-all-stores2 {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .location-pin-map {
+    position: relative;
+    height: 175px;
+    border-radius: 10px;
+  }
+  .location-pin-map img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .location-pin-map .mappin-icon4,
+  .location-pin-map .mappin-icon5,
+  .location-pin-map .mappin-icon6,
+  .location-pin-map .mappin-icon7 {
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    z-index: 1;
+  }
+  .location-pin-map .mappin-icon4 {
+    top: calc(100% - 61px);
+    left: calc(100% - 310px);
+  }
+  .location-pin-map .mappin-icon5 {
+    top: calc(100% - 53px);
+    left: calc(100% - 233px);
+  }
+  .location-pin-map .mappin-icon6 {
+    top: calc(100% - 83px);
+    left: calc(100% - 242px);
+  }
+  .location-pin-map .mappin-icon7 {
+    top: calc(100% - 91px);
+    left: calc(100% - 124px);
+  }
+  .homepage1 .location1 {
+    gap: 10px 0;
+  }
+  .homepage1 .frame-parent65 .category-2-wrapper {
+    width: 100%;
+    margin: 2px !important;
+    padding: 17px !important;
+    border-radius: 10px !important;
+  }
+  .homepage1 .frame-parent65 {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .homepage1 .map-pin-section {
+    padding-bottom: 5px;
+  }
+  .homepage1 .category-2-wrapper .button80,
+  .homepage1 .category-2-wrapper .button81 {
+    font-size: 14px;
+  }
+  .call-parent4,
+  .category-2-inner2,
+  .frame-parent64 {
+    align-items: center;
+  }
+  .call-parent4 .call-icon7,
+  .location-parent5 .location-icon14 {
+    height: 32px;
+    width: 32px;
+  }
+  .call-parent4 .div36,
+  .location-parent5 .hospital-st-fort7 {
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    min-width: auto;
+    max-width: 70%;
+  }
+  .buttons-states-dark67 {
+    background-color: var(--hp-yellow-500);
+    margin-bottom: 15px;
+    gap: 0 10px;
+  }
+  .map-pin-section {
+    gap: 10px 0;
+  }
+  .customer-service-man-answering {
+    height: 352px;
+    width: 325px;
+    top: 0;
+    left: 0%;
+  }
+  .give-your-feedback-below {
+    height: 220px;
+  }
+  .v-i-p-frame {
+    width: 1066px;
+    width: 100%;
+    padding: 24px;
+  }
+  .update-notifications-frame {
+    gap: 15px;
+  }
+  .buttons-states-dark61 {
+    width: 100%;
+  }
+  .button73,
+  .recieve-updates-on {
+    font-size: 15px;
+    line-height: normal;
+  }
+  .instagram-facebook-mail-frame {
+    padding: 13px 0 0;
+  }
+  .buttons-states-dark61:hover {
+    border: 2px solid var(--hp-yellow-600);
+  }
+  .buttons-states-dark61 {
+    border: 2px solid var(--hp-yellow-600);
+  }
+  .lorem-ipsum-dolor-container3 {
+    font-size: 15px;
+  }
+  .ante-eget-vel6,
+  .ante-eget-vel7,
+  .lorem-ipsum-dolor4,
+  .we-believe-in1 {
+    font-size: 15px;
+  }
+  .fp-main--contact-us .contact-us-side-img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .locationinstances .locationinstances1 {
+    padding: 0;
+  }
+  .locationinstances img.image-5-icon {
+    width: 100%;
+    height: 100%;
+    position: initial;
+  }
+  .nearbystorestext {
+    padding: 0 20px;
+  }
+  .nearbystorestext .categoryinstance .frame-parent65 {
+    display: flex;
+    flex-direction: column;
+  }
+  .review-section-frame .slick-next {
+    right: 34px;
+  }
+  .review-section-frame .basket-button2 {
+    margin: 23px auto auto;
+    padding: 23px;
+    z-index: 0;
+  }
+  .ordersframe {
+    width: 100%;
+    margin-top: 22px;
+  }
+  .summary2 {
+    min-height: 140px;
+    max-height: 210px;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex: none;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    padding: 20px;
+  }
+  .john-smithtext-icon {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 100px;
+    flex: auto;
+    align-self: center;
+  }
+  .summarydetails {
+    width: fit-content;
+  }
+  .john-smith1 {
+    font-size: 16px;
+    line-height: normal;
+  }
+  .frame-button-dropdown {
+    row-gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .delivered-icon {
+    flex-direction: column;
+  }
+  .delivered-icon .my-orders1 {
+    width: 100%;
+  }
+}
+@media (max-width: 1000px) {
+  .john-smithtext-icon {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 100px;
+    flex: auto;
+    align-self: center;
+  }
+  .ordersummary .summary2 {
+    height: 190px;
+    flex-direction: row;
+    gap: 20px;
+    padding: 26px;
+  }
+  .ordersummary .rightframe {
+    gap: 20px;
+  }
+  .ordersummary .rightframe .summary3 {
+    margin-top: 0;
+  }
 }

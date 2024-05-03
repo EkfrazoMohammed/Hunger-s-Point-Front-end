@@ -36,6 +36,8 @@ import RedHeartIcon from "../assets/redHeartIcon.svg";
 import LikeIcon from "../assets/likeIcon.svg";
 import DislikeIcon from "../assets/dislikeIcon.svg";
 import SaveIcon from "../assets/saveIcon.svg";
+import FilterIcon from "../assets/icons/filter-6551.svg";
+
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
@@ -121,8 +123,8 @@ const ProductPage = () => {
         const locationAddress = res.data.result.data[0];
         setLocationdata(locationAddress);
       })
-      .catch((error) => {})
-      .finally(() => {});
+      .catch((error) => { })
+      .finally(() => { });
   };
 
   const GetRestaurentData = async () => {
@@ -137,8 +139,8 @@ const ProductPage = () => {
         // // console.log(res.data.result.data, 'res.data.result.data==>')
         dispatch(setLocation(res.data.result.data));
       })
-      .catch((error) => {})
-      .finally(() => {});
+      .catch((error) => { })
+      .finally(() => { });
   };
 
   const OnClickMenu = (menu_id, index, tag_index, tag_id) => {
@@ -171,8 +173,8 @@ const ProductPage = () => {
         setBasketalldata(res.data.result.data);
         dispatch(setBasketcount(res.data.result.basket_count));
       })
-      .catch((error) => {})
-      .finally(() => {});
+      .catch((error) => { })
+      .finally(() => { });
   };
 
   const UpdateBasket = useCallback(() => {
@@ -196,8 +198,8 @@ const ProductPage = () => {
         // console.log('restorentmenutagdata==in', res.data.result.data)
         setRestorentMenuTagData(res.data.result.data);
       })
-      .catch((error) => {})
-      .finally(() => {});
+      .catch((error) => { })
+      .finally(() => { });
   };
 
   const GetMenuTagItemData = async (menu_id, tag_id) => {
@@ -221,8 +223,8 @@ const ProductPage = () => {
         }
         setRestorentMenuTagItemdata(res.data.result.data);
       })
-      .catch((error) => {})
-      .finally(() => {});
+      .catch((error) => { })
+      .finally(() => { });
   };
 
   const onFrameInputClick = useCallback(() => {
@@ -477,148 +479,153 @@ const ProductPage = () => {
               <button
                 data-collapse-toggle="mobile-menu-2 "
                 type="button"
-                className=" inline-flex items-center h-fit top-0 p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className={`m-filter-toggle-btn ${isVisible ? "filter-menu-open" : "" }  inline-flex items-center h-fit top-0 p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-[#363636] dark:focus:bg-[#363636]`}
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
                 onClick={() => setIsVisible(!isVisible)}
               >
                 <span className="sr-only">Open main menu</span>
+                {!isVisible ?
+                    /* <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg> */
+                    <img src={FilterIcon} alt="filter"  className="w-[25px] h-[25px] invert" />
+                  :
+                  (
 
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <svg
-                  className="hidden w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
+                    <svg
+                      className="w-6 h-6"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  )
+                }
+
               </button>
               <div className="h-full" onClick={() => setIsVisible(false)}>
                 {/* <Sidebar isOpen={isVisible} /> */}
 
 
 
-                <div className={`${isVisible ? "" : "hidden"}`}>
-                <nav
-                  id="sidenav-1"
-                  style={{ height: "-webkit-fill-available" }}
-                  className="absolute bg-[#252525] left-0 mt-10 z-[1035]  w-[50%] sm:w-[40%] md:w-[35%]  lg:hidden -translate-x-full overflow-hidden shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
-                  data-te-sidenav-init
-                  data-te-sidenav-hidden="false"
-                  data-te-sidenav-position="absolute"
-                >
-                  <ul
-                    className="relative m-0 list-none px-[0.2rem]"
-                    data-te-sidenav-menu-ref
+                <div className={`${isVisible ? "filer-available" : "hidden"}`}>
+                  <nav
+                    id="sidenav-1"
+                    style={{ height: "-webkit-fill-available" }}
+                    className="absolute bg-[#252525] left-0 mt-10 z-[1035]  w-[50%] sm:w-[40%] md:w-[35%]  lg:hidden -translate-x-full overflow-hidden shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+                    data-te-sidenav-init
+                    data-te-sidenav-hidden="false"
+                    data-te-sidenav-position="absolute"
                   >
-                    <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-1 pr-1 gap-5 flex flex-col">
-                      <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
-                      {locationdata.published_name}
-                      </div>
-                      <div className="flex items-center gap-[10px]">
-                      <img src={locationIconOrenge} alt="locationIcon" />
+                    <ul
+                      className="relative m-0 list-none px-[0.2rem]"
+                      data-te-sidenav-menu-ref
+                    >
+                      <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-1 pr-1 gap-5 flex flex-col">
+                        <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
+                          {locationdata.published_name}
+                        </div>
+                        <div className="flex items-center gap-[10px]">
+                          <img src={locationIconOrenge} alt="locationIcon" />
 
-                        <span className="font-poppins font-normal text-sm text-[#fff]">
-                        {locationdata.address_info}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-[10px]">
-                            <img src={callIconOrenge} alt="locationIcon" />
-                                            
-                        <span className="font-poppins font-normal text-sm text-[#fff]">
-                        {locationdata.phone}
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-[10px]">
-                      <img src={watchIconOrenge} alt="locationIcon" />
+                          <span className="font-poppins font-normal text-sm text-[#fff]">
+                            {locationdata.address_info}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-[10px]">
+                          <img src={callIconOrenge} alt="locationIcon" />
 
-                        <div className="font-poppins font-normal text-sm text-[#fff]">
-                          <div className="flex gap-[10px]">
-                            Mon - Fri <span>10am - 9pm</span>
-                          </div>
-                          <div className="flex gap-[10px]">
-                            Sat - Sun <span>10am - 11pm</span>
+                          <span className="font-poppins font-normal text-sm text-[#fff]">
+                            {locationdata.phone}
+                          </span>
+                        </div>
+                        <div className="flex items-start gap-[10px]">
+                          <img src={watchIconOrenge} alt="locationIcon" />
+
+                          <div className="font-poppins font-normal text-sm text-[#fff]">
+                            <div className="flex gap-[10px]">
+                              Mon - Fri <span>10am - 9pm</span>
+                            </div>
+                            <div className="flex gap-[10px]">
+                              Sat - Sun <span>10am - 11pm</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="w-[85%]  flex flex-col gap-[10px]">
-                      <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
-                        Filters
-                      </div>
-                      <button
-                        onClick={() =>
-                          OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
-                        }
-                        className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[50px] px-5 flex items-center cursor-pointer ${
-                          activetag === "all"
+                      <div className="w-[85%]  flex flex-col gap-[10px]">
+                        <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
+                          Filters
+                        </div>
+                        <button
+                          onClick={() =>
+                            OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
+                          }
+                          className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[50px] px-5 flex items-center cursor-pointer ${activetag === "all"
                             ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
                             : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                        }`}
-                      >
-                        All Dishes
-                      </button>
+                            }`}
+                        >
+                          All Dishes
+                        </button>
 
-                      {restorentmenutagdata.length > 0 ? (
-                        <>
-                          {restorentmenutagdata &&
-                            restorentmenutagdata.map((tag, index) => (
-                              <button
-                                key={index}
-                                onClick={() =>
-                                  OnClickMenu(
-                                    activemenu,
-                                    selectedMenuIndex,
-                                    index,
-                                    tag.id
-                                  )
-                                }
-                                className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[40px] px-5 flex items-center cursor-pointer ${
-                                  activetag === tag.id
+                        {restorentmenutagdata.length > 0 ? (
+                          <>
+                            {restorentmenutagdata &&
+                              restorentmenutagdata.map((tag, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() =>
+                                    OnClickMenu(
+                                      activemenu,
+                                      selectedMenuIndex,
+                                      index,
+                                      tag.id
+                                    )
+                                  }
+                                  className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[40px] px-5 flex items-center cursor-pointer ${activetag === tag.id
                                     ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
                                     : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                                }`}
-                              >
-                                <img
-                                  src={vegLefIcon}
-                                  alt="addicon"
-                                  style={{ marginRight: "10px" }}
-                                />{" "}
-                                {tag.name}
-                              </button>
-                            ))}
-                        </>
-                      ) : null}
-                    </div>
-                  </ul>
-                </nav>
-              </div>
+                                    }`}
+                                >
+                                  <img
+                                    src={vegLefIcon}
+                                    alt="addicon"
+                                    style={{ marginRight: "10px" }}
+                                  />{" "}
+                                  {tag.name}
+                                </button>
+                              ))}
+                          </>
+                        ) : null}
+                      </div>
+                    </ul>
+                  </nav>
+                </div>
 
 
 
               </div>
-              <div className="w-[30%] hidden sm:hidden md:hidden lg:flex">
-                <div className="bg-[#363636] rounded-[20px] w-[25%] py-5 pl-6 pr-12 gap-4 flex flex-col absolute top-[10vh] left-[2%]">
-                  <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
+              <div className="menu-side-filter-options">
+                <div className="menu-side-filter-wrapper">
+                  <div className="menu-locaion-detail-title">
                     {locationdata.published_name}
                   </div>
-                  <div className="flex items-center gap-[10px]">
+                  <div className="filter-option-list">
                     <img src={locationIconOrenge} alt="locationIcon" />
                     <span
                       style={{ fontSize: "clamp(.2rem, .9vw, 1rem)" }}
@@ -654,7 +661,7 @@ const ProductPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-[85%] my-[25vh] flex flex-col gap-[10px]">
+                <div className="menu-side-filter-list-w">
                   <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
                     Filters
                   </div>
@@ -662,11 +669,10 @@ const ProductPage = () => {
                     onClick={() =>
                       OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
                     }
-                    className={`font-poppins font-semibold leading-[23px] text-[#fff] h-[50px] px-10 flex items-center cursor-pointer ${
-                      activetag === "all"
-                        ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                        : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                    }`}
+                    className={`font-poppins font-semibold leading-[23px] text-[#fff] h-[50px] px-10 flex items-center cursor-pointer ${activetag === "all"
+                      ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
+                      : "hover:bg-[#C21F24] hover:border-[#C21F24]"
+                      }`}
                   >
                     All Dishes
                   </button>
@@ -685,11 +691,10 @@ const ProductPage = () => {
                                 tag.id
                               )
                             }
-                            className={`font-poppins font-semibold text-sm leading-[23px] text-[#fff] h-[40px] px-10 flex items-center cursor-pointer ${
-                              activetag === tag.id
-                                ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                                : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                            }`}
+                            className={`font-poppins font-semibold text-sm leading-[23px] text-[#fff] h-[40px] px-10 flex items-center cursor-pointer ${activetag === tag.id
+                              ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
+                              : "hover:bg-[#C21F24] hover:border-[#C21F24]"
+                              }`}
                           >
                             <img
                               src={vegLefIcon}
@@ -722,12 +727,11 @@ const ProductPage = () => {
                   } */}
 
                   <div
-                  style={{fontSize:'12px'}}
-                    className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${
-                      selectedMenuIndex === "all"
-                        ? "bg-[#C21F24]"
-                        : "hover:bg-[#C21F24] cursor-pointer"
-                    }`}
+                    style={{ fontSize: '12px' }}
+                    className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === "all"
+                      ? "bg-[#C21F24]"
+                      : "hover:bg-[#C21F24] cursor-pointer"
+                      }`}
                     onClick={() =>
                       OnClickMenu("ALL", "all", selectedTagIndex, activetag)
                     }
@@ -737,13 +741,12 @@ const ProductPage = () => {
                   {restorentmenudata &&
                     restorentmenudata.map((menu, index) => (
                       <div
-                      style={{fontSize:'12px'}}
+                        style={{ fontSize: '12px' }}
                         key={index}
-                        className={`border-[1px] border-[#E5B638] px-4 rounded-md py-2 text-base text-[#fff] flex gap-[5px] responsive-font-size cursor-pointer ${
-                          selectedMenuIndex === index
-                            ? "bg-[#C21F24]"
-                            : "hover:bg-[#C21F24] "
-                        }`}
+                        className={`border-[1px] border-[#E5B638] px-4 rounded-md py-2 text-base text-[#fff] flex gap-[5px] responsive-font-size cursor-pointer ${selectedMenuIndex === index
+                          ? "bg-[#C21F24]"
+                          : "hover:bg-[#C21F24] "
+                          }`}
                         onClick={() =>
                           OnClickMenu(
                             menu.id,
@@ -780,7 +783,7 @@ const ProductPage = () => {
                                           <img
                                             src={
                                               item.item_image &&
-                                              item.item_image.split("media/")[1]
+                                                item.item_image.split("media/")[1]
                                                 ? item.item_image
                                                 : "https://placehold.co/600x400"
                                             }
@@ -804,35 +807,34 @@ const ProductPage = () => {
                                             }}
                                           >
                                             <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
-                                            {item.name}
+                                              {item.name}
                                               <div
-                                                className={`${
-                                                  selectedItemIndex === item.id  ? "flex" : "hidden"
-                                                } absolute z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
+                                                className={`${selectedItemIndex === item.id ? "flex" : "hidden"
+                                                  } absolute z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
                                               >
                                                 <ul
                                                   className="p-2 flex justify-center items-center gap-7 h-full"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
-                                                  <li onClick={() => OnClickReactionpopup(item,'LOVEIT')}>
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={RedHeartIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-1">
-                                                      {item.loveit_count}
+                                                        {item.loveit_count}
                                                       </span>
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item,'LIKEIT')}>
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={LikeIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
-                                                      {item.likeit_count}
+                                                        {item.likeit_count}
                                                       </span>
                                                     </div>
                                                   </li>
@@ -847,14 +849,14 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li> */}
-                                                  <li onClick={() => OnClickReactionpopup(item,'SAVEIT')}>
+                                                  <li onClick={() => OnClickReactionpopup(item, 'SAVEIT')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={SaveIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-2">
-                                                      {item.saveit_count}
+                                                        {item.saveit_count}
                                                       </span>
                                                     </div>
                                                   </li>
@@ -892,41 +894,41 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                          <div className="pi-each">
-                                            <img
-                                              src={
-                                                menu.menu_item_info_list[
-                                                  itemIndex + 1
-                                                ].item_image &&
-                                                menu.menu_item_info_list[
-                                                  itemIndex + 1
-                                                ].item_image.split("media/")[1]
-                                                  ? menu.menu_item_info_list[
+                                            <div className="pi-each">
+                                              <img
+                                                src={
+                                                  menu.menu_item_info_list[
+                                                    itemIndex + 1
+                                                  ].item_image &&
+                                                    menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ].item_image.split("media/")[1]
+                                                    ? menu.menu_item_info_list[
                                                       itemIndex + 1
                                                     ].item_image
-                                                  : "https://placehold.co/600x400"
-                                              }
-                                              // src={'https://cdn.mygingergarlickitchen.com/images_webp/800px/800px-recipe-amritsari-chole-anupama-paliwal-my-ginger-garlic-kitchen-5.webp'}
-                                              alt="deshimg"
-                                              style={{
-                                                maxWidth: "30%",
-                                                maxHeight: "100%",
-                                                objectFit: "cover",
-                                                width: "100%",
-                                                height: "100%",
-                                                borderTopLeftRadius: "10px",
-                                                borderBottomLeftRadius: "10px",
-                                              }}
-                                            />
-                                            <div
-                                              className="flex flex-col justify-center"
-                                              style={{
-                                                width: "100%",
-                                                marginTop: "20px",
-                                                marginBottom: "20px",
-                                              }}
-                                            >
-                                              {/* <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] pr-[10px]">
+                                                    : "https://placehold.co/600x400"
+                                                }
+                                                // src={'https://cdn.mygingergarlickitchen.com/images_webp/800px/800px-recipe-amritsari-chole-anupama-paliwal-my-ginger-garlic-kitchen-5.webp'}
+                                                alt="deshimg"
+                                                style={{
+                                                  maxWidth: "30%",
+                                                  maxHeight: "100%",
+                                                  objectFit: "cover",
+                                                  width: "100%",
+                                                  height: "100%",
+                                                  borderTopLeftRadius: "10px",
+                                                  borderBottomLeftRadius: "10px",
+                                                }}
+                                              />
+                                              <div
+                                                className="flex flex-col justify-center"
+                                                style={{
+                                                  width: "100%",
+                                                  marginTop: "20px",
+                                                  marginBottom: "20px",
+                                                }}
+                                              >
+                                                {/* <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] pr-[10px]">
                                                 {
                                                   menu.menu_item_info_list[
                                                     itemIndex + 1
@@ -939,54 +941,53 @@ const ProductPage = () => {
                                                   />
                                                 </span>
                                               </div> */}
-                                              <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
-                                              {
-                                                menu.menu_item_info_list[
-                                                  itemIndex + 1
-                                                ].name
-                                              }
-                                              <div
-                                                className={`${
-                                                  selectedItemIndex === menu.menu_item_info_list[
-                                                    itemIndex + 1
-                                                  ].id  ? "flex" : "hidden"
-                                                } absolute Z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
-                                              >
-                                                <ul
-                                                  className="p-2 flex justify-center items-center gap-7 h-full"
-                                                  aria-labelledby="dropdownDividerButton"
-                                                >
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LOVEIT')} >
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={RedHeartIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-1">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].loveit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'LIKEIT')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={LikeIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-0">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].likeit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                  {/* <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
+                                                <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
+                                                  {
+                                                    menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ].name
+                                                  }
+                                                  <div
+                                                    className={`${selectedItemIndex === menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ].id ? "flex" : "hidden"
+                                                      } absolute Z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
+                                                  >
+                                                    <ul
+                                                      className="p-2 flex justify-center items-center gap-7 h-full"
+                                                      aria-labelledby="dropdownDividerButton"
+                                                    >
+                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LOVEIT')} >
+                                                        <div className="flex flex-col justify-center items-center">
+                                                          <img
+                                                            src={RedHeartIcon}
+                                                            alt="hertIcon"
+                                                          />
+                                                          <span className="text-xs font-normal text-white pt-1">
+                                                            {
+                                                              menu.menu_item_info_list[
+                                                                itemIndex + 1
+                                                              ].loveit_count
+                                                            }
+                                                          </span>
+                                                        </div>
+                                                      </li>
+                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LIKEIT')}>
+                                                        <div className="flex flex-col justify-center items-center">
+                                                          <img
+                                                            src={LikeIcon}
+                                                            alt="hertIcon"
+                                                          />
+                                                          <span className="text-xs font-normal text-white pt-0">
+                                                            {
+                                                              menu.menu_item_info_list[
+                                                                itemIndex + 1
+                                                              ].likeit_count
+                                                            }
+                                                          </span>
+                                                        </div>
+                                                      </li>
+                                                      {/* <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={DislikeIcon}
@@ -1001,67 +1002,67 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li> */}
-                                                  <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'SAVEIT')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={SaveIcon}
-                                                        alt="hertIcon"
-                                                       
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-2">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].saveit_count
-                                                      }
-                                                      </span>
-                                                    </div>
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                              <span
-                                                onClick={() =>
-                                                  OnClickLikepopup(menu.menu_item_info_list[
-                                                    itemIndex + 1
-                                                  ].id)
-                                                }
-                                              >
-                                                <img
-                                                  src={hertIcon}
-                                                  alt="hertIcon"
-                                                />
-                                              </span>
-                                            </div>
-                                              <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size mt-4">
-                                                ${" "}
-                                                {
-                                                  menu.menu_item_info_list[
-                                                    itemIndex + 1
-                                                  ].amount
-                                                }
-                                                <span>
+                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'SAVEIT')}>
+                                                        <div className="flex flex-col justify-center items-center">
+                                                          <img
+                                                            src={SaveIcon}
+                                                            alt="hertIcon"
+
+                                                          />
+                                                          <span className="text-xs font-normal text-white pt-2">
+                                                            {
+                                                              menu.menu_item_info_list[
+                                                                itemIndex + 1
+                                                              ].saveit_count
+                                                            }
+                                                          </span>
+                                                        </div>
+                                                      </li>
+                                                    </ul>
+                                                  </div>
+                                                  <span
+                                                    onClick={() =>
+                                                      OnClickLikepopup(menu.menu_item_info_list[
+                                                        itemIndex + 1
+                                                      ].id)
+                                                    }
+                                                  >
+                                                    <img
+                                                      src={hertIcon}
+                                                      alt="hertIcon"
+                                                    />
+                                                  </span>
+                                                </div>
+                                                <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size mt-4">
+                                                  ${" "}
                                                   {
                                                     menu.menu_item_info_list[
                                                       itemIndex + 1
-                                                    ].total_reaction_count
+                                                    ].amount
                                                   }
-                                                </span>
-                                              </div>
-                                              <button
-                                                className="menu-action-cart-btn"
-                                                onClick={() =>
-                                                  OnClickAddButton(
-                                                    menu.menu_item_info_list[
+                                                  <span>
+                                                    {
+                                                      menu.menu_item_info_list[
+                                                        itemIndex + 1
+                                                      ].total_reaction_count
+                                                    }
+                                                  </span>
+                                                </div>
+                                                <button
+                                                  className="menu-action-cart-btn"
+                                                  onClick={() =>
+                                                    OnClickAddButton(
+                                                      menu.menu_item_info_list[
                                                       itemIndex + 1
-                                                    ]
-                                                  )
-                                                }
-                                              >
-                                                ADD
-                                              </button>
+                                                      ]
+                                                    )
+                                                  }
+                                                >
+                                                  ADD
+                                                </button>
+                                              </div>
                                             </div>
-                                          </div>
-                                        )}
+                                          )}
                                       </div>
                                     )
                                 )}

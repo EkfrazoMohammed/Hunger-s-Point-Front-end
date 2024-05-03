@@ -205,9 +205,24 @@
   color: #fff;
   font-family: Poppins;
 }
+
+
+@media screen and (max-width: 1280px){
+  .checkout-details-frame,
+  .choose-method-button{
+    gap: 20px;
+  }
+  .choose-method-button .checkout-details-frame .summary10,
+  .choose-method-button .checkout-details-frame .summary5{
+    margin-top: 0;
+  }
+ }
+
 @media screen and (max-width: 1150px) {
   .user-instance {
     flex-wrap: wrap;
+    gap: 32px;
+
   }
 }
 @media screen and (max-width: 800px) {
@@ -227,7 +242,7 @@
     min-width: 100%;
   }
   .user-instance {
-    gap: 0 32px;
+    gap: 32px;
   }
 }
 @media screen and (max-width: 450px) {
