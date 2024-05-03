@@ -242,6 +242,7 @@ const ProductPage = () => {
 
   const closeWoAddon = useCallback(() => {
     setWoAddonOpen(false);
+    OnClickMenu("ALL", selectedMenuIndex, "all", "all")
   }, []);
 
   const AddedToBasket = useCallback(() => {
