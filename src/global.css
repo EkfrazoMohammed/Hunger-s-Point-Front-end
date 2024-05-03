@@ -200,11 +200,11 @@ body::-webkit-scrollbar {
 /* slider */
 .review-section-frame .slick-next {
   right: 56px;
-  z-index: 9;
+  z-index: 1;
 }
 .review-section-frame .slick-prev {
   left: 25px;
-  z-index: 9;
+  z-index: 1;
 }
 .review-section-frame .slick-slide img {
   display: block;
@@ -510,6 +510,33 @@ body::-webkit-scrollbar {
   .filer-available #sidenav-1 {
     border-top-left-radius: 0;
   }
+  .portalPopupOverlay .background-frame {
+    border: none;
+    height: auto;
+  }
+  .portalPopupOverlay .wo-addon {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .dark-mode-parent {
+    align-items: center;
+    justify-content: center;
+  }
+  .button-group-frame,
+  .buttons-frame1,
+  .dark-mode-image-frames {
+    align-items: center;
+  }
+  .buttons-frame1{
+    justify-content: center;
+    gap: 10px;
+  }
+  .copyright-thin-frame,
+  .recieve-updates-frame {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 767px) {
@@ -519,6 +546,12 @@ body::-webkit-scrollbar {
   .sec-info--w.info_event {
     flex-direction: column-reverse;
     margin-top: 20px;
+  }
+  .menu-items-list {
+    gap: 0;
+  }
+  .pi-container {
+    gap: 15px;
   }
 }
 

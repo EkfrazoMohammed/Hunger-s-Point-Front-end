@@ -763,14 +763,14 @@ const ProductPage = () => {
                 </div>
                 <div className="pdp-list-container w-[90%] flex flex-col gap-6 border-t border-t-[#FFFFFF]">
                   <div>
-                    <div className="w-full flex flex-col gap-y-[30px] mt-6 mb-12">
+                    <div className="menu-items-list w-full flex flex-col gap-y-[30px] mt-6 mb-12">
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
                             <div className="font-poppins font-normal text-lg text-[#fff] bg-[#4C4C4C] flex items-center py-[10px] justify-center mt-6">
                               {menu.menu_title}
                             </div>
-                            <div className="w-full flex flex-col gap-y-[30px] mt-6">
+                            <div className="pi-container w-full flex flex-col gap-y-[30px] mt-6">
                               {menu.menu_item_info_list &&
                                 menu.menu_item_info_list.map(
                                   (item, itemIndex) =>
