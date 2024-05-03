@@ -21,6 +21,7 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
   const [count, setCount] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
   const [loggedin, setLoggedin] = useState(true);
+  const [finalamount, setfinalamount] = useState(menu_item.amount);
 
   const setDefaultSelectedItems = () => {
     const defaultSelectedItems = [
@@ -46,38 +47,156 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
     
   // }, []);
   console.log('menu_item====>complete',menu_item)
+
+
+
   const handleCategorySelect = (category, itemName) => {
     const updatedMenuItems = menu_item.data.map((cat) => {
         if (cat.key === category) {
+          let finalamount1
             const updatedValue = cat.value.map((item) => {
-                if (item.name === itemName) {
-                    // Toggle the selected state
-                    const updatedItem = { ...item, selected: !item.selected };
-                    const price = parseFloat(updatedItem.price);
-                    if (updatedItem.selected) {
-                      menu_item.amount = (parseFloat(menu_item.amount) + parseFloat(price)).toFixed(2);
-                    
-                    } else {
-                        // Subtract the price if deselected
-                        menu_item.amount = (parseFloat(menu_item.amount) - parseFloat(price)).toFixed(2);
+                // Check if the category key is 'size'
+                if (cat.key.toLowerCase() === 'size') {
+                    // For the 'size' category, allow only one item to be selected at a time
+                    // If the clicked item is already selected, keep it selected
+                    // If the clicked item is not selected, toggle its selection and deselect other items
+                    const isSelected = item.name === itemName;
+                   
+                    const updatedItem = { ...item, selected: isSelected };
+                    console.log(updatedItem,'item==>1111')
+                    menu_item.amount = parseFloat(updatedItem.price).toFixed(2)
+                    if (updatedItem.selected ==true){
+                      setfinalamount(menu_item.amount)
                     }
-                    return updatedItem;
+                    
+                    return { ...item, selected: isSelected};
+                } else {
+                    // For other categories, toggle the selection state of the clicked item
+                    const isSelected = item.name === itemName ? !item.selected : item.selected;
+                    
+                    const updatedItem = { ...item, selected: isSelected };
+                    console.log(updatedItem,'updatedItem===>1222',finalamount)
+                    if (updatedItem.selected ==true){
+                      finalamount1 = parseFloat(finalamount)  +  parseFloat(updatedItem.price)
+                    }
+                    if (updatedItem.selected ==false){
+                      finalamount1 = parseFloat(finalamount)  - parseFloat(updatedItem.price)
+                      
+                    }
+                    console.log(finalamount1,'finalamount1')
+                    setfinalamount(finalamount1)
+                    return  { ...item, selected: isSelected };
+                    
                 }
-                return item;
             });
+
+            // If the category key is 'size', find the first item and set it as default
+            if (cat.key.toLowerCase() === 'size') {
+                const firstItem = updatedValue.find(item => item.selected);
+                if (!firstItem && updatedValue.length > 0) {
+                    updatedValue[0].selected = true;
+                }
+            }
+
+            // Update state with the new menu_item data
             return { ...cat, value: updatedValue };
         }
         return cat;
     });
 
-    // Update state with the new menu_item data
     setMenuitemdata({ ...menu_item, data: updatedMenuItems });
 };
+
+  // 111111
+//   const handleCategorySelect = (category, itemName,all_cat_val) => {
+//     const updatedMenuItems = menu_item.data.map((cat) => {
+//         if (cat.key === category) {
+//             const updatedValue = cat.value.map((item) => {
+//                 if (item.name === itemName) {
+//                   console.log(cat.key.toLowerCase(),'cat.key.toLowerCase()==>1')
+//                   if (cat.key.toLowerCase() === 'size') {
+
+//                   }
+//                     // Toggle the selected state
+//                     const updatedItem = { ...item, selected: !item.selected };
+//                     console.log(updatedItem,'updatedItem===11')
+//                     const price = parseFloat(updatedItem.price);
+//                     if (updatedItem.selected) {
+//                       console.log(parseFloat(menu_item.amount),'+++',parseFloat(price))
+//                       if (parseFloat(menu_item.amount) != parseFloat(price))
+//                       {menu_item.amount = (parseFloat(menu_item.amount) + parseFloat(price)).toFixed(2);}
+                      
+                    
+//                     } else {
+//                       console.log(parseFloat(menu_item.amount),'---',parseFloat(price))
+//                       if (parseFloat(menu_item.amount) != parseFloat(price))
+//                        { // Subtract the price if deselected
+//                         menu_item.amount = (parseFloat(menu_item.amount) - parseFloat(price)).toFixed(2);}
+//                     }
+//                     return updatedItem;
+//                 }
+//                 return item;
+//             });
+//             return { ...cat, value: updatedValue };
+//         }
+        
+//         return cat;
+        
+//     });
+
+//     // Update state with the new menu_item data
+//     setMenuitemdata({ ...menu_item, data: updatedMenuItems });
+
+// };
+
+
+  // 22222222
+
+// const handleCategorySelect = (category, itemName) => {
+//   const updatedMenuItems = menu_item.data.map((cat) => {
+//     if (cat.key === category) {
+//       const updatedValue = cat.value.map((item) => {
+//         let isSelected;
+//         if (cat.key.toLowerCase() === 'size') {
+//           // For category key 'size', allow only one item to be selected at a time
+//           // If the clicked item is already selected, keep it selected
+//           // If the clicked item is not selected, toggle its selection and deselect other items
+//           isSelected = item.name === itemName ? !item.selected : false;
+//         } else {
+//           // For other categories, toggle the selection state of the clicked item
+//           isSelected = item.name === itemName ? !item.selected : item.selected;
+//         }
+
+//         // Update the item with the new selection state
+//         const updatedItem = { ...item, selected: isSelected };
+//         const price = parseFloat(updatedItem.price);
+//         if (updatedItem.selected) {
+//           console.log(parseFloat(menu_item.amount),'parseFloat(menu_item.amount)+++')
+//           console.log(parseFloat(price).toFixed(2),'parseFloat(price)).toFixed(2)')
+//           menu_item.amount = (parseFloat(menu_item.amount) + parseFloat(price)).toFixed(2);
+//         } else {
+//           console.log(parseFloat(menu_item.amount),'parseFloat(menu_item.amount)---')
+//           console.log(parseFloat(price).toFixed(2),'parseFloat(price)).toFixed(2)')
+//           menu_item.amount = (parseFloat(menu_item.amount)-parseFloat(price).toFixed(2) ).toFixed(2);
+//         }
+//         return updatedItem;
+//       });
+//       return { ...cat, value: updatedValue };
+//     }
+//     return cat;
+//   });
+
+//   // Update state with the new menu_item data
+//   setMenuitemdata({ ...menu_item, data: updatedMenuItems });
+// };
+
+
+
+
+  console.log(selectedItems,'selectedItems==>')
+  console.log(menu_item, "menu_item====>");
   
-
-
-  // console.log(selectedItems,'selectedItems==>')
-  // console.log(menu_item, "menu_item====>");
+  
   useEffect(() => {
     if (qty) {
       setCount(qty);
@@ -154,7 +273,7 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
             <div className="quantity-frame">
               <div className="minus-add-frame">
                 <div className="price">Price</div>
-                <b className="empty-space">${(menu_item?.amount)*count}</b>
+                <b className="empty-space">${(finalamount)*count}</b>
               </div>
               <div className="close-instance">
                 <div className="quantity1">Quantity</div>
@@ -229,7 +348,7 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
                           item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'
                         }`}
                         style={{ minWidth: '45%', margin: '3px', cursor: 'pointer' }}
-                        onClick={() => handleCategorySelect(category.key, item.name)}
+                        onClick={() => handleCategorySelect(category.key, item.name,category?.value)}
                       >
                         <div className="flex">
                           <span>{item.name}{item.selected}</span>
