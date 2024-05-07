@@ -7,7 +7,7 @@ import {
 } from "../../../variants/framerMotionVariants";
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
-import pageBannerImg from "../../../assets/top_banner.jpg";
+import pageBannerImg from "../../../assets/francise_top1.png";
 import contactUsImg from "../../../assets/images/contact-us-side-img.png";
 import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
@@ -58,25 +58,19 @@ export const Franchise = () => {
           Title="Franchise"
           leftDescription={
             <>
-              <p className="mt-4">
-                Dolore ullamco mollit elit non ea pariatur mollit magna
-                cupidatat labore sunt consequat elit. Est ad cupidatat velit
-                anim aliquip in anim mollit. Excepteur incididunt ex sint labore
-                velit ut aliquip ad magna exercitation qui dolor laborum. Veniam
-                ad consectetur aliquip cupidatat aute sunt cupidatat ea.
-                Pariatur pariatur qui esse cupidatat commodo ullamco ex. Nulla
-                officia veniam ex culpa officia ad ex dolor nostrud in. Ullamco
-                labore nulla proident nisi. Cupidatat sit aute esse id.
-              </p>
+              <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
+              Are you a passionate entrepreneur with a love for Indian cuisine? The Hunger's Point welcomes ambitious individuals to join as franchise partners!
 
-              <p className="mt-4">
+              </p>
+{/* 
+              <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
                 Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
                 anim veniam enim laboris id ad adipisicing laboris aliqua.
                 Veniam commodo reprehenderit mollit cupidatat minim officia
                 voluptate dolor minim proident et magna dolore. Ea proident sit
                 laborum amet amet veniam. Labore Lorem et quis fugiat sint
                 fugiat. Enim ad proident nisi ipsum nostrud duis.
-              </p>
+              </p> */}
             </>
           }
         />
@@ -85,7 +79,7 @@ export const Franchise = () => {
           type="banner_with_text"
           bannerImg={banner2}
           bannerText={
-            <h1 className="text-[30px] text-center">
+            <h1 className="text-center" style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,color:`var(--hp-yellow-600)`}} >
               Wait is over! Own a Store at your convenient location now.
             </h1>
           }
@@ -93,21 +87,18 @@ export const Franchise = () => {
 
         <section className="fp-wrapper-main bottom-form-container">
           <div className="para-container">
-            <div className="fp-para-section-title fp-para-section-title-md bottom-a-line w-2/3 uppercase font-bold">
+            <div className="what-we-believe4 fp-para-section-title bottom-a-line">
               Become a partner with us
             </div>
-            <div className="fp-para-section-title-sm w-2/3 mt-2">
-              Officia ex aute aliqua excepteur eu mollit Lorem in aute veniam
-              esse dolor. Duis ad nisi culpa fugiat aliquip esse. Voluptate ad
-              sit consectetur eu magna voluptate duis dolore Lorem id amet in
-              excepteur eu. Duis reprehenderit
+            <div className="fp-para-section-title-sm  mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}  >
+            Build your own business with the power of a recognized brand. Share the joy of authentic Indian cuisine with your local area. Owning a Hunger's Point franchise is more than just running a restaurant – it's about sharing a culinary experience and fostering a connection. If you're ready to take on a flavorful journey, we invite you to learn more about our exciting franchise opportunities!  Contact us today to explore the delicious possibilities!
             </div>
           </div>
-          <div className="sec-info--w gap-6 justify-between mt-10 ">
+          <div className="sec-info--w gap-6 justify-between mt-10 " style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
             <div className="side--w h-full">
               <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" />
             </div>
-            <div className="side--w h-full">
+            <div className=" h-full">
              <FeedbackForm />
             </div>
           </div>

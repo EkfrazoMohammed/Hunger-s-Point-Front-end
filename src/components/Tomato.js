@@ -93,8 +93,8 @@ const Tomato = ({
   // console.log(menu_items,'menu_items===>111')
   return (
         <>
-      <div className="border border-[#565656] rounded-3xl w-full">
-          <div className="tomato" style={tomatoStyle}>
+      <div className="w-full" style={{border:`.5px solid var(--hp-yellow-600)`,borderRadius:'20px',backgroundColor:`var(--card-bg)`}}>
+          <div className="tomato" style={{tomatoStyle,backgroundColor:`var(--card-bg)`}}>
             <div
               className="edoneil-avvd-zlh-dow-aunsplash11"
               style={edoneilAvvdZlhDowAunsplashStyle}
@@ -110,14 +110,14 @@ const Tomato = ({
                 <div className="location-instance">
                   <div className="chole-batura-parent3">
                     <div className="chole-batura12">{item_nanme}</div>
-                    <div className="div31">{prop}</div>
+                    {/* <div className="div31" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{prop}</div> */}
                   </div>
                   <div
                     className="input-field"
                     onClick={() => openWoAddon(menuItem)}
                     style={inputFieldStyle}
                   >
-                    <div className="qty">{qty}</div>
+                    <div className="qty" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{qty}</div>
                     <img className="icon" alt="" src={icon2} />
                   </div>
                 </div>
@@ -125,8 +125,8 @@ const Tomato = ({
             </div>
             <div className="ginger-frame">
               <div className="inputfieldframe">
-                <div className="input-field1">{inputField}</div>
-                <div className="input-field2">
+                <div className="input-field1" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{inputField}</div>
+                {/* <div className="input-field2"> */}
                   <img
                     className="delete-icon"
                     loading="eager"
@@ -134,7 +134,7 @@ const Tomato = ({
                     onClick={()=>{DeletedBasket(menuItem)}}
                     src={delete1}
                   />
-                </div>
+                {/* </div> */}
               </div>
             </div>
           </div>

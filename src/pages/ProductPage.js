@@ -12,8 +12,8 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import locationIconOrenge from "../assets/locationIconOrenge.svg";
 import productHeadImg from "../assets/productHeadImg.png";
-import bannerTop1 from "../assets/banner_top_2.jpg";
-
+import bannerTop1 from "../assets/artboard1.png";
+import bannerTop2 from "../assets/ourstory_top_2.jpg";
 import callIconOrenge from "../assets/callIconOrenge.svg";
 import watchIconOrenge from "../assets/watchIconOrenge.svg";
 import add from "../assets/add.svg";
@@ -49,6 +49,7 @@ import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
 import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
 import DarkMode from "../components/DarkMode";
+import DarkMode1 from "../components/DarkMode1";
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -468,268 +469,22 @@ const ProductPage = () => {
 
   return (
     <>
-      {/* <SubMenuPagesHeader bannerImg={productHeadImg} /> */}
 
-      <div className="bg-[#252525] h-fit min-h-[100vh] ">
-        {/* <Header /> */}
+      <div className=" h-fit min-h-[100vh] ">
 
         <div>
-          <div className="w-full relative">
+          <div className="w-full relative" style={{backgroundColor:`var(--website-bg)`}}>
             <img src={bannerTop1} alt="productPage" />
             <div className="w-full flex justify-between ">
-              <button
-                data-collapse-toggle="mobile-menu-2 "
-                type="button"
-                className={`m-filter-toggle-btn ${isVisible ? "filter-menu-open" : "" }  inline-flex items-center h-fit top-0 p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-[#363636] dark:focus:bg-[#363636]`}
-                aria-controls="mobile-menu-2"
-                aria-expanded="false"
-                onClick={() => setIsVisible(!isVisible)}
-              >
-                <span className="sr-only">Open main menu</span>
-                {!isVisible ?
-                    /* <svg
-                      className="w-6 h-6"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg> */
-                    <img src={FilterIcon} alt="filter"  className="w-[25px] h-[25px] invert" />
-                  :
-                  (
-
-                    <svg
-                      className="w-6 h-6"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                  )
-                }
-
-              </button>
-              <div className="h-full" onClick={() => setIsVisible(false)}>
-                {/* <Sidebar isOpen={isVisible} /> */}
-
-
-
-                <div className={`${isVisible ? "filer-available" : "hidden"}`}>
-                  <nav
-                    id="sidenav-1"
-                    style={{ height: "-webkit-fill-available" }}
-                    className="absolute bg-[#252525] left-0 mt-10 z-[1035]  w-[50%] sm:w-[40%] md:w-[35%]  lg:hidden -translate-x-full overflow-hidden shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
-                    data-te-sidenav-init
-                    data-te-sidenav-hidden="false"
-                    data-te-sidenav-position="absolute"
-                  >
-                    <ul
-                      className="relative m-0 list-none px-[0.2rem]"
-                      data-te-sidenav-menu-ref
-                    >
-                      <div className="bg-[#363636] rounded-[20px] w-full py-5 pl-1 pr-1 gap-5 flex flex-col">
-                        <div className="font-poppins font-semibold text-3xl text-[#E5B638] ml-3">
-                          {locationdata.published_name}
-                        </div>
-                        <div className="flex items-center gap-[10px]">
-                          <img src={locationIconOrenge} alt="locationIcon" />
-
-                          <span className="font-poppins font-normal text-sm text-[#fff]">
-                            {locationdata.address_info}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-[10px]">
-                          <img src={callIconOrenge} alt="locationIcon" />
-
-                          <span className="font-poppins font-normal text-sm text-[#fff]">
-                            {locationdata.phone}
-                          </span>
-                        </div>
-                        <div className="flex items-start gap-[10px]">
-                          <img src={watchIconOrenge} alt="locationIcon" />
-
-                          <div className="font-poppins font-normal text-sm text-[#fff]">
-                            <div className="flex gap-[10px]">
-                              Mon - Fri <span>10am - 9pm</span>
-                            </div>
-                            <div className="flex gap-[10px]">
-                              Sat - Sun <span>10am - 11pm</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="w-[85%]  flex flex-col gap-[10px]">
-                        <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
-                          Filters
-                        </div>
-                        <button
-                          onClick={() =>
-                            OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
-                          }
-                          className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[50px] px-5 flex items-center cursor-pointer ${activetag === "all"
-                            ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                            : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                            }`}
-                        >
-                          All Dishes
-                        </button>
-
-                        {restorentmenutagdata.length > 0 ? (
-                          <>
-                            {restorentmenutagdata &&
-                              restorentmenutagdata.map((tag, index) => (
-                                <button
-                                  key={index}
-                                  onClick={() =>
-                                    OnClickMenu(
-                                      activemenu,
-                                      selectedMenuIndex,
-                                      index,
-                                      tag.id
-                                    )
-                                  }
-                                  className={`font-poppins font-semibold responsive-font-size leading-[23px] text-[#fff] h-[40px] px-5 flex items-center cursor-pointer ${activetag === tag.id
-                                    ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                                    : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                                    }`}
-                                >
-                                  <img
-                                    src={vegLefIcon}
-                                    alt="addicon"
-                                    style={{ marginRight: "10px" }}
-                                  />{" "}
-                                  {tag.name}
-                                </button>
-                              ))}
-                          </>
-                        ) : null}
-                      </div>
-                    </ul>
-                  </nav>
-                </div>
-
-
-
-              </div>
-              <div className="menu-side-filter-options">
-                <div className="menu-side-filter-wrapper">
-                  <div className="menu-locaion-detail-title">
-                    {locationdata.published_name}
-                  </div>
-                  <div className="filter-option-list">
-                    <img src={locationIconOrenge} alt="locationIcon" />
-                    <span
-                      style={{ fontSize: "clamp(.2rem, .9vw, 1rem)" }}
-                      className="font-poppins font-normal text-sm text-[#fff]"
-                    >
-                      {locationdata.address_info}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-[10px]">
-                    <img src={callIconOrenge} alt="locationIcon" />
-                    <span
-                      style={{ fontSize: "clamp(.2rem, .9vw, 1rem)" }}
-                      className="font-poppins font-normal text-sm text-[#fff]"
-                    >
-                      {locationdata.phone}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-[10px]">
-                    <img src={watchIconOrenge} alt="locationIcon" />
-                    <div className="font-poppins font-normal text-sm text-[#fff]">
-                      <div
-                        style={{ fontSize: "clamp(.2rem, .9vw, 1rem)" }}
-                        className="flex gap-[10px]"
-                      >
-                        Mon - Fri <span>10am - 9pm</span>
-                      </div>
-                      <div
-                        style={{ fontSize: "clamp(.2rem, .9vw, 1rem)" }}
-                        className="flex gap-[10px]"
-                      >
-                        Sat - Sun <span>10am - 11pm</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="menu-side-filter-list-w">
-                  <div className="font-poppins font-normal text-lg leading-[46px] text-[#fff] px-10">
-                    Filters
-                  </div>
-                  <button
-                    onClick={() =>
-                      OnClickMenu(activemenu, selectedMenuIndex, "all", "all")
-                    }
-                    className={`font-poppins font-semibold leading-[23px] text-[#fff] h-[50px] px-10 flex items-center cursor-pointer ${activetag === "all"
-                      ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                      : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                      }`}
-                  >
-                    All Dishes
-                  </button>
-
-                  {restorentmenutagdata.length > 0 ? (
-                    <>
-                      {restorentmenutagdata &&
-                        restorentmenutagdata.map((tag, index) => (
-                          <button
-                            key={index}
-                            onClick={() =>
-                              OnClickMenu(
-                                activemenu,
-                                selectedMenuIndex,
-                                index,
-                                tag.id
-                              )
-                            }
-                            className={`font-poppins font-semibold text-sm leading-[23px] text-[#fff] h-[40px] px-10 flex items-center cursor-pointer ${activetag === tag.id
-                              ? "bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]"
-                              : "hover:bg-[#C21F24] hover:border-[#C21F24]"
-                              }`}
-                          >
-                            <img
-                              src={vegLefIcon}
-                              alt="addicon"
-                              style={{ marginRight: "10px" }}
-                            />{" "}
-                            {tag.name}
-                          </button>
-                        ))}
-                    </>
-                  ) : null}
-                </div>
-              </div>
-              <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-[70%] sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col lg:items-start">
-                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-10 lg:p-0 px-10">
-                  {/* <button onClick={() => OnClickMenu(activemenu, selectedMenuIndex, 'all', 'all')} className={`border-[3px] border-[#E5B638] px-8 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] ${activetag === 'all' ? 'bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]' : 'hover:bg-[#C21F24] hover:border-[#C21F24]'
-                    }`}>
-                    All Dishes
-                  </button>
-                  {restorentmenutagdata.length > 0 ? <>
-                    {restorentmenutagdata && restorentmenutagdata.map((tag, index) => (
-                      <button key={index} onClick={() => OnClickMenu(activemenu, selectedMenuIndex, index, tag.id)} className={`border-[3px] border-[#E5B638] px-8 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] ${activetag === tag.id ? 'bg-[#C21F24] border-[#C21F24] hover:bg-[#C21F24] hover:border-[#C21F24]' : 'hover:bg-[#C21F24] hover:border-[#C21F24]'
-                        }`}>
-                        <img src={vegLefIcon} alt="addicon" /> {tag.name}
-                      </button>
-                    ))}
-                  </>
-                    :
-                    null
-                  } */}
+            
+              <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-full sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col">
+              <div className="sticky-top-wrapper" style={{backgroundColor:`var(--website-bg)`}}>
+                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-20 px-10">
+                 
 
                   <div
-                    style={{ fontSize: '12px' }}
-                    className={`border-[3px] border-[#E5B638] px-4 rounded-md py-2 font-inter font-normal text-base text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === "all"
+                    style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease',paddingTop:'0.5rem',paddingBottom:'0.5rem'  }}
+                    className={`border-[1px] border-[#E5B638] px-4 rounded-md  font-inter font-normal text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === "all"
                       ? "bg-[#C21F24]"
                       : "hover:bg-[#C21F24] cursor-pointer"
                       }`}
@@ -742,9 +497,9 @@ const ProductPage = () => {
                   {restorentmenudata &&
                     restorentmenudata.map((menu, index) => (
                       <div
-                        style={{ fontSize: '12px' }}
+                        style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease' ,paddingTop:'0.5rem',paddingBottom:'0.5rem',backgroundColor:`var(--website-bg)`}}
                         key={index}
-                        className={`border-[1px] border-[#E5B638] px-4 rounded-md py-2 text-base text-[#fff] flex gap-[5px] responsive-font-size cursor-pointer ${selectedMenuIndex === index
+                        className={` border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex responsive-font-size cursor-pointer ${selectedMenuIndex === index
                           ? "bg-[#C21F24]"
                           : "hover:bg-[#C21F24] "
                           }`}
@@ -761,16 +516,20 @@ const ProductPage = () => {
                       </div>
                     ))}
                 </div>
-                <div className="pdp-list-container w-[90%] flex flex-col gap-6 border-t border-t-[#FFFFFF]">
+                </div>
+                
+                <div className=" w-[90%] flex flex-col gap-6 ">
                   <div>
-                    <div className="menu-items-list w-full flex flex-col gap-y-[30px] mt-6 mb-12">
+                    <div className="menu-items-list w-full flex flex-col gap-y-[20px]  mb-12">
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
-                            <div className="font-poppins font-normal text-lg text-[#fff] bg-[#4C4C4C] flex items-center py-[10px] justify-center mt-6">
+                            <div className="sticky-top-wrappe-title">
+                            <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--secondary-font-family)`,color:`var(--hp-yellow-600)`,borderRadius:'5px',backgroundColor:` var(--website-bg)`}} className="text-[#fff] flex  py-[10px] ">
                               {menu.menu_title}
                             </div>
-                            <div className="pi-container w-full flex flex-col gap-y-[30px] mt-6">
+                            </div>
+                            <div className="pi-container w-full flex flex-col gap-y-[30px] mt-3 mb-3" >
                               {menu.menu_item_info_list &&
                                 menu.menu_item_info_list.map(
                                   (item, itemIndex) =>
@@ -780,7 +539,7 @@ const ProductPage = () => {
                                         className="pi-row"
                                       >
                                         {/* First Item */}
-                                        <div className="pi-each">
+                                        <div className="pi-each" style={{backgroundColor:`var(--card-bg)`}} >
                                           <img
                                             src={
                                               item.item_image &&
@@ -807,7 +566,7 @@ const ProductPage = () => {
                                               marginBottom: "20px",
                                             }}
                                           >
-                                            <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
+                                            <div style={{fontFamily:`var(--primary-font-family-bold)`, fontSize:`var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative ">
                                               {item.name}
                                               <div
                                                 className={`${selectedItemIndex === item.id ? "flex" : "hidden"
@@ -874,7 +633,10 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                            <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] mt-4">
+                                            <div style={{fontSize:`var(--primary-font-size-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                             {item.description}
+                                            </div>
+                                            <div className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                               $ {item.amount}
                                               <span>
                                                 {item.total_reaction_count}
@@ -895,7 +657,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                            <div className="pi-each">
+                                            <div className="pi-each" style={{backgroundColor:`var(--card-bg)`}}>
                                               <img
                                                 src={
                                                   menu.menu_item_info_list[
@@ -942,7 +704,7 @@ const ProductPage = () => {
                                                   />
                                                 </span>
                                               </div> */}
-                                                <div className="flex justify-between items-center font-poppins font-bold text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
+                                                <div style={{fontFamily:`var(--primary-font-family-bold)`, fontSize:`var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
                                                   {
                                                     menu.menu_item_info_list[
                                                       itemIndex + 1
@@ -1034,6 +796,11 @@ const ProductPage = () => {
                                                     />
                                                   </span>
                                                 </div>
+                                                <div style={{fontSize:`var(--primary-font-size-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                             {menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ].description}
+                                            </div>
                                                 <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size mt-4">
                                                   ${" "}
                                                   {
@@ -1197,10 +964,11 @@ const ProductPage = () => {
             menu_item={menuitemdata}
             setMenuitemdata={setMenuitemdata}
             AddedToBasket={AddedToBasket}
+            isWoAddonOpen={isWoAddonOpen}
           />
         </PortalPopup>
       )}
-      <DarkMode />
+      <DarkMode1 />
     </>
   );
 };

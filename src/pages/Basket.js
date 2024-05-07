@@ -48,36 +48,34 @@ const Basket = () => {
   }, [navigate]);
 
   return (
-    <div className="basket">
-      <div className="summary-frame">
-        <div
-          className="item-list-frame"
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
-          <img
-            className="epback-icon2"
-            loading="eager"
-            style={{ height: "30px", marginBottom: "10px" }}
-            alt=""
-            src={epback}
-            onClick={onEpbackIconClick}
-          />
-          <h1 className="basket1" style={{ textAlign: "center" }}>
-            {" "}
-            Basket
-          </h1>
-          <div className="items1" style={{ textAlign: "center" }}>
-            {basket_count} items
-          </div>
-        </div>
+    <div className="basket" style={{ paddingTop: "100px",backgroundColor:`var(--website-bg)` }}>
+  <div className="summary-frame" style={{ position: "fixed", top: "80px", zIndex: "1",backgroundColor:`var(--website-bg)` }}>
+    <div className="item-list-frame" style={{ justifyContent: "center", alignItems: "center",marginTop:'20px' }}>
+      <img
+        className="epback-icon2"
+        loading="eager"
+      
+        alt=""
+        src={epback}
+        onClick={onEpbackIconClick}
+      />
+      <h1 className="basket1" style={{ textAlign: "center", fontFamily: "var(--primary-font-family)", fontSize: "var(--sub-header-font-size)" }}>
+        Basket
+      </h1>
+      <div className="items1" style={{ textAlign: "center", fontSize: "var(--primary-font-size-mini)", color: "var(--hp-yellow-600)" }}>
+        {basket_count} items
       </div>
-      <div className="cart-item-rectangle">
-        <div className="divider9" />
-      </div>
-      <section className="user-instance-parent">
-        <UserInstance />
-      </section>
     </div>
+  </div>
+  {/* Rest of your content */}
+  {/* <div className="cart-item-rectangle">
+    <div className="divider9" />
+  </div> */}
+  <section className="user-instance-parent">
+    <UserInstance />
+  </section>
+</div>
+
   );
 };
 

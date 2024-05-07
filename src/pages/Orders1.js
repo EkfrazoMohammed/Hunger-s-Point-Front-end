@@ -31,29 +31,29 @@ const Orders1 = () => {
   }, [navigate]);
   console.log(Orderdata,'Orderdata=====>11x')
   return (
-    <div className="orders1">
+    <div className="orders1" style={{backgroundColor:`var(--website-bg)`}}>
       {/* <Header1
         onLogoImageClick={onLogoImageClick}
         onButtonsStatesContainerClick={onButtonsStatesContainerClick}
         onItemQuantityFrameClick={onOreoShakeInstanceClick}
       /> */}
       {/* <Header /> */}
-      <section className="empty-space-frame">
+      <section className="empty-space-frame" >
         <div className="header-divider">
-          <img
+          <img 
             className="epback-icon"
             loading="eager"
             alt=""
             src={epback}
             onClick={onEpbackIconClick}
           />
-          <div className="blank-text-box">{Orderdata.order_number}</div>
+          <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,color:`var(--hp-yellow-600)`}} >{Orderdata?.order_number}</div>
         </div>
-        <div className="my-orders-frame">
-          <div className="order-details">Order details</div>
-          <div className="divider-line">
+        <div className="my-orders-frame" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
+          <div className="order-details" >Order details</div>
+          {/* <div className="divider-line">
             <div className="divider8" />
-          </div>
+          </div> */}
         </div>
         <MyOrders1 Orderdata={Orderdata}/>
       </section>

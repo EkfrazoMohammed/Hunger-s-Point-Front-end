@@ -10,7 +10,7 @@ import {
 import instagramdark from "../../../assets/instagram-dark.svg";
 import facebookdark from "../../../assets/facebook-dark.svg";
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
-import pageBannerImg from "../../../assets/top_banner.jpg";
+import pageBannerImg from "../../../assets/contact_us.jpg";
 import contactUsImg2 from "../../../assets/images/contact-us-side-img-2.png";
 import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
@@ -61,26 +61,32 @@ export const ContactUs = () => {
 
         <section className="fp-wrapper-main fp-main--contact-us bottom-form-container">
           <div className="para-container">
-            <div className="fp-para-section-title fp-para-section-title-md bottom-a-line w-2/3 uppercase font-bold">
-              CONTACT US
+            <div className="what-we-believe4 fp-para-section-title bottom-a-line">
+            Contact Us Today!
+
             </div>
+            <p style={{marginTop:"20px"}}>  
+            Ready to add a touch of Indian flavour to your next event? Contact The Hunger’s Point today! We'd be happy to discuss your catering needs and create a menu that will leave a lasting impression on your guests.
+
+            </p>
           </div>
           <div className="sec-info--w gap-6 justify-between mt-10">
             <div className="side--w relative">
               <img
                 src={contactUsImg2}
                 alt="contact us"
+                style={{borderRadius:'10px'}}
                 className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
               />
               <div className="contact-info-container relative z-[2] p-10">
-                <h2 className="text-[30px]">Customer Care</h2>
-                <hr className="my-4" />
-                <p className="mb-2">
+                <h2 className="text-[30px]" style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,marginBottom:'20px'}}>Customer Care</h2>
+                {/* <hr className="my-4" /> */}
+                <div className="mb-2" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
                   Please email your detailed inquiry and deadline for response
                   to the following:
-                </p>
+                </div>
                 <address>
-                  <ul className="font-bold text-lg">
+                  <ul className="font-bold text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
                     <li>info@hungerpoints.in</li>
                     <li>marketing@hungerpoints.in</li>
                   </ul>
@@ -88,10 +94,10 @@ export const ContactUs = () => {
                 <hr className="my-4" />
                 <div className="follow-us">
                   <div className="header-title">
-                    <span className="text-lg">Follow us on</span>
+                    <span className="text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>Follow us on</span>
                   </div>
                   <div className="social-links flex gap-3 mt-3">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a href="/contact-us" target="_blank" rel="noopener noreferrer">
                       <img
                         className="instagram-dark-icon"
                         loading="eager"
@@ -99,7 +105,7 @@ export const ContactUs = () => {
                         src={instagramdark}
                       />
                     </a>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a href="/contact-us" target="_blank" rel="noopener noreferrer">
                       <img
                         className="facebook-dark-icon"
                         loading="eager"
@@ -111,7 +117,7 @@ export const ContactUs = () => {
                 </div>
               </div>
             </div>
-            <div className="side--w">
+            <div className="">
             <FeedbackForm />
             </div>
           </div>

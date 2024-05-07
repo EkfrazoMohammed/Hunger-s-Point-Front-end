@@ -10,7 +10,8 @@ const MyAddressesText = ({ propDisplay, onEpbackIconClick }) => {
   }, [propDisplay]);
 
   return (
-    <div className="my-addresses-text">
+    <>
+    <div className="my-addresses-text" style={{backgroundColor:`var(--website-bg)`}}>
       <img
         className="epback-icon2"
         loading="eager"
@@ -21,8 +22,10 @@ const MyAddressesText = ({ propDisplay, onEpbackIconClick }) => {
       <h1 className="my-addresses" style={myAddressesStyle}>
         My Addresses
       </h1>
-      <div className="address-details">Address details</div>
+      
     </div>
+    <div className="address-details" >Address details</div>
+    </>
   );
 };
 

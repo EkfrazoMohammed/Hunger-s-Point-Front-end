@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../assets/logo@2x.png"
+import logo from "../assets/hunger_logo_fotter.png"
 import basket from "../assets/basket.svg"
 import { setBasketcount, setUserdata } from "../redux/actions/dataActions";
 import { API } from "../api/api";
@@ -25,6 +25,10 @@ const Header = () => {
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() =>{
+    handleRout1(location.pathname)
+  },[location.pathname])
 
   const handleClose = () => {
     setIsOpen(false);
@@ -58,11 +62,17 @@ const Header = () => {
   }, [navigate]);
 
   const onbasketclick = useCallback(() => {
+    handleRout("/basket")
     navigate("/basket");
   }, [navigate]);
 
   const [isVisible, setIsVisible] = useState(false);
 
+  const handleRout1 = (rout) => {
+    console.log(rout,'rout====>')
+    // navigate(`${rout}`);
+    setSelectedRoute(rout)
+  };
   const handleRout = (rout) => {
     console.log(rout,'rout====>')
     navigate(`${rout}`);
@@ -222,19 +232,20 @@ const Header = () => {
         <img className="close-icon2" loading="eager" alt="" src={close} />
       </div> */}
       <header>
-        <nav className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r from-[#252525] to-[#380000] w-full min-w-fit">
-          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+        <nav style={{backgroundColor:`var(--website-bg)`,borderBottom: '.5px solid #E4B637' }} className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r  w-full min-w-fit">
+          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl" style={{maxWidth:'1320px'}}>
             <img
-              className="mr-3 h-20 w-20"
+            style={{height:'60px'}}
+              // className="mr-3 h-20 w-30"
               loading="eager"
               alt=""
               src={logo}
-              onClick={() => handleRout("/homepage")}
+              onClick={() => handleRout("/")}
             />
             <div className="flex items-center lg:order-2">
               <div className="header-right-action--w font-inter">
                 <div
-                  className="buttons-states-dark7 rounded-[56px] border-[3px] border-[#e5b638] box-border flex flex-row items-center justify-end py-0 pl-[10px] pr-4 relative gap-x-[5px] hover:bg-[#b38205] hover:border-[#b38205] basket-view"
+                  className={`buttons-states-dark7 rounded-[56px]  border-[#e5b638] box-border flex flex-row items-center justify-end py-0 pl-[10px] pr-4 relative gap-x-[5px] hover:bg-[#b38205] hover:border-[#b38205] basket-view cursor-pointer ${selectedRoute === "/basket" ? 'bg-[#b38205]' : ''}`}
                   onClick={() => onbasketclick()}
                 >
                   <img
@@ -243,7 +254,7 @@ const Header = () => {
                     alt=""
                     src={basket}
                   />
-                  <div className="relative leading-[130%] text-[#fff]">{basket_count}</div>
+                  <div className="relative leading-[130%] text-[#fff] cursor-pointer">{basket_count}</div>
                 </div>
 
 
@@ -266,7 +277,7 @@ const Header = () => {
                     loading="eager"
                     alt=""
                     src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
-                    style={{  borderRadius: '50%', border: '3px solid #e5b638' }}
+                    style={{  borderRadius: '50%', border: '1px solid #e5b638' }}
                   />
                   {/* </button> */}
 
@@ -335,28 +346,33 @@ const Header = () => {
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 
                 <li className="flex items-center">
-                  <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
-                    onClick={() => handleRout("/location")}
-                  >
-                    <div className="relative  leading-[130%] uppercase text-[#fff]">
-                      LOCATIONS
-                    </div>
+                <div class={`menu-item cursor-pointer ${selectedRoute === "/" ? 'selected-route' : ''}`} onClick={() => handleRout("/")}>
+                <div class="menu-text relative">Home</div>
+                  </div>
+                  
+                </li>
+                <li className="flex items-center">
+                <div class={`menu-item cursor-pointer ${selectedRoute === "/productpage" ? 'selected-route' : ''}`} onClick={() => handleRout("/productpage?id=1")}>
+                <div class="menu-text relative">Menu</div>
+              </div>
+                </li>
+                <li className="flex items-center">
+                <div class={`menu-item cursor-pointer ${selectedRoute === "/events" ? 'selected-route' : ''}`} onClick={() => handleRout("/events")}>
+                <div class="menu-text relative">Event & Catering</div>
                   </div>
                 </li>
                 <li className="flex items-center">
-                  <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute === "/productpage" ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
-                    onClick={() => handleRout("/productpage?id=1")}
-                  >
-                    <div className="relative leading-[130%] uppercase text-[#fff]">
-                      MENU
-                    </div>
+                <div class={`menu-item cursor-pointer ${selectedRoute === "/franchise" ? 'selected-route' : ''}`} onClick={() => handleRout("/franchise")}>
+                <div class="menu-text relative">Franchise</div>
                   </div>
+
+                  
                 </li>
+
+                
                 {/* <li className="flex items-center">
                   <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory' ? 'bg-#E4B637' : ''} hover:border-[#424242] hover:box-border`}
                     
                   >
                     <div className="relative  leading-[130%] uppercase text-[#fff]">
@@ -366,7 +382,7 @@ const Header = () => {
                 </li> */}
                 {/* <li className="flex items-center">
                   <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/events' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/events' ? 'bg-#E4B637' : ''} hover:border-[#424242] hover:box-border`}
                     onClick={() => handleRout("/events")}
                   >
                     <div className="relative  leading-[130%] uppercase text-[#fff]">
@@ -376,29 +392,24 @@ const Header = () => {
                 </li> */}
                 
                 <ul className="links">
-                <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory'|| selectedRoute === '/events' || selectedRoute === '/careers' || selectedRoute === '/franchise' || selectedRoute === '/contact-us' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
-                  
-                  >
-                        <div className="dropdown5">
-                          <a>
-                            <p>ABOUT US</p>
-                            <span  style={{alignItems:'center'}}> <BiChevronDown fontSize={"30px"} color="white"/>
-                          </span></a>
-                          <div className="menu2">
-                          <a className={`${selectedRoute == '/ourstory' ? 'menu_active' : ''}`} onClick={() => handleRout("/ourstory")}>OUR STORY</a>
-                            <a className={`${selectedRoute == '/events' ? 'menu_active' : ''}`}  onClick={() => handleRout("/events")}>EVENT/CATERING</a>
-                            <a className={`${selectedRoute == '/careers' ? 'menu_active' : ''}`} onClick={() => handleRout("/careers")}>CAREERS</a>
-                            <a className={`${selectedRoute == '/franchise' ? 'menu_active' : ''}`} onClick={() => handleRout("/franchise")}>FRANCHISE</a>
-                            <a className={`${selectedRoute == '/contact-us' ? 'menu_active' : ''}`} onClick={() => handleRout("/contact-us")}> CONTACT US</a>
-                          </div>
-                          </div>
-                  </div> 
-                    </ul>
+  <div className={`about-us h-12 rounded-md flex flex-row items-center justify-start cursor-pointer ${selectedRoute === '/ourstory' || selectedRoute === '/careers' || selectedRoute === '/contact-us' ? 'selected-route' : ''}`}>
+    <div className="dropdown5">
+      <a>
+        <p className="about-us-text">About us</p>
+        <span style={{ alignItems: 'center' }}> <BiChevronDown fontSize={"20px"} className="about-us-text" />
+        </span></a>
+      <div className="menu2">
+        <a className={`menu_droup_item ${selectedRoute === '/ourstory' ? 'menu_active' : ''}`} onClick={() => handleRout("/ourstory")}>Our Story</a>
+        <a className={`menu_droup_item ${selectedRoute === '/careers' ? 'menu_active' : ''}`} onClick={() => handleRout("/careers")}>Careers</a>
+        <a className={`menu_droup_item ${selectedRoute === '/contact-us' ? 'menu_active' : ''}`} onClick={() => handleRout("/contact-us")}> ContactUs</a>
+      </div>
+    </div>
+  </div>
+</ul>
 
                 {/* <li className="flex items-center">
                   <div
-                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-red-500' : ''} hover:border-[#424242] hover:box-border`}
+                    className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/location' ? 'bg-#E4B637' : ''} hover:border-[#424242] hover:box-border`}
                     onClick={() => handleRout("/location")}
                   >
                     <div className="relative  leading-[130%] uppercase text-[#fff]">

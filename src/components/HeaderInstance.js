@@ -62,6 +62,7 @@ const HeaderInstance = ({onPromoClick}) => {
     document.execCommand('copy');
     document.body.removeChild(tempInput);
     setCopySuccess(true);
+    setIsOpen(false);
     setTimeout(() => setCopySuccess(false), 2000); // Reset copy success message after 2 seconds
   };
 
@@ -161,13 +162,13 @@ const HeaderInstance = ({onPromoClick}) => {
         propMinWidth="114px"
       /> */}
         <div className="payment">
-          <div className="shipping-details-container">
+          <div className="shipping-details-container" onClick={() => setIsVisibleP(!isVisibleP)}>
             <img
               className="shipping-details-icon3"
               alt=""
               src={shippingdetails}
             />
-            <div className="payment1">Payment</div>
+            <div className="payment1" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size)`}}>Payment</div>
             <img
               className="down-icon13 cursor-pointer"
               alt=""
@@ -181,7 +182,7 @@ const HeaderInstance = ({onPromoClick}) => {
           >
             <div className="divider23" />
             <div className="do-you-have-a-promocode-parent">
-              <div className="do-you-have">Do you have a promocode?<span onClick={()=> checkofferfuction()} style={{marginLeft:'10px',color:'rgb(192,34,42)', fontWeight:'bold', cursor: "pointer"}}>check your offer</span></div>
+              <div className="do-you-have" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}>Do you have a promocode?<span onClick={()=> checkofferfuction()} style={{marginLeft:'10px',color:'rgb(192,34,42)', fontWeight:'bold', cursor: "pointer",fontFamily:`var(--primary-font-family-bold)`}}>check your offer</span></div>
               
               <div className="payment-instance">
                 <div className="promocode-apply-frame">
@@ -189,24 +190,25 @@ const HeaderInstance = ({onPromoClick}) => {
                     className="promocode"
                     placeholder="Promocode"
                     type="text"
+                    style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                     value={promocode} // Bind the value to the state
                     onChange={handlePromocodeChange} // Handle change event
                   />
                 </div>
-                <button className="promocode-apply-frame1" onClick={handleApplyPromocode}>
-                  <div className="apply">Apply</div>
+                <button className="promocode-apply-frame1" onClick={handleApplyPromocode} >
+                  <div className="apply" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size-mini)`}}>Apply</div>
                 </button>
               </div>
             </div>
-            <div className="image-rectangle">
+            {/* <div className="image-rectangle">
               <img
                 className="image-6-icon"
                 loading="eager"
                 alt=""
                 src={image}
               />
-            </div>
-            <div className="edoneil-avvd-zlh-dow-aunsplash10">
+            </div> */}
+            {/* <div className="edoneil-avvd-zlh-dow-aunsplash10">
               <div className="i-t-e-m-s-quantity-frame1">
                 <button className="buttons-states-dark54">
                   <div className="button66">Back</div>
@@ -215,7 +217,7 @@ const HeaderInstance = ({onPromoClick}) => {
                   <div className="button67">Pay Now</div>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

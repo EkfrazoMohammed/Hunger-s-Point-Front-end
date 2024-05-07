@@ -169,15 +169,21 @@ const UserInstance = () => {
             (<>
 
               <div className="w-full" style={{marginTop:'20px'}}>
-              <div className="font-bold text-2xl flex justify-between items-center p-4">
+              <div style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--sub-header-font-size)`,color:`var(--hp-yellow-600)`}} className="flex justify-between items-center py-4">
                   Recommendations
                 </div>
 
-                <div className="font-normal gap-[10px] text-base flex items-center" style={{ marginLeft: '15px' }}>
+                <div className="font-normal gap-[10px] text-base flex items-center">
                   {basketalldata.reccomandations && basketalldata.reccomandations.map((menu, index) => (
                     <div
                       key={index}
-                      className={`border-[1px] border-[#E5B638] px-[7px] rounded-md py-[4px] font-inter font-normal text-[10px] text-base text-[#fff] flex gap-[10px] cursor-pointer ${selectedMenuIndex === index ? 'bg-[#C21F24]' : 'hover:bg-[#C21F24] '}`}
+                      style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease',paddingTop:'0.2rem',paddingBottom:'0.2rem'  }}
+                    className={`border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === index 
+                      ? "bg-[#C21F24]"
+                      : "hover:bg-[#C21F24] cursor-pointer"
+                      }`}
+
+                      // className={`border-[1px] border-[#E5B638] px-[7px] rounded-md py-[4px] font-inter font-normal text-[10px] text-base text-[#fff] flex gap-[10px] cursor-pointer ${selectedMenuIndex === index ? 'bg-[#C21F24]' : 'hover:bg-[#C21F24] '}`}
                       onClick={() => setSelectedMenuIndex(index)}
                     >
                       {menu.menu_title}
@@ -185,25 +191,25 @@ const UserInstance = () => {
                   ))}
                 </div>
 
-                <div className="w-full flex gap-[30px] p-4 overflow-x-auto">
+                <div className="w-full flex gap-[30px] py-4 overflow-x-auto">
                   {basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info && Array.isArray(basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info) && basketalldata.reccomandations[selectedMenuIndex]?.menu_item_info.map((product, index) => (
-                    <div key={index} className="bg-[#363636] border border-[#8F8F8F] rounded-md flex gap-3 w-[35%] min-w-[288px] h-fit">
+                    <div key={index} className=" border border-[var(--card-bg)] rounded-md flex gap-3 w-[35%] min-w-[288px] h-fit" style={{backgroundColor:`var(--card-bg)`}}>
                       <img src={product.item_image} alt={product.item_image} className="h-[100px] w-[109px] rounded-md" />
-                      <div className="flex mt-2 gap-[10px] justify-center flex-col w-full h-fit">
-                        <div className="flex justify-between items-center font-poppins font-bold text-xs text-[#E5B638] w-full pr-[10px]">
+                      <div  className="flex mt-2 gap-[10px] justify-center flex-col w-full h-fit">
+                        <div style={{fontFamily:`var(--primary-font-family-bold)`}} className="flex justify-between items-center font-poppins font-bold text-xs text-[#E5B638] w-full pr-[10px]">
                           {product.name}
                           {/* <span>
                             <img src="./hertIcon.svg" alt="hertIcon" />
                           </span> */}
                         </div>
-                        <div className="font-poppins font-normal text-[11px] text-[#fff]">
+                        <div style={{fontFamily:`var(--primary-font-family)`}} className="font-poppins font-normal text-[11px] text-[#fff]">
                           $ {product.amount}
                         </div>
                         <button
                         style={{
                           border: "1px solid #E5B638", // Add border style
                         }}
-                          className="border-[1px] border-[#E5B638] px-5 text-[#fff] text-[10px] rounded-md hover:bg-[#E5B638] py-1 w-fit"
+                          className="border-[1px] border-[#E5B638] px-5 text-[#fff] text-[10px] rounded-md hover:bg-[#c21f24] py-1 w-fit"
                           onClick={() => OnClickAddButton(product)}
                         >
                           ADD

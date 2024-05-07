@@ -94,36 +94,36 @@ const FeedbackForm = () => {
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
         <Form onSubmit={handleSubmit} className="fp-form-common">
-          <h2 className="text-xl">Give your feedback below</h2>
+          <h2 className="text-xl" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>Give your feedback below</h2>
           <div className="fp-input-w">
-            <Field as="select" name="feedboack_opt" className="user-field-input-common user-field-select-common">
+            <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} as="select" name="feedboack_opt" className="user-field-input-common user-field-select-common">
               {options.map(option => (
-                <option key={option.value} value={option.value}>{option.label}</option>
+                <option style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} key={option.value} value={option.value}>{option.label}</option>
               ))}
             </Field>
-            <ErrorMessage name="feedboack_opt" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+            <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="feedboack_opt" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
           <div className="fp-input-group">
             <div className="fp-input-w">
-              <Field type="text" name="first_name" placeholder="First name" className="user-field-input-common" />
-              <ErrorMessage name="first_name" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+              <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} type="text" name="first_name" placeholder="First name *" className="user-field-input-common" />
+              <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="first_name" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
             </div>
             <div className="fp-input-w">
-              <Field type="text" name="last_name" placeholder="Last name" className="user-field-input-common" />
-              <ErrorMessage name="last_name" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+              <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} type="text" name="last_name" placeholder="Last name *" className="user-field-input-common" />
+              <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="last_name" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
             </div>
           </div>
           <div className="fp-input-w">
-            <Field type="text" name="phone_number" placeholder="Phone Number" className="user-field-input-common" />
-            <ErrorMessage name="phone_number" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+            <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} type="text" name="phone_number" placeholder="Phone Number *" className="user-field-input-common" />
+            <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="phone_number" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
           <div className="fp-input-w">
-            <Field as="textarea" name="message" placeholder="Message" className="user-field-textarea-common h-[130px]" />
-            <ErrorMessage name="message" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+            <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} as="textarea" name="message" placeholder="Message *" className="user-field-textarea-common h-[130px]" />
+            <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="message" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
           <div className="fp-input-w">
-            <Field type="email_id" name="email_id" placeholder="Email Id" className="user-field-input-common" />
-            <ErrorMessage name="email_id" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+            <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} type="email_id" name="email_id" placeholder="Email Id *" className="user-field-input-common" />
+            <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="email_id" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
           
           {values.feedboack_opt === 'Careers' && (
@@ -146,8 +146,8 @@ const FeedbackForm = () => {
                       <p className="fp-error-text text-red-300 mt-1 ml-1">{errors.cover_letter}</p>
                     )}
                     <div className="file-u-overlay" style={{ backgroundColor: coverLetterUploaded? 'green':'#505050' }}>
-                      <span className="text-gray-100">Upload</span>
-                      <span className="text-gray-100">Cover Letter</span>
+                      <span style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}  className="text-gray-100">Upload</span>
+                      <span style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} className="text-gray-100">Cover Letter</span>
                     </div>
                   </div>
                 </div>
@@ -167,8 +167,8 @@ const FeedbackForm = () => {
                       <p className="fp-error-text text-red-300 mt-1 ml-1">{errors.resume}</p>
                     )}
                     <div className="file-u-overlay" style={{ backgroundColor: resumeUploaded? 'green':'#505050' }}>
-                      <span className="text-gray-100">Upload</span>
-                      <span className="text-gray-100">Resume <span style={{color: 'red'}}>*</span></span>
+                      <span style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} className="text-gray-100">Upload</span>
+                      <span style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} className="text-gray-100">Resume <span style={{color: 'red'}}>*</span></span>
                     </div>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ const FeedbackForm = () => {
             </div>
           )}
           <div>
-            <button style={{ backgroundColor: !isValidForm ? 'rgba(180, 49, 45, 0.7)' : 'rgb(180,49,45)', fontSize:'12px' }} disabled={!isValidForm} type="submit" className="fp-primary-btn">Submit</button>
+            <button style={{ backgroundColor: !isValidForm ? 'rgba(180, 49, 45, 0.7)' : 'rgb(180,49,45)', fontSize:`var(--primary-font-size-mini)` }} disabled={!isValidForm} type="submit" className="fp-primary-btn">Submit</button>
           </div>
         </Form>
       )}

@@ -20,19 +20,29 @@
 .category-frame {
   display: flex;
   flex-direction: column;
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family);
 }
+.category-2-wrapper {
+  border: 1px solid rgb(54, 54, 54);
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
 .category-2-wrapper:hover {
-  border: 1px solid rgb(223,183,81);
+  border-color: rgb(223, 183, 81); /* Change border color on hover */
 }
 
 .category-2-wrapper:hover .alberta9 {
-  color: rgb(223,183,81);
+  color: rgb(223, 183, 81);
+  transition: color 0.3s ease; /* Smooth transition for text color */
 }
 
 .category-2-child,
 .our-delivery-partners {
   text-align: left;
   margin-top: 20px;
+  font-family: var(--primary-font-family-bold);
+  font-size: var(--primary-font-size);
 }
 
 .category-2-child,
@@ -85,7 +95,8 @@
 
 
 .hospital-st-fort7{
-  font-size: '10px';
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size-mini);
 }
 
 .category-2-inner2{

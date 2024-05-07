@@ -21,6 +21,7 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
   
   const [newaddon, setUpdateAddon] = useState(add_on);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [finalamount, setfinalamount] = useState(menu_item_all_data.total_amount);
 
 
 
@@ -28,39 +29,118 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
     const updatedAddOn = newaddon && newaddon.map((cat) => {
         if (cat.key === categoryKey) {
             const updatedValue = cat.value.map((item) => {
-              if (item.name === itemName) {
-                    // Toggle selected state
-                    const updatedItem = { ...item, selected: !item.selected };
-                    // Update total amount based on selected state
-                    const price = parseFloat(item.price);
-                    if (updatedItem.selected) {
-                      menu_item_all_data.total_amount = (parseFloat(menu_item_all_data.total_amount) + parseFloat(price)).toFixed(2);
-                  } else {
-                      menu_item_all_data.total_amount = (parseFloat(menu_item_all_data.total_amount) - parseFloat(price)).toFixed(2);
-                  }
-                    return updatedItem;
+                if (cat.key.toLowerCase() === 'size') {
+                  const isSelected = item.name === itemName;
+                  return { ...item, selected: isSelected};
                 }
-                return item;
+                else{
+                      const isSelected = item.name === itemName ? !item.selected : item.selected;
+                      return { ...item, selected: isSelected };
+                }
             });
+            if (cat.key.toLowerCase() === 'size') {
+                const firstItem = updatedValue.find(item => item.selected);
+                if (!firstItem && updatedValue.length > 0) {
+                    updatedValue[0].selected = true;
+                }
+            }
             return { ...cat, value: updatedValue };
         }
         return cat;
     });
 
     console.log('updatedAddOn:', updatedAddOn);
+    let main_amount = menu_item_all_data.total_amount
+    let extra_amount = 0
+    updatedAddOn != undefined && updatedAddOn.map((item) => {
+      if (item.key.toLowerCase() === 'size') {
+        item.value.map((add_on1) => {
+          if(add_on1.selected === true) {
+            main_amount = add_on1.price
+          }
+        })
+      }
+      else{
+        item.value && item.value.map((add_on) => {
+          if(add_on.selected === true) {
+            extra_amount = parseFloat(extra_amount) + parseFloat(add_on.price)
+          }
+        })
+      }
+    })
+    const final_amount = parseFloat(main_amount) + parseFloat(extra_amount)
+    setfinalamount(final_amount.toFixed(2))
     setUpdateAddon(updatedAddOn);
 };
 
+
+// const handleCategorySelect = (category, itemName) => {
+//   const updatedMenuItems = menu_item.data.map((cat) => {
+//       if (cat.key === category) {
+//         let finalamount1
+//           const updatedValue = cat.value.map((item) => {
+//               // Check if the category key is 'size'
+//               if (cat.key.toLowerCase() === 'size') {
+//                   // For the 'size' category, allow only one item to be selected at a time
+//                   // If the clicked item is already selected, keep it selected
+//                   // If the clicked item is not selected, toggle its selection and deselect other items
+//                   const isSelected = item.name === itemName;
+                 
+//                   const updatedItem = { ...item, selected: isSelected };
+//                   console.log(updatedItem,'item==>1111')
+//                   menu_item.amount = parseFloat(updatedItem.price).toFixed(2)
+//                   if (updatedItem.selected ==true){
+//                     setfinalamount(menu_item.amount)
+//                   }
+                  
+//                   return { ...item, selected: isSelected};
+//               } else {
+//                   // For other categories, toggle the selection state of the clicked item
+//                   const isSelected = item.name === itemName ? !item.selected : item.selected;
+                  
+//                   const updatedItem = { ...item, selected: isSelected };
+//                   console.log(updatedItem,'updatedItem===>1222',finalamount)
+//                   if (updatedItem.selected ==true){
+//                     finalamount1 = parseFloat(finalamount)  +  parseFloat(updatedItem.price)
+//                   }
+//                   if (updatedItem.selected ==false){
+//                     finalamount1 = parseFloat(finalamount)  - parseFloat(updatedItem.price)
+                    
+//                   }
+//                   console.log(finalamount1,'finalamount1')
+//                   setfinalamount(finalamount1)
+//                   return  { ...item, selected: isSelected };
+                  
+//               }
+//           });
+
+//           // If the category key is 'size', find the first item and set it as default
+//           if (cat.key.toLowerCase() === 'size') {
+//               const firstItem = updatedValue.find(item => item.selected);
+//               if (!firstItem && updatedValue.length > 0) {
+//                   updatedValue[0].selected = true;
+//               }
+//           }
+
+//           // Update state with the new menu_item data
+//           return { ...cat, value: updatedValue };
+//       }
+//       return cat;
+//   });
+
+//   setMenuitemdata({ ...menu_item, data: updatedMenuItems });
+// };
+
   // console.log(add_on,'new === add_on==>')
-  console.log(menu_item, "menu_item====>");
-  console.log(menu_item_all_data,'menu_item_all_data====>')
+  // console.log(menu_item, "menu_item====>");
+  // console.log(menu_item_all_data,'menu_item_all_data====>')
   useEffect(() => {
     GetBasketData()
     if (qty) {
       setCount(qty);
     }
-    console.log(qty, "qty====>");
-    console.log(menu_item?.item_image, "menu_item?.item_image");
+    // console.log(qty, "qty====>");
+    // console.log(menu_item?.item_image, "menu_item?.item_image");
   }, []);
 
   const GetBasketData = async () => {
@@ -69,7 +149,7 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
     parseInt(location_id, 10)
     API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}&menu_items_id=${menu_item?.id}&restaurent_id=${parseInt(location_id, 10)}`)
       .then((res) => {
-        console.log(res.data.result.data[0],'GetBasketData===res.data.result.data===>')
+        // console.log(res.data.result.data[0],'GetBasketData===res.data.result.data===>')
         setUpdateAddon(res.data.result.data[0].menu_items_add_on)
         // console.log(res.data.result.basket_count,'GetBasketData===res.data.result.data===>')
         // setBasketalldata(res.data.result);
@@ -119,7 +199,7 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
   };
  
   return (
-    <div className="wo-addon">
+    <div className="wo-addon" style={{backgroundColor:`var(--card-bg)`}}>
       <section className="first-addon-frame">
         <div className="inner-frame-parent">
           <div className="inner-frame1">
@@ -135,15 +215,16 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
               }
               // src={menu_item?.item_image || 'https://placehold.co/400'}
             />
-          </div>
-          <div className="text-frame">
+            <div style={{marginLeft:'20px'}}  className="text-frame">
             <b className="chole-batura5">{menu_item?.name}</b>
           </div>
+          </div>
+          
           <div className="price-frame">
             <div className="quantity-frame">
               <div className="minus-add-frame">
                 <div className="price">Price</div>
-                <b className="empty-space">${(menu_item_all_data?.total_amount)*count}</b>
+                <b className="empty-space">${(finalamount)*count}</b>
               </div>
               <div className="close-instance">
                 <div className="quantity1">Quantity</div>
@@ -190,7 +271,7 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
         </div>
         <div className="background-frame p-5" style={{ justifyContent: menu_item?.data?.length === 0 ? 'center' : 'initial' }}>
           {
-            menu_item?.data?.length === 0  ? (<div>
+            !menu_item?.data || menu_item?.data.length == 0 ? (<div>
               <img
                 className="oops-icon"
                 loading="eager"
@@ -207,17 +288,15 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
             {(newaddon?.length > 0 ? newaddon : menu_item.data) &&
               (newaddon?.length > 0 ? newaddon : menu_item.data).map((category, index) => (
                 <div key={index}>
-                  <div className="font-bold text-l text-white text-start my-5">
+                  <div style={{ fontFamily: 'var(--primary-font-family-bold)', fontSize: 'var(--primary-font-size)' }} className="text-white text-start my-5">
                     {category.key}
                   </div>
-                  <div style={{ justifyContent: 'center' }} className="flex flex-wrap">
+                  <div style={{ justifyContent: 'flex-start', fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size)' }} className="flex flex-wrap">
                     {category?.value && category?.value.map((item, itemIndex) => (
                       <div
                         key={itemIndex}
-                        className={`flex flex-col justify-center items-center font-normal text-base text-white border py-3 rounded-sm ${
-                          item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'
-                        }`}
-                        style={{ minWidth: '45%', margin: '3px', cursor: 'pointer' }}
+                        className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'} `}
+                        style={{ minWidth: '35%', margin: '3px', marginBottom:'10px',marginRight:'10px' ,cursor: 'pointer', borderRadius: '6px' }}
                         onClick={() => handleCategorySelect(category.key, item.name)}
                       >
                         <div className="flex">
@@ -254,7 +333,7 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
         <div className="button-instance">
           <div className="total-text">
             <div className="total-added">Total added</div>
-            <b className="b10">{count}</b>
+            <b  style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family-bold)`}}  className="b10">{count}</b>
           </div>
           <button
             className="buttons-states-dark21"

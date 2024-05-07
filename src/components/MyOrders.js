@@ -41,7 +41,7 @@ const MyOrders = ({
   }, []);
 
   return (
-    <div className="my-orders1" onClick={onUserProfileFrameClick}>
+    <div className="my-orders1 cursor-pointer" style={{backgroundColor:`var(--card-bg)`}} onClick={onUserProfileFrameClick}>
       <div className="order-detail-frame">
         <div className="order-no-label">
           <div className="order-details1">Order details</div>

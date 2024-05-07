@@ -58,20 +58,31 @@
   max-width: 100%;
 }
 .material-symbols-lightedit-ou-icon1 {
-  height: 24px;
-  width: 24px;
+  height: 22px;
+  width: 22px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  
 }
 .buttons-states-dark-instance,
 .st-churchstreet-vancover-frame,
 .summary9 {
+  cursor: pointer;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   max-width: 100%;
-  margin-top: 15px;
+  /* margin-top: 10px; */
+  font-size: var(--primary-font-size-mini);
+font-family: var(--primary-font-family);
+
+
+}
+
+.buttons-states-dark-instance:hover{
+  border:1px solid var(--hp-yellow-600);
+  transition: border 0.3s ease;
 }
 .st-churchstreet-vancover-frame {
   align-self: stretch;
@@ -83,9 +94,10 @@
 .summary9 {
   border-radius: 10px;
   flex-direction: column;
+  
 }
 .buttons-states-dark-instance {
-  align-self: stretch;
+  /* align-self: stretch; */
   border: 1px solid #707070;
   box-sizing: border-box;
   padding: 20px 21px 20px 19px;
@@ -94,6 +106,7 @@
   width: 708px;
   overflow: hidden;
   font-size: 14px;
+  
 }
 .button68 {
   position: relative;

@@ -26,7 +26,7 @@ const MyAddress1 = () => {
   }, [navigate]);
 
   return (
-    <div className="my-address1">
+    <div className="my-address1"style={{backgroundColor:`var(--website-bg)`}}>
       {/* <Header1
         onLogoImageClick={onLogoImageClick}
         onButtonsStatesContainerClick={onButtonsStatesContainerClick}

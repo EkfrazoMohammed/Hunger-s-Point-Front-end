@@ -7,29 +7,77 @@
 body {
   margin: 0;
   line-height: normal;
-  background-color: #252525;
+  background-color: var(--website-bg);
   color: #fff;
+  font-family: var(--primary-font-family);
 }
 
 /* variables  start */
 :root {
-  --hp-yellow-500: #e5b638;
-  --hp-yellow-600: #b38205;
+  --website-bg: #0D0E11;
+  --card-bg:#222326;
+  --hp-yellow-500: #E4B637;
+  --hp-yellow-600: #E4B637;
   --hp-grey-500: #505050;
-  --hp-grey-600: #333333;
+  --hp-grey-600: #222326;
   --hp-grey-bg-primary: #424242;
   --hp-btn-primary: #c21f24;
   --hp-btn-secondary: #e5b638;
   --border-color: #c1c1c1;
   --text-white: #ffffff;
-  --navbar-desk-height: 100px;
+  --navbar-desk-height: 80px;
   --navbar-mob-height: 100px;
+  --primary-font-size-mini:14px;
+  --primary-font-size:16px;
+  --header-font-size: 26px;
+  --sub-header-font-size: 24px;
+  --primary-font-family: GothamLight;
+  --primary-font-family-bold: GothamBold;
+  --secondary-font-family: GothamBold;
+  --icon-size:20px;
+  --description:#C6C8C8;
 }
+@font-face {
+  font-family: MontserratMedium;
+  src: url(./assets/fonts/MontserratMedium.ttf);
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(./assets/fonts/Montserrat-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: GothamMedium;
+  src: url(./assets/fonts/GothamMedium.ttf);
+}
+@font-face {
+  font-family: GothamBold;
+  src: url(./assets/fonts/GothamBold.otf);
+}
+@font-face {
+  font-family: GothamLight;
+  src: url(./assets/fonts/GothamLight.otf);
+}
+@font-face {
+  font-family: Playfair_Reg;
+  src: url(./assets/fonts/PlayfairDisplay-Regular.ttf);
+}
+
+@font-face {
+  font-family: Playfair_Italic;
+  src: url(./assets/fonts/PlayfairDisplay-Italic.ttf);
+}
+  /* font-family: 'Montserrat Medium', sans-serif;  */
+  /* font-family: 'Playfair Display', serif;  */
+  /* font-family: 'SF New Republic Bold', sans-serif; */
+  /* font-family: 'Gotham Medium', sans-serif; */
+  /* 'Bodoni Bd BT', serif; */
+  
 /* variables  end */
 
 /* custom scrollbar start */
 /* width */
 body::-webkit-scrollbar {
+  font-family: var(--primary-font-family);
   display: none;
 }
 ::-webkit-scrollbar {
@@ -54,43 +102,46 @@ body::-webkit-scrollbar {
 /* custom scrollbar end */
 
 .buttons-states-dark61:hover {
-  background-color: var(--hp-yellow-600);
-  border: 3px solid var(--hp-yellow-600);
+  background-color: var(--hp-btn-primary);
+  transition: background-color 0.4s ease;
+  transition: border-radius 0.4s ease;
+  border: 1px solid var(--hp-yellow-600);
   box-sizing: border-box;
+  border-radius: 10px;
 }
 .property-1filledprimary:hover {
   background-color: var(--hp-grey-bg-primary);
-  border: 3px solid var(--hp-grey-bg-primary);
+  border: 1px solid var(--hp-grey-bg-primary);
   box-sizing: border-box;
 }
 .buttons-states-dark24:hover {
   background-color: var(--hp-grey-bg-primary);
-  border: 3px solid var(--hp-grey-bg-primary);
+  border: 1px solid var(--hp-grey-bg-primary);
   box-sizing: border-box;
 }
 .buttons-states-dark26:hover {
   background-color: var(--hp-grey-bg-primary);
-  border: 3px solid var(--hp-grey-bg-primary);
+  border: 1px solid var(--hp-grey-bg-primary);
   box-sizing: border-box;
 }
 .buttons-states-dark27:hover {
   background-color: var(--hp-grey-bg-primary);
-  border: 3px solid var(--hp-grey-bg-primary);
+  border: 1px solid var(--hp-grey-bg-primary);
   box-sizing: border-box;
 }
 .buttons-states-dark28:hover {
   background-color: var(--hp-yellow-600);
-  border: 3px solid var(--hp-yellow-600);
+  border: 1px solid var(--hp-yellow-600);
   box-sizing: border-box;
 }
 .buttons-states-dark29:hover {
   background-color: var(--hp-yellow-600);
-  border: 3px solid var(--hp-yellow-600);
+  border: 1px solid var(--hp-yellow-600);
   box-sizing: border-box;
 }
 
 .navbar--wrap {
-  height: 100px;
+  /* height: 100px; */
   padding: 10px 10px;
   position: relative;
   z-index: 6;
@@ -213,18 +264,19 @@ body::-webkit-scrollbar {
   position: relative;
   /* height: 70vh; */
   object-fit: contain;
-  background-position: center;
+  /* background-position: center; */
 }
 
 .review-section-frame .slider-item {
   position: relative;
   color: var(--text-white);
   font-size: 20px;
+  border-radius: 20px;
 }
 .review-section-frame .order-action {
   border: 2px solid var(--hp-yellow-500);
   padding: 10px 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .review-section-frame .basket-button2 {
   margin: -75px auto auto;
@@ -271,7 +323,7 @@ body::-webkit-scrollbar {
   position: absolute;
   min-width: 638px;
   min-height: 232px;
-  background: rgba(14, 14, 14, 0.278);
+  /* background: rgba(14, 14, 14, 0.278); */
   top: 30%;
   left: 10%;
   padding: 20px 60px;
@@ -313,7 +365,7 @@ body::-webkit-scrollbar {
   font-size: 30px;
 }
 .fp-para-section-title {
-  font-size: 30px;
+  font-size: var(--header-font-size);
   font-weight: 700;
   width: max-content;
 }
@@ -321,12 +373,12 @@ body::-webkit-scrollbar {
 .fp-para-section-title.bottom-a-line:after {
   content: " ";
   display: block;
-  width: 2%;
-  height: 4px;
+  width: 100%;
+  height: 1.5px;
   border-radius: 10px;
   background-color: var(--hp-yellow-500);
   animation-name: titleBottomLine;
-  animation-duration: 2.5s;
+  /* animation-duration: 10s; */
   animation-timing-function: ease-in;
   animation-iteration-count: infinite;
 }
@@ -341,13 +393,14 @@ body::-webkit-scrollbar {
 }
 
 .fp-form-common {
+  width:440px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 30px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: var(--hp-grey-bg-primary);
+  border: 1px solid var(--hp-grey-600);
+  border-radius: 10px;
+  background-color: var(--hp-grey-600);
 }
 
 .fp-form-common .fp-input-group {
@@ -380,12 +433,13 @@ body::-webkit-scrollbar {
   border: 1px solid var(--border-color);
   border-radius: 6px;
   background-color: transparent;
+  font-family: var(--primary-font-family);
   font-size: 12px;
 }
 
 .fp-form-common .user-field-select-common {
   padding-right: 20px;
-  background-color: var(--hp-grey-bg-primary);
+  /* background-color: var(--hp-grey-bg-primary); */
 }
 
 .fp-primary-btn {
@@ -450,14 +504,17 @@ body::-webkit-scrollbar {
   max-height: calc(100vh + 200px);
 }
 .menu-action-cart-btn {
-  border: 2px solid #e5b638;
+  border: 1px solid var(--hp-yellow-600);;
+  font-family: var(--primary-font-family-bold);
+  font-size: var(--primary-font-size-mini);
   border-radius: 6px;
   padding: 9px;
-  width: 50%;
-  margin-top: 24px;
+  width: 25%;
+  margin-top: 20px;
+  transition: background-color 0.3s ease; 
 }
 .menu-action-cart-btn:hover {
-  background: #e5b638;
+  background: var(--hp-btn-primary);
 }
 .menu-action-cart-btn:focus {
   outline: none;
@@ -511,7 +568,7 @@ body::-webkit-scrollbar {
     border-top-left-radius: 0;
   }
   .portalPopupOverlay .background-frame {
-    border: none;
+    /* border: none; */
     height: auto;
   }
   .portalPopupOverlay .wo-addon {
@@ -619,6 +676,7 @@ body::-webkit-scrollbar {
     top: 0%;
     left: 3%;
     font-size: 17px;
+    font-family: var(--primary-font-family);
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
@@ -633,15 +691,17 @@ body::-webkit-scrollbar {
   .lorem-ipsum-dolor4,
   .we-believe-in1 {
     font-size: 17px;
+    font-family: var(--primary-font-family);
   }
   .review-section-frame .slick-prev:before,
   .review-section-frame .slick-next:before {
     font-size: 30px;
+    font-family: var(--primary-font-family);
     width: 30px;
     height: 40px;
   }
   .fp-para-section-title {
-    font-size: 24px;
+    font-size: var(--header-font-size);
     line-height: normal;
   }
   .button79 {
@@ -666,10 +726,12 @@ body::-webkit-scrollbar {
   .review-form {
     width: 100%;
     font-size: 13px;
+    font-family: var(--primary-font-family);
   }
 
   .view-all-stores2 {
     font-size: 12px;
+    font-family: var(--primary-font-family);
     line-height: normal;
   }
   .location-pin-map {
@@ -731,6 +793,7 @@ body::-webkit-scrollbar {
   .homepage1 .category-2-wrapper .button80,
   .homepage1 .category-2-wrapper .button81 {
     font-size: 14px;
+    font-family: var(--primary-font-family);
   }
   .call-parent4,
   .category-2-inner2,
@@ -739,8 +802,8 @@ body::-webkit-scrollbar {
   }
   .call-parent4 .call-icon7,
   .location-parent5 .location-icon14 {
-    height: 32px;
-    width: 32px;
+    height: var(--icon-size);
+    width: var(--icon-size);
   }
   .call-parent4 .div36,
   .location-parent5 .hospital-st-fort7 {
@@ -759,8 +822,8 @@ body::-webkit-scrollbar {
     gap: 10px 0;
   }
   .customer-service-man-answering {
-    height: 352px;
-    width: 325px;
+    /* height: 352px;
+    width: 325px; */
     top: 0;
     left: 0%;
   }
@@ -768,7 +831,7 @@ body::-webkit-scrollbar {
     height: 220px;
   }
   .v-i-p-frame {
-    width: 1066px;
+    /* width: 1066px; */
     width: 100%;
     padding: 24px;
   }
@@ -780,17 +843,17 @@ body::-webkit-scrollbar {
   }
   .button73,
   .recieve-updates-on {
-    font-size: 15px;
+    font-size: var(--primary-font-size-mini);
     line-height: normal;
   }
   .instagram-facebook-mail-frame {
     padding: 13px 0 0;
   }
   .buttons-states-dark61:hover {
-    border: 2px solid var(--hp-yellow-600);
+    /* border: 1px solid var(--hp-yellow-600); */
   }
   .buttons-states-dark61 {
-    border: 2px solid var(--hp-yellow-600);
+    border: 1px solid var(--hp-yellow-600);
   }
   .lorem-ipsum-dolor-container3 {
     font-size: 15px;

@@ -1,7 +1,7 @@
 .my-address {
   width: 100%;
   position: relative;
-  background-color: #252525;
+  background-color: var(--website-bg);
   overflow: hidden;
   display: flex;
   flex-direction: column;

@@ -13,7 +13,8 @@
 .please-enter-your4 {
   position: relative;
   font-size: 20px;
-  line-height: 130%;
+  /* line-height: 130%; */
+  margin-bottom: 20px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.6);
 }
@@ -205,8 +206,8 @@
   font-size: 16px;
 }
 .location-icon10 {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -228,8 +229,8 @@
   max-width: 100%;
 }
 .call-icon6 {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -290,8 +291,8 @@
 .choose-store {
   align-self: stretch;
   border-radius: 10px;
-  background-color: #363636;
-  border: 1px solid #737373;
+  background-color: var(--card-bg);
+  border: 1px solid var(--hp-yellow-600);
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -377,7 +378,7 @@
 .shipping2 {
   align-self: stretch;
   border-radius: 10px;
-  background-color: #363636;
+  background-color: var(--card-bg);
   border: 1px solid #545454;
   box-sizing: border-box;
   overflow: hidden;
@@ -990,7 +991,7 @@
 .summary5 {
   align-self: stretch;
   border-radius: 24px;
-  background-color: #363636;
+  background-color: var(--card-bg);
   border: 2px solid #5f5f5f;
   box-sizing: border-box;
   overflow: hidden;
@@ -1025,11 +1026,12 @@
   justify-content: flex-start;
   padding: 0 20px;
   box-sizing: border-box;
-  gap: 20px 0;
+  /* gap: 20px 0; */
   text-align: left;
   font-size: 36px;
   color: #fff;
   font-family: Poppins;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 1150px) {
   .checkout-details-frame {
@@ -1067,7 +1069,7 @@
   }
   .please-enter-your4 {
     font-size: 16px;
-    line-height: 21px;
+    /* line-height: 21px; */
   }
   .frame-parent42,
   .frame-parent43,

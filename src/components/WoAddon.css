@@ -3,6 +3,7 @@
   width: 80px;
   position: relative;
   object-fit: cover;
+  border-radius: 6px;
 }
 .inner-frame1 {
   border-radius: 5px;
@@ -20,6 +21,9 @@
   max-width: 100%;
 }
 .text-frame {
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family-bold);
+  color: var(--hp-yellow-600);
   align-self: stretch;
   display: flex;
   flex-direction: row;
@@ -36,12 +40,17 @@
   align-self: stretch;
 }
 .empty-space {
-  font-size: 24px;
+  /* font-size: 24px; */
+  font-size: var(--primary-font-size);
+
   color: #e5b638;
   text-align: center;
   white-space: nowrap;
 }
 .minus-add-frame {
+  font-size: var(--primary-font-size);
+font-family: var(--primary-font-family);
+
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,6 +58,7 @@
   justify-content: flex-start;
   gap: 10px 0;
   min-width: 200px;
+
 }
 .quantity1 {
   align-self: stretch;
@@ -62,16 +72,16 @@
   flex-shrink: 0;
 }
 .minus-icon4 {
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   position: absolute;
   margin: 0 !important;
   top: 8px;
   right: 8px;
 }
 .minus-add {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border: 1px solid #e5b638;
   box-sizing: border-box;
   display: flex;
@@ -92,16 +102,16 @@
   flex-shrink: 0;
 }
 .add-icon5 {
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   position: absolute;
   margin: 0 !important;
   top: 8px;
   right: 8px;
 }
 .minus-add1 {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   border: 1px solid #e5b638;
   box-sizing: border-box;
   flex-direction: column;
@@ -114,6 +124,9 @@
 .minus-add1 {
   display: flex;
   justify-content: center;
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family);
+
 }
 .component-18 {
   flex: 1;
@@ -121,7 +134,7 @@
   align-items: center;
   gap: 0 10px;
   text-align: center;
-  font-size: 24px;
+  font-size: var(--primary-font-size);
 }
 .close-instance {
   height: 75px;
@@ -205,12 +218,15 @@
 }
 .oops-icon {
   /* width: 188px; */
-  height: 30vh;
+  /* height: 30vh; */
   position: relative;
   flex-shrink: 0;
   object-fit: cover;
 }
 .there-are-no {
+  font-size: var(--primary-font-size);
+font-family: var(--primary-font-family-bold);
+
   align-self: stretch;
   position: relative;
   line-height: 130%;
@@ -263,15 +279,18 @@
   gap: 5px 0;
 }
 .button29 {
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family-bold);
   position: relative;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 130%;
-  font-family: Inter;
-  color: #fff;
+  /* font-family: Inter; */
+  color: var(--hp-yellow-600);
   text-align: center;
 }
 .button-instance,
 .buttons-states-dark21 {
+  font-family: var(--primary-font-family);
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -280,9 +299,11 @@
   max-width: 100%;
 }
 .buttons-states-dark21 {
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size);
   cursor: pointer;
-  border: 3px solid #e5b638;
-  padding: 20px;
+  border: 1px solid #e5b638;
+  padding: 10px;
   background-color: transparent;
   border-radius: 6px;
   box-sizing: border-box;
@@ -290,7 +311,7 @@
 }
 .buttons-states-dark21:hover {
   background-color: rgba(179, 130, 5, 0.09);
-  border: 3px solid #b38205;
+  border:  1px solid #b38205;
   box-sizing: border-box;
 }
 .button-instance {
@@ -312,10 +333,10 @@
   text-align: center;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
-  font-family: Inter;
+  font-family: var(--primary-font-family);
 }
 .wo-addon {
-  width: 500px;
+  width: 400px;
   height: 100vh;
   position: relative;
   border-radius: 20px 0 0 20px;
@@ -329,6 +350,10 @@
   letter-spacing: normal;
   max-height: 100%;
   overflow-y: auto;
+  transition: width 0.3s ease;
+}
+.wo-addon:hover {
+  width: 420px; /* Set the width on hover */
 }
 @media screen and (max-width: 450px) {
   .chole-batura5,
@@ -341,8 +366,8 @@
     gap: 40px 0;
   }
   .b10 {
-    font-size: 19px;
-    line-height: 25px;
+    font-size: var(--primary-font-size);
+    /* line-height: 25px; */
   }
   .button-instance {
     gap: 0 32px;

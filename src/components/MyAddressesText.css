@@ -1,25 +1,32 @@
 .epback-icon2 {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin-right: 10px;
+  
 }
 .my-addresses {
   margin: 0;
   position: relative;
-  font-size: inherit;
+  /* font-size: inherit; */
   letter-spacing: -0.02em;
   line-height: 120%;
-  font-weight: 400;
-  font-family: inherit;
+  /* font-weight: 400; */
+  font-size:var(--sub-header-font-size);
+font-family: var(--primary-font-family-bold);
+color: var(--hp-yellow-600);
+  
 }
 .address-details {
   width: 183px;
   position: relative;
-  font-size: 20px;
+  font-size: var(--primary-font-size-mini);
+font-family: var(--primary-font-family);
+
   line-height: 130%;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.6);
@@ -27,16 +34,20 @@
   align-items: flex-end;
 }
 .my-addresses-text {
+  margin-top: 20px;
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family-bold);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* flex-direction: column; */
+  align-items: center;
   justify-content: flex-start;
-  padding: 0 0 10px;
-  gap: 20px 0;
+  /* padding: 0 0 10px; */
+  /* gap: 20px 0; */
   text-align: left;
-  font-size: 36px;
+  /* font-size: 36px; */
   color: #fff;
-  font-family: Poppins;
+  /* font-family: Poppins; */
+  
 }
 @media screen and (max-width: 800px) {
   .my-addresses {

@@ -144,8 +144,10 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="bottom-right"/>
+      <div style={{ position: "sticky", top: 0, zIndex: 100 }}>
       {pathname !== "/signin" && <Header />}
+    </div>
       <LocationProvider> </LocationProvider>
         <Routes>
           <Route path="/" element={<Homepage1 />} />

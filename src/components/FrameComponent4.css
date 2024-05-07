@@ -2,9 +2,10 @@
   margin: 0;
   flex: 1;
   position: relative;
-  font-size: inherit;
+  font-size: var(--sub-header-font-size);
+  font-family: var(--primary-font-family-bold);
   font-weight: 600;
-  font-family: inherit;
+  /* font-family: inherit; */
   display: inline-block;
   max-width: 100%;
   color: #fff;
@@ -22,8 +23,8 @@
   font-size: 36px;
 }
 .location-icon14 {
-  height: 40px;
-  width: 40px;
+  height: var(--icon-size);
+  width: var(--icon-size);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;

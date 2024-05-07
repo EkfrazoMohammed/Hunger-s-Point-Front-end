@@ -332,7 +332,7 @@
 .my-orders3 {
   width: 420px;
   border-radius: 10px;
-  border: 2px solid #5f5f5f;
+  border: 1px solid var(--hp-yellow-600);
   box-sizing: border-box;
   overflow: hidden;
   align-items: center;

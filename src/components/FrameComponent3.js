@@ -7,11 +7,11 @@ const FrameComponent3 = () => {
     <div className="buttons-states-dark-parent6">
       <button className="buttons-states-dark67">
         <img className="menu-icon7" alt="" src={menu} />
-        <div className="button80">VIEW MENU</div>
+        <div className="button81">VIEW MENU</div>
       </button>
       <button className="buttons-states-dark68">
-        <img className="basket-icon8" alt="" src={basket1} />
-        <b className="button81">ORDER ONLINE</b>
+        <img className="menu-icon7" alt="" src={basket1} />
+        <div className="button81">ORDER ONLINE</div>
       </button>
     </div>
   );

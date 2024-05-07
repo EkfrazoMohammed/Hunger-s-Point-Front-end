@@ -18,9 +18,12 @@
   font-family: Inter;
 }
 .property-1filledprimary:hover {
-  background-color: #424242 !important;
-  border: 3px solid #424242 !important;
+  background-color: var(--hp-yellow-600) !important;
+  border: 1px solid var(--hp-yellow-600) !important;
   box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
+  color: black !important;
 }
 .property-1filledprimary.button-design{
   display: inline-block;

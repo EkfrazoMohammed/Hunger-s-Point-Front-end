@@ -42,13 +42,13 @@ const Summary = ({
   }
 
   return (
-    <div className="summary10" style={summaryStyle} onClick={onButtonsStatesDarkClick}>
+    <div className="summary10" style={{summaryStyle,backgroundColor:`var(--card-bg)`}} onClick={onButtonsStatesDarkClick}>
       <div className="container-frame">
-        <h3 className="order-summary2">Order summary</h3>
+        <h3 className="order-summary2" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--sub-header-font-size)`,color:`var(--hp-yellow-600)`}}>Order summary</h3>
         <div className="frame-parent63">
           <div className="subtotal-parent">
-            <div className="subtotal3">Subtotal</div>
-            <div className="div32">${basket_summary?.subtotal}</div>
+            <div className="subtotal3" >Subtotal</div>
+            <div className="div32" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size)`}}>${basket_summary?.subtotal}</div>
           </div>
           {/* <div className="text-frame-parent">
             <div className="text-frame1">
@@ -59,25 +59,25 @@ const Summary = ({
           </div> */}
           <div className="text-frame-parent">
             <div className="text-frame1">
-              <div className="subtotal3">Platform fee</div>
+              <div className="subtotal3" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>Platform fee</div>
             </div>
-            <div className="div32">${basket_summary?.shipping}</div>
+            <div className="div32" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>${basket_summary?.shipping}</div>
           </div> 
           <div className="tax-parent">
-            <div className="tax3">Tax</div>
-            <div className="div33">${basket_summary?.taxes}</div>
+            <div className="tax3" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>Tax</div>
+            <div className="div33" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>${basket_summary?.taxes}</div>
           </div>
           <div className="total-parent">
-            <div className="total3">Grand Total</div>
+            <div className="total3" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`,color:`var(--hp-yellow-600)`}}>Grand Total</div>
             <div className="div34">${basket_summary?.total}</div>
           </div>
           <div className="tax-parent">
-            <div style={{color:'#c21f24', fontWeight:'bolder'}} className="tax3">Coupon Discount</div>
-            <div style={{color:'#c21f24',fontWeight:'bolder'}} className="div33">-${basket_summary?.discount_amount}</div>
+            <div style={{color:'#c21f24', fontWeight:'bolder' ,fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}} className="tax3">Coupon Discount</div>
+            <div style={{color:'#c21f24',fontWeight:'bolder',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}} className="div33">-${basket_summary?.discount_amount}</div>
           </div>
           <div className="tax-parent">
-            <div className="total3 b20">To pay</div>
-            <div className="div34 b20">${basket_summary?.final_total}</div>
+            <div className="total3 b20" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>To pay</div>
+            <div className="div34 b20" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>${basket_summary?.final_total}</div>
           </div>
         </div>
         {screen == "checkout" ? 
@@ -88,7 +88,7 @@ const Summary = ({
             }}
           onClick={proceedtopay}
         >
-          <b className="button button-design" style={{display:"inline-block",fontFamily:"Inter",textTransform:"unset",fontWeight:"unset",fontSize:"16px"}}>
+          <b className="button button-design" style={{display:"inline-block",fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`,textTransform:"unset"}}>
             Proceed Pay
           </b>
         </div>

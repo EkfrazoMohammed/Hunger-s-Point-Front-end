@@ -1,17 +1,22 @@
 .epback-icon1 {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
-  margin-top: 20px;
+  margin-right: 10px;
+  /* margin-top: 20px; */
+  
 }
 .my-orders2,
 .order-details2 {
   margin: 0;
   position: relative;
-  font-family: inherit;
+  /* font-family: inherit; */
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size-mini);
+
 }
 .my-orders2 {
   font-size: inherit;
@@ -21,18 +26,20 @@
 }
 .order-details2 {
   align-self: stretch;
-  font-size: 20px;
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size-mini);
   line-height: 130%;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.6);
 }
 .my-orders-section {
+  margin-top: 20px;
   width: 183px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* flex-direction: column; */
+  align-items: center;
   justify-content: flex-start;
-  gap: 20px 0;
+  /* gap: 20px 0; */
 }
 .divider24 {
   height: 100%;
@@ -62,7 +69,9 @@
   justify-content: flex-start;
   gap: 10px;
   /* max-width: 100%; */
-  font-size: 14px;
+  font-size: var(--primary-font-size);
+  font-family: var(--primary-font-family);
+
 }
 .epback-frame {
   width: 80%;

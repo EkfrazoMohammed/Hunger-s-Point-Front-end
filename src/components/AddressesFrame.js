@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { API } from "../api/api";
 import { useSelector } from "react-redux";
 import { findObjectById } from "../utils/Appconstants";
-
+import epback from  "../assets/epback.svg";
 
 const AddressesFrame = ({method,selected_item_id}) => {
   const { user } = useAuth0();
@@ -79,7 +79,7 @@ const AddressesFrame = ({method,selected_item_id}) => {
       .required('Contact Number is required')
   });
   const onEpbackIconClick = useCallback(() => {
-    navigate("/profile");
+    navigate("/myaddress1");
   }, [navigate]);
 
   const onButtonsStatesContainerClick = useCallback(() => {
@@ -141,6 +141,7 @@ const dummyCities = [
 
 
   return (
+    <>
     <Formik
       enableReinitialize
       initialValues={address_initialValues}
@@ -156,16 +157,26 @@ const dummyCities = [
       }}
     >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) => (
-        <Form className="addresses-frame">
-          <div className="frame-input1">
+        <Form className="addresses-frame" style={{backgroundColor:`var(--website-bg)`}}>
+          {/* <div className="frame-input1">
             <div className="frame-email-address-input">
               <div className="divider27" />
             </div>
-          </div>
-          <div className="input-email-address">
-            <div className="contact-detail3">Contact detail</div>
-            <div className="frame-button-dropdown">
-              <div className="input5">
+          </div> */}
+          
+          <div className="input-email-address" >
+          <div className="my-addresses-text">
+          <img
+              className="epback-icon2"
+              loading="eager"
+              alt=""
+              src={epback}
+              onClick={onEpbackIconClick}
+            />
+            <div className="contact-detail3" >Contact Details</div>
+            </div>
+            <div className="frame-button-dropdown" >
+              <div className="input5" >
                 <Field
                   type="text"
                   id="f_name"
@@ -173,26 +184,26 @@ const dummyCities = [
                   value={values.f_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px]  outline-none" 
                   placeholder="First Name"
                   required
                 />
               </div>
-              <div className="input6">
+              <div className="input5">
                 <Field
                   type="text"
                   name="l_name"
                   value={values.l_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] outline-none"
                   placeholder="Last Name"
                   required
                 />
               </div>
             </div>
             <div className="frame-button-dropdown1">
-              <div className="input7">
+              <div className="input5">
                 <div className="input-inner2">
                   <Field
                     type="text"
@@ -200,18 +211,18 @@ const dummyCities = [
                     value={values.complete_address}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                    className="w-full border rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] utline-none"
                     placeholder="Address"
                     required
                   />
                 </div>
               </div>
             </div>
-            <div className="flex w-full gap-[15px]">
+            <div className="flex w-full gap-[15px]" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}>
             <Field
               as="select"
               name="state"
-              className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+              className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] outline-none"
               value={values.state}
             >
               {dummyStates.map(state => (
@@ -223,7 +234,7 @@ const dummyCities = [
                 <Field
                 as="select"
                 name="city"
-                className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] outline-none"
                 value={values.city} // Set value attribute to initial value
               >
                 {dummyCities.map(city => (
@@ -233,29 +244,37 @@ const dummyCities = [
                 ))}
               </Field>
             </div>
-            <div className="frame-button-dropdown4">
-              <div className="input9">
+            <div className="frame-button-dropdown1">
+              <div className="input5">
                 <Field
                   type="text"
                   name="phone_number"
                   value={values.phone_number}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] outline-none"
                   placeholder="Contact Number"
                   required
                 />
               </div>
             </div>
           </div>
-          <div className="buttons-states4">
+
+          
+          <button  type="submit" disabled={isSubmitting} className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" >
+                  <div className="button62">{method == "ADD" ? "Add New Address" : "Edit Address"}</div>
+                </button>
+
+          {/* <div className="buttons-states4">
             <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[49px] px-3 text-[#fff]" disabled={isSubmitting}>
               <b className="button70">{method == "ADD" ? "Add New Address" : "Edit Address"}</b>
             </button>
-          </div>
+          </div> */}
         </Form>
       )}
     </Formik>
+    </>
+   
   );
 };
 

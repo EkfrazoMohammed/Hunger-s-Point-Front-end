@@ -13,12 +13,13 @@ import { API } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from '../redux/actions/dataActions';
 
-import image4 from  "../assets/image-4@2x.png"
+import image4 from  "../assets/location.jpg"
 import mappin from  "../assets/mappin.svg" 
 import mappin2 from  "../assets/mappin-2.svg"
 import mappin21 from  "../assets/mappin-2.svg" 
 import mappin22 from  "../assets/mappin-2.svg"
-
+// import location from  "../assets/Location_home.jpg"
+import location from  "../assets/location4.png"
 import {X, Download} from 'lucide-react'
 
 // / Import Swiper React components
@@ -65,7 +66,13 @@ const Homepage1 = () => {
       .then((res) => {
         console.log(res.data.result.data,'GetUserData======>')
         setOfferData(res.data.result.data)
+        const offer_data = res.data.result.data 
+        if (offer_data !== undefined && offer_data.length > 0) {
         setIsOpen(true)
+        }
+        else{
+          setIsOpen(false)
+        }
       })
       .catch((error) => {
       })
@@ -92,6 +99,7 @@ const Homepage1 = () => {
   useEffect(() => {
     if(copySuccess){
       toast.success('Copied to clipboard!');
+      setIsOpen(false)
     }
     
   }, [copySuccess]);
@@ -150,7 +158,8 @@ const Homepage1 = () => {
     //   buttonText: "Let's Go"
     // }
   ];
-  
+  console.log(offerdata,'offerdata==>12')
+  console.log(offerdata.length,'offerdata==>1211')
   return (
     <>
     <MetaDecorator
@@ -167,9 +176,11 @@ const Homepage1 = () => {
       {/* <CategoryFrame /> */}
       {/* <AdModalPopup/> */}
       <section className="review-section-frame">
+      {/* <div className="slider-view"> */}
         <SimpleSlider />
+        {/* </div> */}
         {/* <Header3 /> */}
-        <FrameComponent6 />
+        {/* <FrameComponent6 /> */}
       </section>
 
     
@@ -179,7 +190,7 @@ const Homepage1 = () => {
     </div> */}
     
 
-    <Modal isOpen={isOpen} onClose={closeModal} width="50%">
+    <Modal isOpen={false} onClose={closeModal} width="50%">
       
     <Swiper
       pagination={{
@@ -190,7 +201,7 @@ const Homepage1 = () => {
       centeredSlides={true}
     >
       
-      {offerdata && offerdata.map((item) => (
+      {offerdata !== undefined && offerdata.length > 0 && offerdata.map((item) => (
             <SwiperSlide key={item.id}>
               <div className="category-10">
                 <img src={item.banner_image} alt={`Slide ${item.id}`} onClick={() => navigationtomenu()} />
@@ -293,15 +304,15 @@ const Homepage1 = () => {
 
       <div className="location1">
         <FrameComponent5 />
-        <div className="location-pin-map w-full">
-          <img className="image-4-icon1" alt="" src={image4} />
-          <img className="mappin-icon4" alt="" src={mappin} key="mappin1" />
-          <img className="mappin-icon5" alt="" src={mappin2} />
-          <img className="mappin-icon6" alt="" src={mappin21} key="mappin2" />
-          <img className="mappin-icon7" alt="" src={mappin22} />
-        </div>
-        {/* <FrameComponent2 /> */}
-        <FrameComponent11 />
+
+
+          <div style={{ display: 'flex' }} className="flex-container">
+            <FrameComponent11 />
+            <div className="container22">
+              <img src={location} alt="a cat" style={{ width: '100%', height: 'auto', borderRadius:'10px' }} />
+            </div>
+          </div>
+        
       </div>
       <MapPinSection />
       <VIPContainer />

@@ -171,14 +171,14 @@ const CATEGORY = () => {
         <div className="signin-text1">
           <div className="sign-in-wrapper">
             {/* <h1 className="sign-in1">{text} to Engage</h1> */}
-            <h1 className="sign-in1">Continue to Engage</h1>
+            <h1 className="sign-in1" style={{fontFamily:`var(--primary-font-family-bold)`,marginBottom:'10px'}}>Continue to Engage</h1>
           </div>
           <div className="a-few-more-questions-to-help-b-wrapper">
-            <div className="a-few-more1">
+            <div className="a-few-more1" style={{marginBottom:'10px'}}>
               It only takes 5 seconds
             </div>
           </div>
-          <div style={{ fontSize: '16px', color: 'green' }}>
+          <div style={{ fontSize: `var(--primary-font-size)`, color: 'green' }}>
             The more items you engage with the closer you get to loyalty rewards, personalized recommendations and exclusive offers.
           </div>
         </div>
@@ -190,7 +190,7 @@ const CATEGORY = () => {
         <div style={{ display: 'flex' }}>
           <div style={{ flexGrow: 1 }} className="input-inner-group">
             <input
-              style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.firstName ? 'red' : 'initial' }}
+              style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.firstName ? 'red' : 'initial',border:'.2px solid' }}
               className="input-inner-group"
               placeholder="First Name"
               type="text"
@@ -203,7 +203,7 @@ const CATEGORY = () => {
           
           <div style={{ flexGrow: 1, marginLeft: '5px' }} className="input-inner-group">
             <input
-              style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.lastName ? 'red' : 'initial' }}
+              style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.lastName ? 'red' : 'initial',border:'.2px solid' }}
               className="input-inner-group"
               placeholder="Last Name"
               type="text"
@@ -217,7 +217,7 @@ const CATEGORY = () => {
 
         <div style={{ display: 'flex', alignItems: 'flex-start', marginTop: '10px' }} className="input-inner5">
           <input
-            style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.emailAddress ? 'red' : 'initial' }}
+            style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.emailAddress ? 'red' : 'initial' ,border:'.2px solid'}}
             className="input-inner5"
             placeholder="Email Address"
             type="text"
@@ -233,7 +233,7 @@ const CATEGORY = () => {
         )}
         <div style={{ display: 'flex', alignItems: 'flex-start' }} className="input-inner5">
           <input
-            style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.phoneNumber ? 'red' : 'initial' }}
+            style={{ fontSize: '12px', paddingLeft: '20px', borderColor: errors.phoneNumber ? 'red' : 'initial',border:'.2px solid' }}
             className="input-inner5"
             placeholder="Phone Number"
             type="text"

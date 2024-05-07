@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { routeVariants, childVariants } from '../../../variants/framerMotionVariants';
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
-import pageBannerImg from "../../../assets/top_banner.jpg";
-import sideImg1 from "../../../assets/images/career-img-1.png"
+import pageBannerImg from "../../../assets/career.jpg";
+import sideImg1 from "../../../assets/careers.jpg"
 import sectionBanner from "../../../assets/images/sectiob-banner-img-2.png";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
@@ -118,44 +118,34 @@ export const Careers = () => {
           rightImg={sideImg1}
           leftDescription={
             <>
-              <p className="mt-4">
-                Dolore ullamco mollit elit non ea pariatur mollit magna
-                cupidatat labore sunt consequat elit. Est ad cupidatat velit
-                anim aliquip in anim mollit. Excepteur incididunt ex sint labore
-                velit ut aliquip ad magna exercitation qui dolor laborum. Veniam
-                ad consectetur aliquip cupidatat aute sunt cupidatat ea.
-                Pariatur pariatur qui esse cupidatat commodo ullamco ex. Nulla
-                officia veniam ex culpa officia ad ex dolor nostrud in. Ullamco
-                labore nulla proident nisi. Cupidatat sit aute esse id.
+              <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
+              Do you crave a career that's as exciting and vibrant as the flavours we serve? 
               </p>
 
-              <p className="mt-4">
-                Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
-                anim veniam enim laboris id ad adipisicing laboris aliqua.
-                Veniam commodo reprehenderit mollit cupidatat minim officia
-                voluptate dolor minim proident et magna dolore. Ea proident sit
-                laborum amet amet veniam. Labore Lorem et quis fugiat sint
-                fugiat. Enim ad proident nisi ipsum nostrud duis.
+              <p className="mt-4"  style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
+              At Hunger's Point, we're more than just a restaurant – we're a passionate family dedicated to sharing the magic of Indian cuisine. We're always searching for talented individuals who share our love for food and exceptional service. Join our team and be part of something bigger. Spice up your career with The Hunger's Point!
+
               </p>
             </>
           }
         />
         {/* types: side_section(rightImg, leftImg), banner(bannerImg) , banner_with_text(bannerText1, bannerText2)*/}
-        <ImagesSection type="banner" bannerImg={'https://placehold.co/1280x380'} />
+        {/* <ImagesSection type="banner" bannerImg={'https://placehold.co/1280x380'} /> */}
 
         <section className="fp-wrapper-main bottom-form-container">
           <div className="sec-info--w gap-6 justify-between">
             <div className="side--w">
               <div className="para-container">
-                <div className="fp-para-section-title-sm w-2/3">
-                  Fill the details and our team will get back to you shortly
-                </div>
-                <div className="fp-para-section-title w-2/3">
+              <div className="what-we-believe4 fp-para-section-title bottom-a-line" style={{marginBottom:'20px'}}>
                   JOIN OUR TEAM NOW
                 </div>
+                <div className="fp-para-section-title-sm ">
+                  Fill the details and our team will get back to you shortly !
+                </div>
+                
               </div>
             </div>
-            <div className="side--w">
+            <div className="">
             <FeedbackForm/>
             </div>
           </div>

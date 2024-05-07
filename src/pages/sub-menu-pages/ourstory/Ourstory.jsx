@@ -15,7 +15,7 @@ import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
 import ImagesSection from "../../../components/page_section/ImagesSection";
 import DarkMode1 from "../../../components/DarkMode1";
-import top_banner from "../../../assets/top_banner.jpg"
+import top_banner from "../../../assets/our_story_top.jpg"
 
 
 export const Ourstory = () => {
@@ -60,25 +60,70 @@ export const Ourstory = () => {
           Title="OUR STORY"
           leftDescription={
             <>
-              <p className="mt-4">
-                Dolore ullamco mollit elit non ea pariatur mollit magna
-                cupidatat labore sunt consequat elit. Est ad cupidatat velit
-                anim aliquip in anim mollit. Excepteur incididunt ex sint labore
-                velit ut aliquip ad magna exercitation qui dolor laborum. Veniam
-                ad consectetur aliquip cupidatat aute sunt cupidatat ea.
-                Pariatur pariatur qui esse cupidatat commodo ullamco ex. Nulla
-                officia veniam ex culpa officia ad ex dolor nostrud in. Ullamco
-                labore nulla proident nisi. Cupidatat sit aute esse id.
+              <p className="mt-4" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)` }}>
+                Welcome to The Hunger’s Point, your one-stop shop for a taste of India! We're a passionate group of people, bound by the love of authentic Indian cuisine and a desire to share it with everyone.
               </p>
 
-              <p className="mt-4">
+              {/* <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
                 Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
                 anim veniam enim laboris id ad adipisicing laboris aliqua.
                 Veniam commodo reprehenderit mollit cupidatat minim officia
                 voluptate dolor minim proident et magna dolore. Ea proident sit
                 laborum amet amet veniam. Labore Lorem et quis fugiat sint
                 fugiat. Enim ad proident nisi ipsum nostrud duis.
+              </p> */}
+            </>
+          }
+        />
+
+        <DescriptionSection
+          Title="It Began with a Dream"
+          leftDescription={
+            <>
+              <p className="mt-4" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)` }}>
+                Our founders have been captivated by Indian flavours for over a decade. Their culinary journeys made them bring the vibrant spices and rich traditions of Indian cuisine to the Canadian tables. With 10+ years of experience in the restaurant industry, they knew exactly how to craft a dining experience that would captivate taste buds and leave you wanting more every time.
+
               </p>
+
+
+            </>
+          }
+        />
+
+        <DescriptionSection
+          Title="A Team Fueled by Passion
+          "
+          leftDescription={
+            <>
+              <p className="mt-4" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)` }}>
+                At Hunger’s Point, we're more than just a restaurant; we're a family. Our management team comes with a wealth of experience in the culinary world. Their passion for quality and customer satisfaction speaks for themselves. We're constantly working hard to perfect our offerings, making each visit to our restaurant a delightful exploration of Indian flavours.
+
+
+              </p>
+
+
+            </>
+          }
+        />
+
+        <DescriptionSection
+          Title="Our Vision: The Fastest-Growing Taste of India"
+          leftDescription={
+            <>
+              <p className="mt-4" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)` }}>
+                We don't just cook food, we give experiences. Our vision is to become the fastest-growing segment of quick-service restaurants offering authentic Indian cuisine. We believe everyone deserves to experience the joy of Indian flavours and we're committed to making them accessible and delicious.
+
+
+              </p>
+
+              <p className="mt-4" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)` }}>
+                Join us on this flavorful adventure! We invite you to explore our menu, experience our vibrant atmosphere, and discover why The Hunger’s Point is your perfect destination for a taste of India.
+
+
+
+              </p>
+
+
             </>
           }
         />
@@ -87,7 +132,7 @@ export const Ourstory = () => {
           type="banner_with_text"
           bannerImg={banner2}
           bannerText={
-            <h1 className="text-[30px] text-center">
+            <h1 className=" text-center " style={{ fontSize: `var(--sub-header-font-size)`, fontFamily: `var(--primary-font-family-bold)`, color: `var(--hp-yellow-600)` }} >
               Wait is over! Own a Store at your convenient location now.
             </h1>
           }

@@ -204,7 +204,7 @@ const OnProceedClick = async () => {
             alt=""
             src={profile}
           />
-          <div className="contact-information2">Contact Information</div>
+          <div className="contact-information2" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size)`}} >Contact Information</div>
 
           <img
             className="down-icon12 cursor-pointer"
@@ -238,13 +238,13 @@ const OnProceedClick = async () => {
                   >
                       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) => (
                       <Form className="">
-                        <div className="frame-input1">
+                        {/* <div className="frame-input1">
                           <div className="frame-email-address-input">
                             <div className="divider27" />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="input-email-address">
-                          <div className="contact-detail3">Contact detail</div>
+                          {/* <div className="contact-detail3" style={{fontFamily:`var(--primary-font-family-bold)`,fontFamily:`var(--sub-header-font-size)`}} >Contact detail</div> */}
                           <div className="frame-button-dropdown">
                             <div className="input5">
                               <Field
@@ -254,6 +254,7 @@ const OnProceedClick = async () => {
                                 value={values.f_name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                                 placeholder="First Name"
                                 required
@@ -266,6 +267,7 @@ const OnProceedClick = async () => {
                                 value={values.l_name}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                                 placeholder="Last Name"
                                 required
@@ -281,6 +283,7 @@ const OnProceedClick = async () => {
                                   value={values.complete_address}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
+                                  style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                   className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                                   placeholder="Address"
                                   required
@@ -292,6 +295,7 @@ const OnProceedClick = async () => {
                           <Field
                             as="select"
                             name="state"
+                            style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                             className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                             value={values.state}
                           >
@@ -305,6 +309,7 @@ const OnProceedClick = async () => {
                               as="select"
                               name="city"
                               className="w-[50%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                              style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                               value={values.city} // Set value attribute to initial value
                             >
                               {dummyCities.map(city => (
@@ -322,6 +327,7 @@ const OnProceedClick = async () => {
                                 value={values.phone_number}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                                 placeholder="Contact Number"
                                 required
@@ -330,16 +336,17 @@ const OnProceedClick = async () => {
                           </div>
                         </div>
 
-                        <div className="buttons-states4" style={{marginTop:'20px'}}>
+                        <div className="buttons-states4" style={{marginTop:'20px',marginBottom:'20px'}}>
                         <button
+                        style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
                           className="buttons-states-dark51"
                           onClick={() => setIsVisibleNew(false)}
                         >
-                          <div className="button63">Cancel</div>
+                          <div className="button61">Cancel</div>
                         </button>
-                          <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[36px] px-3 text-[#fff] mb-4" disabled={isSubmitting}>
-                            <b className="button70">{method == "ADD" ? "Add New Address" : "Proceed"}</b>
-                          </button>
+                          {/* <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[36px] px-3 text-[#fff] mb-4" disabled={isSubmitting}>
+                            <b  style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}  className="button70">{method == "ADD" ? "Add New Address" : "Proceed"}</b>
+                          </button> */}
                         </div>
                       </Form>
                     )}
@@ -368,7 +375,7 @@ const OnProceedClick = async () => {
             ) : (
               <div className="w-full flex flex-col gap-[15px]">
                 <div className="summary6">
-                  <div className="contact-detail2">Contact detail</div>
+                  {/* <div className="contact-detail2" style={{ fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}>Contact detail</div> */}
                   {user_address_list && user_address_list.map((data, index) => (
                     <div onClick={()=>{handleSelectLocation(index,data);}}>
                     <LocationInputFrame
@@ -389,18 +396,19 @@ const OnProceedClick = async () => {
                 <div className="contactinformation-inner">
                   <div className="buttons-states-dark-parent5">
                     <button
+                    style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
                       className="buttons-states-dark51"
                       onClick={() => AddNewAddress()}
                     >
                       <div className="button63">Add New Address</div>
                     </button>
-                    <button
-                   
+                    {/* <button
+                   style={{ fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
                       className="buttons-states-dark52"
                       onClick={() => OnProceedClick() }
                     >
                       <div className="button64">Proceed</div>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

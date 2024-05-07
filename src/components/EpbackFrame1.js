@@ -55,21 +55,21 @@ const EpbackFrame1 = () => {
   }
 
   return (
-    <section className="epback-frame1">
+    <section className="epback-frame1" style={{backgroundColor:`var(--website-bg)`}}>
       <MyAddressesText onEpbackIconClick={onEpbackIconClick} />
-      <div className="divider-line3">
+      {/* <div className="divider-line3">
         <div className="summary-frame2">
           <div className="divider26" />
         </div>
-      </div>
+      </div> */}
 
-      <div>
+      <div style={{marginTop:'10px'}}>
       {address_list && address_list.map((item, index) => (
-        <div key={index} className="summary9">
-          <div className="buttons-states-dark-instance">
-            <div className="st-churchstreet-vancover-frame">
+        <div key={index} className="summary9" onClick={() => onButtonsEditClick('EDIT',item)} >
+          <div className="buttons-states-dark-instance" style={{backgroundColor:`var(--card-bg)`}}>
+            <div className="st-churchstreet-vancover-frame" >
               <div className="street-address-text">
-                <b className="john-smith7">{item.f_name}</b>
+                <b className="john-smith7" >{item.f_name}</b>
                 <div className="john-smithtext">{item.phone_number}</div>
                 <div className="st-churhc-street">{item.complete_address}</div>
                 <div className="canada1">{item.city}</div>
@@ -108,12 +108,18 @@ const EpbackFrame1 = () => {
           </div>
         </div>
       </div> */}
-      <button
+
+            <button  onClick={() => onButtonsStatesDarkClick('ADD')} className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" >
+                  <div className="button62">Add New Address</div>
+                </button>
+
+
+      {/* <button
         className="buttons-states-dark56"
         onClick={() => onButtonsStatesDarkClick('ADD')}
       >
         <b className="button68">Add New Address</b>
-      </button>
+      </button> */}
     </section>
   );
 };

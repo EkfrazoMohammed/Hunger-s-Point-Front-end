@@ -1,6 +1,6 @@
 import Property1FilledPrimary from "./Property1FilledPrimary";
 import "./MapPinSection.css";
-import ellipse4 from  "../assets/ellipse-4.svg";
+import ellipse4 from  "../assets/artboard-6.png";
 
 import customerservicemanansweringquestion from  "../assets/customer-service-man-answering-question@2x.png";
 import uiwdown from  "../assets/uiwdown.svg";
@@ -12,22 +12,22 @@ const FrameComponent1 = () => {
     <section className="map-pin-section">
       <div className="heading2">
         <div className="what-we-believe-text">
-          <h1 className="what-we-believe2 fp-para-section-title bottom-a-line">Give us your review</h1>
+          <h1 className="what-we-believe4 fp-para-section-title bottom-a-line">Give us your review</h1>
         </div>
       </div>
       <div className="give-your-feedback-below-parent">
         <div className="give-your-feedback-below">
-          <img
+          {/* <img
             className="give-your-feedback-below-child"
             alt=""
             src={ellipse4}
-          />
+          /> */}
           <img
             className="customer-service-man-answering"
             loading="eager"
             alt=""
         
-            src={customerservicemanansweringquestion}
+            src={ellipse4}
           />
         </div>
         <div className="dash-feedback">
@@ -35,7 +35,7 @@ const FrameComponent1 = () => {
         </div>
        
       </div>
-      <div className="feedback-forms-parent">
+      {/* <div className="feedback-forms-parent">
         <div className="feedback-forms">
           <div className="map-pin-group" />
           <div className="image-frame" />
@@ -67,7 +67,7 @@ const FrameComponent1 = () => {
           <div className="feedback-forms-child13" />
           <div className="feedback-forms-child14" />
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

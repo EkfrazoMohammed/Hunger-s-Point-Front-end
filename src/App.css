@@ -12,9 +12,12 @@
   --primary-text-color-light:rgb(123,123,123);
   --card-dark-shade:rgb(50,50,50);
   --text:rgb(255,255,255);
+  --primary-font-size:'clamp(14px, 2vw, 16px)';
+  --header-font-size:'clamp(18px, 2vw, 22px)';
+  --primary-font-family: 'Bodoni Bd BT', serif;
 }
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--primary-font-family);
   color: #840E12;
   background: var(--bgColor);
 }

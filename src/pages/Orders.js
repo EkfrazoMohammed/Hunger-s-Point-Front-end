@@ -21,7 +21,7 @@ const Orders = () => {
   }, [navigate]);
 
   return (
-    <div className="orders">
+    <div className="orders" style={{backgroundColor:`var(--website-bg)`}}>
       {/* <Header1
         onLogoImageClick={onLogoImageClick}
         onButtonsStatesContainerClick={onButtonsStatesContainerClick}

@@ -1,13 +1,14 @@
 import React from "react";
 import Slider from "react-slick";
-import bannerImg1 from "../assets/header@3x.png"
-import banner1 from "../assets/home_banner.jpg"
-import banner2 from "../assets/banner2_quality.jpg"
-import banner3 from "../assets/banner3_quality.jpg"
-import banner4 from "../assets/banner4_quality.jpg"
+
+import banner1 from "../assets/Home_banner_1.jpg"
+import banner2 from "../assets/Home_banner_2.jpg"
+import banner3 from "../assets/Home_banner_3.jpg"
+import banner4 from "../assets/Home_banner_4.jpg"
 import { useNavigate } from "react-router-dom";
 
 export default function SimpleSlider() {
+  const banner_placeholder = 'https://placehold.co/1280x380'
   var settings = {
     dots: true,
     infinite: true,
@@ -36,19 +37,27 @@ export default function SimpleSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
+      imgSrc: banner2,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
       imgSrc: banner3,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc: banner4,
     }
   ];
   
   return (
     <Slider {...settings}>
       {dummyData.map((item, index) => (
-        <div key={index} className="slider-item">
-          <div className="banner-action--wrapper">
-            <p className="lorem-ipsum-dolor3">{item.title}</p>
-            <p className="ante-eget-vel4">{item.description}</p>
-            <button onClick={() => Buttonclicked(item)} className="order-action">{item.buttonText}</button>
-          </div>
+        <div key={index} onClick={() => Buttonclicked(item)}>
+          
           <img src={item.imgSrc} alt={`Banner ${index + 1}`} />
         </div>
       ))}

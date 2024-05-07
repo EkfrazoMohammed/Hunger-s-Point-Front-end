@@ -202,7 +202,7 @@
 .payment {
   align-self: stretch;
   border-radius: 10px;
-  background-color: #363636;
+  background-color: var(--card-bg);
   border: 1px solid #545454;
   box-sizing: border-box;
   overflow: hidden;

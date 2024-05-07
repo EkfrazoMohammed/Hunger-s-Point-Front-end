@@ -1,13 +1,16 @@
 .basket1 {
   margin: 0;
   position: relative;
-  font-size: inherit;
+  font-size: var(--header-font-size);
+  font-family: var(--primary-font-family-bold);
   letter-spacing: -0.02em;
   line-height: 25px;
   font-weight: 400;
   font-family: inherit;
 }
 .items1 {
+  font-size: var(--primary-font-size-mini);
+  font-family: var(--primary-font-family);
   position: relative;
   font-size: 20px;
   line-height: 14px;
@@ -106,4 +109,11 @@
     font-size: 16px;
     line-height: 21px;
   }
+}
+
+.sticky-top-wrapper-basket {
+  position: sticky;
+  top: 80px; /* Stick to the top of the viewport */
+  z-index: 1; /* Adjust z-index as needed */
+  background-color: #252525; /* Add background color if needed */
 }

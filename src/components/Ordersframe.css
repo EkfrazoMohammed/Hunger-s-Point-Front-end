@@ -34,7 +34,7 @@
 }
 .dividerline,
 .john-smithtext-icon {
-  align-self: stretch;
+  /* align-self: stretch; */
   position: relative;
 }
 .dividerline {
@@ -45,8 +45,9 @@
   justify-content: center;
 }
 .john-smithtext-icon {
+  margin-top: 5px;
   flex: 1;
-  border-radius: 10px;
+  border-radius: 50%;
   max-width: 100%;
   overflow: hidden;
   max-height: 100%;
@@ -87,11 +88,11 @@
   flex-shrink: 0;
 }
 .summary2 {
-  height: 319px;
+  height: 230px;
   width: 290px;
   overflow: hidden;
   align-items: center;
-  padding: 0 0 30px;
+  padding: 10px;
   gap: 20px 0;
   min-width: 290px;
 }

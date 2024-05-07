@@ -76,7 +76,8 @@
 .buttons-states-dark51 {
   cursor: pointer;
   border: 1px solid #fff;
-  padding: 10px 15px 10px 19px;
+  /* padding: 10px 10px 10px 19px; */
+  padding:10px;
   background-color: transparent;
   border-radius: 6px;
   display: flex;
@@ -138,7 +139,7 @@
 .contactinformation2 {
   align-self: stretch;
   border-radius: 10px;
-  background-color: #363636;
+  background-color: var(--card-bg);
   border: 1px solid #545454;
   box-sizing: border-box;
   overflow: hidden;
