@@ -50,7 +50,7 @@ const Basket = () => {
   return (
     <div className="basket" style={{ paddingTop: "100px",backgroundColor:`var(--website-bg)` }}>
   <div className="summary-frame" style={{ position: "fixed", top: "80px", zIndex: "1",backgroundColor:`var(--website-bg)` }}>
-    <div className="item-list-frame" style={{ justifyContent: "center", alignItems: "center",marginTop:'20px' }}>
+    <div className="item-list-frame" style={{ justifyContent: "center", alignItems: "center",marginTop:'20px',marginBottom:'20px' }}>
       <img
         className="epback-icon2"
         loading="eager"

@@ -108,6 +108,7 @@ font-family: var(--primary-font-family);
   margin: 0 !important;
   top: 8px;
   right: 8px;
+  cursor: pointer;
 }
 .minus-add1 {
   height: 30px;
@@ -165,8 +166,8 @@ font-family: var(--primary-font-family);
   font-size: 16px;
 }
 .close-icon {
-  width: 24px;
-  height: 24px;
+  width: 14px;
+  height: 14px;
   position: absolute;
   margin: 0 !important;
   top: 0;
@@ -174,6 +175,7 @@ font-family: var(--primary-font-family);
   overflow: hidden;
   flex-shrink: 0;
   z-index: 1;
+  cursor: pointer;
 }
 .first-addon-frame,
 .inner-frame-parent {

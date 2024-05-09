@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import WAddon from "../components/WAddon";
 import PortalPopup from "../components/PortalPopup";
 import Header from "../components/Header";
@@ -136,6 +136,7 @@ const ProductPage = () => {
       .then((res) => {
         // console.log('GetRestaurentData==in', res.data.result)
         setRestorentdata(res.data.result.data);
+        console.log(res.data.result.items_linked_menus,'res.data.result.items_linked_menus')
         setRestorentmenudata(res.data.result.items_linked_menus);
         // // console.log(res.data.result.data, 'res.data.result.data==>')
         dispatch(setLocation(res.data.result.data));
@@ -467,6 +468,22 @@ const ProductPage = () => {
     setSavemodal(false);
   };
 
+
+  const menuContainerRef = useRef(null); // Ref for the menu container
+  const [menuContainerHeight, setMenuContainerHeight] = useState(0); // State for storing container height
+
+  useEffect(() => {
+    // Calculate height of the menu container after component has rendered or when restorentmenudata changes
+    if (menuContainerRef.current) {
+      const height = menuContainerRef.current.getBoundingClientRect().height;
+      setMenuContainerHeight(height);
+      console.log("restorentmenudata===1",height)
+    }
+    
+  }, [restorentmenudata]); // Recalculate height when restorentmenudata changes
+
+
+
   return (
     <>
 
@@ -478,8 +495,8 @@ const ProductPage = () => {
             <div className="w-full flex justify-between ">
             
               <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-full sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col">
-              <div className="sticky-top-wrapper" style={{backgroundColor:`var(--website-bg)`}}>
-                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-20 px-10">
+              <div ref={menuContainerRef} className="sticky-top-wrapper" style={{backgroundColor:`var(--website-bg)`}}>
+                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-20 px-10" >
                  
 
                   <div
@@ -497,11 +514,11 @@ const ProductPage = () => {
                   {restorentmenudata &&
                     restorentmenudata.map((menu, index) => (
                       <div
-                        style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease' ,paddingTop:'0.5rem',paddingBottom:'0.5rem',backgroundColor:`var(--website-bg)`}}
+                        style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease' ,paddingTop:'0.5rem',paddingBottom:'0.5rem'}}
                         key={index}
                         className={` border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex responsive-font-size cursor-pointer ${selectedMenuIndex === index
                           ? "bg-[#C21F24]"
-                          : "hover:bg-[#C21F24] "
+                          : "hover:bg-[#C21F24] cursor-pointer"
                           }`}
                         onClick={() =>
                           OnClickMenu(
@@ -524,22 +541,22 @@ const ProductPage = () => {
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
-                            <div className="sticky-top-wrappe-title">
+                            <div className="sticky-top-wrappe-title" style={{top: `calc(${menuContainerHeight}px + 70px)`}}>
                             <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--secondary-font-family)`,color:`var(--hp-yellow-600)`,borderRadius:'5px',backgroundColor:` var(--website-bg)`}} className="text-[#fff] flex  py-[10px] ">
                               {menu.menu_title}
                             </div>
                             </div>
-                            <div className="pi-container w-full flex flex-col gap-y-[30px] mt-3 mb-3" >
+                            <div className="pi-container w-full flex flex-col gap-y-[30px] mt-3 mb-3 "  >
                               {menu.menu_item_info_list &&
                                 menu.menu_item_info_list.map(
                                   (item, itemIndex) =>
                                     itemIndex % 2 === 0 && (
                                       <div
                                         key={itemIndex}
-                                        className="pi-row"
+                                        className="pi-row "
                                       >
                                         {/* First Item */}
-                                        <div className="pi-each" style={{backgroundColor:`var(--card-bg)`}} >
+                                        <div className="zoom-effect pi-each  hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{backgroundColor:`var(--card-bg)`,transition: "transform 0.2s ease"}}>
                                           <img
                                             src={
                                               item.item_image &&
@@ -556,7 +573,9 @@ const ProductPage = () => {
                                               height: "100%",
                                               borderTopLeftRadius: "10px",
                                               borderBottomLeftRadius: "10px",
+                                              transition: "transform 0.2s ease", // Add transition for smooth scaling
                                             }}
+                                            className="zoom-effect" // Add a class for targeting the image
                                           />
                                           <div
                                             className="flex flex-col justify-center"
@@ -657,7 +676,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                            <div className="pi-each" style={{backgroundColor:`var(--card-bg)`}}>
+                                            <div className="zoom-effect pi-each hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{backgroundColor:`var(--card-bg)`,transition: "transform 0.2s ease"}}>
                                               <img
                                                 src={
                                                   menu.menu_item_info_list[

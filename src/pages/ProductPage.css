@@ -1340,13 +1340,18 @@
 
 .sticky-top-wrapper {
   position: sticky;
-  top: 80px; /* Stick to the top of the viewport */
-  z-index: 1; /* Adjust z-index as needed */
-  background-color: #252525; /* Add background color if needed */
+  top: 80px;
+  z-index: 1;
+  background-color: #252525;
 }
-.sticky-top-wrappe-title{
+
+.sticky-top-wrappe-title {
   position: sticky;
-  top: 200px; /* Stick to the top of the viewport */
-  z-index: 1; /* Adjust z-index as needed */
-  background-color: #252525; /* Add background color if needed */
+  top: calc(130px + 70px); /* Adjust the value 70px based on your requirements */
+  z-index: 1;
+  background-color: #252525;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.01); /* Scale the image up by 5% on hover */
 }

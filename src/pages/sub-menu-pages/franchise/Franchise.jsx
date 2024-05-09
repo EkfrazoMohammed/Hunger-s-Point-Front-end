@@ -15,6 +15,7 @@ import DescriptionSection from "../../../components/page_section/DescriptionSect
 import ImagesSection from "../../../components/page_section/ImagesSection";
 import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
+import EventSlider from "../../../components/EventSlider";
 
 export const Franchise = () => {
   const formik = useFormik({
@@ -96,7 +97,8 @@ export const Franchise = () => {
           </div>
           <div className="sec-info--w gap-6 justify-between mt-10 " style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
             <div className="side--w h-full">
-              <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" />
+              <EventSlider/>
+              {/* <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" /> */}
             </div>
             <div className=" h-full">
              <FeedbackForm />

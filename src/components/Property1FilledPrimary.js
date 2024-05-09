@@ -60,12 +60,12 @@ const Property1FilledPrimary = ({
 
   return (
     <div
-      className="property-1filledprimary"
+      className="property-1filledprimary cursor-pointer"
       style={property1FilledPrimaryStyle}
       onClick={handleSubmit}
     >
       
-      <b className="button button-design" style={buttonStyle}>
+      <b className="button button-design cursor-pointer" style={buttonStyle}>
         {button}
       </b>
 

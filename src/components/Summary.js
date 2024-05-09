@@ -83,7 +83,7 @@ const Summary = ({
         {screen == "checkout" ? 
         <>
         <div
-          className="property-1filledprimary"
+          className="property-1filledprimary cursor-pointer"
           style={{border:'none',alignSelf:"stretch",backgroundColor:"#c21f24",height:"49px",padding:"0px 12px"
             }}
           onClick={proceedtopay}

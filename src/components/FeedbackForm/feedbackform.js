@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { API } from '../../api/api';
 import { toast } from 'react-toastify';
 
-const FeedbackForm = () => {
+const FeedbackForm = ({width,heading,selection}) => {
   const [coverLetterUploaded, setCoverLetterUploaded] = useState(false);
   const [resumeUploaded, setResumeUploaded] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
@@ -93,8 +93,8 @@ const FeedbackForm = () => {
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
-        <Form onSubmit={handleSubmit} className="fp-form-common">
-          <h2 className="text-xl" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>Give your feedback below</h2>
+        <Form onSubmit={handleSubmit} className="fp-form-common" style={{width:'100%'}}>
+          <h2 className="text-xl" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{heading}</h2>
           <div className="fp-input-w">
             <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} as="select" name="feedboack_opt" className="user-field-input-common user-field-select-common">
               {options.map(option => (

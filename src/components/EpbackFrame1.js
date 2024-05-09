@@ -66,7 +66,7 @@ const EpbackFrame1 = () => {
       <div style={{marginTop:'10px'}}>
       {address_list && address_list.map((item, index) => (
         <div key={index} className="summary9" onClick={() => onButtonsEditClick('EDIT',item)} >
-          <div className="buttons-states-dark-instance" style={{backgroundColor:`var(--card-bg)`}}>
+          <div className="buttons-states-dark-instance" style={{backgroundColor:`var(--card-bg)`,marginTop:'10px'}}>
             <div className="st-churchstreet-vancover-frame" >
               <div className="street-address-text">
                 <b className="john-smith7" >{item.f_name}</b>

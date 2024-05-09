@@ -4,6 +4,7 @@ import {
   routeVariants,
   childVariants,
 } from "../../variants/framerMotionVariants";
+import EventSlider from "../EventSlider";
 
 const DescriptionSectionEvent = ({ Title,SecondTitle, leftDescription,secondleftDescription, image1,image2,image3}) => {
   return (
@@ -12,7 +13,26 @@ const DescriptionSectionEvent = ({ Title,SecondTitle, leftDescription,secondleft
       <div className="sec-info--w info_event">
         
       <div className={`side--w ${!image1 ? "w-full" : " " }`} >
-          <motion.div
+      <EventSlider/>
+          {/* <motion.div
+            variants={childVariants}
+            initial="initial"
+            animate="final"
+            className="para-container"
+            style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}
+          >
+            <p className="what-we-believe4 fp-para-section-title bottom-a-line" >{Title}</p>
+            {leftDescription}
+            <p className="what-we-believe4 fp-para-section-title bottom-a-line mt-10" style={{ maxWidth: "100%",fontSize:`var(--sub-header-font-size)` }}>{SecondTitle}</p>
+            {secondleftDescription}
+            
+          </motion.div> */}
+        </div>
+        
+        
+        {image1 && (
+          <div className="side--w" style={{display:'flex'}}>
+             <motion.div
             variants={childVariants}
             initial="initial"
             animate="final"
@@ -25,19 +45,15 @@ const DescriptionSectionEvent = ({ Title,SecondTitle, leftDescription,secondleft
             {secondleftDescription}
             
           </motion.div>
-        </div>
-        
-        
-        {image1 && (
-          <div className="side--w" style={{display:'flex'}}>
-            <motion.img
+            {/* <EventSlider/> */}
+            {/* <motion.img
               variants={childVariants}
               initial="initial"
               animate="final"
               style={{borderRadius:'10px',height:'50vh', marginRight:'10px'}}
               src={image1}
               alt="..."
-            />
+            /> */}
             {/* <motion.img
               variants={childVariants}
               initial="initial"

@@ -133,11 +133,11 @@ export const Events = () => {
           rightImg={sideImg2}
           leftImg={sideImg3}
         /> */}
-        <ImagesSection
+        {/* <ImagesSection
           type="side_section"
           rightImg={sideImg3}
           leftImg={sleder4}
-        />
+        /> */}
         {/* <ImagesSection type="banner" bannerImg={sideImg2} /> */}
         {/* <ImagesSection
           type="banner_with_text"

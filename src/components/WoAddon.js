@@ -14,7 +14,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import CATEGORY from "./CATEGORY";
 import Modal from "./Modal";
 
-const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedToBasket,isWoAddonOpen }) => {
+const WoAddon = ({ onClose, menu_item, setMenuitemdata, qty, UpdateBasket, AddedToBasket, isWoAddonOpen }) => {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const basket_count = useSelector((state) => state.data.basket_count);
@@ -44,64 +44,64 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
   };
 
   // useEffect(() => {
-    
+
   // }, []);
-  console.log('menu_item====>complete',menu_item)
+  console.log('menu_item====>complete', menu_item)
 
 
 
   const handleCategorySelect = (category, itemName) => {
     const updatedMenuItems = menu_item.data.map((cat) => {
-        if (cat.key === category) {
-          let finalamount1
-            const updatedValue = cat.value.map((item) => {
-                // Check if the category key is 'size'
-                if (cat.key.toLowerCase() === 'size') {
-                    // For the 'size' category, allow only one item to be selected at a time
-                    // If the clicked item is already selected, keep it selected
-                    // If the clicked item is not selected, toggle its selection and deselect other items
-                    const isSelected = item.name === itemName;
-                   
-                    // const updatedItem = { ...item, selected: isSelected };
-                    // console.log(updatedItem,'item==>1111')
-                    // menu_item.amount = parseFloat(updatedItem.price).toFixed(2)
-                    // if (updatedItem.selected ==true){
-                    //   setfinalamount(menu_item.amount)
-                    // }
-                    
-                    return { ...item, selected: isSelected};
-                } else {
-                    // For other categories, toggle the selection state of the clicked item
-                    const isSelected = item.name === itemName ? !item.selected : item.selected;
-                    
-                    // const updatedItem = { ...item, selected: isSelected };
-                    // console.log(updatedItem,'updatedItem===>1222',finalamount)
-                    // if (updatedItem.selected ==true){
-                    //   finalamount1 = parseFloat(finalamount)  +  parseFloat(updatedItem.price)
-                    // }
-                    // if (updatedItem.selected ==false){
-                    //   finalamount1 = parseFloat(finalamount)  - parseFloat(updatedItem.price)
-                      
-                    // }
-                    // console.log(finalamount1,'finalamount1')
-                    // setfinalamount(finalamount1)
-                    return  { ...item, selected: isSelected };
-                    
-                }
-            });
+      if (cat.key === category) {
+        let finalamount1
+        const updatedValue = cat.value.map((item) => {
+          // Check if the category key is 'size'
+          if (cat.key.toLowerCase() === 'size') {
+            // For the 'size' category, allow only one item to be selected at a time
+            // If the clicked item is already selected, keep it selected
+            // If the clicked item is not selected, toggle its selection and deselect other items
+            const isSelected = item.name === itemName;
 
-            // If the category key is 'size', find the first item and set it as default
-            if (cat.key.toLowerCase() === 'size') {
-                const firstItem = updatedValue.find(item => item.selected);
-                if (!firstItem && updatedValue.length > 0) {
-                    updatedValue[0].selected = true;
-                }
-            }
+            // const updatedItem = { ...item, selected: isSelected };
+            // console.log(updatedItem,'item==>1111')
+            // menu_item.amount = parseFloat(updatedItem.price).toFixed(2)
+            // if (updatedItem.selected ==true){
+            //   setfinalamount(menu_item.amount)
+            // }
 
-            // Update state with the new menu_item data
-            return { ...cat, value: updatedValue };
+            return { ...item, selected: isSelected };
+          } else {
+            // For other categories, toggle the selection state of the clicked item
+            const isSelected = item.name === itemName ? !item.selected : item.selected;
+
+            // const updatedItem = { ...item, selected: isSelected };
+            // console.log(updatedItem,'updatedItem===>1222',finalamount)
+            // if (updatedItem.selected ==true){
+            //   finalamount1 = parseFloat(finalamount)  +  parseFloat(updatedItem.price)
+            // }
+            // if (updatedItem.selected ==false){
+            //   finalamount1 = parseFloat(finalamount)  - parseFloat(updatedItem.price)
+
+            // }
+            // console.log(finalamount1,'finalamount1')
+            // setfinalamount(finalamount1)
+            return { ...item, selected: isSelected };
+
+          }
+        });
+
+        // If the category key is 'size', find the first item and set it as default
+        if (cat.key.toLowerCase() === 'size') {
+          const firstItem = updatedValue.find(item => item.selected);
+          if (!firstItem && updatedValue.length > 0) {
+            updatedValue[0].selected = true;
+          }
         }
-        return cat;
+
+        // Update state with the new menu_item data
+        return { ...cat, value: updatedValue };
+      }
+      return cat;
     });
 
 
@@ -111,14 +111,14 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
     updatedMenuItems != undefined && updatedMenuItems.map((item) => {
       if (item.key.toLowerCase() === 'size') {
         item.value.map((add_on1) => {
-          if(add_on1.selected === true) {
+          if (add_on1.selected === true) {
             main_amount = add_on1.price
           }
         })
       }
-      else{
+      else {
         item.value && item.value.map((add_on) => {
-          if(add_on.selected === true) {
+          if (add_on.selected === true) {
             extra_amount = parseFloat(extra_amount) + parseFloat(add_on.price)
           }
         })
@@ -129,13 +129,13 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
 
 
     setMenuitemdata({ ...menu_item, data: updatedMenuItems });
-};
+  };
 
 
-  console.log(selectedItems,'selectedItems==>')
+  console.log(selectedItems, 'selectedItems==>')
   console.log(menu_item, "menu_item====>");
-  
-  
+
+
   useEffect(() => {
     if (qty) {
       setCount(qty);
@@ -145,13 +145,13 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
   }, []);
   const StoreAddtoBasket = async (menu_data) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
-      let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
+    let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
 
-      if (!emailToFetch) {
-        toast.error("Please Login to Add to basket");
-        setLoggedin(false)
-      }
-     else {
+    if (!emailToFetch) {
+      toast.error("Please Login to Add to basket");
+      setLoggedin(false)
+    }
+    else {
       const credentials = JSON.parse(localStorage.getItem("credentials"));
       const location_id = localStorage.getItem("location_id");
       const body = {
@@ -159,8 +159,8 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
         menu_items_id: menu_data.id,
         quantity: count,
         restaurent_id: parseInt(location_id, 10),
-        menu_items_add_on:menu_data.data,
-        total_amount:menu_item.amount
+        menu_items_add_on: menu_data.data,
+        total_amount: menu_item.amount
       };
       console.log(body, "body=====>StoreAddtoBasket");
       API.getInstance()
@@ -174,8 +174,8 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
           AddedToBasket();
           setLoggedin(true)
         })
-        .catch((error) => {setLoggedin(false)})
-        .finally(() => {});
+        .catch((error) => { setLoggedin(false) })
+        .finally(() => { });
     }
   };
   const closeModal = () => {
@@ -183,7 +183,7 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
   }
 
   return (
-    <div className={`wo-addon ${isWoAddonOpen ? 'active' : ''}`} style={{backgroundColor:`var(--card-bg)`}}>
+    <div className={`wo-addon ${isWoAddonOpen ? 'active' : ''}`} style={{ backgroundColor: `var(--card-bg)` }}>
       {
         !loggedin && (<Modal isOpen={!loggedin} onClose={closeModal}>
           <CATEGORY />
@@ -198,22 +198,22 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
               alt=""
               src={
                 menu_item?.item_image &&
-                menu_item?.item_image.split("media/")[1]
+                  menu_item?.item_image.split("media/")[1]
                   ? menu_item?.item_image
                   : "https://placehold.co/600x400"
               }
-              // src={menu_item?.item_image || 'https://placehold.co/400'}
+            // src={menu_item?.item_image || 'https://placehold.co/400'}
             />
-            <div style={{marginLeft:'20px'}} className="text-frame">
-            <b className="chole-batura5">{menu_item?.name}</b>
+            <div style={{ marginLeft: '20px' }} className="text-frame">
+              <b className="chole-batura5">{menu_item?.name}</b>
+            </div>
           </div>
-          </div>
-          
+
           <div className="price-frame">
             <div className="quantity-frame">
               <div className="minus-add-frame">
                 <div className="price">Price</div>
-                <div style={{fontFamily:`var(--primary-font-family-bold)` }} className="empty-space">${((finalamount)*count).toFixed(2)}</div>
+                <div style={{ fontFamily: `var(--primary-font-family-bold)` }} className="empty-space">${((finalamount) * count).toFixed(2)}</div>
               </div>
               <div className="close-instance">
                 <div className="quantity1">Quantity</div>
@@ -267,41 +267,41 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
                 alt=""
                 src={oops}
               />
-              <div className="there-are-no" style={{marginTop:'5vh'}}>
+              <div className="there-are-no" style={{ marginTop: '5vh' }}>
                 There are no addons for this item
               </div>
-            </div> )
-            :
+            </div>)
+              :
 
-            <div>
-  {menu_item &&
-    (menu_item.menu_items_add_on?.length > 0 ? menu_item.menu_items_add_on : menu_item.data)?.map((category, index) => (
-      <div key={index}>
-        
-          <div>
-            <div style={{ fontFamily: 'var(--primary-font-family-bold)', fontSize: 'var(--primary-font-size)' }} className="text-white text-start my-5">
-              {category.key}
-            </div>
-            <div style={{ justifyContent: 'flex-start', fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size)' }} className="flex flex-wrap">
-              {category.value && category.value.map((item, itemIndex) => (
-                <div
-                  key={itemIndex}
-                  className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#b38205]' : 'border-[#ffffff]'} `}
-                  style={{minWidth: '35%', margin: '3px', marginBottom:'10px',marginRight:'10px' ,cursor: 'pointer', borderRadius: '6px'  }}
-                  onClick={() => handleCategorySelect(category.key, item.name, category.value)}
-                >
-                  <div className="flex" style={{ padding: '0px 10px' }}>
-                    <span>{item.name}{item.selected}</span>
-                    <span style={{ marginLeft: '20px' }}>$ {item.price}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        
-      </div>
-    ))}
-</div>
+              <div>
+                {menu_item &&
+                  (menu_item.menu_items_add_on?.length > 0 ? menu_item.menu_items_add_on : menu_item.data)?.map((category, index) => (
+                    <div key={index}>
+
+                      <div>
+                        <div style={{ fontFamily: 'var(--primary-font-family-bold)', fontSize: 'var(--primary-font-size)' }} className="text-white text-start my-5">
+                          {category.key}
+                        </div>
+                        <div style={{ justifyContent: 'flex-start', fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size)' }} className="flex flex-wrap">
+                          {category.value && category.value.map((item, itemIndex) => (
+                            <div
+                              key={itemIndex}
+                              className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#718c61] bg-[#588b3d]' : 'border-[#ffffff]'} hover:bg-[#588b3d] hover:border-[#718c61] cursor-pointer`}
+                              style={{ minWidth: '35%', margin: '3px', marginBottom: '10px', marginRight: '10px', cursor: 'pointer', borderRadius: '6px' }}
+                              onClick={() => handleCategorySelect(category.key, item.name, category.value)}
+                            >
+                              <div className="flex" style={{ padding: '0px 10px' }}>
+                                <span>{item.name}{item.selected}</span>
+                                <span style={{ marginLeft: '20px' }}>$ {item.price}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  ))}
+              </div>
 
 
           }
@@ -318,17 +318,17 @@ const WoAddon = ({ onClose, menu_item,setMenuitemdata, qty, UpdateBasket, AddedT
             </div>
           </div> */}
           {/* Data visible code */}
-          
 
 
-            
+
+
         </div>
       </section>
       <footer className="total-frame1">
         <div className="button-instance">
           <div className="total-text">
             <div className="total-added">Total added</div>
-            <div style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family-bold)`}} className="b10">{count}</div>
+            <div style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family-bold)` }} className="b10">{count}</div>
           </div>
           <button
             className="buttons-states-dark21"
