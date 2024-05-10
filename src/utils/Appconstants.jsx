@@ -1,6 +1,6 @@
 // const AppConfig = APP_ENVIRONMENT == 'LIVE' ? ConfigProduction : ConfigStaging
-// export const base_url = "http://127.0.0.1:8000/";
-export const base_url = "https://hunger.thestorywallcafe.com/";
+export const base_url = "http://127.0.0.1:8000/";
+// export const base_url = "https://hunger.thestorywallcafe.com/";
 export const openstreetmap = "https://nominatim.openstreetmap.org";
 
 const convertToBase64 = (imageFile) => {
@@ -28,3 +28,8 @@ const convertToBase64 = (imageFile) => {
   export const APP_NAME = "Hunger's Point";
 export const APP_LANGUAGE = "en";
 export const HOME = "Home";
+
+
+export const generateRandomInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};

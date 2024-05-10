@@ -18,7 +18,7 @@ import DescriptionSection from "../../../components/page_section/DescriptionSect
 import ImagesSection from "../../../components/page_section/ImagesSection";
 import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
-
+import "../contact_us/ContactUs.css"
 export const ContactUs = () => {
   const formik = useFormik({
     initialValues: {
@@ -117,8 +117,8 @@ export const ContactUs = () => {
                 </div>
               </div>
             </div>
-            <div className="">
-            <FeedbackForm />
+            <div className="form-contact-us">
+            <FeedbackForm heading={'Get In Touch With Us'} selection={5}/>
             </div>
           </div>
         </section>

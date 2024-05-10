@@ -32,6 +32,8 @@
 }
 .location-input-frame,
 .user-frame1 {
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size-mini);
   align-self: stretch;
   display: flex;
   align-items: flex-start;
@@ -43,15 +45,17 @@
   gap: 0 10px;
 }
 .location-input-frame {
+  
   border-radius: 10px;
   border: 1px solid #e5b638;
   box-sizing: border-box;
   flex-direction: column;
   padding: 20px 21px 20px 19px;
   text-align: left;
-  font-size: 14px;
+  
   color: #fff;
-  font-family: Poppins;
+  font-family: var(--primary-font-family);
+  font-size: var(--primary-font-size-mini);
 }
 @media screen and (max-width: 800px) {
   .john-smith-frame {

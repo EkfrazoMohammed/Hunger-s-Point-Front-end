@@ -22,6 +22,7 @@ import event1 from "../../../assets/event_pic_1.jpg";
 import DescriptionSectionEvent from "../../../components/page_section/DescriptionSectionevent";
 import EventSlider from "../../../components/EventSlider";
 
+import "../events/Event.css"
 
 export const Events = () => {
   const formik = useFormik({
@@ -151,7 +152,7 @@ export const Events = () => {
 
         <section className="fp-wrapper-main bottom-form-container">
           <div className="sec-info--w gap-6 justify-between">
-            <div >
+            <div  style={{width:'100%'}}>
               <div className="para-container">
               <p className="what-we-believe4 fp-para-section-title bottom-a-line" >Contact Us Today!</p>
               <p
@@ -162,8 +163,8 @@ export const Events = () => {
               </div>
               {/* <img style={{ borderRadius: '10px' }} src={sleder4} alt="..." /> */}
             </div>
-            <div className="">
-              <FeedbackForm />
+            <div className="form-event">
+              <FeedbackForm heading={'Get In Touch With Us'} selection={4}/>
             </div>
           </div>
         </section>

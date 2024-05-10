@@ -80,7 +80,7 @@ const Header = () => {
   };
 
   const credentials = JSON.parse(localStorage.getItem("credentials"));
-  let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
+  let emailToFetch = (user && user.email) || (credentials && credentials.email_id) || (credentials && credentials.spr_user_id);
 
   useEffect(() => {
     SettargetUser()
@@ -115,11 +115,11 @@ const Header = () => {
   const GetUserData = async () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     let emailToFetch = ""
-    if ((user && user.email) || (credentials && credentials.email_id)) {
-      emailToFetch = user?.email || credentials?.email_id;
+    if ((user && user.email) || (credentials && credentials.user_id)) {
+      // emailToFetch = user?.email || credentials?.email_id;
 
 
-      API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
+      API.getInstance().menu.get(`/api/custom-user?user_id=${credentials.user_id}`)
         .then((res) => {
           console.log(res.data.result.data, 'GetUserData======>')
           dispatch(setUserdata(res.data.result.data[0]));
@@ -142,7 +142,8 @@ const Header = () => {
       if (emailToFetch) {
         const data = {
           'email': emailToFetch,
-          'user_name': emailToFetch
+          'user_name': emailToFetch,
+          'spr_user_id':credentials.spr_user_id
         }
         API.getInstance().menu.post('api/register', data)
           .then((res) => {

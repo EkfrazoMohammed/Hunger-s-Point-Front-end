@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { API } from '../../api/api';
 import { toast } from 'react-toastify';
 
-const FeedbackForm = ({width,heading,selection}) => {
+const FeedbackForm = ({heading,selection}) => {
   const [coverLetterUploaded, setCoverLetterUploaded] = useState(false);
   const [resumeUploaded, setResumeUploaded] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
@@ -64,7 +64,8 @@ const FeedbackForm = ({width,heading,selection}) => {
     { value: 'Careers', label: 'Careers' },
     { value: 'Franchises', label: 'Franchises' },
     { value: 'Feedback', label: 'Feedback' },
-    { value: 'Event', label: 'Event' }
+    { value: 'Event', label: 'Event' },
+    { value: 'Contact Us', label: 'Contact Us' }
   ];
 
   const convertToBase64 = async (file) => {
@@ -96,11 +97,23 @@ const FeedbackForm = ({width,heading,selection}) => {
         <Form onSubmit={handleSubmit} className="fp-form-common" style={{width:'100%'}}>
           <h2 className="text-xl" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{heading}</h2>
           <div className="fp-input-w">
-            <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} as="select" name="feedboack_opt" className="user-field-input-common user-field-select-common">
-              {options.map(option => (
-                <option style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </Field>
+          <Field
+            style={{ fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size-mini)' }}
+            as="select"
+            name="feedback_opt"
+            className="user-field-input-common user-field-select-common"
+            defaultValue={selection ? options[selection].value: options[0].value} // Set the default value to the value of the first option
+          >
+            {options.map(option => (
+              <option
+                style={{ fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size-mini)' }}
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </Field>
             <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="feedboack_opt" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
           <div className="fp-input-group">

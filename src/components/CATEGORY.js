@@ -162,10 +162,6 @@ const CATEGORY = () => {
   };
   
   return (
-
-
-
-
     <div className="category-26">
       <div className="signin-text-wrapper">
         <div className="signin-text1">

@@ -16,6 +16,7 @@ body {
 :root {
   --website-bg: #0D0E11;
   --card-bg:#222326;
+  --green-tint:#588b3d;
   --hp-yellow-500: #E4B637;
   --hp-yellow-600: #E4B637;
   --hp-grey-500: #505050;
@@ -358,7 +359,8 @@ body::-webkit-scrollbar {
 }
 
 .fp-para-section-title-sm {
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size:var(--primary-font-size);
 }
 
 .fp-para-section-title-md {

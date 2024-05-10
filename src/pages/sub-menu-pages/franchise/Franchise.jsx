@@ -16,6 +16,8 @@ import ImagesSection from "../../../components/page_section/ImagesSection";
 import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
 import EventSlider from "../../../components/EventSlider";
+import "../franchise/Franchise.css"
+
 
 export const Franchise = () => {
   const formik = useFormik({
@@ -100,8 +102,8 @@ export const Franchise = () => {
               <EventSlider/>
               {/* <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" /> */}
             </div>
-            <div className=" h-full">
-             <FeedbackForm />
+            <div className="form-franchise">
+             <FeedbackForm heading={'Get In Touch With Us'} selection={2}/>
             </div>
           </div>
         </section>

@@ -15,6 +15,7 @@ import { API } from "../../../api/api";
 import { convertToBase64 } from "../../../utils/Appconstants";
 import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
+import "../careers/Careers.css"
 
 export const Careers = () => {
   const [coverLetterUploaded, setCoverLetterUploaded] = useState(false);
@@ -145,8 +146,8 @@ export const Careers = () => {
                 
               </div>
             </div>
-            <div className="">
-            <FeedbackForm/>
+            <div className="form-careers">
+            <FeedbackForm heading={'Get In Touch With Us'} selection={1}/>
             </div>
           </div>
         </section>

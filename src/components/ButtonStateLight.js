@@ -24,16 +24,17 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
   const [isValidForm, setIsValidForm] = useState(false); 
   const user_data = useSelector(state => state.data.user_data);
 
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(0);
   const [method, setMethod] = useState("");
   const [address_initialValues, setAddressinitialValues] = useState({
     id: '',
-    complete_address: '',
-    city: '',
+    // complete_address: '',
+    // city: '',
     phone_number: '',
     f_name: '',
     l_name: '',
-    state: ''
+    // state: '',
+    email_id:''
   });
 
   const handleSelectLocation = (index,data) => {
@@ -62,14 +63,16 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
 
   useEffect(() => {
     GetUserAddress(selected_item_id)
+    AddNewAddress()
   }, []);
 
   const GetUserAddress = async (selected_item_id) => {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
     // console.log('GetUserAddress====>Checkout')
     try {
       // console.log(user_data?.email_id,'user_data?.email_id=====>')
-      if (user_data?.email_id){
-        API.getInstance().menu.get(`/api/custom-user?email_id=${user_data?.email_id}`)
+      if (user_data?.email_id || credentials?.user_id){
+        API.getInstance().menu.get(`/api/custom-user?user_id=${credentials?.user_id}`)
         .then((res) => {
           // console.log(res.data.result.data[0].address_list,'GetUserAddress===>',selected_item_id,'selected_item_id');
           setUserAddressList(res.data.result.data[0].address_list)
@@ -86,6 +89,7 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
               f_name:searchedobject.f_name,
               l_name:searchedobject.l_name,
               state:searchedobject.state,
+              email_id:searchedobject.email_id
             }
             // console.log(final_data,'final_data==>')
             setAddressinitialValues(final_data)
@@ -101,18 +105,16 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
 };
 
 const validationSchema = Yup.object().shape({
-  f_name: Yup.string()
-    .required('First Name is required'),
-  l_name: Yup.string()
-    .required('Last Name is required'),
-  complete_address: Yup.string()
-    .required('Address is required'),
-  state: Yup.string()
-    .required('State is required'),
-  city: Yup.string()
-    .required('City is required'),
-  phone_number: Yup.string()
-    .required('Contact Number is required')
+  f_name: Yup.string().required('First Name is required'),
+  l_name: Yup.string().required('Last Name is required'),
+  phone_number: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
+    const email = this.parent.email_id;
+    return !value && !email; // Require phone_number if email_id is empty
+  }),
+  email_id: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
+    const phone = this.parent.phone_number;
+    return !value && !phone; // Require email_id if phone_number is empty
+  }),
 });
 
 const handleSubmit = async (values, { setSubmitting }) => {
@@ -122,25 +124,35 @@ const handleSubmit = async (values, { setSubmitting }) => {
     emailToFetch = user?.email || credentials?.email_id;
   }
   try {
-    setSubmitting(false)
-    setIsVisibleNew(false)
+    
       const body = {
         'id':values.id,
-        "email_id":emailToFetch,
-        "complete_address":values.complete_address,
-        "city":values.city,
+        'user_id':credentials.user_id,
+        'spr_user_id':credentials.spr_user_id,
+        "email_id":values.email_id,
+        // "complete_address":values.complete_address,
+        // "city":values.city,
         "phone_number":values.phone_number,
         "f_name":values.f_name,
         "l_name":values.l_name,
-        "state":values.state,
+        // "state":values.state,
         "method":method
       }
-      API.getInstance().menu.post(`/api/address-post`, body)
-      .then((res) => {
+      console.log(isValidForm,'isValidForm===>')
+      if(values.email_id != "" || values.phone_number != ""){
+        API.getInstance().menu.post(`/api/address-post`, body)
+        .then((res) => {
+          setSubmitting(false)
+          setIsVisibleNew(false)
           GetUserAddress(selected_item_id)
-      })
-      .catch((error) => {
-      })
+        })
+        .catch((error) => {
+        })
+      }
+      else{
+        toast.error("Email or Phone Number is mandatory")
+      }
+      
   }
   catch (error) {
   }
@@ -149,15 +161,22 @@ const handleSubmit = async (values, { setSubmitting }) => {
 
 const AddNewAddress = async () => {
   setMethod("ADD")
-  setIsVisibleNew(true)
+  if( user_address_list?.length == 0 || user_address_list == undefined ){
+    setIsVisibleNew(true)
+  }
+  else{
+    setIsVisibleNew(false)
+  }
+  
   const final_data = {
     id:"",
-    complete_address:"",
-    city:"",
+    // complete_address:"",
+    // city:"",
     phone_number:"",
     f_name:"",
     l_name:"",
-    state:"",
+    email_id:"",
+    // state:"",
   }
   // console.log(final_data,'final_data==>')
   setAddressinitialValues(final_data)
@@ -191,6 +210,10 @@ const OnProceedClick = async () => {
   console.log("OnProceedClick===>")
   setIsVisibleNew(false)
 }
+const OnCancleClick = async () => {
+  console.log("OnProceedClick===>")
+  setIsVisibleNew(false)
+}
 
 
   return (
@@ -220,7 +243,7 @@ const OnProceedClick = async () => {
         >
        
           <div>
-            {isVisibleNew ? (
+            { isVisibleNew  ?(
               <div className="w-full flex flex-col ">
                   <Formik
                     enableReinitialize
@@ -274,7 +297,7 @@ const OnProceedClick = async () => {
                               />
                             </div>
                           </div>
-                          <div className="frame-button-dropdown1">
+                          {/* <div className="frame-button-dropdown1">
                             <div className="input7">
                               <div className="input-inner2">
                                 <Field
@@ -318,8 +341,8 @@ const OnProceedClick = async () => {
                                 </option>
                               ))}
                             </Field>
-                          </div>
-                          <div className="frame-button-dropdown4">
+                          </div> */}
+                          {/* <div className="frame-button-dropdown4">
                             <div className="input9">
                               <Field
                                 type="text"
@@ -333,7 +356,38 @@ const OnProceedClick = async () => {
                                 required
                               />
                             </div>
+                          </div> */}
+
+                          <div className="frame-button-dropdown">
+                            <div className="input5">
+                              <Field
+                                type="text"
+                                id="phone_number"
+                                name="phone_number"
+                                value={values.phone_number}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
+                                className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                                placeholder="Phone Number"
+                                // required
+                              />
+                            </div>
+                            <div className="input6">
+                              <Field
+                                type="text"
+                                name="email_id"
+                                value={values.email_id}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
+                                className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                                placeholder="Email Id"
+                                // required
+                              />
+                            </div>
                           </div>
+                          
                         </div>
 
                         <div className="buttons-states4" style={{marginTop:'20px',marginBottom:'20px'}}>
@@ -344,9 +398,9 @@ const OnProceedClick = async () => {
                         >
                           <div className="button61">Cancel</div>
                         </button>
-                          {/* <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[36px] px-3 text-[#fff] mb-4" disabled={isSubmitting}>
+                          <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[36px] px-3 text-[#fff] mb-4" disabled={isSubmitting}>
                             <b  style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}  className="button70">{method == "ADD" ? "Add New Address" : "Proceed"}</b>
-                          </button> */}
+                          </button>
                         </div>
                       </Form>
                     )}
@@ -392,16 +446,21 @@ const OnProceedClick = async () => {
                     </div>
                   ))}
                 </div>
-                <div className="divider22" />
+               
                 <div className="contactinformation-inner">
                   <div className="buttons-states-dark-parent5">
-                    <button
-                    style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
-                      className="buttons-states-dark51"
-                      onClick={() => AddNewAddress()}
-                    >
-                      <div className="button63">Add New Address</div>
-                    </button>
+                    {
+                      user_address_list?.length == 0 || user_address_list == undefined || user_address_list == null?
+                      (<button
+                        style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
+                          className="buttons-states-dark51"
+                          onClick={() => AddNewAddress()}
+                        >
+                          <div className="button63">Add New Address</div>
+                        </button>):
+                        <></>
+                    }
+                    
                     {/* <button
                    style={{ fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
                       className="buttons-states-dark52"
@@ -411,6 +470,7 @@ const OnProceedClick = async () => {
                     </button> */}
                   </div>
                 </div>
+                <div className="divider22" />
               </div>
             )}
           </div>

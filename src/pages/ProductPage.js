@@ -50,6 +50,7 @@ import { Button, Form } from "react-bootstrap";
 import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
 import DarkMode from "../components/DarkMode";
 import DarkMode1 from "../components/DarkMode1";
+import { generateRandomInteger } from "../utils/Appconstants";
 const ProductPage = () => {
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -112,8 +113,52 @@ const ProductPage = () => {
     setSelectedMenuIndex("all");
     setactivemenu("ALL");
     setActivetag("all");
+    RegisterAsUnknowUser()
   }, []);
   const id = new URLSearchParams(useLocation().search).get("id");
+
+
+  const RegisterAsUnknowUser = () => {
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
+    console.log(credentials,'credentials==>>')
+    console.log(emailToFetch,'emailToFetch==>>')
+    // localStorage.setItem('credentials', 'JSON.stringify(res.data.result)');
+    if (!credentials) {
+      const randomNumber = generateRandomInteger(1, 1000000);
+
+      const data = {
+        firstName: 'firstName'+randomNumber,
+        lastName: 'lastName'+randomNumber,
+        email: 'email'+randomNumber+'@gmail.com',
+        phoneNumber: 'phoneNumber'+randomNumber,
+      };
+    
+      // Make API call
+      API.getInstance()
+        .menu.post('api/register', data)
+        .then((res) => {
+          console.log(res, 'API response21');
+          localStorage.setItem('credentials', JSON.stringify(res.data.result));
+          // Handle response accordingly
+          if (res.data.result.code === 2) {
+            CheckUserOffer(['First User', 'ALL', 'Registered User']);
+          } else {
+            CheckUserOffer(['Registered User', 'ALL']);
+          }
+          
+          GetBasketData();
+          // window.location.reload();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle error if needed
+        });
+    }
+
+    
+  };
+
 
   const GetLocationData = async () => {
     const location_id = localStorage.getItem("location_id");

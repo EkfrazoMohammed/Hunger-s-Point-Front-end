@@ -31,7 +31,7 @@ const FrameComponent1 = () => {
           />
         </div>
         <div className="dash-feedback">
-        <FeedbackForm />
+        <FeedbackForm heading={'Feed Back'}  selection={3}/>
         </div>
        
       </div>

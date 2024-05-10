@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function EventSlider() {
 
-  const banner_placeholder = 'https://placehold.co/660x400'
+  const banner_placeholder = 'https://placehold.co/620x400'
   var settings = {
     className: "slider variable-width",
     dots: true,
@@ -18,7 +18,7 @@ export default function EventSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
+    autoplay: true,
     speed: 1000,
     autoplaySpeed: 3500,
     pauseOnHover: false,
@@ -36,25 +36,25 @@ export default function EventSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: event1,
+      imgSrc: banner_placeholder,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: event1,
+      imgSrc: banner_placeholder,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: event1,
+      imgSrc: banner_placeholder,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: event1,
+      imgSrc: banner_placeholder,
     }
   ];
   

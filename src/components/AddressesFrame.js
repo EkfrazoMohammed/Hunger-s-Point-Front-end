@@ -32,9 +32,9 @@ const AddressesFrame = ({method,selected_item_id}) => {
   const GetUserAddress = async () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     try {
-      if ((user && user.email) || (credentials && credentials.email_id)) {
-        const emailToFetch = user?.email || credentials?.email_id;
-        API.getInstance().menu.get(`/api/custom-user?email_id=${emailToFetch}`)
+      if ((user && user.email) || (credentials && credentials.user_id)) {
+        // const emailToFetch = user?.email || credentials?.email_id;
+        API.getInstance().menu.get(`/api/custom-user?user_id=${credentials.user_id}`)
         .then((res) => {
           // console.log(res.data.result.data[0].address_list,'GetUserAddress===>');
             // const main_data = res.data.result.data[0].address_list
@@ -96,6 +96,7 @@ const AddressesFrame = ({method,selected_item_id}) => {
         const body = {
           'id':values.id,
           "email_id":user?.email || credentials?.email_id,
+          'spr_user_id':credentials.spr_user_id,
           "complete_address":values.complete_address,
           "city":values.city,
           "phone_number":values.phone_number,
