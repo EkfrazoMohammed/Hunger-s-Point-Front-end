@@ -267,7 +267,7 @@ const Header = () => {
                     {emailToFetch && (
                       <div>
                         {/* <img src={user.picture} alt={user.name} /> */}
-                        <h2 className="responsive-font-size">{emailToFetch?.split("@")[0]}</h2>
+                        <h2 className="responsive-font-size">{emailToFetch}</h2>
                         {/* <p>{user.email}</p> */}
                       </div>
                     )}

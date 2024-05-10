@@ -47,7 +47,7 @@ export const ContactUs = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
+  const banner_placeholder = 'https://placehold.co/620x400'
   return (
     <>
       <motion.div
@@ -73,7 +73,7 @@ export const ContactUs = () => {
           <div className="sec-info--w gap-6 justify-between mt-10">
             <div className="side--w relative">
               <img
-                src={contactUsImg2}
+                src={banner_placeholder}
                 alt="contact us"
                 style={{borderRadius:'10px'}}
                 className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
