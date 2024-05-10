@@ -142,6 +142,7 @@
 @media screen and (max-width: 800px) {
   .instagram-dark {
     flex-wrap: wrap;
+    justify-content: center;
     
   }
   .instagram-dark-parent,

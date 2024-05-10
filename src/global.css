@@ -14,11 +14,11 @@ body {
 
 /* variables  start */
 :root {
-  --website-bg: #0D0E11;
-  --card-bg:#222326;
-  --green-tint:#588b3d;
-  --hp-yellow-500: #E4B637;
-  --hp-yellow-600: #E4B637;
+  --website-bg: #0d0e11;
+  --card-bg: #222326;
+  --green-tint: #588b3d;
+  --hp-yellow-500: #e4b637;
+  --hp-yellow-600: #e4b637;
   --hp-grey-500: #505050;
   --hp-grey-600: #222326;
   --hp-grey-bg-primary: #424242;
@@ -27,16 +27,17 @@ body {
   --border-color: #c1c1c1;
   --text-white: #ffffff;
   --navbar-desk-height: 80px;
-  --navbar-mob-height: 100px;
-  --primary-font-size-mini:14px;
-  --primary-font-size:16px;
+  --navbar-mob-height: 65px;
+  --primary-font-size-mini: 14px;
+  --primary-font-size: 16px;
   --header-font-size: 26px;
+  --header-font-size-m: 18px;
   --sub-header-font-size: 24px;
   --primary-font-family: GothamLight;
   --primary-font-family-bold: GothamBold;
   --secondary-font-family: GothamBold;
-  --icon-size:20px;
-  --description:#C6C8C8;
+  --icon-size: 20px;
+  --description: #c6c8c8;
 }
 @font-face {
   font-family: MontserratMedium;
@@ -67,12 +68,12 @@ body {
   font-family: Playfair_Italic;
   src: url(./assets/fonts/PlayfairDisplay-Italic.ttf);
 }
-  /* font-family: 'Montserrat Medium', sans-serif;  */
-  /* font-family: 'Playfair Display', serif;  */
-  /* font-family: 'SF New Republic Bold', sans-serif; */
-  /* font-family: 'Gotham Medium', sans-serif; */
-  /* 'Bodoni Bd BT', serif; */
-  
+/* font-family: 'Montserrat Medium', sans-serif;  */
+/* font-family: 'Playfair Display', serif;  */
+/* font-family: 'SF New Republic Bold', sans-serif; */
+/* font-family: 'Gotham Medium', sans-serif; */
+/* 'Bodoni Bd BT', serif; */
+
 /* variables  end */
 
 /* custom scrollbar start */
@@ -360,7 +361,7 @@ body::-webkit-scrollbar {
 
 .fp-para-section-title-sm {
   /* font-size: 20px; */
-  font-size:var(--primary-font-size);
+  font-size: var(--primary-font-size);
 }
 
 .fp-para-section-title-md {
@@ -395,7 +396,7 @@ body::-webkit-scrollbar {
 }
 
 .fp-form-common {
-  width:440px;
+  width: 440px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -441,7 +442,7 @@ body::-webkit-scrollbar {
 
 .fp-form-common .user-field-select-common {
   padding-right: 20px;
-  /* background-color: var(--hp-grey-bg-primary); */
+  background-color: #222326;
 }
 
 .fp-primary-btn {
@@ -506,14 +507,14 @@ body::-webkit-scrollbar {
   max-height: calc(100vh + 200px);
 }
 .menu-action-cart-btn {
-  border: 1px solid var(--hp-yellow-600);;
+  border: 1px solid var(--hp-yellow-600);
   font-family: var(--primary-font-family-bold);
   font-size: var(--primary-font-size-mini);
   border-radius: 6px;
   padding: 9px;
   width: 25%;
   margin-top: 20px;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 .menu-action-cart-btn:hover {
   background: var(--hp-btn-primary);
@@ -588,7 +589,7 @@ body::-webkit-scrollbar {
   .dark-mode-image-frames {
     align-items: center;
   }
-  .buttons-frame1{
+  .buttons-frame1 {
     justify-content: center;
     gap: 10px;
   }
@@ -616,6 +617,13 @@ body::-webkit-scrollbar {
 
 /* responsive css */
 @media (max-width: 767px) {
+  .hf-row {
+    flex: 0 0 95%;
+    max-width: 90%;
+  }
+  .slick-dots {
+    display: none !important;
+  }
   .side--w {
     flex: 0 0 100%;
     max-width: 100%;
@@ -623,9 +631,21 @@ body::-webkit-scrollbar {
   .pi-items-list {
     gap: 15px;
   }
+  .banner-top {
+    height: 130px;
+  }
+.para-container{
+  margin-top: 20px;
+}
+  .sub-pages-forms {
+    margin-left: 0;
+  }
   .menu-side-option-c {
     display: none;
   }
+  .fp-wrapper-main {
+    margin: 16px auto;
+}
   nav#sidenav-1 {
     width: 54%;
     top: 88px;
@@ -700,11 +720,14 @@ body::-webkit-scrollbar {
     font-size: 30px;
     font-family: var(--primary-font-family);
     width: 30px;
-    height: 40px;
+    height: 30px;
   }
   .fp-para-section-title {
-    font-size: var(--header-font-size);
+    font-size: var(--header-font-size-m);
     line-height: normal;
+  }
+  .what-we-believe-frame {
+    height: auto;
   }
   .button79 {
     gap: 0;
@@ -851,9 +874,7 @@ body::-webkit-scrollbar {
   .instagram-facebook-mail-frame {
     padding: 13px 0 0;
   }
-  .buttons-states-dark61:hover {
-    /* border: 1px solid var(--hp-yellow-600); */
-  }
+
   .buttons-states-dark61 {
     border: 1px solid var(--hp-yellow-600);
   }

@@ -236,8 +236,7 @@ const Header = () => {
         <nav style={{backgroundColor:`var(--website-bg)`,borderBottom: '.5px solid #E4B637' }} className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r  w-full min-w-fit">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl" style={{maxWidth:'1320px'}}>
             <img
-            style={{height:'60px'}}
-              // className="mr-3 h-20 w-30"
+         className="h-[37px] sm:h-[67px]"
               loading="eager"
               alt=""
               src={logo}

@@ -12,7 +12,7 @@ const DescriptionSectionEvent = ({ Title,SecondTitle, leftDescription,secondleft
       
       <div className="sec-info--w info_event">
         
-      <div className={`side--w ${!image1 ? "w-full" : " " }`} >
+      <div className={`side--w review-section-frame  ${!image1 ? "w-full" : " " }`} >
       <EventSlider/>
           {/* <motion.div
             variants={childVariants}

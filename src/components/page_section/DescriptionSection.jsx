@@ -19,9 +19,9 @@ const DescriptionSection = ({ Title,SecondTitle, leftDescription,secondleftDescr
             className="para-container"
             style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}
           >
-            <p className="what-we-believe4 fp-para-section-title bottom-a-line" >{Title}</p>
+          {Title && <p className="what-we-believe4 fp-para-section-title bottom-a-line" >{Title}</p>}
             {leftDescription}
-            <p className="what-we-believe4 fp-para-section-title bottom-a-line mt-10" style={{ maxWidth: "100%",fontSize:`var(--sub-header-font-size)` }}>{SecondTitle}</p>
+            <p className="what-we-believe4 bottom-a-line" style={{ maxWidth: "100%",fontSize:`var(--sub-header-font-size)` }}>{SecondTitle}</p>
             {secondleftDescription}
           </motion.div>
         </div>

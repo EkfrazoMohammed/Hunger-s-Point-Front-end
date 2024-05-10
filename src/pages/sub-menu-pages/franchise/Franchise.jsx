@@ -63,17 +63,7 @@ export const Franchise = () => {
             <>
               <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
               Are you a passionate entrepreneur with a love for Indian cuisine? The Hunger's Point welcomes ambitious individuals to join as franchise partners!
-
               </p>
-{/* 
-              <p className="mt-4" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
-                Nulla quis qui duis amet sunt. Nisi mollit ad sint exercitation
-                anim veniam enim laboris id ad adipisicing laboris aliqua.
-                Veniam commodo reprehenderit mollit cupidatat minim officia
-                voluptate dolor minim proident et magna dolore. Ea proident sit
-                laborum amet amet veniam. Labore Lorem et quis fugiat sint
-                fugiat. Enim ad proident nisi ipsum nostrud duis.
-              </p> */}
             </>
           }
         />
@@ -102,7 +92,7 @@ export const Franchise = () => {
               <EventSlider/>
               {/* <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" /> */}
             </div>
-            <div className="form-franchise">
+            <div className="form-franchise sub-pages-forms">
              <FeedbackForm heading={'Get In Touch With Us'} selection={2}/>
             </div>
           </div>

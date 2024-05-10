@@ -302,7 +302,7 @@ const Homepage1 = () => {
       </div>
     </div> */}
 
-      <div className="location1">
+      <div className="location1 hf-row">
         <FrameComponent5 />
 
 
@@ -314,9 +314,12 @@ const Homepage1 = () => {
           </div>
         
       </div>
+      <div className="hf-row">
       <MapPinSection />
+      </div>
       <VIPContainer />
       <DarkMode1 />
+
       
     </div>
     </>

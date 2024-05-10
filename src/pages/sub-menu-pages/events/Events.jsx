@@ -163,7 +163,7 @@ export const Events = () => {
               </div>
               {/* <img style={{ borderRadius: '10px' }} src={sleder4} alt="..." /> */}
             </div>
-            <div className="form-event">
+            <div className="form-event sub-pages-forms">
               <FeedbackForm heading={'Get In Touch With Us'} selection={4}/>
             </div>
           </div>

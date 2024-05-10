@@ -146,7 +146,7 @@ export const Careers = () => {
                 
               </div>
             </div>
-            <div className="form-careers">
+            <div className="form-careers sub-pages-forms">
             <FeedbackForm heading={'Get In Touch With Us'} selection={1}/>
             </div>
           </div>
