@@ -357,7 +357,7 @@ font-family: var(--primary-font-family-bold);
 .wo-addon:hover {
   width: 420px; /* Set the width on hover */
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .chole-batura5,
   .empty-space,
   .text {
@@ -376,5 +376,15 @@ font-family: var(--primary-font-family-bold);
   }
   .wo-addon {
     gap: 30px 0;
+  }
+  .close-instance .quantity1 {
+    display: flex;
+  }
+  .close-instance {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
   }
 }

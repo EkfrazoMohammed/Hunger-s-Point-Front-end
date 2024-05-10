@@ -549,7 +549,10 @@ body::-webkit-scrollbar {
 .filter-option-lis {
   display: flex;
 }
-
+.para-container {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 @media (max-width: 1024px) {
   .menu-side-filter-options {
     display: none;
@@ -634,9 +637,9 @@ body::-webkit-scrollbar {
   .banner-top {
     height: 130px;
   }
-.para-container{
-  margin-top: 20px;
-}
+  .para-container {
+    margin-top: 20px;
+  }
   .sub-pages-forms {
     margin-left: 0;
   }
@@ -645,7 +648,7 @@ body::-webkit-scrollbar {
   }
   .fp-wrapper-main {
     margin: 16px auto;
-}
+  }
   nav#sidenav-1 {
     width: 54%;
     top: 88px;
@@ -961,6 +964,17 @@ body::-webkit-scrollbar {
   .delivered-icon .my-orders1 {
     width: 100%;
   }
+  .header-right-action--w .responsive-font-size{
+    display: none;
+  }
+  .menu-top-banner{
+    height: 100px;
+    object-fit: cover;
+  }
+  .sticky-top-wrapper {
+    top: 67px;
+}
+
 }
 @media (max-width: 1000px) {
   .john-smithtext-icon {

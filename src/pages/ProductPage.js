@@ -536,7 +536,7 @@ const ProductPage = () => {
 
         <div>
           <div className="w-full relative" style={{backgroundColor:`var(--website-bg)`}}>
-            <img src={bannerTop1} alt="productPage" />
+            <img src={bannerTop1} className="menu-top-banner" alt="productPage" />
             <div className="w-full flex justify-between ">
             
               <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-full sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col">
@@ -587,7 +587,7 @@ const ProductPage = () => {
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
                             <div className="sticky-top-wrappe-title" style={{top: `calc(${menuContainerHeight}px + 70px)`}}>
-                            <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--secondary-font-family)`,color:`var(--hp-yellow-600)`,borderRadius:'5px',backgroundColor:` var(--website-bg)`}} className="text-[#fff] flex  py-[10px] ">
+                            <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--secondary-font-family)`,color:`var(--hp-yellow-600)`,backgroundColor:` var(--website-bg)`}} className="text-[#fff] flex  py-[10px] ">
                               {menu.menu_title}
                             </div>
                             </div>

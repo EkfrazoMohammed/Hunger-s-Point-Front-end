@@ -215,7 +215,7 @@ const WoAddon = ({ onClose, menu_item, setMenuitemdata, qty, UpdateBasket, Added
                 <div className="price">Price</div>
                 <div style={{ fontFamily: `var(--primary-font-family-bold)` }} className="empty-space">${((finalamount) * count).toFixed(2)}</div>
               </div>
-              <div className="close-instance">
+              <div className="close-instance ">
                 <div className="quantity1">Quantity</div>
                 <div className="component-18">
                   <div
