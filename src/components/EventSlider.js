@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function EventSlider() {
 
-  const banner_placeholder = 'https://placehold.co/620x400'
+  const banner_placeholder = 'https://placehold.co/1200x700'
   var settings = {
     className: "slider variable-width",
     dots: true,
