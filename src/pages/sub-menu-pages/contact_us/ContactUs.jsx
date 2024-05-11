@@ -65,7 +65,7 @@ export const ContactUs = () => {
             Contact Us Today!
 
             </div>
-            <p style={{marginTop:"20px"}}>  
+            <p className="sb-para">  
             Ready to add a touch of Indian flavour to your next event? Contact The Hunger’s Point today! We'd be happy to discuss your catering needs and create a menu that will leave a lasting impression on your guests.
 
             </p>

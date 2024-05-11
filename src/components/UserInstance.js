@@ -173,12 +173,12 @@ const UserInstance = () => {
                   Recommendations
                 </div>
 
-                <div className="font-normal gap-[10px] text-base flex items-center">
+                <div className="recomen-qick-links font-normal gap-[10px] text-base flex items-center overflow-auto">
                   {basketalldata.reccomandations && basketalldata.reccomandations.map((menu, index) => (
                     <div
                       key={index}
                       style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease',paddingTop:'0.2rem',paddingBottom:'0.2rem'  }}
-                    className={`border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === index 
+                    className={` border-[1px] border-[#E5B638] px-4 text-nowrap rounded-md text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === index 
                       ? "bg-[#C21F24]"
                       : "hover:bg-[#C21F24] cursor-pointer"
                       }`}

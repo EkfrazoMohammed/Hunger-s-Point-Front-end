@@ -278,7 +278,7 @@ button {
 @media screen and (max-width: 450px) {
   .location1,
   .review-section-frame {
-    padding-bottom: 29px;
+    padding-bottom: 0;
     box-sizing: border-box;
   }
   .location1 {

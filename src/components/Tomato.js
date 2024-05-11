@@ -94,7 +94,7 @@ const Tomato = ({
   return (
         <>
       <div className="w-full" style={{border:`.5px solid var(--hp-yellow-600)`,borderRadius:'20px',backgroundColor:`var(--card-bg)`}}>
-          <div className="tomato" style={{tomatoStyle,backgroundColor:`var(--card-bg)`}}>
+          <div className="tomato basket-item-card" style={{tomatoStyle,backgroundColor:`var(--card-bg)`}}>
             <div
               className="edoneil-avvd-zlh-dow-aunsplash11"
               style={edoneilAvvdZlhDowAunsplashStyle}
@@ -113,7 +113,7 @@ const Tomato = ({
                     {/* <div className="div31" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{prop}</div> */}
                   </div>
                   <div
-                    className="input-field"
+                    className="input-field prod-select-qty"
                     onClick={() => openWoAddon(menuItem)}
                     style={inputFieldStyle}
                   >
@@ -125,12 +125,12 @@ const Tomato = ({
             </div>
             <div className="ginger-frame">
               <div className="inputfieldframe">
-                <div className="input-field1" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size)`}}>{inputField}</div>
+                <div className="input-field1 prod-amount" >{inputField}</div>
                 {/* <div className="input-field2"> */}
                   <img
                     className="delete-icon"
                     loading="eager"
-                    alt=""
+                    alt="remove item"
                     onClick={()=>{DeletedBasket(menuItem)}}
                     src={delete1}
                   />

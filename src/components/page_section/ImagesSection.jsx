@@ -41,7 +41,7 @@ const ImagesSection = (props) => {
               <img
               style={{borderRadius:'10px'}}
                 src={props.bannerImg}
-                className="w-full h-full z-[1] object-cover brightness-50"
+                className="w-full h-full z-[1] object-cover brightness-[0.3]"
                 alt="..."
               />
             )}

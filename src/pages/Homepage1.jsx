@@ -40,7 +40,6 @@ import { BiEdit, BiShow } from 'react-icons/bi';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-
 const Homepage1 = () => {
   const dispatch = useDispatch();
   // const locationData = useSelector(state => state.data.location);
@@ -162,6 +161,7 @@ const Homepage1 = () => {
   console.log(offerdata.length,'offerdata==>1211')
   return (
     <>
+
     <MetaDecorator
         description={content.pageDescription}
         title={content.pageTitle}
@@ -171,7 +171,6 @@ const Homepage1 = () => {
     
     <div className="homepage1">
 
-    
 
       {/* <CategoryFrame /> */}
       {/* <AdModalPopup/> */}
@@ -305,7 +304,7 @@ const Homepage1 = () => {
       <div className="location1 hf-row" >
         <div style={{border:'1px solid #E4B637', padding:'10px',borderRadius:'10px',margin:'30px 0px',backgroundColor:`var(--card-bg)`}}>
         <p className="what-we-believe4 fp-para-section-title" >{'OUR VISION'}</p>
-        <div style={{margin:'30px 0px'}}>
+        <div className="my-2 sm:my-5">
         We don't just cook food, we give experiences. Our vision is to become the fastest-growing segment of quick-service restaurants offering authentic Indian cuisine. We believe everyone deserves to experience the joy of Indian flavours and we're committed to making them accessible and delicious.
         </div>
      
@@ -313,12 +312,10 @@ const Homepage1 = () => {
        
         </div>
         <FrameComponent5 />
-
-
-          <div style={{ display: 'flex' }} className="flex-container">
+          <div className="flex sm:flex-row flex-col gap-6 ">
             <FrameComponent11 />
             <div className="container22">
-              <img src={location} alt="a cat" style={{ width: '100%', height: 'auto', borderRadius:'10px' }} />
+              <img src={location} alt="location" className="home-location-side-img"  />
             </div>
           </div>
         

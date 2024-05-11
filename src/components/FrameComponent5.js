@@ -11,24 +11,7 @@ const FrameComponent5 = () => {
   };
 
   return (
-    <div className="review-form">
-      <div className="heading4">
-        <div className="what-we-believe-frame">
-          <div className="what-we-believe4 fp-para-section-title bottom-a-line">Our Location</div>
-        </div>
-      </div>
-      {/* <div className="contact-us-frame">
-        <div onClick={() => OncardClick()} className="our-delivery-partners5">
-          <div className="view-all-stores2">View All Stores</div>
-          <img
-            className="right-icon2"
-            loading="eager"
-            alt=""
-            src={right1}
-          />
-        </div>
-      </div> */}
-    </div>
+    <div className="what-we-believe4 fp-para-section-title bottom-a-line mb-3">Our Location</div>
   );
 };
 

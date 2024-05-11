@@ -59,7 +59,7 @@ export default function EventSlider() {
   ];
   
   return (
-    <div  style={{maxWidth:'100%'}}>
+    <div className="review-section-frame"  style={{maxWidth:'100%'}}>
     <Slider {...settings}>
       {dummyData.map((item, index) => (
         <div key={index} onClick={() => Buttonclicked(item)}>

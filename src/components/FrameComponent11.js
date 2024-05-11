@@ -42,7 +42,7 @@ const FrameCard = ({ location, onClick }) => {
     { id: 4, imageUrl: rectangle8 }
   ];
   return (
-    <div style={{ marginRight: '20px', backgroundColor: `var(--card-bg)`, padding: '20px', borderRadius: '10px' }} className={`category-2-wrapper`} onClick={()=>OncardClick(location.id)}>
+    <div  className="home-location category-2-wrapper" onClick={()=>OncardClick(location.id)}>
       <div className={`category-frame`}>
         <div className="sample">
           {/* <FrameComponent4 alberta={`Location ${location}`} /> */}

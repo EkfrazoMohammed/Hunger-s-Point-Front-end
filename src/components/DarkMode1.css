@@ -109,7 +109,7 @@
 .darkmode1 {
   align-self: stretch;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 .become-a-v-i-p {
   flex-direction: row;
