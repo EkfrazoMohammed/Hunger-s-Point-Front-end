@@ -615,6 +615,22 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
   }
+  .sec-info--w {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .instagram-dark-parent {
+    justify-content: center;
+  }
+  body .submenu {
+    top: calc(var(--navbar-desk-height) + 6px);
+  }
+}
+@media (min-width: 700px) and (max-width: 1024px) {
+  .sec-info--w {
+    flex-direction: row;
+    gap: 20px;
+}
 }
 
 @media (max-width: 1024px) {
@@ -1036,6 +1052,9 @@ body::-webkit-scrollbar {
   .frame-button-dropdown {
     row-gap: 20px;
   }
+  .quantity-frame {
+    flex-wrap: nowrap;
+}
 }
 
 @media (max-width: 600px) {
