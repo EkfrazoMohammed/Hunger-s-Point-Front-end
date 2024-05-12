@@ -13,6 +13,7 @@ const initialState = {
     basket_count:0,
     user_data:[],
     user_address_data:[],
+    credentials:{},
   };
   
   const dataReducer = (state = initialState, action) => {
@@ -47,6 +48,9 @@ const initialState = {
         return { ...state, user_data: action.payload };
       case 'SET_USER_ADDRESS_DATA':
         return { ...state, user_address_data: action.payload };
+      case 'SET_CREDENTIALS':
+        return { ...state, credentials: action.payload };
+        
       case 'RESET_STATE':
         return initialState;
       default:

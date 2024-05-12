@@ -6,12 +6,14 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useAuth0 } from "@auth0/auth0-react";
 import { API } from "../api/api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { findObjectById } from "../utils/Appconstants";
 import epback from  "../assets/epback.svg";
+import { setCredentials } from "../redux/actions/dataActions";
 
 const AddressesFrame = ({method,selected_item_id}) => {
   const { user } = useAuth0();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isValidForm, setIsValidForm] = useState(false); 
   const user_address_list = useSelector(state => state.data.user_address_data);
@@ -31,8 +33,11 @@ const AddressesFrame = ({method,selected_item_id}) => {
   }, []);
   const GetUserAddress = async () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
+    console.log(credentials,'credentials===>123')
     try {
       if ((user && user.email) || (credentials && credentials.user_id)) {
+        console.log(user,'user=====>123')
+        console.log(credentials,'credentials=====>123')
         // const emailToFetch = user?.email || credentials?.email_id;
         API.getInstance().menu.get(`/api/custom-user?user_id=${credentials.user_id}`)
         .then((res) => {
@@ -95,14 +100,15 @@ const AddressesFrame = ({method,selected_item_id}) => {
       console.log(method,'method=====')
         const body = {
           'id':values.id,
+          'user_id':credentials?.user_id,
           "email_id":user?.email || credentials?.email_id,
           'spr_user_id':credentials.spr_user_id,
-          "complete_address":values.complete_address,
-          "city":values.city,
+          // "complete_address":values.complete_address,
+          // "city":values.city,
           "phone_number":values.phone_number,
           "f_name":values.f_name,
           "l_name":values.l_name,
-          "state":values.state,
+          // "state":values.state,
           "method":method
         }
         console.log(values, 'values======>handleSubmit111')
@@ -113,6 +119,9 @@ const AddressesFrame = ({method,selected_item_id}) => {
             console.log(res, 'res===================handleSubmit')
             //   GetLocationByid(id=0)
             onButtonsStatesContainerClick()
+            localStorage.setItem('credentials', JSON.stringify(res.data.result));
+            dispatch(setCredentials(res.data.result));
+            GetUserAddress()
         })
         .catch((error) => {
         })

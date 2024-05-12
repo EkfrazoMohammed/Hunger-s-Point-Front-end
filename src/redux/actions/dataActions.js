@@ -61,3 +61,7 @@ export const setUserAddressdata = (data) => {
 export const setReset = (data) => {
   return { type: 'RESET_STATE', payload: data };
 };
+
+export const setCredentials = (data) => {
+  return { type: 'SET_CREDENTIALS', payload: data };
+};

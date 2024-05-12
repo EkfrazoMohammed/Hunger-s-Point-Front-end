@@ -6,7 +6,7 @@ import vector892 from '../assets/vector-892.svg'
 import google from '../assets/google1.svg'
 import facebook2 from '../assets/facebook2.svg'
 import { useAuth0 } from "@auth0/auth0-react";
-import { setBasketcount } from "../redux/actions/dataActions";
+import { setBasketcount, setCredentials } from "../redux/actions/dataActions";
 import { useDispatch } from "react-redux";
 import { API } from "../api/api";
 
@@ -152,6 +152,7 @@ const CATEGORY = () => {
           CheckUserOffer(['Registered User', 'ALL']);
         }
         localStorage.setItem('credentials', JSON.stringify(res.data.result));
+        dispatch(setCredentials(res.data.result));
         GetBasketData();
         window.location.reload();
       })

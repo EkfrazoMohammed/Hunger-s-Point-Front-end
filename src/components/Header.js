@@ -4,7 +4,7 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/hunger_logo_fotter.png"
 import basket from "../assets/basket.svg"
-import { setBasketcount, setUserdata } from "../redux/actions/dataActions";
+import { setBasketcount, setCredentials, setUserdata } from "../redux/actions/dataActions";
 import { API } from "../api/api";
 import { useAuth0 } from "@auth0/auth0-react";
 import SubMenu from "./SubMenu";
@@ -18,7 +18,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const toggleSubMenuRef = useRef(null);
   const basket_count = useSelector(state => state.data.basket_count);
-
+  const credentials_redux = useSelector((state) => state.data.credentials);
 
   const [selectedRoute, setSelectedRoute] = useState("");
   const [target, settarget] = useState("");
@@ -33,7 +33,10 @@ const Header = () => {
   const handleClose = () => {
     setIsOpen(false);
     console.log("current path====>:", location.pathname)
+    
+    console.log(credentials_redux,'credentials_redux===>33333')
   };
+
 
   const toggleSubMenu = () => {
     setIsOpen(!isOpen);
@@ -78,8 +81,7 @@ const Header = () => {
     navigate(`${rout}`);
     setSelectedRoute(rout)
   };
-
-  const credentials = JSON.parse(localStorage.getItem("credentials"));
+  const credentials = JSON.parse(localStorage.getItem('credentials'));
   let emailToFetch = (user && user.email) || (credentials && credentials.email_id) || (credentials && credentials.spr_user_id);
 
   useEffect(() => {
@@ -88,6 +90,21 @@ const Header = () => {
     CheckUserexistsData()
     GetUserData()
   }, [emailToFetch]);
+
+  console.log(credentials_redux,'credentials_redux===>1213')
+  // useEffect(() => {
+  //   SettargetUser()
+  //   GetBasketData()
+  //   CheckUserexistsData()
+  //   const credentials = JSON.parse(localStorage.getItem('credentials'));
+  //   setEmailToFetch(
+  //     (user && user.email) ||
+  //       (credentials && credentials.email_id) ||
+  //       (credentials && credentials.spr_user_id)
+  //   );
+  //   console.log(credentials_redux,'credentials_redux===>1213')
+  //   // GetUserData()
+  // }, []);
 
   useEffect(() => {
     CheckUserOffer(['UnRegistered User', 'ALL'])
@@ -115,20 +132,23 @@ const Header = () => {
   const GetUserData = async () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     let emailToFetch = ""
-    if ((user && user.email) || (credentials && credentials.user_id)) {
+    if ((user && user.email) || (credentials && credentials?.user_id)) {
       // emailToFetch = user?.email || credentials?.email_id;
 
-
-      API.getInstance().menu.get(`/api/custom-user?user_id=${credentials.user_id}`)
+      console.log(credentials,'credentials===>11111111')
+      if (credentials){
+        API.getInstance().menu.get(`/api/custom-user?user_id=${credentials?.user_id}`)
         .then((res) => {
           console.log(res.data.result.data, 'GetUserData======>')
           dispatch(setUserdata(res.data.result.data[0]));
-          CheckUserexistsData()
+          // CheckUserexistsData()
         })
         .catch((error) => {
         })
         .finally(() => {
         });
+      }
+      
     }
 
   }
@@ -136,14 +156,14 @@ const Header = () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     // console.log(user?.email, 'user?.email==>')
     let emailToFetch = ""
-    if ((user && user.email) || (credentials && credentials.email_id)) {
+    if ((user && user.email) || (credentials && credentials?.email_id)) {
       emailToFetch = user?.email || credentials?.email_id;
 
       if (emailToFetch) {
         const data = {
           'email': emailToFetch,
           'user_name': emailToFetch,
-          'spr_user_id':credentials.spr_user_id
+          'spr_user_id':credentials?.spr_user_id
         }
         API.getInstance().menu.post('api/register', data)
           .then((res) => {
@@ -156,7 +176,9 @@ const Header = () => {
               CheckUserOffer(['Registered User', 'ALL'])
             }
             localStorage.setItem('credentials', JSON.stringify(res.data.result));
+            dispatch(setCredentials(res.data.result));
             GetBasketData()
+            GetUserData()
           })
           .catch((error) => {
             console.log(error, 'error=====>1221312')
@@ -174,7 +196,9 @@ const Header = () => {
 
 
     const credentials = JSON.parse(localStorage.getItem('credentials'));
+    console.log(credentials,'credentials===>123')
     if (credentials) {
+      console.log(credentials,'credentials====>1231121212')
       API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
         .then((res) => {
           console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')

@@ -13,7 +13,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { findObjectById } from "../utils/Appconstants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "./Loader";
+import { setCredentials } from "../redux/actions/dataActions";
 
 const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
   const { user } = useAuth0();
@@ -23,9 +25,10 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
   const [selected_item_id, setSelected_item_id] = useState(0);
   const [isValidForm, setIsValidForm] = useState(false); 
   const user_data = useSelector(state => state.data.user_data);
-
+  const credentials_redux = useSelector((state) => state.data.credentials);
   const [selectedLocation, setSelectedLocation] = useState(0);
   const [method, setMethod] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [address_initialValues, setAddressinitialValues] = useState({
     id: '',
     // complete_address: '',
@@ -36,7 +39,7 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
     // state: '',
     email_id:''
   });
-
+  const dispatch = useDispatch();
   const handleSelectLocation = (index,data) => {
     onContactClick(index,data)
     setSelectedLocation(index);
@@ -72,6 +75,10 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
     try {
       // console.log(user_data?.email_id,'user_data?.email_id=====>')
       if (user_data?.email_id || credentials?.user_id){
+        console.log(user,'user=====>111111')
+        console.log(credentials,'credentials=====>111111')
+        
+        console.log(credentials_redux,'credentials_redux===>2222222')
         API.getInstance().menu.get(`/api/custom-user?user_id=${credentials?.user_id}`)
         .then((res) => {
           // console.log(res.data.result.data[0].address_list,'GetUserAddress===>',selected_item_id,'selected_item_id');
@@ -107,54 +114,66 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
 const validationSchema = Yup.object().shape({
   f_name: Yup.string().required('First Name is required'),
   l_name: Yup.string().required('Last Name is required'),
-  phone_number: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
-    const email = this.parent.email_id;
-    return !value && !email; // Require phone_number if email_id is empty
-  }),
-  email_id: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
-    const phone = this.parent.phone_number;
-    return !value && !phone; // Require email_id if phone_number is empty
-  }),
+  // phone_number: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
+  //   const email = this.parent.email_id;
+  //   return !value && !email; // Require phone_number if email_id is empty
+  // }),
+  // email_id: Yup.string().test('contactRequired', 'Contact Number or Email is required', function(value) {
+  //   const phone = this.parent.phone_number;
+  //   return !value && !phone; // Require email_id if phone_number is empty
+  // }),
 });
 
 const handleSubmit = async (values, { setSubmitting }) => {
+  
+  console.log(values,'values====>')
   let emailToFetch = ""
   const credentials = JSON.parse(localStorage.getItem("credentials"));
   if ((user && user.email) || (credentials && credentials.email_id)) {
     emailToFetch = user?.email || credentials?.email_id;
   }
   try {
-    
-      const body = {
-        'id':values.id,
-        'user_id':credentials.user_id,
-        'spr_user_id':credentials.spr_user_id,
-        "email_id":values.email_id,
-        // "complete_address":values.complete_address,
-        // "city":values.city,
-        "phone_number":values.phone_number,
-        "f_name":values.f_name,
-        "l_name":values.l_name,
-        // "state":values.state,
-        "method":method
-      }
-      console.log(isValidForm,'isValidForm===>')
-      if(values.email_id != "" || values.phone_number != ""){
-        API.getInstance().menu.post(`/api/address-post`, body)
+
+    const body = {
+      id: values.id,
+      user_id: credentials.user_id,
+      spr_user_id: credentials.spr_user_id,
+      email_id: values.email_id,
+      phone_number: values.phone_number,
+      f_name: values.f_name,
+      l_name: values.l_name,
+      method: method,
+    };
+
+    if (values.email_id !== '' || values.phone_number !== '') {
+      API.getInstance()
+        .menu.post(`/api/address-post`, body)
         .then((res) => {
-          setSubmitting(false)
-          setIsVisibleNew(false)
-          GetUserAddress(selected_item_id)
+          dispatch(setCredentials(res.data.result));
+          localStorage.setItem('credentials', JSON.stringify(res.data.result));
+          
+          setSubmitting(false);
+          setIsVisibleNew(false);
+          GetUserAddress(selected_item_id);
+          
+          
         })
         .catch((error) => {
+          toast.error('An error occurred while submitting the form.');
         })
-      }
-      else{
-        toast.error("Email or Phone Number is mandatory")
-      }
-      
-  }
-  catch (error) {
+        .finally(() => {
+          setTimeout(() => {
+            localStorage.getItem('credentials');
+            window.location.reload();
+          }, 100);
+         
+        });
+    } else {
+      toast.error('Email or Phone Number is mandatory');
+    }
+  } catch (error) {
+    setIsLoading(false); // Stop loading UI
+    toast.error('An error occurred.');
   }
 };
 
@@ -218,8 +237,11 @@ const OnCancleClick = async () => {
 
   return (
     <div className="button-state-light">
-      {/* <Shipping propWidth="unset" propAlignSelf="stretch" /> */}
-      <div className="contactinformation2">
+      
+        {/* {isLoading ? (
+          <Loader /> 
+        ) : ( */}
+          <div className="contactinformation2">
         <div className="edoneil-avvd-zlh-dow-aunsplash8" onClick={() => contact_info()}>
           <img
             className="profile-icon2"
@@ -260,7 +282,7 @@ const OnCancleClick = async () => {
                     }}
                   >
                       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) => (
-                      <Form className="">
+                      <Form onSubmit={handleSubmit} className="">
                         {/* <div className="frame-input1">
                           <div className="frame-email-address-input">
                             <div className="divider27" />
@@ -476,6 +498,10 @@ const OnCancleClick = async () => {
           </div>
         </div>
       </div>
+        {/* )
+      } */}
+      {/* <Shipping propWidth="unset" propAlignSelf="stretch" /> */}
+      
       {/* <ContactInformation
         contactInformation="Payment"
         propMinWidth="50px"

@@ -29,7 +29,7 @@ import hertIcon from "../assets/hertIcon.svg";
 import hertIcon2 from "../assets/hertIcon.svg";
 import hertIcon3 from "../assets/hertIcon.svg";
 import hertIcon4 from "../assets/hertIcon.svg";
-import { setLocation } from "../redux/actions/dataActions";
+import { setCredentials, setLocation } from "../redux/actions/dataActions";
 import { toast } from "react-toastify";
 
 import RedHeartIcon from "../assets/redHeartIcon.svg";
@@ -51,7 +51,9 @@ import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
 import DarkMode from "../components/DarkMode";
 import DarkMode1 from "../components/DarkMode1";
 import { generateRandomInteger } from "../utils/Appconstants";
+import { useDispatch } from "react-redux";
 const ProductPage = () => {
+  const dispatch = useDispatch();
   const [isWAddonOpen, setWAddonOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [restorentdata, setRestorentdata] = useState([]);
@@ -140,6 +142,7 @@ const ProductPage = () => {
         .then((res) => {
           console.log(res, 'API response21');
           localStorage.setItem('credentials', JSON.stringify(res.data.result));
+          dispatch(setCredentials(res.data.result));
           // Handle response accordingly
           if (res.data.result.code === 2) {
             CheckUserOffer(['First User', 'ALL', 'Registered User']);
