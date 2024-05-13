@@ -125,6 +125,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const handleSubmit = async (values, { setSubmitting }) => {
+
   
   console.log(values,'values====>')
   let emailToFetch = ""
@@ -297,7 +298,7 @@ const OnCancleClick = async () => {
                                 onBlur={handleBlur}
                                 style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
-                                placeholder="First Name"
+                                placeholder="First Name *"
                                 required
                               />
                             </div>
@@ -310,7 +311,7 @@ const OnCancleClick = async () => {
                                 onBlur={handleBlur}
                                 style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
-                                placeholder="Last Name"
+                                placeholder="Last Name *"
                                 required
                               />
                             </div>
@@ -387,8 +388,8 @@ const OnCancleClick = async () => {
                                 onBlur={handleBlur}
                                 style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
-                                placeholder="Phone Number"
-                                // required
+                                placeholder="Phone Number *"
+                                required
                               />
                             </div>
                             <div className="input6">
@@ -400,8 +401,8 @@ const OnCancleClick = async () => {
                                 onBlur={handleBlur}
                                 style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                                 className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
-                                placeholder="Email Id"
-                                // required
+                                placeholder="Email Id *"
+                                required
                               />
                             </div>
                           </div>

@@ -29,7 +29,7 @@ export default function EventSlider() {
   };
   const navigate = useNavigate();
   const Buttonclicked = async (target) => {
-    navigate("/productpage?id=1");
+    // navigate("/productpage?id=1");
   }
   // Dummy data for Slider items
   const dummyData = [

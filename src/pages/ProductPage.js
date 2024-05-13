@@ -32,6 +32,8 @@ import hertIcon4 from "../assets/hertIcon.svg";
 import { setCredentials, setLocation } from "../redux/actions/dataActions";
 import { toast } from "react-toastify";
 
+import ReactTooltip from 'react-tooltip';
+
 import RedHeartIcon from "../assets/redHeartIcon.svg";
 import LikeIcon from "../assets/likeIcon.svg";
 import DislikeIcon from "../assets/dislikeIcon.svg";
@@ -108,6 +110,9 @@ const ProductPage = () => {
   //   UpdateData()
   // }, []);
 
+  // ToolTip
+  const [tooltipText, setTooltipText] = useState('');
+
   useEffect(() => {
     GetLocationData();
     GetRestaurentData();
@@ -124,19 +129,19 @@ const ProductPage = () => {
   const RegisterAsUnknowUser = () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
-    console.log(credentials,'credentials==>>')
-    console.log(emailToFetch,'emailToFetch==>>')
+    console.log(credentials, 'credentials==>>')
+    console.log(emailToFetch, 'emailToFetch==>>')
     // localStorage.setItem('credentials', 'JSON.stringify(res.data.result)');
     if (!credentials) {
       const randomNumber = generateRandomInteger(1, 100000000);
 
       const data = {
-        firstName: 'firstName'+randomNumber,
-        lastName: 'lastName'+randomNumber,
-        email: 'email'+randomNumber+'@gmail.com',
-        phoneNumber: 'phoneNumber'+randomNumber,
+        firstName: 'firstName' + randomNumber,
+        lastName: 'lastName' + randomNumber,
+        email: 'email' + randomNumber + '@gmail.com',
+        phoneNumber: 'phoneNumber' + randomNumber,
       };
-    
+
       // Make API call
       API.getInstance()
         .menu.post('api/register', data)
@@ -150,7 +155,7 @@ const ProductPage = () => {
           } else {
             CheckUserOffer(['Registered User', 'ALL']);
           }
-          
+
           GetBasketData();
           // window.location.reload();
         })
@@ -160,7 +165,7 @@ const ProductPage = () => {
         });
     }
 
-    
+
   };
 
 
@@ -185,7 +190,7 @@ const ProductPage = () => {
       .then((res) => {
         // console.log('GetRestaurentData==in', res.data.result)
         setRestorentdata(res.data.result.data);
-        console.log(res.data.result.items_linked_menus,'res.data.result.items_linked_menus')
+        console.log(res.data.result.items_linked_menus, 'res.data.result.items_linked_menus')
         setRestorentmenudata(res.data.result.items_linked_menus);
         // // console.log(res.data.result.data, 'res.data.result.data==>')
         dispatch(setLocation(res.data.result.data));
@@ -314,7 +319,7 @@ const ProductPage = () => {
       // setLoggedin(false);
       // return false;
     }
-    else{
+    else {
       setIsLoggedin(true);
     }
     if (!credentials) {
@@ -328,7 +333,9 @@ const ProductPage = () => {
     }
   };
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values,'values===>9999999==email_id')
+
+    setSubmitting(true);
+    console.log(values, 'values===>9999999==email_id')
     console.log(values.saveit_date, "saveit_date---->");
     console.log(metadata, reaction, "menu_data,reaction---->");
     UpdateReactionInDB(metadata, "SAVEIT", values);
@@ -345,14 +352,14 @@ const ProductPage = () => {
   const UpdateReactionInDB = async (menu_data, reaction, values) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     const prefixToCheck = 'email';
-    console.log(reaction,'reaction==>111111')
+    console.log(reaction, 'reaction==>111111')
     if (credentials.email_id.startsWith(prefixToCheck)) {
       console.log('credentials.email starts with "email".');
       if (reaction == "SAVEIT") {
         setIsLoggedin(false)
-        return false;
+        // return false;
       }
-      else{
+      else {
         toast.error("Please Login to React");
         setLoggedin(false);
         return false;
@@ -360,52 +367,54 @@ const ProductPage = () => {
       // setIsLoggedin(false)
       // toast.error("Please Login to React");
       // setLoggedin(false);
-      
-    } 
+
+    }
+    console.log("React--111")
     if (reaction == "SAVEIT") {
-      setSavemodal(true);
+      console.log("React--2222")
+      setSavemodal(false);
       setMetadata(menu_data);
       setReaction(reaction);
-      return false;
-    } else {
-      let body = {};
-
-      if (reaction == "SAVEIT") {
-        body = {
-          cuser_id: credentials?.user_id,
-          menu_items_id: menu_data.id,
-          reaction: "saveit",
-          saveit_date: values.saveit_date,
-        };
-        if ('email_id' in values){
-          body['email_id'] = values.email_id
-        }
-      } else {
-        body = {
-          cuser_id: credentials?.user_id,
-          menu_items_id: menu_data.id,
-          reaction: reaction,
-        };
-      }
-      console.log(body, "body=====>UpdateReactionInDB");
-
-      try {
-        const res = await API.getInstance().menu.post(
-          "api/user-items-reaction",
-          body
-        );
-        console.log(res, "response======>");
-        setLoggedin(true);
-        setSavemodal(false);
-        return true; // Return true if update is successful
-      } catch (error) {
-        console.error(error);
-        toast.error("Failed to update reaction");
-        setLoggedin(false);
-        return false; // Return false if there's an error
-      }
+      // return false;
     }
-    
+    let body = {};
+
+    if (reaction == "SAVEIT") {
+      body = {
+        cuser_id: credentials?.user_id,
+        menu_items_id: menu_data.id,
+        reaction: "saveit",
+        saveit_date: values?.saveit_date,
+      };
+      if (values && 'email_id' in values) {
+        body['email_id'] = values?.email_id
+      }
+    } else {
+      body = {
+        cuser_id: credentials?.user_id,
+        menu_items_id: menu_data.id,
+        reaction: reaction,
+      };
+    }
+    console.log(body, "body=====>UpdateReactionInDB");
+
+    try {
+      const res = await API.getInstance().menu.post(
+        "api/user-items-reaction",
+        body
+      );
+      console.log(res, "response======>");
+      setLoggedin(true);
+      setSavemodal(false);
+      return true; // Return true if update is successful
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update reaction");
+      setLoggedin(false);
+      return false; // Return false if there's an error
+    }
+
+
   };
 
   const OnClickAddButton = async (menu_item) => {
@@ -550,9 +559,9 @@ const ProductPage = () => {
     if (menuContainerRef.current) {
       const height = menuContainerRef.current.getBoundingClientRect().height;
       setMenuContainerHeight(height);
-      console.log("restorentmenudata===1",height)
+      console.log("restorentmenudata===1", height)
     }
-    
+
   }, [restorentmenudata]); // Recalculate height when restorentmenudata changes
 
 
@@ -563,61 +572,61 @@ const ProductPage = () => {
       <div className=" h-fit min-h-[100vh] ">
 
         <div>
-          <div className="w-full relative" style={{backgroundColor:`var(--website-bg)`}}>
+          <div className="w-full relative" style={{ backgroundColor: `var(--website-bg)` }}>
             <img src={bannerTop1} className="menu-top-banner" alt="productPage" />
             <div className="w-full flex justify-between ">
-            
-              <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-full sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col">
-              <div ref={menuContainerRef} className="sticky-top-wrapper" style={{backgroundColor:`var(--website-bg)`}}>
-                <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-20 px-10" >
-                 
 
-                  <div
-                    style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease',paddingTop:'0.5rem',paddingBottom:'0.5rem'  }}
-                    className={`border-[1px] border-[#E5B638] px-4 rounded-md  font-inter font-normal text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === "all"
-                      ? "bg-[#C21F24]"
-                      : "hover:bg-[#C21F24] cursor-pointer"
-                      }`}
-                    onClick={() =>
-                      OnClickMenu("ALL", "all", selectedTagIndex, activetag)
-                    }
-                  >
-                    All Menu
+              <div className="w-full flex flex-col items-center sm:w-full md:w-full lg:w-full sm:flex sm:flex-col sm:items-center md:flex md:flex-col md:items-center lg:flex lg:flex-col">
+                <div ref={menuContainerRef} className="sticky-top-wrapper" style={{ backgroundColor: `var(--website-bg)` }}>
+                  <div className="flex flex-wrap w-full gap-4 my-6 sm:px-10 md:px-20 px-10" >
+
+
+                    <div
+                      style={{ fontSize: `var(--primary-font-size-mini)`, transition: 'background-color 0.4s ease', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
+                      className={`border-[1px] border-[#E5B638] px-4 rounded-md  font-inter font-normal text-[#fff] flex gap-[10px] cursor-pointer responsive-font-size ${selectedMenuIndex === "all"
+                        ? "bg-[#C21F24]"
+                        : "hover:bg-[#C21F24] cursor-pointer"
+                        }`}
+                      onClick={() =>
+                        OnClickMenu("ALL", "all", selectedTagIndex, activetag)
+                      }
+                    >
+                      All Menu
+                    </div>
+                    {restorentmenudata &&
+                      restorentmenudata.map((menu, index) => (
+                        <div
+                          style={{ fontSize: `var(--primary-font-size-mini)`, transition: 'background-color 0.4s ease', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
+                          key={index}
+                          className={` border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex responsive-font-size cursor-pointer ${selectedMenuIndex === index
+                            ? "bg-[#C21F24]"
+                            : "hover:bg-[#C21F24] cursor-pointer"
+                            }`}
+                          onClick={() =>
+                            OnClickMenu(
+                              menu.id,
+                              index,
+                              selectedTagIndex,
+                              activetag
+                            )
+                          }
+                        >
+                          {menu.menu_title}
+                        </div>
+                      ))}
                   </div>
-                  {restorentmenudata &&
-                    restorentmenudata.map((menu, index) => (
-                      <div
-                        style={{ fontSize: `var(--primary-font-size-mini)`,transition: 'background-color 0.4s ease' ,paddingTop:'0.5rem',paddingBottom:'0.5rem'}}
-                        key={index}
-                        className={` border-[1px] border-[#E5B638] px-4 rounded-md text-[#fff] flex responsive-font-size cursor-pointer ${selectedMenuIndex === index
-                          ? "bg-[#C21F24]"
-                          : "hover:bg-[#C21F24] cursor-pointer"
-                          }`}
-                        onClick={() =>
-                          OnClickMenu(
-                            menu.id,
-                            index,
-                            selectedTagIndex,
-                            activetag
-                          )
-                        }
-                      >
-                        {menu.menu_title}
-                      </div>
-                    ))}
                 </div>
-                </div>
-                
+
                 <div className=" w-[90%] flex flex-col gap-6 ">
                   <div>
                     <div className="menu-items-list w-full flex flex-col gap-y-[20px]  mb-12">
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
-                            <div className="sticky-top-wrappe-title" style={{top: `calc(${menuContainerHeight}px + 70px)`}}>
-                            <div style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--secondary-font-family)`,color:`var(--hp-yellow-600)`,backgroundColor:` var(--website-bg)`}} className="text-[#fff] flex  py-[10px] ">
-                              {menu.menu_title}
-                            </div>
+                            <div className="sticky-top-wrappe-title" style={{ top: `calc(${menuContainerHeight}px + 70px)` }}>
+                              <div style={{ fontSize: `var(--sub-header-font-size)`, fontFamily: `var(--secondary-font-family)`, color: `var(--hp-yellow-600)`, backgroundColor: ` var(--website-bg)` }} className="text-[#fff] flex  py-[10px] ">
+                                {menu.menu_title}
+                              </div>
                             </div>
                             <div className="pi-container w-full flex flex-col gap-y-[30px] mt-3 mb-3 "  >
                               {menu.menu_item_info_list &&
@@ -629,7 +638,7 @@ const ProductPage = () => {
                                         className="pi-row "
                                       >
                                         {/* First Item */}
-                                        <div className="zoom-effect pi-each  hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{backgroundColor:`var(--card-bg)`,transition: "transform 0.2s ease"}}>
+                                        <div className="zoom-effect pi-each  hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
                                           <img
                                             src={
                                               item.item_image &&
@@ -658,17 +667,23 @@ const ProductPage = () => {
                                               marginBottom: "20px",
                                             }}
                                           >
-                                            <div style={{fontFamily:`var(--primary-font-family-bold)`, fontSize:`var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative ">
+                                            <div style={{ fontFamily: `var(--primary-font-family-bold)`, fontSize: `var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative ">
                                               {item.name}
                                               <div
                                                 className={`${selectedItemIndex === item.id ? "flex" : "hidden"
                                                   } absolute z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
                                               >
                                                 <ul
+                                                  style={{ marginTop: "10px" }}
                                                   className="p-2 flex justify-center items-center gap-7 h-full"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
-                                                  <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')}>
+
+
+                                                  {/* ReadHeart */}
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')} className="tooltip">
+
+
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={RedHeartIcon}
@@ -676,10 +691,16 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-1">
                                                         {item.loveit_count}
+                                                        <span style={{ marginBottom: '20px', left: "20px" }} className="tooltiptextredheart">
+                                                          Had It, Liked It!
+                                                        </span>
                                                       </span>
+
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')}>
+
+
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={LikeIcon}
@@ -687,7 +708,9 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
                                                         {item.likeit_count}
+                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Loved It!</span>
                                                       </span>
+
                                                     </div>
                                                   </li>
                                                   {/* <li onClick={() => OnClickReactionpopup(item,'DISLIKE')}>
@@ -701,7 +724,7 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li> */}
-                                                  <li onClick={() => OnClickReactionpopup(item, 'SAVEIT')}>
+                                                  <li onClick={() => OnClickReactionpopup(item, 'SAVEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={SaveIcon}
@@ -709,6 +732,7 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-2">
                                                         {item.saveit_count}
+                                                        <span style={{ marginBottom: '20px',left:'-80px' ,alignContent: 'center' }} className="tooltiptextsave">Remind Me!</span>
                                                       </span>
                                                     </div>
                                                   </li>
@@ -725,8 +749,8 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                            <div style={{fontSize:`var(--primary-font-size-sm-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
-                                             {item.description}
+                                            <div style={{ fontSize: `var(--primary-font-size-sm-mini)`, color: `var(--description)` }} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                              {item.description}
                                             </div>
                                             <div className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                               $ {item.amount}
@@ -749,7 +773,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                            <div className="zoom-effect pi-each hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{backgroundColor:`var(--card-bg)`,transition: "transform 0.2s ease"}}>
+                                            <div className="zoom-effect pi-each hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
                                               <img
                                                 src={
                                                   menu.menu_item_info_list[
@@ -796,7 +820,7 @@ const ProductPage = () => {
                                                   />
                                                 </span>
                                               </div> */}
-                                                <div style={{fontFamily:`var(--primary-font-family-bold)`, fontSize:`var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
+                                                <div style={{ fontFamily: `var(--primary-font-family-bold)`, fontSize: `var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
                                                   {
                                                     menu.menu_item_info_list[
                                                       itemIndex + 1
@@ -808,26 +832,35 @@ const ProductPage = () => {
                                                     ].id ? "flex" : "hidden"
                                                       } absolute Z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
                                                   >
+
                                                     <ul
+                                                      style={{ marginTop: '10px' }}
                                                       className="p-2 flex justify-center items-center gap-7 h-full"
                                                       aria-labelledby="dropdownDividerButton"
                                                     >
-                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LOVEIT')} >
+
+                                                      {/* ToolTip */}
+                                                      <li
+                                                        onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LOVEIT')}
+                                                        className="tooltip"
+                                                      >
+                                                       
                                                         <div className="flex flex-col justify-center items-center">
                                                           <img
                                                             src={RedHeartIcon}
-                                                            alt="hertIcon"
+                                                            alt="heartIcon"
+                                                            className="heart-icon"
                                                           />
                                                           <span className="text-xs font-normal text-white pt-1">
-                                                            {
-                                                              menu.menu_item_info_list[
-                                                                itemIndex + 1
-                                                              ].loveit_count
-                                                            }
+                                                            {menu.menu_item_info_list[itemIndex + 1].loveit_count}
+                                                            <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextredheartright">Had It,Loved It!</span>
                                                           </span>
                                                         </div>
                                                       </li>
-                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LIKEIT')}>
+
+
+
+                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LIKEIT')} className="tooltip">
                                                         <div className="flex flex-col justify-center items-center">
                                                           <img
                                                             src={LikeIcon}
@@ -839,6 +872,10 @@ const ProductPage = () => {
                                                                 itemIndex + 1
                                                               ].likeit_count
                                                             }
+                                                            <span style={{ marginBottom: '20px', left: "-29px" }} className="tooltiptextlikeright">
+                                                          Had It, Liked It!
+                                                        </span>
+
                                                           </span>
                                                         </div>
                                                       </li>
@@ -857,19 +894,21 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li> */}
-                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'SAVEIT')}>
+                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'SAVEIT')} className="tooltip">
                                                         <div className="flex flex-col justify-center items-center">
                                                           <img
                                                             src={SaveIcon}
                                                             alt="hertIcon"
 
                                                           />
+                                                           
                                                           <span className="text-xs font-normal text-white pt-2">
                                                             {
                                                               menu.menu_item_info_list[
                                                                 itemIndex + 1
                                                               ].saveit_count
                                                             }
+                                                             <span style={{ marginBottom: '20px',left:'-80px' ,alignContent: 'center' }} className="tooltiptextsaveright">Remind Me!</span>
                                                           </span>
                                                         </div>
                                                       </li>
@@ -888,11 +927,11 @@ const ProductPage = () => {
                                                     />
                                                   </span>
                                                 </div>
-                                                <div style={{fontSize:`var(--primary-font-size-sm-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
-                                             {menu.menu_item_info_list[
-                                                      itemIndex + 1
-                                                    ].description}
-                                            </div>
+                                                <div style={{ fontSize: `var(--primary-font-size-sm-mini)`, color: `var(--description)` }} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                                  {menu.menu_item_info_list[
+                                                    itemIndex + 1
+                                                  ].description}
+                                                </div>
                                                 <div className="flex justify-between items-center font-poppins font-normal text-[#fff] pr-[18px] responsive-font-size mt-4">
                                                   ${" "}
                                                   {
@@ -993,19 +1032,19 @@ const ProductPage = () => {
                     isSubmitting,
                   }) => (
                     <Form onSubmit={handleSubmit}>
-                      { !isloggedin ?<Form.Group className="mb-3">
+                      {!isloggedin ? <Form.Group className="mb-3">
                         <Field
                           type="text"
                           name="email_id"
                           value={values.email_id}
                           onChange={handleChange}
                           // onBlur={handleBlur}
-                          style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
+                          style={{ fontFamily: `var(--primary-font-family)`, fontSize: `var(--primary-font-size-mini)` }}
                           className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                           placeholder="Email Id"
-                          // required
+                        // {...(!isloggedin && { required: true })}
                         />
-                      </Form.Group>:""}
+                      </Form.Group> : ""}
                       <Form.Group className="mb-3">
                         <DateRange
                           // style={{fontSize:'8px'}}
@@ -1032,8 +1071,10 @@ const ProductPage = () => {
                         }}
                       >
                         <button
+                          type="submit"
                           className="buttons-states-dark20"
-                          style={{ backgroundColor: "red" }}
+                          style={{ backgroundColor: !isValidForm ? "grey" : "red" }}
+                          disabled={!isValidForm}
                         >
                           <b
                             style={{ lineHeight: "30%", fontSize: "14px" }}

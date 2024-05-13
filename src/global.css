@@ -495,7 +495,7 @@ body::-webkit-scrollbar {
   gap: 15px;
 }
 .pi-row .pi-each {
-  height: 190px;
+  /* height: 190px; */
   display: flex;
   width: calc(50% - 15px);
   background-color: var(--hp-grey-600);
@@ -762,7 +762,7 @@ body::-webkit-scrollbar {
     margin-top: 24px;
   }
   .pi-row .pi-each {
-    height: 190px;
+    /* height: 190px; */
     width: 100%;
     gap: 20px;
   }

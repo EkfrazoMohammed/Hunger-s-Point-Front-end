@@ -126,6 +126,7 @@ const CATEGORY = () => {
 
   }
   const handleSubmit = () => {
+
     // Validation check
     // if (!isValidForm()) {
     //   console.log('Form data is not valid');

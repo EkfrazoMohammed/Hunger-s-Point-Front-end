@@ -76,15 +76,16 @@ const AddressesFrame = ({method,selected_item_id}) => {
       .required('First Name is required'),
     l_name: Yup.string()
       .required('Last Name is required'),
-    complete_address: Yup.string()
-      .required('Address is required'),
-    state: Yup.string()
-      .required('State is required'),
-    city: Yup.string()
-      .required('City is required'),
+    // complete_address: Yup.string()
+    //   .required('Address is required'),
+    // state: Yup.string()
+    //   .required('State is required'),
+    // city: Yup.string()
+    //   .required('City is required'),
     phone_number: Yup.string()
       .required('Contact Number is required')
   });
+
   const onEpbackIconClick = useCallback(() => {
     navigate("/myaddress1");
   }, [navigate]);
@@ -95,7 +96,8 @@ const AddressesFrame = ({method,selected_item_id}) => {
 
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values,'=======>')
+
+    console.log(values,'values----=======>')
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     try {
       setSubmitting(false)
@@ -124,6 +126,7 @@ const AddressesFrame = ({method,selected_item_id}) => {
             localStorage.setItem('credentials', JSON.stringify(res.data.result));
             dispatch(setCredentials(res.data.result));
             GetUserAddress()
+            navigate("/myaddress1")
         })
         .catch((error) => {
         })
@@ -169,7 +172,7 @@ const dummyCities = [
       }}
     >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, isSubmitting }) => (
-        <Form className="addresses-frame" style={{backgroundColor:`var(--website-bg)`}}>
+        <Form onSubmit={handleSubmit} className="addresses-frame" style={{backgroundColor:`var(--website-bg)`}}>
           {/* <div className="frame-input1">
             <div className="frame-email-address-input">
               <div className="divider27" />
@@ -300,7 +303,7 @@ const dummyCities = [
           </div>
 
           
-          <button  type="submit" disabled={isSubmitting} className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" >
+          <button  type="submit"   className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" >
                   <div className="button62">{method == "ADD" ? "Add New Address" : "Edit Address"}</div>
                 </button>
 

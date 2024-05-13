@@ -1355,3 +1355,185 @@
 .zoom-effect:hover {
   transform: scale(1.01); /* Scale the image up by 5% on hover */
 }
+
+/* ToolTipheart */
+
+
+
+.tooltip {
+  position: relative;
+}
+
+/* ReadHeart */
+.tooltip .tooltiptextredheart {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: 100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextredheart {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
+
+
+
+/* Like */
+
+.tooltip .tooltiptextlike {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: -100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextlike {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
+
+
+/* save */
+
+
+.tooltip .tooltiptextsave {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: 100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextsave {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
+
+
+/* redheartright */
+/* save */
+
+
+.tooltip .tooltiptextredheartright {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: 100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextredheartright {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
+
+/* likeright */
+/* save */
+
+
+.tooltip .tooltiptextlikeright {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: 100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextlikeright {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
+
+
+
+/* saveright */
+/* save */
+
+
+.tooltip .tooltiptextsaveright {
+  /* margin-bottom: 200px; */
+  font-size: var(--primary-font-size-xs-mini);
+  font-family: var(--primary-font-family);
+  visibility: hidden;
+  width: 100px;
+  /* background-color: white; */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  
+  left: 100%;
+  /* padding: 2px 0; */
+  position: absolute;
+bottom: calc(40% + 5px);
+  transform: translateX(-10%) translateY(-50px); /* Move the tooltip up by 10px initially */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for transform and opacity */
+}
+
+.tooltip:hover .tooltiptextsaveright {
+  visibility: visible;
+  /* opacity: 1; */
+  transform: translateX(-10%) translateY(0); /* Move the tooltip to its original position */
+}
