@@ -43,7 +43,12 @@ const HeaderInstance = ({onPromoClick}) => {
       
   }
   const checkofferfuction = () => {
-    setIsOpen(true)
+    if (offerdata.length === 0) {
+      setIsOpen(false)
+      toast.info("You don't have any offers")
+    }else{
+      setIsOpen(true)
+    }
   };
 
   const openModal = () => {

@@ -76,17 +76,18 @@ export const ContactUs = () => {
                 src={banner_placeholder}
                 alt="contact us"
                 style={{borderRadius:'10px'}}
-                className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
+                className="absolute contact-us-side-img top-0 left-0 w-full"
+                // className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
               />
               <div className="contact-info-container relative z-[2] p-10">
-                <h2 className="text-[30px]" style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,marginBottom:'20px'}}>Customer Care</h2>
+                <h2 className="text-[30px]" style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,marginBottom:'20px', color:'black'}}>Customer Care</h2>
                 {/* <hr className="my-4" /> */}
-                <div className="mb-2" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
+                <div className="mb-2" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>
                   Please email your detailed inquiry and deadline for response
                   to the following:
                 </div>
                 <address>
-                  <ul className="font-bold text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>
+                  <ul className="font-bold text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>
                     <li>info@hungerpoints.in</li>
                     <li>marketing@hungerpoints.in</li>
                   </ul>
@@ -94,7 +95,7 @@ export const ContactUs = () => {
                 <hr className="my-4" />
                 <div className="follow-us">
                   <div className="header-title">
-                    <span className="text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}}>Follow us on</span>
+                    <span className="text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>Follow us on</span>
                   </div>
                   <div className="social-links flex gap-3 mt-3">
                     <a href="/contact-us" target="_blank" rel="noopener noreferrer">
