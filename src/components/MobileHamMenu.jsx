@@ -2,7 +2,13 @@
 import React, { useState } from "react";
 import "./MobileHamMenu.css";
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({
+  menuListData,
+  OnClickMenu,
+  activetag,
+  selectedTagIndex,
+  selectedMenuIndex,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,10 +26,35 @@ const HamburgerMenu = () => {
       {isOpen && (
         <div className="m-menu-list">
           <ul>
-            <li>Menu Item 1</li>
-            <li>Menu Item 2</li>
-            <li>Menu Item 3</li>
-            {/* Add more menu items as needed */}
+            <li
+              className={`${
+                selectedMenuIndex === "all"
+                  ? "bg-[#C21F24]"
+                  : "hover:bg-[#C21F24]"
+              }`}
+              onClick={() => {
+                OnClickMenu("ALL", "all", selectedTagIndex, activetag);
+                setIsOpen(false);
+              }}
+            >
+              All Menu
+            </li>
+            {menuListData.map((menu, index) => (
+              <li
+                key={index}
+                className={`${
+                  selectedMenuIndex === index
+                    ? "bg-[#C21F24]"
+                    : "hover:bg-[#C21F24]"
+                }`}
+                onClick={() => {
+                  OnClickMenu(menu.id, index, selectedTagIndex, activetag);
+                  setIsOpen(false); // Close the menu
+                }}
+              >
+                {menu.menu_title}
+              </li>
+            ))}
           </ul>
         </div>
       )}

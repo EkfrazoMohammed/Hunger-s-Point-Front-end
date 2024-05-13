@@ -2,6 +2,9 @@
 .m-hamburger-menu {
   display: none;
 }
+.m-menu-list::-webkit-scrollbar {
+    display: none;
+}
 @media (max-width: 768px) {
   .m-menu-list,
   .m-hamburger-menu {
@@ -35,14 +38,15 @@
     bottom: 80px;
     right: 0px;
     left: 0px;
-    margin-left: 18px;
+    margin-left: 6%;
     width: 86%;
-    height: 400px;
+    height: 600px;
     background-color: var(--website-bg);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border: 1px solid #343434;
     color: #ffffff;
+    overflow: auto;
     z-index: 10;
   }
 
@@ -73,7 +77,7 @@
 @media (min-width: 500px) and (max-width: 768px) {
   .m-menu-list {
     width: 50%;
-    height: 400px;
+    height: 650px;
     z-index: 10;
     margin-left: 45%;
   }

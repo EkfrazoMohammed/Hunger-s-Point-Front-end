@@ -617,7 +617,10 @@ const ProductPage = () => {
                       ))}
                   </div>
                 </div>
-                <MobileHamMenu />
+                <MobileHamMenu menuListData={restorentmenudata} OnClickMenu={OnClickMenu} selectedTagIndex={selectedTagIndex}
+                activetag={activetag}
+                selectedMenuIndex={selectedMenuIndex}
+                 />
                 <div className=" w-[90%] flex flex-col gap-6 ">
                   <div>
                     <div className="menu-items-list w-full flex flex-col gap-y-[20px]  mb-12">
