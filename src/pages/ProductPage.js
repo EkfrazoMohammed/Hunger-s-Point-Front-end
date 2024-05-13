@@ -44,7 +44,7 @@ import Modal from "../components/Modal";
 import CATEGORY from "../components/CATEGORY";
 import { Calendar, DateRangePicker, DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import { Button, Form } from "react-bootstrap";
 import { SubMenuPagesHeader } from "../components/SubMenuPagesHeader";
@@ -74,6 +74,7 @@ const ProductPage = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [loggedin, setLoggedin] = useState(true);
   const [savemodal, setSavemodal] = useState(false);
+  const [isloggedin, setIsLoggedin] = useState(false);
   const [savedate, setSavedate] = useState({
     saveit_date: {
       // Initialize saveit_date
@@ -127,7 +128,7 @@ const ProductPage = () => {
     console.log(emailToFetch,'emailToFetch==>>')
     // localStorage.setItem('credentials', 'JSON.stringify(res.data.result)');
     if (!credentials) {
-      const randomNumber = generateRandomInteger(1, 1000000);
+      const randomNumber = generateRandomInteger(1, 100000000);
 
       const data = {
         firstName: 'firstName'+randomNumber,
@@ -305,11 +306,19 @@ const ProductPage = () => {
 
   const SaveModalFunction = async (menu_data, reaction, flag) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
-
+    const prefixToCheck = 'email';
+    if (credentials.email_id.startsWith(prefixToCheck)) {
+      console.log('credentials.email starts with "email".');
+      setIsLoggedin(false)
+      // toast.error("Please Login to React");
+      // setLoggedin(false);
+      // return false;
+    }
+    else{
+      setIsLoggedin(true);
+    }
     if (!credentials) {
-      toast.error("Please Login to React");
-      setLoggedin(false);
-      return false;
+      console.log("in iff")
     } else {
       if (flag) {
         setSavemodal(true);
@@ -319,9 +328,10 @@ const ProductPage = () => {
     }
   };
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log(values,'values===>9999999==email_id')
     console.log(values.saveit_date, "saveit_date---->");
     console.log(metadata, reaction, "menu_data,reaction---->");
-    UpdateReactionInDB(metadata, "SAVEIT", values.saveit_date);
+    UpdateReactionInDB(metadata, "SAVEIT", values);
   };
 
   const validationSchema = Yup.object().shape({});
@@ -332,55 +342,70 @@ const ProductPage = () => {
     setSavedate(item);
   };
 
-  const UpdateReactionInDB = async (menu_data, reaction, saveit_date) => {
+  const UpdateReactionInDB = async (menu_data, reaction, values) => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
-
-    if (!credentials) {
-      toast.error("Please Login to React");
-      setLoggedin(false);
+    const prefixToCheck = 'email';
+    console.log(reaction,'reaction==>111111')
+    if (credentials.email_id.startsWith(prefixToCheck)) {
+      console.log('credentials.email starts with "email".');
+      if (reaction == "SAVEIT") {
+        setIsLoggedin(false)
+        return false;
+      }
+      else{
+        toast.error("Please Login to React");
+        setLoggedin(false);
+        return false;
+      }
+      // setIsLoggedin(false)
+      // toast.error("Please Login to React");
+      // setLoggedin(false);
+      
+    } 
+    if (reaction == "SAVEIT") {
+      setSavemodal(true);
+      setMetadata(menu_data);
+      setReaction(reaction);
       return false;
     } else {
-      if (reaction == "saveit") {
-        setSavemodal(true);
-        setMetadata(menu_data);
-        setReaction(reaction);
-        return false;
+      let body = {};
+
+      if (reaction == "SAVEIT") {
+        body = {
+          cuser_id: credentials?.user_id,
+          menu_items_id: menu_data.id,
+          reaction: "saveit",
+          saveit_date: values.saveit_date,
+        };
+        if ('email_id' in values){
+          body['email_id'] = values.email_id
+        }
       } else {
-        let body = {};
+        body = {
+          cuser_id: credentials?.user_id,
+          menu_items_id: menu_data.id,
+          reaction: reaction,
+        };
+      }
+      console.log(body, "body=====>UpdateReactionInDB");
 
-        if (reaction == "SAVEIT") {
-          body = {
-            cuser_id: credentials?.user_id,
-            menu_items_id: menu_data.id,
-            reaction: "saveit",
-            saveit_date: saveit_date,
-          };
-        } else {
-          body = {
-            cuser_id: credentials?.user_id,
-            menu_items_id: menu_data.id,
-            reaction: reaction,
-          };
-        }
-        console.log(body, "body=====>UpdateReactionInDB");
-
-        try {
-          const res = await API.getInstance().menu.post(
-            "api/user-items-reaction",
-            body
-          );
-          console.log(res, "response======>");
-          setLoggedin(true);
-          setSavemodal(false);
-          return true; // Return true if update is successful
-        } catch (error) {
-          console.error(error);
-          toast.error("Failed to update reaction");
-          setLoggedin(false);
-          return false; // Return false if there's an error
-        }
+      try {
+        const res = await API.getInstance().menu.post(
+          "api/user-items-reaction",
+          body
+        );
+        console.log(res, "response======>");
+        setLoggedin(true);
+        setSavemodal(false);
+        return true; // Return true if update is successful
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to update reaction");
+        setLoggedin(false);
+        return false; // Return false if there's an error
       }
     }
+    
   };
 
   const OnClickAddButton = async (menu_item) => {
@@ -700,7 +725,7 @@ const ProductPage = () => {
                                                 />
                                               </span>
                                             </div>
-                                            <div style={{fontSize:`var(--primary-font-size-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                            <div style={{fontSize:`var(--primary-font-size-sm-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                              {item.description}
                                             </div>
                                             <div className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
@@ -863,7 +888,7 @@ const ProductPage = () => {
                                                     />
                                                   </span>
                                                 </div>
-                                                <div style={{fontSize:`var(--primary-font-size-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
+                                                <div style={{fontSize:`var(--primary-font-size-sm-mini)`,color:`var(--description)`}} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                              {menu.menu_item_info_list[
                                                       itemIndex + 1
                                                     ].description}
@@ -968,6 +993,19 @@ const ProductPage = () => {
                     isSubmitting,
                   }) => (
                     <Form onSubmit={handleSubmit}>
+                      { !isloggedin ?<Form.Group className="mb-3">
+                        <Field
+                          type="text"
+                          name="email_id"
+                          value={values.email_id}
+                          onChange={handleChange}
+                          // onBlur={handleBlur}
+                          style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
+                          className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                          placeholder="Email Id"
+                          // required
+                        />
+                      </Form.Group>:""}
                       <Form.Group className="mb-3">
                         <DateRange
                           // style={{fontSize:'8px'}}

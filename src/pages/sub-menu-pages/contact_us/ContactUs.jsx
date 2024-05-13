@@ -11,7 +11,7 @@ import instagramdark from "../../../assets/instagram-dark.svg";
 import facebookdark from "../../../assets/facebook-dark.svg";
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
 import pageBannerImg from "../../../assets/contact_us.jpg";
-import contactUsImg2 from "../../../assets/images/contact-us-side-img-2.png";
+import banner_placeholder from "../../../assets/contact.jpg";
 import banner2 from "../../../assets/images/sectiob-banner-img-1.jpg";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
@@ -47,7 +47,7 @@ export const ContactUs = () => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  const banner_placeholder = 'https://placehold.co/620x400'
+  // const banner_placeholder = 'https://placehold.co/620x400'
   return (
     <>
       <motion.div
@@ -118,7 +118,7 @@ export const ContactUs = () => {
               </div>
             </div>
             <div className="form-contact-us sub-pages-forms">
-            <FeedbackForm heading={'Get In Touch With Us'} selection={5}/>
+            <FeedbackForm heading={'Get In Touch With Us'} selection={5} feedboack_opt={'Contact Us'}/>
             </div>
           </div>
         </section>

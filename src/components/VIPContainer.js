@@ -4,7 +4,7 @@ import "./VIPContainer.css";
 const VIPContainer = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <section className="v-i-p-frame hf-row" style={{backgroundColor:`var(--card-bg)`,borderRadius:'10px',border: `1px solid var(--hp-yellow-600)`}}>
+    <section className="v-i-p-frame hf-row" style={{backgroundColor:`var(--card-bg)`,borderRadius:'10px',border: `1px solid var(--hp-yellow-600)`,marginBottom:'20px'}}>
       <h1 className="become-a-vip" style={{fontFamily:`var(--primary-font-family-bold)`}}>BECOME A VIP</h1>
       <div className="update-notifications-frame">
         <div className="instagram-facebook-mail-frame">

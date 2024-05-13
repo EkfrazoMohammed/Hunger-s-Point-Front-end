@@ -82,7 +82,8 @@ const Header = () => {
     setSelectedRoute(rout)
   };
   const credentials = JSON.parse(localStorage.getItem('credentials'));
-  let emailToFetch = (user && user.email) || (credentials && credentials.email_id) || (credentials && credentials.spr_user_id);
+  const prefixToCheck = 'email';
+  let emailToFetch = !credentials?.email_id.startsWith(prefixToCheck) && ((user && user.email) || (credentials && credentials.email_id) || (credentials && credentials.spr_user_id));
 
   useEffect(() => {
     SettargetUser()

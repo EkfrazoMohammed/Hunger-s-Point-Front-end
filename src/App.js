@@ -144,7 +144,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="bottom-right"/>
+      <ToastContainer position="bottom-left"/>
       <div style={{ position: "sticky", top: 0, zIndex: 100 }}>
       {pathname !== "/signin" && <Header />}
     </div>

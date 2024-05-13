@@ -20,13 +20,13 @@ import { setCredentials } from "../redux/actions/dataActions";
 const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
   const { user } = useAuth0();
   const navigate = useNavigate();
-  const [isVisibleCI, setIsVisibleCI] = useState(false);
+  const [isVisibleCI, setIsVisibleCI] = useState(true);
   const [isVisibleNew, setIsVisibleNew] = useState(false);
   const [selected_item_id, setSelected_item_id] = useState(0);
   const [isValidForm, setIsValidForm] = useState(false); 
   const user_data = useSelector(state => state.data.user_data);
   const credentials_redux = useSelector((state) => state.data.credentials);
-  const [selectedLocation, setSelectedLocation] = useState(0);
+  const [selectedLocation, setSelectedLocation] = useState('');
   const [method, setMethod] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [address_initialValues, setAddressinitialValues] = useState({
@@ -66,7 +66,7 @@ const ButtonStateLight = ({confirmnextstep,onContactClick}) => {
 
   useEffect(() => {
     GetUserAddress(selected_item_id)
-    AddNewAddress()
+    // AddNewAddress()
   }, []);
 
   const GetUserAddress = async (selected_item_id) => {
@@ -181,6 +181,7 @@ const handleSubmit = async (values, { setSubmitting }) => {
 const AddNewAddress = async () => {
   setMethod("ADD")
   if( user_address_list?.length == 0 || user_address_list == undefined ){
+    console.log('user_address_list?.length,',user_address_list?.length)
     setIsVisibleNew(true)
   }
   else{
@@ -241,16 +242,16 @@ const OnCancleClick = async () => {
         {/* {isLoading ? (
           <Loader /> 
         ) : ( */}
-          <div className="contactinformation2">
-        <div className="edoneil-avvd-zlh-dow-aunsplash8" onClick={() => contact_info()}>
+          <div className="contactinformation2 cursor-pointer">
+        <div className="edoneil-avvd-zlh-dow-aunsplash8 cursor-pointer" onClick={() => contact_info()}>
           <img
             className="profile-icon2"
             loading="eager"
             alt=""
             src={profile}
           />
-          <div className="contact-information2" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size)`}} >Contact Information</div>
-
+          <div className="contact-information2 cursor-pointer" style={{fontFamily:`var(--primary-font-family-bold)`,fontSize:`var(--primary-font-size)`}} >Contact Information <span style={{color:'red'}}>*</span></div>
+          
           <img
             className="down-icon12 cursor-pointer"
             alt=""
@@ -258,12 +259,7 @@ const OnCancleClick = async () => {
             
           />
         </div>
-        <div
-          className={`${
-            isVisibleCI ? "flex gap-[15px]" : "hidden"
-          } " w-full flex-col p-5 gap-[15px]"`}
-        >
-       
+        <div className={`w-full flex-col px-5 gap-[15px] ${isVisibleCI ? 'visible' : 'hidden'}`}>
           <div>
             { isVisibleNew  ?(
               <div className="w-full flex flex-col ">
@@ -415,13 +411,13 @@ const OnCancleClick = async () => {
                         <div className="buttons-states4" style={{marginTop:'20px',marginBottom:'20px'}}>
                         <button
                         style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
-                          className="buttons-states-dark51"
-                          onClick={() => setIsVisibleNew(false)}
+                          className="leading-5 items-center rounded-md h-[40px] px-3 text-[#fff]"
+                          onClick={() => OnCancleClick()}
                         >
-                          <div className="button61">Cancel</div>
+                          <div className="button62">Cancel</div>
                         </button>
-                          <button type="submit" className="buttons-states-dark58 font-inter font-bold text-base leading-5 items-center bg-[#C21F24] rounded-md h-[36px] px-3 text-[#fff] mb-4" disabled={isSubmitting}>
-                            <b  style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}  className="button70">{method == "ADD" ? "Add New Address" : "Proceed"}</b>
+                          <button type="submit" className="leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" disabled={isSubmitting}>
+                            <div className="button62">{method == "ADD" ? "Add Address" : "Proceed"}</div>
                           </button>
                         </div>
                       </Form>
@@ -462,23 +458,22 @@ const OnCancleClick = async () => {
                       propBorder={selectedLocation === index ? "" : "1px solid #707070"}
                       handleEdit={() => {
                         setIsVisibleNew(true);
-                        
                       }}
                     />
                     </div>
                   ))}
                 </div>
                
-                <div className="contactinformation-inner">
-                  <div className="buttons-states-dark-parent5">
+                <div className="contactinformation-inner" >
+                  <div className="buttons-states-dark-parent5" >
                     {
                       user_address_list?.length == 0 || user_address_list == undefined || user_address_list == null?
                       (<button
-                        style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }}
-                          className="buttons-states-dark51"
+                        style={{ fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`, backgroundColor:`var(--hp-btn-primary)` }}
+                          className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]"
                           onClick={() => AddNewAddress()}
                         >
-                          <div className="button63">Add New Address</div>
+                          <div className="button63" >Add Address</div>
                         </button>):
                         <></>
                     }

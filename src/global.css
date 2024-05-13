@@ -29,6 +29,8 @@ body {
   --navbar-desk-height: 80px;
   --navbar-mob-height: 65px;
   --primary-font-size-mini: 14px;
+  --primary-font-size-sm-mini:12px;
+  --primary-font-size-xs-mini:10px;
   --primary-font-size: 16px;
   --header-font-size: 26px;
   --header-font-size-m: 18px;
@@ -1079,6 +1081,7 @@ body::-webkit-scrollbar {
   }
   .what-we-believe4.bottom-a-line {
     margin-top: 10px;
+    font-size: var(--primary-font-size);
   }
   .ginger-frame,
   .inputfieldframe {
@@ -1111,7 +1114,7 @@ body::-webkit-scrollbar {
     font-size: 30px;
   }
   .basket-item-card .prod-amount {
-    font-size: 25px;
+    font-size: var(--primary-font-size);
   }
   .edoneil-avvd-zlh-dow-aunsplash11 {
     justify-content: flex-start;
@@ -1140,5 +1143,11 @@ body::-webkit-scrollbar {
   }
   .ordersummary .rightframe .summary3 {
     margin-top: 0;
+  }
+}
+
+@media  (max-width: 764px) {
+  .home-location.category-2-wrapper{
+    padding:10px;
   }
 }

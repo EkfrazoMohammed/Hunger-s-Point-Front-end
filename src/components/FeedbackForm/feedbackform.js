@@ -1,26 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { API } from '../../api/api';
 import { toast } from 'react-toastify';
-
-const FeedbackForm = ({heading,selection}) => {
+import '../FeedbackForm/feedbackform.css'
+const FeedbackForm = ({heading,selection,feedboack_opt}) => {
   const [coverLetterUploaded, setCoverLetterUploaded] = useState(false);
   const [resumeUploaded, setResumeUploaded] = useState(false);
   const [isValidForm, setIsValidForm] = useState(false);
+  const [restorentmenualldata, setRestorentMenuTagItemdata] = useState([]);
+  useEffect(() => {
+    GetMenuTagItemData('ALL')
+
+  }, []);
+
+  const GetMenuTagItemData = async (menu_id) => {
+    let updated_url = "";
+    const id = 1
+    updated_url = `/api/menu-items`;
+    
+    API.getInstance()
+      .menu.get(updated_url)
+      .then((res) => {
+        // console.log("GetMenuTagItemData======innnnn", res.data.result.data);
+       
+        setRestorentMenuTagItemdata(res.data.result.data);
+      })
+      .catch((error) => { })
+      .finally(() => { });
+  };
+
 
   const initialValues = {
     first_name: '',
     last_name: '',
     phone_number: '',
     email_id: '',
-    feedboack_opt: '',
+    feedboack_opt: feedboack_opt,
     message: '',
     cover_letter: null,
     resume: null,
+    menu_item:''
   };
-
   const validationSchema = Yup.object().shape({
+    
     first_name: Yup.string().required('First name is required'),
     last_name: Yup.string().required('Last name is required'),
     phone_number: Yup.string().required('Phone number is required'),
@@ -60,7 +83,7 @@ const FeedbackForm = ({heading,selection}) => {
   };
 
   const options = [
-    { value: '', label: 'Apply For' },
+    { value: '', label: 'Select option' },
     { value: 'Careers', label: 'Careers' },
     { value: 'Franchises', label: 'Franchises' },
     { value: 'Feedback', label: 'Feedback' },
@@ -87,6 +110,7 @@ const FeedbackForm = ({heading,selection}) => {
       validateOnChange={true}
       validateOnBlur={false}
       validate={(values) => {
+        console.log(values,'values===>123')
         validationSchema
           .validate(values)
           .then((e) => {console.log("error",e);setIsValidForm(true)})
@@ -100,7 +124,7 @@ const FeedbackForm = ({heading,selection}) => {
           <Field
             style={{ fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size-mini)' }}
             as="select"
-            name="feedback_opt"
+            name="feedboack_opt"
             className="user-field-input-common user-field-select-common"
             defaultValue={selection ? options[selection].value: options[0].value} // Set the default value to the value of the first option
           >
@@ -116,6 +140,41 @@ const FeedbackForm = ({heading,selection}) => {
           </Field>
             <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="feedboack_opt" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
           </div>
+
+          {values.feedboack_opt === 'Feedback' && (
+          <div className="fp-input-w">
+          <Field
+            style={{ fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size-mini)' }}
+            as="select"
+            name="menu_item"
+            className="user-field-input-common user-field-select-common"
+            // defaultValue={selection ? options[selection].value: options[0].value} // Set the default value to the value of the first option
+          >
+            {restorentmenualldata && restorentmenualldata.map(option => (
+              <option
+              
+                style={{ fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size-mini)' }}
+                key={option.id}
+                value={option.id}
+              >
+               <div
+                key={option.value}
+                className="custom-select__option"
+                onClick={() => handleSelect(option)}
+              >
+                <image src={option.item_image} />
+                <span className="custom-select__option-text">{option.name}</span>
+              </div>
+              </option>
+            ))}
+          </Field>
+            <ErrorMessage style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} name="menu_item" component="p" className="fp-error-text text-red-300 mt-1 ml-1" />
+          </div>
+          )
+        
+        }
+
+
           <div className="fp-input-group">
             <div className="fp-input-w">
               <Field style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}} type="text" name="first_name" placeholder="First name *" className="user-field-input-common" />

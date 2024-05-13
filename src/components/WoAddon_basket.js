@@ -169,7 +169,9 @@ const handleCategorySelect = (categoryKey, itemName) => {
             <b className="chole-batura5">{menu_item?.name}</b>
           </div>
           </div>
-         
+          <div style={{ fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}} className="">
+              <div className="">{menu_item?.description}</div>
+            </div>
           <div className="price-frame">
             <div className="quantity-frame">
               <div className="minus-add-frame">

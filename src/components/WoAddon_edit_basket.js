@@ -218,8 +218,11 @@ const WoAddonEditBasket = ({ menu_item_all_data,add_on, onClose, menu_item,setMe
             <div style={{marginLeft:'20px'}}  className="text-frame">
             <b className="chole-batura5">{menu_item?.name}</b>
           </div>
-          </div>
           
+          </div>
+          <div style={{ fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}} className="">
+              <div className="">{menu_item?.description}</div>
+            </div>
           <div className="price-frame">
             <div className="quantity-frame">
               <div className="minus-add-frame">

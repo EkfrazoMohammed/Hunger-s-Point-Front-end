@@ -63,7 +63,7 @@
 .call-parent4 {
   align-self: stretch;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 0 10px;
 }
 .call-parent4,
@@ -95,7 +95,7 @@
 }
 @media screen and (max-width: 450px) {
   .alberta9 {
-    font-size: 22px;
+    font-size: var(--primary-font-size);
   }
   .div36,
   .hospital-st-fort7 {

@@ -21,12 +21,13 @@ const AddressesFrame = ({method,selected_item_id}) => {
   console.log(selected_item_id,'selected_item_id===>--form')
   const [address_initialValues, setAddressinitialValues] = useState({
     id: '',
-    complete_address: '',
-    city: '',
+    // complete_address: '',
+    // city: '',
     phone_number: '',
     f_name: '',
     l_name: '',
-    state: ''
+    email_id:'',
+    // state: ''
   });
   useEffect(() => {
     GetUserAddress()
@@ -49,12 +50,13 @@ const AddressesFrame = ({method,selected_item_id}) => {
             
             const final_data = {
               id:searchedobject.id,
-              complete_address:searchedobject.complete_address,
-              city:searchedobject.city,
+              // complete_address:searchedobject.complete_address,
+              // city:searchedobject.city,
               phone_number:searchedobject.phone_number,
               f_name:searchedobject.f_name,
               l_name:searchedobject.l_name,
-              state:searchedobject.state,
+              email_id:searchedobject.email_id
+              // state:searchedobject.state,
             }
             setAddressinitialValues(final_data)
             //   dispatch(setLocationInfoByid(res.data.result.data[0]));
@@ -212,7 +214,34 @@ const dummyCities = [
                 />
               </div>
             </div>
-            <div className="frame-button-dropdown1">
+            <div className="frame-button-dropdown" >
+              <div className="input5" >
+                <Field
+                  type="text"
+                  id="f_name"
+                  name="phone_number"
+                  value={values.phone_number}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px]  outline-none" 
+                  placeholder="Phone Number"
+        
+                />
+              </div>
+              <div className="input5">
+                <Field
+                  type="text"
+                  name="email_id"
+                  value={values.email_id}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className="w-full border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] outline-none"
+                  placeholder="Email Id"
+                  required
+                />
+              </div>
+            </div>
+            {/* <div className="frame-button-dropdown1">
               <div className="input5">
                 <div className="input-inner2">
                   <Field
@@ -227,8 +256,8 @@ const dummyCities = [
                   />
                 </div>
               </div>
-            </div>
-            <div className="flex w-full gap-[15px]" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}>
+            </div> */}
+            {/* <div className="flex w-full gap-[15px]" style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}>
             <Field
               as="select"
               name="state"
@@ -253,8 +282,8 @@ const dummyCities = [
                   </option>
                 ))}
               </Field>
-            </div>
-            <div className="frame-button-dropdown1">
+            </div> */}
+            {/* <div className="frame-button-dropdown1">
               <div className="input5">
                 <Field
                   type="text"
@@ -267,7 +296,7 @@ const dummyCities = [
                   required
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           

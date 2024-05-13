@@ -18,7 +18,7 @@ import DescriptionSection from "../../../components/page_section/DescriptionSect
 import ImagesSection from "../../../components/page_section/ImagesSection";
 import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
-import event1 from "../../../assets/event_pic_1.jpg";
+import event1 from "../../../assets/event5.jpg";
 import DescriptionSectionEvent from "../../../components/page_section/DescriptionSectionevent";
 import EventSlider from "../../../components/EventSlider";
 
@@ -164,7 +164,7 @@ export const Events = () => {
               {/* <img style={{ borderRadius: '10px' }} src={sleder4} alt="..." /> */}
             </div>
             <div className="form-event sub-pages-forms">
-              <FeedbackForm heading={'Get In Touch With Us'} selection={4}/>
+              <FeedbackForm heading={'Get In Touch With Us'} selection={4} feedboack_opt={'Event'}/>
             </div>
           </div>
         </section>

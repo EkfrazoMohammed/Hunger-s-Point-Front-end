@@ -571,7 +571,7 @@ const Button = () => {
                     </div> */}
                     <select
                       name="state"
-                      className="w-[100%] border border-[#929292] rounded-[5px] h-[50px] text-[#909090] bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
+                      className="w-[100%] border border-[#929292] rounded-[5px] h-[50px]  bg-transparent p-[10px] font-poppins font-normal text-sm outline-none"
                       style={{fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)`}}
                       value={locationData[0]?.published_name}
                       // onChange={handleSelectChange}

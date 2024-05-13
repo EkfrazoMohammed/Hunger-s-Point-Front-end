@@ -6,7 +6,7 @@ import { routeVariants, childVariants } from '../../../variants/framerMotionVari
 
 import { SubMenuPagesHeader } from "../../../components/SubMenuPagesHeader";
 import pageBannerImg from "../../../assets/career.jpg";
-import sideImg1 from "../../../assets/careers.jpg"
+import sideImg1 from "../../../assets/career_book.jpg"
 import sectionBanner from "../../../assets/images/sectiob-banner-img-2.png";
 import DarkMode from "../../../components/DarkMode";
 import DescriptionSection from "../../../components/page_section/DescriptionSection";
@@ -147,7 +147,7 @@ export const Careers = () => {
               </div>
             </div>
             <div className="form-careers sub-pages-forms">
-            <FeedbackForm heading={'Get In Touch With Us'} selection={1}/>
+            <FeedbackForm heading={'Get In Touch With Us'} selection={1} feedboack_opt={'Careers'}/>
             </div>
           </div>
         </section>

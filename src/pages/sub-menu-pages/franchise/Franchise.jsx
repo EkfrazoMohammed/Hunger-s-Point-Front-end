@@ -17,6 +17,7 @@ import FeedbackForm from "../../../components/FeedbackForm/feedbackform";
 import DarkMode1 from "../../../components/DarkMode1";
 import EventSlider from "../../../components/EventSlider";
 import "../franchise/Franchise.css"
+import FranchiseSlider from "../../../components/FranchiseSlider";
 
 
 export const Franchise = () => {
@@ -89,7 +90,7 @@ export const Franchise = () => {
           </div>
           <div className="sec-info--w gap-6 justify-between mt-10 " style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`}} >
             <div className="side--w h-full">
-              <EventSlider/>
+              <FranchiseSlider/>
               {/* <img src={contactUsImg} alt="contact us" className="h-full w-full object-cover" /> */}
             </div>
             <div className="form-franchise sub-pages-forms">

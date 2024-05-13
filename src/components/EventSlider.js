@@ -1,11 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
 
-import banner1 from "../assets/images/event-img-3.png"
-import banner2 from "../assets/images/event-img-2.png"
-import banner3 from "../assets/event_pic_2.jpg"
-import banner4 from "../assets/Home_banner_4.jpg"
-import event1 from "../assets/event_pic_1.jpg";
+import event1 from "../assets/event1.jpg"
+import event2 from "../assets/event2.jpg"
+import event3 from "../assets/event3.jpg"
+import event4 from "../assets/event4.jpg"
+// import event5 from "../assets/event5.jpg";
+import event6 from "../assets/event6.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function EventSlider() {
@@ -36,25 +37,31 @@ export default function EventSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner_placeholder,
+      imgSrc: event1,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner_placeholder,
+      imgSrc: event2,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner_placeholder,
+      imgSrc: event3,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner_placeholder,
+      imgSrc: event4,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc: event6,
     }
   ];
   

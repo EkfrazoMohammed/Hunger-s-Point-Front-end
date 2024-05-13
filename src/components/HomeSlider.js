@@ -3,8 +3,9 @@ import Slider from "react-slick";
 
 import banner1 from "../assets/Home_banner_1.jpg"
 import banner2 from "../assets/Home_banner_2.jpg"
-import banner3 from "../assets/Home_banner_3.jpg"
+import banner3 from "../assets/homebanner22.jpg"
 import banner4 from "../assets/Home_banner_4.jpg"
+import banner5 from "../assets/homebanner33.jpg"
 import { useNavigate } from "react-router-dom";
 
 export default function SimpleSlider() {
@@ -50,6 +51,12 @@ export default function SimpleSlider() {
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
       imgSrc: banner4,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc: banner5,
     }
   ];
   

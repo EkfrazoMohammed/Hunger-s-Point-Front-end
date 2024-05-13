@@ -309,4 +309,8 @@ button {
 
 /* LOCATION SECTION */
 /* Styles for major screen sizes (e.g., desktops) */
-
+@media (max-width: 640px) {
+.description{
+  font-size: var(--primary-font-size-sm-mini);
+}
+}

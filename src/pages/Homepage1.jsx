@@ -304,7 +304,7 @@ const Homepage1 = () => {
       <div className="location1 hf-row" >
         <div style={{border:'1px solid #E4B637', padding:'10px',borderRadius:'10px',margin:'30px 0px',backgroundColor:`var(--card-bg)`}}>
         <p className="what-we-believe4 fp-para-section-title" >{'OUR VISION'}</p>
-        <div className="my-2 sm:my-5">
+        <div className="my-2 sm:my-5 description">
         We don't just cook food, we give experiences. Our vision is to become the fastest-growing segment of quick-service restaurants offering authentic Indian cuisine. We believe everyone deserves to experience the joy of Indian flavours and we're committed to making them accessible and delicious.
         </div>
      

@@ -161,8 +161,8 @@ const HeaderInstance = ({onPromoClick}) => {
         propWidth="unset"
         propMinWidth="114px"
       /> */}
-        <div className="payment">
-          <div className="shipping-details-container" onClick={() => setIsVisibleP(!isVisibleP)}>
+        <div className="payment cursor-pointer"  onClick={() => setIsVisibleP(!isVisibleP)}>
+          <div className="shipping-details-container cursor-pointer" onClick={() => setIsVisibleP(!isVisibleP)}>
             <img
               className="shipping-details-icon3"
               alt=""
