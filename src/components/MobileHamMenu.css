@@ -1,0 +1,84 @@
+.m-menu-list,
+.m-hamburger-menu {
+  display: none;
+}
+.m-menu-list::-webkit-scrollbar {
+    display: none;
+}
+@media (max-width: 768px) {
+  .m-menu-list,
+  .m-hamburger-menu {
+    display: block;
+  }
+  .sticky-top-wrappe-title {
+    position: initial !important;
+  }
+  .m-hamburger-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .m-hamburger-button {
+    background-color: var(--hp-btn-primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  /* HamburgerMenu.css */
+  .m-menu-list {
+    position: fixed;
+    bottom: 80px;
+    right: 0px;
+    left: 0px;
+    margin-left: 6%;
+    width: 86%;
+    height: 600px;
+    background-color: var(--website-bg);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #343434;
+    color: #ffffff;
+    overflow: auto;
+    z-index: 10;
+  }
+
+  .m-menu-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .m-menu-list li {
+    padding: 15px 20px;
+    border: 1px solid #e4b637;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .m-menu-list li:active,
+  .m-menu-list li:hover {
+    background: #c21f24;
+  }
+
+  .sticky-top-wrapper {
+    display: none;
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .m-menu-list {
+    width: 50%;
+    height: 650px;
+    z-index: 10;
+    margin-left: 45%;
+  }
+}

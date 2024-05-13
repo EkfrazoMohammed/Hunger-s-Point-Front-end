@@ -3,6 +3,7 @@ import WAddon from "../components/WAddon";
 import PortalPopup from "../components/PortalPopup";
 import Header from "../components/Header";
 import DishType from "../components/DishType";
+import MobileHamMenu from "../components/MobileHamMenu";
 import Locationhospitalframe from "../components/Locationhospitalframe";
 import "./ProductPage.css";
 import Sidebar from "./Sidebar";
@@ -616,7 +617,10 @@ const ProductPage = () => {
                       ))}
                   </div>
                 </div>
-
+                <MobileHamMenu menuListData={restorentmenudata} OnClickMenu={OnClickMenu} selectedTagIndex={selectedTagIndex}
+                activetag={activetag}
+                selectedMenuIndex={selectedMenuIndex}
+                 />
                 <div className=" w-[90%] flex flex-col gap-6 ">
                   <div>
                     <div className="menu-items-list w-full flex flex-col gap-y-[20px]  mb-12">
@@ -732,7 +736,7 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-2">
                                                         {item.saveit_count}
-                                                        <span style={{ marginBottom: '20px',left:'-80px' ,alignContent: 'center' }} className="tooltiptextsave">Remind Me!</span>
+                                                        <span style={{ marginBottom: '20px', left: '-80px', alignContent: 'center' }} className="tooltiptextsave">Remind Me!</span>
                                                       </span>
                                                     </div>
                                                   </li>
@@ -844,7 +848,7 @@ const ProductPage = () => {
                                                         onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LOVEIT')}
                                                         className="tooltip"
                                                       >
-                                                       
+
                                                         <div className="flex flex-col justify-center items-center">
                                                           <img
                                                             src={RedHeartIcon}
@@ -873,8 +877,8 @@ const ProductPage = () => {
                                                               ].likeit_count
                                                             }
                                                             <span style={{ marginBottom: '20px', left: "-29px" }} className="tooltiptextlikeright">
-                                                          Had It, Liked It!
-                                                        </span>
+                                                              Had It, Liked It!
+                                                            </span>
 
                                                           </span>
                                                         </div>
@@ -901,14 +905,14 @@ const ProductPage = () => {
                                                             alt="hertIcon"
 
                                                           />
-                                                           
+
                                                           <span className="text-xs font-normal text-white pt-2">
                                                             {
                                                               menu.menu_item_info_list[
                                                                 itemIndex + 1
                                                               ].saveit_count
                                                             }
-                                                             <span style={{ marginBottom: '20px',left:'-80px' ,alignContent: 'center' }} className="tooltiptextsaveright">Remind Me!</span>
+                                                            <span style={{ marginBottom: '20px', left: '-80px', alignContent: 'center' }} className="tooltiptextsaveright">Remind Me!</span>
                                                           </span>
                                                         </div>
                                                       </li>
