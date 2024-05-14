@@ -1353,7 +1353,8 @@
 }
 
 .zoom-effect:hover {
-  transform: scale(1.01); /* Scale the image up by 5% on hover */
+  /* transform: scale(1.01);  */
+  /* border: 1px solid var(--website-bg); */
 }
 
 /* ToolTipheart */

@@ -701,7 +701,7 @@ body::-webkit-scrollbar {
     margin-top: 20px;
   }
   .menu-items-list {
-    gap: 0;
+    /* gap: 0; */
   }
   .pi-container {
     gap: 15px;

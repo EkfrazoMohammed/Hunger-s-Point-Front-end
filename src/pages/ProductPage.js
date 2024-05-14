@@ -623,11 +623,11 @@ const ProductPage = () => {
                  />
                 <div className=" w-[90%] flex flex-col gap-6 ">
                   <div>
-                    <div className="menu-items-list w-full flex flex-col gap-y-[20px]  mb-12">
+                    <div className="menu-items-list w-full flex flex-col gap-y-[35px] mb-12">
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
-                            <div className="sticky-top-wrappe-title" style={{ top: `calc(${menuContainerHeight}px + 70px)` }}>
+                            <div className="sticky-top-wrappe-title" style={{ top: `calc(${menuContainerHeight}px + 69px)` }}>
                               <div style={{ fontSize: `var(--sub-header-font-size)`, fontFamily: `var(--secondary-font-family)`, color: `var(--hp-yellow-600)`, backgroundColor: ` var(--website-bg)` }} className="text-[#fff] flex  py-[10px] ">
                                 {menu.menu_title}
                               </div>
@@ -642,7 +642,7 @@ const ProductPage = () => {
                                         className="pi-row "
                                       >
                                         {/* First Item */}
-                                        <div className="zoom-effect pi-each  hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
+                                        <div className="zoom-effect pi-each border-[#0d0e11] border-[.1px] hover:border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
                                           <img
                                             src={
                                               item.item_image &&
@@ -777,7 +777,7 @@ const ProductPage = () => {
                                         {menu.menu_item_info_list[
                                           itemIndex + 1
                                         ] && (
-                                            <div className="zoom-effect pi-each hover:border-[.5px] border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
+                                            <div className="zoom-effect pi-each border-[#0d0e11] border-[.1px] hover:border-[#E5B638] cursor-pointer" style={{ backgroundColor: `var(--card-bg)`, transition: "transform 0.2s ease" }}>
                                               <img
                                                 src={
                                                   menu.menu_item_info_list[
