@@ -203,6 +203,7 @@ const ProductPage = () => {
   const OnClickMenu = (menu_id, index, tag_index, tag_id) => {
     setactivemenu(menu_id);
     setSelectedMenuIndex(index);
+    localStorage.setItem('selectedMenuIndex',index)
     setSelectedTagIndex(tag_index);
     setActivetag(tag_id);
     // console.log(menu_id,index,'menu_id','index',tag_id,"tag_id")
@@ -301,7 +302,7 @@ const ProductPage = () => {
 
   const closeWoAddon = useCallback(() => {
     setWoAddonOpen(false);
-    OnClickMenu("ALL", selectedMenuIndex, "all", "all")
+    OnClickMenu("ALL", "all", "all", "all")
   }, []);
 
   const AddedToBasket = useCallback(() => {
@@ -627,7 +628,7 @@ const ProductPage = () => {
                       {restorentmenutagitemdata &&
                         restorentmenutagitemdata.map((menu, index) => (
                           <React.Fragment key={index}>
-                            <div className="sticky-top-wrappe-title" style={{ top: `calc(${menuContainerHeight}px + 69px)` }}>
+                            <div className="sticky-top-wrappe-title" style={{ top: `calc(${menuContainerHeight}px + 57px)` }}>
                               <div style={{ fontSize: `var(--sub-header-font-size)`, fontFamily: `var(--secondary-font-family)`, color: `var(--hp-yellow-600)`, backgroundColor: ` var(--website-bg)` }} className="text-[#fff] flex  py-[10px] ">
                                 {menu.menu_title}
                               </div>

@@ -1113,4 +1113,12 @@
   .summary {
     margin-top: 30px;
   }
+  .buttons-states-dark7 {
+    height: 26px;
+    border-radius: 6px;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    flex-direction: row;
+    padding: 10px 10px;
+  }
 }

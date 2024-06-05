@@ -248,7 +248,7 @@ const handleCategorySelect = (categoryKey, itemName) => {
           <div
           
             key={itemIndex}
-            className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#718c61] bg-[#588b3d]' : 'border-[#ffffff]'} hover:bg-[#588b3d] hover:border-[#718c61] cursor-pointer`}
+            className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#718c61] bg-[#588b3d]' : 'border-[#ffffff]'} hover:border-[#718c61] cursor-pointer`}
             style={{ minWidth: '35%', margin: '3px', marginBottom:'10px',marginRight:'10px' ,cursor: 'pointer', borderRadius: '6px' }}
             onClick={() => handleCategorySelect(category.key, item.name)}
           >

@@ -27,7 +27,7 @@ body {
   --border-color: #c1c1c1;
   --text-white: #ffffff;
   --navbar-desk-height: 80px;
-  --navbar-mob-height: 65px;
+  --navbar-mob-height: 57px;
   --primary-font-size-mini: 14px;
   --primary-font-size-sm-mini:12px;
   --primary-font-size-xs-mini:10px;
@@ -304,6 +304,7 @@ body::-webkit-scrollbar {
 .review-section-frame .slick-next:before {
   content: "";
   background-image: url(./assets/icons/arrow-icon.svg);
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
   font-family: "slick";
@@ -786,6 +787,7 @@ body::-webkit-scrollbar {
   .h-link.menu-btn {
     width: 50%;
     border: 1px solid var(--hp-btn-secondary);
+    border-radius: 10px;
   }
   [data-collapse-toggle="mobile-menu-2"] {
     display: none;
@@ -817,10 +819,10 @@ body::-webkit-scrollbar {
   }
   .review-section-frame .slick-prev:before,
   .review-section-frame .slick-next:before {
-    font-size: 20px;
+    font-size: 14px;
     font-family: var(--primary-font-family);
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
   }
   .fp-para-section-title {
     font-size: var(--header-font-size-m);

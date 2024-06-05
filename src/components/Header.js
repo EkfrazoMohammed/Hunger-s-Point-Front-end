@@ -279,7 +279,7 @@ const Header = () => {
                     alt=""
                     src={basket}
                   />
-                  <div className="relative leading-[130%] text-[#fff] cursor-pointer">{basket_count}</div>
+                  <div className="relative leading-[130%] text-[#fff] cursor-pointer" style={{fontSize:`var( --primary-font-size-mini)`}}>{basket_count}</div>
                 </div>
 
 
@@ -313,7 +313,7 @@ const Header = () => {
 
 
 
-                {!emailToFetch && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
+                {!emailToFetch && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 lg:py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
                   <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
                     Login
                   </div>

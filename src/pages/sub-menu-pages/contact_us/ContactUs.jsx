@@ -65,7 +65,7 @@ export const ContactUs = () => {
             Contact Us Today!
 
             </div>
-            <p className="sb-para">  
+            <p className="sb-para" style={{marginTop:"10px"}}>  
             Ready to add a touch of Indian flavour to your next event? Contact The Hunger’s Point today! We'd be happy to discuss your catering needs and create a menu that will leave a lasting impression on your guests.
 
             </p>
@@ -88,8 +88,8 @@ export const ContactUs = () => {
                 </div>
                 <address>
                   <ul className="font-bold text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>
-                    <li>info@hungerpoints.in</li>
-                    <li>marketing@hungerpoints.in</li>
+                    <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`, fontStyle:"normal"}}>info@hungerpoints.in</li>
+                    <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,fontStyle:"normal"}}>marketing@hungerpoints.in</li>
                   </ul>
                 </address>
                 <hr className="my-4" />

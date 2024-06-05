@@ -216,7 +216,7 @@
   flex: 1;
   position: relative;
   display: inline-block;
-  min-width: 234px;
+  /* min-width: 234px; */
   max-width: 100%;
 }
 .location-parent4 {

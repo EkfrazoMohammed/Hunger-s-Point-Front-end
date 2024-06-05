@@ -287,6 +287,15 @@ font-size: var(--primary-font-size);
   overflow: hidden;
   flex-shrink: 0;
 }
+@media screen and (max-width: 450px) {
+  .basket-icon6 {
+    height: 18px;
+    width: 18px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+}
 .button38 {
   position: relative;
   line-height: 130%;

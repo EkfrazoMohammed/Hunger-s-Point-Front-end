@@ -624,9 +624,9 @@ const Button = () => {
                         {/* <button style={{ border: '0.5px solid #fff',fontFamily:`var(--primary-font-family)`,fontSize:`var(--primary-font-size-mini)` }} className=" leading-5 items-center border border-[#fff] rounded-md h-[40px] px-3 text-[#fff]">
                           <div className="button61">Back</div>
                         </button> */}
-                        <button className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" onClick={() => onCartCheckoutContainerClick()} >
+                        {/* <button className=" leading-5 items-center bg-[#C21F24] rounded-md h-[40px] px-3 text-[#fff]" onClick={() => onCartCheckoutContainerClick()} >
                           <div className="button62">Confirm Pickup</div>
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>

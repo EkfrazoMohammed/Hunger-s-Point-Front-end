@@ -12,7 +12,7 @@
   }
   .sticky-top-wrappe-title {
     position: sticky;
-  top: calc(120px + 65px); /* Adjust the value 70px based on your requirements */
+  top: calc(60px); /* Adjust the value 70px based on your requirements */
   z-index: 1;
   background-color: #252525;
   }

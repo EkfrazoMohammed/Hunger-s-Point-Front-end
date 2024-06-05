@@ -75,13 +75,14 @@
   background-color: #252525;
   overflow: hidden;
   align-items: center;
-  padding: 40px 0 200px;
+  padding: 40px 0 40px;
   gap: 40px 0;
   letter-spacing: normal;
   text-align: left;
   font-size: 36px;
   color: #fff;
   font-family: Poppins;
+  min-height: 100vh;
 }
 @media screen and (max-width: 1350px) {
   .cart-item-rectangle {
@@ -117,3 +118,4 @@
   z-index: 1; /* Adjust z-index as needed */
   background-color: #252525; /* Add background color if needed */
 }
+
