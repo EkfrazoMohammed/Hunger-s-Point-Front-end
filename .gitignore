@@ -4,6 +4,7 @@
 
 # Production
 /build
+/likes
 
 # Misc
 .DS_Store
