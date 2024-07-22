@@ -60,8 +60,12 @@ const handleCategorySelect = (categoryKey, itemName) => {
   const updatedMenuItems = menu_item?.menu_add_on && menu_item?.menu_add_on.map((cat) => {
       if (cat.key === categoryKey) {
           const updatedValue = cat.value.map((item) => {
-              if (cat.key.toLowerCase() === 'size') {
-                const isSelected = item.name === itemName;
+              if (cat.key.toLowerCase() === 'size' || cat.key.toLowerCase().includes('free') || cat.key.toLowerCase().includes('combo')) {
+                if (cat.key.toLowerCase().includes('free') | cat.key.toLowerCase().includes('combo')){
+                  var isSelected = item.name === itemName ? !item.selected : null;
+                }else{
+                  var isSelected = item.name === itemName;
+                }
                 return { ...item, selected: isSelected};
               }
               else{
@@ -238,30 +242,30 @@ const handleCategorySelect = (categoryKey, itemName) => {
 
             <div>
             {
-  menu_item?.menu_add_on && Array.isArray(menu_item?.menu_add_on) && menu_item?.menu_add_on.map((category, index) => (
-    <div key={index}>
-      <div style={{ fontFamily: 'var(--primary-font-family-bold)', fontSize: 'var(--primary-font-size)' }} className="text-white text-start my-5">
-        {category.key}
-      </div>
-      <div style={{ justifyContent: 'flex-start', fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size)' }} className="flex flex-wrap">
-        {category?.value && category.value.map((item, itemIndex) => (
-          <div
-          
-            key={itemIndex}
-            className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? 'border-[#718c61] bg-[#588b3d]' : 'border-[#ffffff]'} hover:border-[#718c61] cursor-pointer`}
-            style={{ minWidth: '35%', margin: '3px', marginBottom:'10px',marginRight:'10px' ,cursor: 'pointer', borderRadius: '6px' }}
-            onClick={() => handleCategorySelect(category.key, item.name)}
-          >
-            <div className="flex" style={{ padding: '0px 10px' }}>
-              <span>{item.name}{item.selected}</span>
-              <span style={{ marginLeft: '20px' }}>$ {item.price}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  ))
-}
+              menu_item?.menu_add_on && Array.isArray(menu_item?.menu_add_on) && menu_item?.menu_add_on.map((category, index) => (
+                <div key={index}>
+                  <div style={{ fontFamily: 'var(--primary-font-family-bold)', fontSize: 'var(--primary-font-size-mini)', color:category.key.toLowerCase().includes('free') | category.key.toLowerCase().includes('combo') ? '#e4b637' : 'white', }} className="text-white text-start my-5">
+                    {category.key}
+                  </div>
+                  <div style={{ justifyContent: 'left', fontFamily: 'var(--primary-font-family)', fontSize: 'var(--primary-font-size)' }} className="flex flex-wrap">
+                    {category?.value && category.value.map((item, itemIndex) => (
+                      <div
+                      
+                        key={itemIndex}
+                        className={`flex flex-col justify-center items-center text-white border py-2 ${item.selected ? category.key.toLowerCase().includes('free') | category.key.toLowerCase().includes('combo') ? 'border-[#e4b637] bg-[#e4b637]' : 'border-[#718c61] bg-[#588b3d]' : 'border-[#ffffff]'} ${ category.key.toLowerCase().includes('free') | category.key.toLowerCase().includes('combo') ? 'hover:border-[#e4b637]': 'hover:border-[#718c61]'} cursor-pointer`}
+                        style={{justifyContent:'center', minWidth: '45%', marginLeft: '5px', marginBottom: '10px', marginRight: '5px', cursor: 'pointer', borderRadius: '6px',borderWidth:'.2px' }}
+                        onClick={() => handleCategorySelect(category.key, item.name)}
+                      >
+                        <div className="flex" style={{ padding: '0px 10px' }}>
+                        <span style={{color: item.selected & (category.key.toLowerCase().includes('free') | category.key.toLowerCase().includes('combo'))? 'black' : 'white', fontSize:'12px'}}>{item.name}{item.selected}</span>
+                                {item.price == 0 ? null :  <span style={{ marginLeft: '10px',color: item.selected & (category.key.toLowerCase().includes('free') | category.key.toLowerCase().includes('combo')) ? 'black' : 'white', fontSize:'12px' }}>$ {item.price}</span>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
 
 
           </div>

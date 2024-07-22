@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 const SubMenu = ({ isOpen, handleClose, toggleSubMenuRef }) => {
   const submenuRef = useRef(null);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (!toggleSubMenuRef.current.contains(event.target) && !submenuRef.current.contains(event.target)) {
-        handleClose();
-      }
-    }
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     if (!toggleSubMenuRef.current.contains(event.target) && !submenuRef.current.contains(event.target)) {
+  //       handleClose();
+  //     }
+  //   }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
 
   return (
@@ -27,7 +27,7 @@ const SubMenu = ({ isOpen, handleClose, toggleSubMenuRef }) => {
       <Link to="ourstory" preventScrollReset={true} onClick={handleClose} style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}} >Our Story</Link>
       {/* <span className='submenu-divider'></span> */}
       {/* <Link to="location" className=' h-link location-btn ' preventScrollReset={true} onClick={handleClose} >Location</Link> */}
-      <Link to="/productpage?id=1" className='h-link menu-btn' preventScrollReset={true} onClick={handleClose}style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}} >Menu</Link>
+      {/* <Link to="/productpage?id=1" className='h-link menu-btn' preventScrollReset={true} onClick={handleClose}style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}} >Menu</Link> */}
     </div >
   )
 }

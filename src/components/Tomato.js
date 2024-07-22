@@ -60,8 +60,9 @@ const Tomato = ({
     };
   }, [propWidth1, propGap]);
 
-  const openWoAddon = useCallback(() => {
-    EditebuttonClicked()
+  const openWoAddon = useCallback(({menuItem}) => {
+    console.log(menuItem,'menuItem==>123ß')
+    EditebuttonClicked(menuItem)
     setWoAddonOpen(true);
   }, []);
 
@@ -72,9 +73,11 @@ const Tomato = ({
 
   const DeletedBasket = async (menu_data) => {
     const credentials = JSON.parse(localStorage.getItem('credentials'));
+    console.log(menuItem,'menuItem==>')
     const body = {
       'customer_user_id':credentials?.user_id,
       'menu_items_id':menuItem?.menu_items?.id,
+      'cart_id':menuItem?.id
     }
     console.log(body,'body=====>')
     API.getInstance().menu.post('api/delete-cart-items',body)

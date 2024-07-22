@@ -9,7 +9,7 @@ import "./ProductPage.css";
 import Sidebar from "./Sidebar";
 import WoAddon from "../components/WoAddon";
 import { API } from "../api/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import locationIconOrenge from "../assets/locationIconOrenge.svg";
 import productHeadImg from "../assets/productHeadImg.png";
@@ -55,6 +55,12 @@ import DarkMode from "../components/DarkMode";
 import DarkMode1 from "../components/DarkMode1";
 import { generateRandomInteger } from "../utils/Appconstants";
 import { useDispatch } from "react-redux";
+import ComingSoonPopUp from "../components/pop-up/coming_soon_popup";
+
+ 
+
+ 
+
 const ProductPage = () => {
   const dispatch = useDispatch();
   const [isWAddonOpen, setWAddonOpen] = useState(false);
@@ -130,24 +136,32 @@ const ProductPage = () => {
   const RegisterAsUnknowUser = () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
-    console.log(credentials, 'credentials==>>')
-    console.log(emailToFetch, 'emailToFetch==>>')
+    console.log(credentials, 'emailToFetch==>>11133')
+    console.log(emailToFetch, 'emailToFetch==>>111')
+    console.log(user, 'emailToFetch==>>111333')
     // localStorage.setItem('credentials', 'JSON.stringify(res.data.result)');
     if (!credentials) {
       const randomNumber = generateRandomInteger(1, 100000000);
 
-      const data = {
+      var data = {
         firstName: 'firstName' + randomNumber,
         lastName: 'lastName' + randomNumber,
         email: 'email' + randomNumber + '@gmail.com',
         phoneNumber: 'phoneNumber' + randomNumber,
       };
-
+    }
+    else if(emailToFetch){
+      var data = {
+        'email': emailToFetch,
+        'user_name': emailToFetch,
+        // 'spr_user_id':credentials?.spr_user_id
+      }
+    }
       // Make API call
       API.getInstance()
         .menu.post('api/register', data)
         .then((res) => {
-          console.log(res, 'API response21');
+          // console.log(res, 'API response21');
           localStorage.setItem('credentials', JSON.stringify(res.data.result));
           dispatch(setCredentials(res.data.result));
           // Handle response accordingly
@@ -158,13 +172,14 @@ const ProductPage = () => {
           }
 
           GetBasketData();
+          
           // window.location.reload();
         })
         .catch((error) => {
           console.error('Error:', error);
           // Handle error if needed
         });
-    }
+    
 
 
   };
@@ -566,12 +581,38 @@ const ProductPage = () => {
 
   }, [restorentmenudata]); // Recalculate height when restorentmenudata changes
 
+  const [isPopupVisible, setPopupVisible] = useState(true);
+  const showPopup = () => {
+    setPopupVisible(true);
+    
+  };
+  const navigate = useNavigate();
+  const hidePopup = () => {
+    setPopupVisible(false);
+    navigate('/');
+  };
 
 
   return (
     <>
 
       <div className=" h-fit min-h-[100vh] ">
+      
+{/* 
+      <ComingSoonPopUp visible={isPopupVisible} onClose={hidePopup}  >
+        <div  >
+           
+          <img
+          src={
+             "https://hunger.thestorywallcafe.com/media/comming_soon.jpg"
+          }
+          alt="deshimg"
+          style={{borderWidth:'.5px', borderRadius:'20px', borderColor:`var(--hp-yellow-600)`}}
+        />
+           
+        </div>
+      </ComingSoonPopUp> */}
+
 
         <div>
           <div className="w-full relative" style={{ backgroundColor: `var(--website-bg)` }}>

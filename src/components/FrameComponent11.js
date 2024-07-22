@@ -33,7 +33,7 @@ const FrameCard = ({ location, onClick }) => {
 
   const OncardClick = (id) => {
     console.log(id,'location====')
-    navigate(`/productpage?id=${id}`);
+    // navigate(`/productpage?id=${id}`);
   };
   const dummyData = [
     { id: 1, imageUrl:bike  },
@@ -51,15 +51,16 @@ const FrameCard = ({ location, onClick }) => {
               <div className="alberta-wrapper2">
                 <div className="alberta9">{`${location.published_name}`}</div>
               </div>
-              <div className="location-parent5">
+              <div className="location-parent5" style={{marginBottom:'10px'}}>
                 <img className="location-icon14" alt="" src={location11} />
                 <div className="hospital-st-fort7">
                   {location.address_info}
                 </div>
               </div>
               <div className="call-parent4">
-                <img className="location-icon14" loading="eager" alt="" src={call1} />
-                <div className="hospital-st-fort7"> {location.location_phone}</div>
+                 
+                {/* <img className="location-icon14" loading="eager" alt="" src={call1} />
+                <div className="hospital-st-fort7"> {location.location_phone}</div> */}
               </div>
             </div>
           </div>

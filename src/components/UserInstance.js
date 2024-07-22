@@ -44,6 +44,7 @@ const UserInstance = () => {
   }, []);
 
   const EditebuttonClicked = async (menuitemdata) => {
+    console.log(menuitemdata,'menuitemdata=>')
     setmenuitemdata(menuitemdata)
   }
 

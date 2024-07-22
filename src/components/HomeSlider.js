@@ -2,10 +2,12 @@ import React from "react";
 import Slider from "react-slick";
 
 import banner1 from "../assets/Home_banner_1.jpg"
-import banner2 from "../assets/Home_banner_2.jpg"
+import banner2 from "../assets/hunger2_banner.jpg"
 import banner3 from "../assets/homebanner22.jpg"
 import banner4 from "../assets/Home_banner_4.jpg"
 import banner5 from "../assets/homebanner33.jpg"
+import homebanner from '../assets/hunger_new_banner_1.jpg';
+import homebanner2 from '../assets/hunger_new_banner_2.jpg';
 import { useNavigate } from "react-router-dom";
 
 export default function SimpleSlider() {
@@ -24,7 +26,7 @@ export default function SimpleSlider() {
   };
   const navigate = useNavigate();
   const Buttonclicked = async (target) => {
-    navigate("/productpage?id=1");
+    // navigate("/productpage?id=1");
   }
   // Dummy data for Slider items
   const dummyData = [
@@ -32,32 +34,32 @@ export default function SimpleSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner1,
+      imgSrc: homebanner,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: banner2,
+      imgSrc: homebanner2,
     },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
-      imgSrc: banner3,
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
-      imgSrc: banner4,
-    },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
-      imgSrc: banner5,
-    }
+    // {
+    //   title: "Lorem ipsum dolor sit amet consectetur.",
+    //   description: "Ante eget vel dis Lorem ipsum dolor",
+    //   buttonText: "Order Online Now!",
+    //   imgSrc: banner3,
+    // },
+    // {
+    //   title: "Lorem ipsum dolor sit amet consectetur.",
+    //   description: "Ante eget vel dis Lorem ipsum dolor",
+    //   buttonText: "Order Online Now!",
+    //   imgSrc: banner4,
+    // },
+    // {
+    //   title: "Lorem ipsum dolor sit amet consectetur.",
+    //   description: "Ante eget vel dis Lorem ipsum dolor",
+    //   buttonText: "Order Online Now!",
+    //   imgSrc: banner5,
+    // }
   ];
   
   return (

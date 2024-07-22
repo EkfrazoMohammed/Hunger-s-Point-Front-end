@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SubMenu from "./SubMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { clamp } from "date-fns";
+import { toast } from "react-toastify";
 
 
 const Header = () => {
@@ -26,15 +27,16 @@ const Header = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() =>{
+  useEffect(() => {
     handleRout1(location.pathname)
-  },[location.pathname])
+
+  }, [location.pathname])
 
   const handleClose = () => {
     setIsOpen(false);
     console.log("current path====>:", location.pathname)
-    
-    console.log(credentials_redux,'credentials_redux===>33333')
+
+    // console.log(credentials_redux,'credentials_redux===>33333')
   };
 
 
@@ -56,6 +58,8 @@ const Header = () => {
 
 
   console.log(user?.picture, 'user?.picture===>')
+  console.log(user, 'user?.picture===>11111')
+
   const onLogoImageClick = useCallback(() => {
     navigate("/homepage");
   }, [navigate]);
@@ -65,19 +69,20 @@ const Header = () => {
   }, [navigate]);
 
   const onbasketclick = useCallback(() => {
-    handleRout("/basket")
-    navigate("/basket");
+    // handleRout("/basket")
+    // navigate("/basket");
+    toast.success("The Hunger's Point coming soon at Punjab center!");
   }, [navigate]);
 
   const [isVisible, setIsVisible] = useState(false);
 
   const handleRout1 = (rout) => {
-    console.log(rout,'rout====>')
+    console.log(rout, 'rout====>')
     // navigate(`${rout}`);
     setSelectedRoute(rout)
   };
   const handleRout = (rout) => {
-    console.log(rout,'rout====>')
+    console.log(rout, 'rout====>')
     navigate(`${rout}`);
     setSelectedRoute(rout)
   };
@@ -92,7 +97,7 @@ const Header = () => {
     GetUserData()
   }, [emailToFetch]);
 
-  console.log(credentials_redux,'credentials_redux===>1213')
+  // console.log(credentials_redux,'credentials_redux===>1213')
   // useEffect(() => {
   //   SettargetUser()
   //   GetBasketData()
@@ -136,36 +141,53 @@ const Header = () => {
     if ((user && user.email) || (credentials && credentials?.user_id)) {
       // emailToFetch = user?.email || credentials?.email_id;
 
-      console.log(credentials,'credentials===>11111111')
-      if (credentials){
+      console.log(credentials, 'credentials===>11111111')
+      if (credentials) {
         API.getInstance().menu.get(`/api/custom-user?user_id=${credentials?.user_id}`)
-        .then((res) => {
-          console.log(res.data.result.data, 'GetUserData======>')
-          dispatch(setUserdata(res.data.result.data[0]));
-          // CheckUserexistsData()
-        })
-        .catch((error) => {
-        })
-        .finally(() => {
-        });
+          .then((res) => {
+            console.log(res.data.result.data, 'GetUserData======>')
+            dispatch(setUserdata(res.data.result.data[0]));
+            // CheckUserexistsData()
+          })
+          .catch((error) => {
+          })
+          .finally(() => {
+          });
       }
-      
+
     }
 
   }
-  const CheckUserexistsData = async () => {
-    const credentials = JSON.parse(localStorage.getItem("credentials"));
-    // console.log(user?.email, 'user?.email==>')
-    let emailToFetch = ""
-    if ((user && user.email) || (credentials && credentials?.email_id)) {
-      emailToFetch = user?.email || credentials?.email_id;
+  useEffect(() => {
+    CheckUserexistsData()
 
+  }, [isAuthenticated])
+  const CheckUserexistsData = async () => {
+    // const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+    // localStorage.removeItem("credentials");
+    console.log(isAuthenticated, 'isAuthenticated===>123')
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    console.log(user?.email, 'user?.email==>')
+
+    let emailToFetch = ""
+    console.log(emailToFetch, 'emailToFetch===>qq')
+    if ((user && user.email) || (credentials && credentials?.email_id)) {
+      if (isAuthenticated) {
+        emailToFetch = user?.email
+      }
+      else {
+
+        emailToFetch = user?.email || credentials?.email_id;
+      }
+      console.log(emailToFetch, 'emailToFetch===>')
       if (emailToFetch) {
         const data = {
           'email': emailToFetch,
           'user_name': emailToFetch,
-          'spr_user_id':credentials?.spr_user_id
+          // 'spr_user_id':credentials?.spr_user_id
         }
+        console.log(data, 'data====>123')
         API.getInstance().menu.post('api/register', data)
           .then((res) => {
             console.log(res, 'res=====>1221312')
@@ -176,6 +198,7 @@ const Header = () => {
             else {
               CheckUserOffer(['Registered User', 'ALL'])
             }
+            console.log(res.data.result, 'res.data.result')
             localStorage.setItem('credentials', JSON.stringify(res.data.result));
             dispatch(setCredentials(res.data.result));
             GetBasketData()
@@ -197,9 +220,9 @@ const Header = () => {
 
 
     const credentials = JSON.parse(localStorage.getItem('credentials'));
-    console.log(credentials,'credentials===>123')
+    // console.log(credentials,'credentials===>123')
     if (credentials) {
-      console.log(credentials,'credentials====>1231121212')
+      console.log(credentials, 'credentials====>1231121212')
       API.getInstance().menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
         .then((res) => {
           console.log(res.data.result.data, 'GetBasketData===res.data.result.data===>')
@@ -258,10 +281,10 @@ const Header = () => {
         <img className="close-icon2" loading="eager" alt="" src={close} />
       </div> */}
       <header>
-        <nav style={{backgroundColor:`var(--website-bg)`,borderBottom: '.5px solid #E4B637' }} className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r  w-full min-w-fit">
-          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl" style={{maxWidth:'1320px'}}>
+        <nav style={{ backgroundColor: `var(--website-bg)`, borderBottom: '.5px solid #E4B637' }} className="navbar--wrap bg-white border-gray-200 px-4 lg:px-6 dark:bg-gray-800 bg-gradient-to-r  w-full min-w-fit">
+          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl" style={{ maxWidth: '1320px' }}>
             <img
-         className="h-[37px] sm:h-[67px]"
+              className="h-[37px] sm:h-[67px]"
               loading="eager"
               alt=""
               src={logo}
@@ -279,7 +302,7 @@ const Header = () => {
                     alt=""
                     src={basket}
                   />
-                  <div className="relative leading-[130%] text-[#fff] cursor-pointer" style={{fontSize:`var( --primary-font-size-mini)`}}>{basket_count}</div>
+                  <div className="relative leading-[130%] text-[#fff] cursor-pointer" style={{ fontSize: `var( --primary-font-size-mini)` }}>{basket_count}</div>
                 </div>
 
 
@@ -302,7 +325,7 @@ const Header = () => {
                     loading="eager"
                     alt=""
                     src={user?.picture || "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"}
-                    style={{  borderRadius: '50%', border: '1px solid #e5b638' }}
+                    style={{ borderRadius: '50%', border: '1px solid #e5b638' }}
                   />
                   {/* </button> */}
 
@@ -311,9 +334,9 @@ const Header = () => {
 
 
 
+                {/* loginWithRedirect() */}
 
-
-                {!emailToFetch && (<div onClick={() => loginWithRedirect()} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 lg:py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
+                {!emailToFetch && (<div onClick={() => {toast.success("The Hunger's Point coming soon at Punjab center!");}} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 lg:py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
                   <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
                     Login
                   </div>
@@ -366,35 +389,35 @@ const Header = () => {
             <div
               className={`${isVisible ? "" : "hidden"
                 } "justify-between items-center w-full lg:flex lg:w-auto lg:order-1"`}
-              // id="mobile-menu-2"
+            // id="mobile-menu-2"
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                
+
                 <li className="flex items-center">
-                <div class={`menu-item cursor-pointer ${selectedRoute === "/" ? 'selected-route' : ''}`} onClick={() => handleRout("/")}>
-                <div class="menu-text relative">Home</div>
-                  </div>
-                  
-                </li>
-                <li className="flex items-center">
-                <div class={`menu-item cursor-pointer ${selectedRoute === "/productpage" ? 'selected-route' : ''}`} onClick={() => handleRout("/productpage?id=1")}>
-                <div class="menu-text relative">Menu</div>
-              </div>
-                </li>
-                <li className="flex items-center">
-                <div class={`menu-item cursor-pointer ${selectedRoute === "/events" ? 'selected-route' : ''}`} onClick={() => handleRout("/events")}>
-                <div class="menu-text relative">Event & Catering</div>
-                  </div>
-                </li>
-                <li className="flex items-center">
-                <div class={`menu-item cursor-pointer ${selectedRoute === "/franchise" ? 'selected-route' : ''}`} onClick={() => handleRout("/franchise")}>
-                <div class="menu-text relative">Franchise</div>
+                  <div class={`menu-item cursor-pointer ${selectedRoute === "/" ? 'selected-route' : ''}`} onClick={() => handleRout("/")}>
+                    <div class="menu-text relative">Home</div>
                   </div>
 
-                  
+                </li>
+                <li className="flex items-center">
+                  <div class={`menu-item cursor-pointer ${selectedRoute === "/productpage" ? 'selected-route' : ''}`} onClick={() => handleRout("/productpage?id=1")}>
+                    <div class="menu-text relative">Menu</div>
+                  </div>
+                </li>
+                <li className="flex items-center">
+                  <div class={`menu-item cursor-pointer ${selectedRoute === "/events" ? 'selected-route' : ''}`} onClick={() => handleRout("/events")}>
+                    <div class="menu-text relative">Event & Catering</div>
+                  </div>
+                </li>
+                <li className="flex items-center">
+                  <div class={`menu-item cursor-pointer ${selectedRoute === "/franchise" ? 'selected-route' : ''}`} onClick={() => handleRout("/franchise")}>
+                    <div class="menu-text relative">Franchise</div>
+                  </div>
+
+
                 </li>
 
-                
+
                 {/* <li className="flex items-center">
                   <div
                     className={`h-12 rounded-md flex flex-row items-center justify-start px-3 py-0 box-border cursor-pointer hover:bg-[#424242] ${selectedRoute == '/ourstory' ? 'bg-#E4B637' : ''} hover:border-[#424242] hover:box-border`}
@@ -415,22 +438,22 @@ const Header = () => {
                     </div>
                   </div>
                 </li> */}
-                
+
                 <ul className="links">
-  <div className={`about-us h-12 rounded-md flex flex-row items-center justify-start cursor-pointer ${selectedRoute === '/ourstory' || selectedRoute === '/careers' || selectedRoute === '/contact-us' ? 'selected-route' : ''}`}>
-    <div className="dropdown5">
-      <a>
-        <p className="about-us-text">About us</p>
-        <span style={{ alignItems: 'center' }}> <BiChevronDown fontSize={"20px"} className="about-us-text" />
-        </span></a>
-      <div className="menu2">
-        <a className={`menu_droup_item ${selectedRoute === '/ourstory' ? 'menu_active' : ''}`} onClick={() => handleRout("/ourstory")}>Our Story</a>
-        <a className={`menu_droup_item ${selectedRoute === '/careers' ? 'menu_active' : ''}`} onClick={() => handleRout("/careers")}>Careers</a>
-        <a className={`menu_droup_item ${selectedRoute === '/contact-us' ? 'menu_active' : ''}`} onClick={() => handleRout("/contact-us")}> ContactUs</a>
-      </div>
-    </div>
-  </div>
-</ul>
+                  <div className={`about-us h-12 rounded-md flex flex-row items-center justify-start cursor-pointer ${selectedRoute === '/ourstory' || selectedRoute === '/careers' || selectedRoute === '/contact-us' ? 'selected-route' : ''}`}>
+                    <div className="dropdown5">
+                      <a>
+                        <p className="about-us-text">About us</p>
+                        <span style={{ alignItems: 'center' }}> <BiChevronDown fontSize={"20px"} className="about-us-text" />
+                        </span></a>
+                      <div className="menu2">
+                        <a className={`menu_droup_item ${selectedRoute === '/ourstory' ? 'menu_active' : ''}`} onClick={() => handleRout("/ourstory")}>Our Story</a>
+                        <a className={`menu_droup_item ${selectedRoute === '/careers' ? 'menu_active' : ''}`} onClick={() => handleRout("/careers")}>Careers</a>
+                        <a className={`menu_droup_item ${selectedRoute === '/contact-us' ? 'menu_active' : ''}`} onClick={() => handleRout("/contact-us")}> ContactUs</a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
 
                 {/* <li className="flex items-center">
                   <div

@@ -107,7 +107,7 @@ const Homepage = () => {
         <div className="delivery-partners-logo">
           <div className="heading1">
             <div className="what-we-believe-wrapper">
-              <h1 className="what-we-believe1">OUR LOCATIONS</h1>
+              {/* <h1 className="what-we-believe1">OUR LOCATIONS</h1> */}
             </div>
             <div className="heading-child" />
           </div>

@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import "./VIPContainer.css";
+import { toast } from "react-toastify";
 
 const VIPContainer = () => {
   const { loginWithRedirect } = useAuth0();
@@ -13,7 +14,8 @@ const VIPContainer = () => {
             !
           </div>
         </div>
-        <button  onClick={() => loginWithRedirect()} className="buttons-states-dark61">
+        {/* loginWithRedirect() */}
+        <button  onClick={() => {toast.success("The Hunger's Point coming soon at Punjab center!");}} className="buttons-states-dark61">
           <div className="button73" style={{fontFamily:`var(--primary-font-family)`}}>Sign Up Now!</div>
         </button>
       </div>
