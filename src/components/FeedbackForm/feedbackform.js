@@ -100,17 +100,22 @@ const FeedbackForm = ({heading,selection,feedboack_opt}) => {
       console.log(base64fsc,'base64fsc===>')
       // formData.append('resume', base64Resume);
     }
-    console.log('handleSubmit===>222222')
-    // Make API call
-    API.getInstance()
-      .menu.post('/api/submit-form', values)
-      .then((res) => {
-        console.log(res, 'response');
-        toast.success('Form submited successfully!');
-      })
-      .catch((error) => {
-        console.log(error,'error');
-      });
+    console.log('handleSubmit===>222222',values)
+    if(values.feedboack_opt == "Careers" && values.resume ==null){
+      toast.warn('Please Upload Resume!');
+    }else{
+ // Make API call
+ API.getInstance()
+ .menu.post('/api/submit-form', values)
+ .then((res) => {
+   console.log(res, 'response');
+   toast.success('Form submited successfully!');
+ })
+ .catch((error) => {
+   console.log(error,'error');
+ });
+    }
+   
 
     setSubmitting(true);
   };
@@ -158,7 +163,6 @@ const FeedbackForm = ({heading,selection,feedboack_opt}) => {
       validateOnChange={true}
       validateOnBlur={false}
       validate={(values) => {
-        console.log(values,'values===>123')
         validationSchema
           .validate(values)
           .then((e) => {console.log("error",e);setIsValidForm(true)})
