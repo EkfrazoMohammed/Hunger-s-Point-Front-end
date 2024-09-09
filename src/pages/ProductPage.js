@@ -40,6 +40,7 @@ import SaveIcon from "../assets/saveIcon.svg";
 import FilterIcon from "../assets/icons/filter-6551.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
+import ModalReview from "../components/ModalReview";
 import CATEGORY from "../components/CATEGORY";
 import { Calendar, DateRangePicker, DateRange } from "react-date-range";
 import { format } from "date-fns";
@@ -73,6 +74,10 @@ const ProductPage = () => {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [loggedin, setLoggedin] = useState(true);
   const [savemodal, setSavemodal] = useState(false);
+
+  // adding reviewModal
+  const [reviewItem, setReviewItem] = useState([]);
+  const [reviewItemModal, setReviewItemModal] = useState(false);
   const [isloggedin, setIsLoggedin] = useState(false);
   const [savedate, setSavedate] = useState({
     saveit_date: {
@@ -484,12 +489,45 @@ const ProductPage = () => {
     }
   };
 
+  const OnClickLikepopupClose = async (id) => {
+      setSelectedItemIndex(null);
+   };
+
+   const reviewItemModalFunction = async (menu_data, flag) => {
+    console.log(menu_data)
+    const credentials = JSON.parse(localStorage.getItem("credentials"));
+    const prefixToCheck = 'email';
+    if (credentials.email_id.startsWith(prefixToCheck)) {
+      console.log('credentials.email starts with "email".');
+      setIsLoggedin(false)
+    }
+    else {
+      
+      setIsLoggedin(true);
+    }
+    if (!credentials) {
+      setReviewItem([])
+      console.log("in iff")
+    } else {
+      setReviewItem(menu_data)
+      if (flag) {
+        setReviewItemModal(true);
+      }
+      setMetadata(menu_data);
+      setReaction(reaction);
+    }
+  };
+
   const closeModal = () => {
     setLoggedin(true);
   };
 
   const closeSaveModal = () => {
     setSavemodal(false);
+  };
+
+  const closeReviewModal = () => {
+    setReviewItemModal(false);
   };
 
 
@@ -643,15 +681,20 @@ const ProductPage = () => {
                                                 className={`${selectedItemIndex === item.id ? "flex" : "hidden"
                                                   } absolute z-10 bg-[#252525] right-5 top-[-65px] rounded-md`}
                                               >
+                                                
                                                 <ul
                                                   style={{ marginTop: "10px" }}
-                                                  className="p-2 flex justify-center items-center gap-7 h-full"
+                                                  className="flex justify-center items-center h-full gap-2"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
+                                                 
+                                                  <span className="p-1 flex justify-center items-start gap-5 h-full">
+                                                    
                                                   {/* ReadHeart */}
                                                   <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
+                                                        className="flex items-center justify-center w-5 h-5"
                                                         src={RedHeartIcon}
                                                         alt="hertIcon"
                                                       />
@@ -666,6 +709,7 @@ const ProductPage = () => {
                                                   <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
+                                                        className="flex items-center justify-center w-6 h-6"
                                                         src={LikeIcon}
                                                         alt="hertIcon"
                                                       />
@@ -676,7 +720,9 @@ const ProductPage = () => {
 
                                                     </div>
                                                   </li>
-                                                  <li onClick={() => OnClickReactionpopup(item, 'SAVEIT')} className="tooltip">
+                                                  <li
+                                                    className="flex items-center justify-center w-5 h-5"
+                                                   onClick={() => OnClickReactionpopup(item, 'SAVEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={SaveIcon}
@@ -688,18 +734,30 @@ const ProductPage = () => {
                                                       </span>
                                                     </div>
                                                   </li>
+                                             
+                                                  </span>
+                                                  <span className="p-2 flex justify-start items-start h-full" onClick={OnClickLikepopupClose}>
+                                                  x
+                                                  </span>
                                                 </ul>
                                               </div>
+                                              <div className="flex gap-4 ">
+                                               <span onClick={()=>reviewItemModalFunction(item,true)}>
+                                                
+                                                review me
+                                                </span> 
                                               <span
                                                 onClick={() =>
                                                   OnClickLikepopup(item.id)
                                                 }
-                                              >
+                                                >
                                                 <img
                                                   src={hertIcon}
                                                   alt="hertIcon"
-                                                />
+                                                  />
                                               </span>
+                                                  </div>
+                                          
                                             </div>
                                             <div style={{ fontSize: `var(--primary-font-size-sm-mini)`, color: `var(--description)` }} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                               {item.description}
@@ -773,84 +831,65 @@ const ProductPage = () => {
                                                   >
 
                                                     <ul
-                                                      style={{ marginTop: '10px' }}
-                                                      className="p-2 flex justify-center items-center gap-7 h-full"
-                                                      aria-labelledby="dropdownDividerButton"
-                                                    >
-
-                                                      {/* ToolTip */}
-                                                      <li
-                                                        onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LOVEIT')}
-                                                        className="tooltip"
-                                                      >
-
-                                                        <div className="flex flex-col justify-center items-center">
-                                                          <img
-                                                            src={RedHeartIcon}
-                                                            alt="heartIcon"
-                                                            className="heart-icon"
-                                                          />
-                                                          <span className="text-xs font-normal text-white pt-1">
-                                                            {menu.menu_item_info_list[itemIndex + 1].loveit_count}
-                                                            <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextredheartright">Had It,Loved It!</span>
-                                                          </span>
-                                                        </div>
-                                                      </li>
-                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LIKEIT')} className="tooltip">
-                                                        <div className="flex flex-col justify-center items-center">
-                                                          <img
-                                                            src={LikeIcon}
-                                                            alt="hertIcon"
-                                                          />
-                                                          <span className="text-xs font-normal text-white pt-0">
-                                                            {
-                                                              menu.menu_item_info_list[
-                                                                itemIndex + 1
-                                                              ].likeit_count
-                                                            }
-                                                            <span style={{ marginBottom: '20px', left: "-29px" }} className="tooltiptextlikeright">
-                                                              Had It, Loved It!
-                                                            </span>
-
-                                                          </span>
-                                                        </div>
-                                                      </li>
-                                                      {/* <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1],'DISLIKE')}>
+                                                  style={{ marginTop: "10px" }}
+                                                  className="flex justify-center items-center h-full gap-2"
+                                                  aria-labelledby="dropdownDividerButton"
+                                                >
+                                                 
+                                                  <span className="p-1 flex justify-center items-start gap-5 h-full">
+                                                    
+                                                  {/* ReadHeart */}
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
-                                                        src={DislikeIcon}
+                                                        className="flex items-center justify-center w-5 h-5"
+                                                        src={RedHeartIcon}
+                                                        alt="hertIcon"
+                                                      />
+                                                      <span className="text-xs font-normal text-white pt-1">
+                                                        {item.loveit_count}
+                                                        <span style={{ marginBottom: '20px', left: "20px" }} className="tooltiptextredheart">
+                                                          Had It, Loved It!
+                                                        </span>
+                                                      </span>
+                                                    </div>
+                                                  </li>
+                                                  <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')} className="tooltip">
+                                                    <div className="flex flex-col justify-center items-center">
+                                                      <img
+                                                        className="flex items-center justify-center w-6 h-6"
+                                                        src={LikeIcon}
                                                         alt="hertIcon"
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
-                                                      {
-                                                        menu.menu_item_info_list[
-                                                          itemIndex + 1
-                                                        ].dislikeit_count
-                                                      }
+                                                        {item.likeit_count}
+                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Liked It!</span>
+                                                      </span>
+
+                                                    </div>
+                                                  </li>
+                                                  <li
+                                                    className="flex items-center justify-center w-5 h-5"
+                                                   onClick={() => OnClickReactionpopup(item, 'SAVEIT')} className="tooltip">
+                                                    <div className="flex flex-col justify-center items-center">
+                                                      <img
+                                                        src={SaveIcon}
+                                                        alt="hertIcon"
+                                                      />
+                                                      <span className="text-xs font-normal text-white pt-2">
+                                                        {item.saveit_count}
+                                                        <span style={{ marginBottom: '20px', left: '-80px', alignContent: 'center' }} className="tooltiptextsave">Remind Me!</span>
                                                       </span>
                                                     </div>
-                                                  </li> */}
-                                                      <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'SAVEIT')} className="tooltip">
-                                                        <div className="flex flex-col justify-center items-center">
-                                                          <img
-                                                            src={SaveIcon}
-                                                            alt="hertIcon"
-
-                                                          />
-
-                                                          <span className="text-xs font-normal text-white pt-2">
-                                                            {
-                                                              menu.menu_item_info_list[
-                                                                itemIndex + 1
-                                                              ].saveit_count
-                                                            }
-                                                            <span style={{ marginBottom: '20px', left: '-80px', alignContent: 'center' }} className="tooltiptextsaveright">Remind Me!</span>
-                                                          </span>
-                                                        </div>
-                                                      </li>
-                                                    </ul>
+                                                  </li>
+                                             
+                                                  </span>
+                                                  <span className="p-2 flex justify-start items-start h-full" onClick={OnClickLikepopupClose}>
+                                                  x
+                                                  </span>
+                                                </ul>
                                                   </div>
-                                                  <span
+                                                  {/* <span
                                                     onClick={() =>
                                                       OnClickLikepopup(menu.menu_item_info_list[
                                                         itemIndex + 1
@@ -861,7 +900,27 @@ const ProductPage = () => {
                                                       src={hertIcon}
                                                       alt="hertIcon"
                                                     />
-                                                  </span>
+                                                  </span> */}
+                                                    <div className="flex gap-4 ">
+                                                    <span onClick={()=>reviewItemModalFunction(menu.menu_item_info_list[
+                                                      itemIndex + 1
+                                                    ],true)}>
+                                                
+                                                review me 2
+                                                </span> 
+                                              <span
+                                               onClick={() =>
+                                                OnClickLikepopup(menu.menu_item_info_list[
+                                                  itemIndex + 1
+                                                ].id)
+                                              }
+                                                >
+                                                <img
+                                                  src={hertIcon}
+                                                  alt="hertIcon"
+                                                  />
+                                              </span>
+                                                  </div>
                                                 </div>
                                                 <div style={{ fontSize: `var(--primary-font-size-sm-mini)`, color: `var(--description)` }} className="flex justify-between items-center text-[#fff] pr-[18px] mt-4">
                                                   {menu.menu_item_info_list[
@@ -916,7 +975,7 @@ const ProductPage = () => {
           <Modal isOpen={savemodal} onClose={closeSaveModal} width={"30%"}>
             <div
               style={{
-                margin: "30px",
+                margin: "10px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -1032,6 +1091,67 @@ const ProductPage = () => {
           <Modal isOpen={!loggedin} onClose={closeModal}>
             <CATEGORY />
           </Modal>
+        )}
+
+{/* adding reviewing menu item */}
+{reviewItemModal && (
+          <ModalReview isOpen={reviewItemModal} onClose={closeReviewModal} width={"30%"}>
+            <div
+              style={{
+                margin: "30px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className="category-10 w-full"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div className="signin-text-wrapper">
+                  <div className="signin-text1">
+                    <div className="sign-in-wrapper">
+                      <h1 className="sign-in1">Review Item</h1>
+                    </div>
+                   
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start justify-around">
+
+             
+                <div className="text-sm w-full flex items-start justify-start">
+
+                {JSON.stringify(reviewItem.item_image,null,2)}
+                <img
+                                                src={reviewItem?.item_image
+                                                    ? reviewItem?.item_image
+                                                    : "https://placehold.co/600x400"
+                                                }
+                                                // src={'https://cdn.mygingergarlickitchen.com/images_webp/800px/800px-recipe-amritsari-chole-anupama-paliwal-my-ginger-garlic-kitchen-5.webp'}
+                                                alt="deshimg"
+                                                style={{
+                                                  maxWidth: "30%",
+                                                  maxHeight: "100%",
+                                                  objectFit: "cover",
+                                                  width: "100%",
+                                                  height: "100%",
+                                                  borderTopLeftRadius: "10px",
+                                                  borderBottomLeftRadius: "10px",
+                                                }}
+                                              />
+                </div>
+                <div className="text-sm w-full flex items-start justify-start">
+
+{JSON.stringify(reviewItem,null,2)}
+</div>
+</div>
+              </div>
+            </div>
+          </ModalReview>
         )}
       </div>
       {isWoAddonOpen && (
