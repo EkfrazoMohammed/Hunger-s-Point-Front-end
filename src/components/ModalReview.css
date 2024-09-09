@@ -33,7 +33,7 @@
 }
 @media (min-width: 769px) {
   .modal-review-content {
-    width: 85%; /* Adjust width for smaller screens */
+    width: 65%; /* Adjust width for smaller screens */
     margin: auto; /* Center the modal horizontally */
   }
 }

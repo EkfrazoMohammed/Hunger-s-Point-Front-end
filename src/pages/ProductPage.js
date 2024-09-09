@@ -906,7 +906,7 @@ const ProductPage = () => {
                                                       itemIndex + 1
                                                     ],true)}>
                                                 
-                                                review me 2
+                                                review me
                                                 </span> 
                                               <span
                                                onClick={() =>
@@ -1115,7 +1115,7 @@ const ProductPage = () => {
                 <div className="signin-text-wrapper">
                   <div className="signin-text1">
                     <div className="sign-in-wrapper">
-                      <h1 className="sign-in1">Review Item</h1>
+                      <h1 className="sign-in1">Review {reviewItem.name}</h1>
                     </div>
                    
                   </div>
@@ -1123,14 +1123,10 @@ const ProductPage = () => {
                 <div className="flex gap-4 items-start justify-around">
 
              
-                <div className="text-sm w-full flex items-start justify-start">
+                <div className="text-sm w-full flex flex-col items-start justify-start">
 
-                {JSON.stringify(reviewItem.item_image,null,2)}
                 <img
-                                                src={reviewItem?.item_image
-                                                    ? reviewItem?.item_image
-                                                    : "https://placehold.co/600x400"
-                                                }
+                  src={reviewItem?.item_image? reviewItem?.item_image: "https://placehold.co/600x400"}
                                                 // src={'https://cdn.mygingergarlickitchen.com/images_webp/800px/800px-recipe-amritsari-chole-anupama-paliwal-my-ginger-garlic-kitchen-5.webp'}
                                                 alt="deshimg"
                                                 style={{
@@ -1143,6 +1139,9 @@ const ProductPage = () => {
                                                   borderBottomLeftRadius: "10px",
                                                 }}
                                               />
+                <div style={{ fontFamily: `var(--primary-font-family-bold)`, fontSize: `var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
+                {reviewItem.name}
+                  </div>        
                 </div>
                 <div className="text-sm w-full flex items-start justify-start">
 
