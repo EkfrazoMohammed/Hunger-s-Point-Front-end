@@ -32,16 +32,12 @@ import hertIcon3 from "../assets/hertIcon.svg";
 import hertIcon4 from "../assets/hertIcon.svg";
 import { setCredentials, setLocation } from "../redux/actions/dataActions";
 import { toast } from "react-toastify";
-
 import ReactTooltip from 'react-tooltip';
-
 import RedHeartIcon from "../assets/redHeartIcon.svg";
 import LikeIcon from "../assets/likeIcon.svg";
 import DislikeIcon from "../assets/dislikeIcon.svg";
 import SaveIcon from "../assets/saveIcon.svg";
 import FilterIcon from "../assets/icons/filter-6551.svg";
-
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from "../components/Modal";
 import CATEGORY from "../components/CATEGORY";
@@ -57,10 +53,6 @@ import { generateRandomInteger } from "../utils/Appconstants";
 import { useDispatch } from "react-redux";
 import ComingSoonPopUp from "../components/pop-up/coming_soon_popup";
 
- 
-
- 
-
 const ProductPage = () => {
   const dispatch = useDispatch();
   const [isWAddonOpen, setWAddonOpen] = useState(false);
@@ -75,9 +67,7 @@ const ProductPage = () => {
   const [selectedTagIndex, setSelectedTagIndex] = useState("all");
   const [basketalldata, setBasketalldata] = useState([]);
   const [menuitemdata, setMenuitemdata] = useState({});
-
   const [locationdata, setLocationdata] = useState([]);
-
   const [isLikeMenu, setIsLikeMenu] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -94,7 +84,6 @@ const ProductPage = () => {
   });
   const [metadata, setMetadata] = useState(null);
   const [reaction, setReaction] = useState(null);
-
   const [initialData, setInitialData] = useState({
     saveit_date: {
       // Initialize saveit_date
@@ -104,22 +93,7 @@ const ProductPage = () => {
     },
   });
   const [isValidForm, setIsValidForm] = useState(false); // State variable to store isValid value
-
-  // const UpdateData = async () => {
-  //   setInitialData(prevState => ({
-  //     ...prevState,
-  //     offer_duration: offer_duration
-  //   }));
-  //   // console.log(initialData['default_tax_rate'], 'default_tax_rate=====22')
-  // }
-
-  // useEffect(() => {
-  //   UpdateData()
-  // }, []);
-
-  // ToolTip
   const [tooltipText, setTooltipText] = useState('');
-
   useEffect(() => {
     GetLocationData();
     GetRestaurentData();
@@ -131,15 +105,12 @@ const ProductPage = () => {
     RegisterAsUnknowUser()
   }, []);
   const id = new URLSearchParams(useLocation().search).get("id");
-
-
   const RegisterAsUnknowUser = () => {
     const credentials = JSON.parse(localStorage.getItem("credentials"));
     let emailToFetch = (user && user.email) || (credentials && credentials.email_id);
     console.log(credentials, 'emailToFetch==>>11133')
     console.log(emailToFetch, 'emailToFetch==>>111')
     console.log(user, 'emailToFetch==>>111333')
-    // localStorage.setItem('credentials', 'JSON.stringify(res.data.result)');
     if (!credentials) {
       const randomNumber = generateRandomInteger(1, 100000000);
 
@@ -161,7 +132,6 @@ const ProductPage = () => {
       API.getInstance()
         .menu.post('api/register', data)
         .then((res) => {
-          // console.log(res, 'API response21');
           localStorage.setItem('credentials', JSON.stringify(res.data.result));
           dispatch(setCredentials(res.data.result));
           // Handle response accordingly
@@ -170,20 +140,14 @@ const ProductPage = () => {
           } else {
             CheckUserOffer(['Registered User', 'ALL']);
           }
-
           GetBasketData();
-          
           // window.location.reload();
         })
         .catch((error) => {
           console.error('Error:', error);
           // Handle error if needed
         });
-    
-
-
   };
-
 
   const GetLocationData = async () => {
     const location_id = localStorage.getItem("location_id");
@@ -206,7 +170,6 @@ const ProductPage = () => {
       .then((res) => {
         // console.log('GetRestaurentData==in', res.data.result)
         setRestorentdata(res.data.result.data);
-        console.log(res.data.result.items_linked_menus, 'res.data.result.items_linked_menus')
         setRestorentmenudata(res.data.result.items_linked_menus);
         // // console.log(res.data.result.data, 'res.data.result.data==>')
         dispatch(setLocation(res.data.result.data));
@@ -221,7 +184,6 @@ const ProductPage = () => {
     localStorage.setItem('selectedMenuIndex',index)
     setSelectedTagIndex(tag_index);
     setActivetag(tag_id);
-    // console.log(menu_id,index,'menu_id','index',tag_id,"tag_id")
     // navigate(`/productpage?id=${id}`);
     if (menu_id == "ALL") {
       GetMenuTagData("ALL", tag_id);
@@ -235,14 +197,6 @@ const ProductPage = () => {
     API.getInstance()
       .menu.get(`/api/cart-items?customer_user_id=${credentials?.user_id}`)
       .then((res) => {
-        // console.log(
-        //   res.data.result.data,
-        //   "GetBasketData===res.data.result.data===>"
-        // );
-        // console.log(
-        //   res.data.result.basket_count,
-        //   "GetBasketData===res.data.result.data===>"
-        // );
         setBasketalldata(res.data.result.data);
         dispatch(setBasketcount(res.data.result.basket_count));
       })
@@ -261,14 +215,11 @@ const ProductPage = () => {
     if (menu_id == "ALL") {
       updated_url = `/api/menu-tags?id=${id}&menu_id=ALL`;
     } else {
-      // console.log(tag_id,'tag_id====>')
       updated_url = `/api/menu-tags?id=${id}&menu_id=${menu_id}&tag_id=${tag_id}`;
     }
-    // console.log('GetRestaurentData=product==in ')
     API.getInstance()
       .menu.get(updated_url)
       .then((res) => {
-        // console.log('restorentmenutagdata==in', res.data.result.data)
         setRestorentMenuTagData(res.data.result.data);
       })
       .catch((error) => { })
@@ -285,7 +236,6 @@ const ProductPage = () => {
     API.getInstance()
       .menu.get(updated_url)
       .then((res) => {
-        // console.log("GetMenuTagItemData======innnnn", res.data.result.data);
         if (res.data.result.data.length === 0 && tag_id !== "all") {
           console.log(
             res.data.result.data.length,
@@ -332,9 +282,6 @@ const ProductPage = () => {
     if (credentials.email_id.startsWith(prefixToCheck)) {
       console.log('credentials.email starts with "email".');
       setIsLoggedin(false)
-      // toast.error("Please Login to React");
-      // setLoggedin(false);
-      // return false;
     }
     else {
       setIsLoggedin(true);
@@ -350,16 +297,11 @@ const ProductPage = () => {
     }
   };
   const handleSubmit = async (values, { setSubmitting }) => {
-
     setSubmitting(true);
-    console.log(values, 'values===>9999999==email_id')
-    console.log(values.saveit_date, "saveit_date---->");
-    console.log(metadata, reaction, "menu_data,reaction---->");
     UpdateReactionInDB(metadata, "SAVEIT", values);
   };
 
   const validationSchema = Yup.object().shape({});
-
   const handleDateChange = (item) => {
     const formattedDate = format(item, "dd/MM/yyyy");
     console.log("Formatted Date:", formattedDate);
@@ -374,28 +316,19 @@ const ProductPage = () => {
       console.log('credentials.email starts with "email".');
       if (reaction == "SAVEIT") {
         setIsLoggedin(false)
-        // return false;
       }
       else {
         toast.error("Please Login to React");
         setLoggedin(false);
         return false;
       }
-      // setIsLoggedin(false)
-      // toast.error("Please Login to React");
-      // setLoggedin(false);
-
     }
-    console.log("React--111")
     if (reaction == "SAVEIT") {
-      console.log("React--2222")
       setSavemodal(false);
       setMetadata(menu_data);
       setReaction(reaction);
-      // return false;
     }
     let body = {};
-
     if (reaction == "SAVEIT") {
       body = {
         cuser_id: credentials?.user_id,
@@ -413,14 +346,11 @@ const ProductPage = () => {
         reaction: reaction,
       };
     }
-    console.log(body, "body=====>UpdateReactionInDB");
-
     try {
       const res = await API.getInstance().menu.post(
         "api/user-items-reaction",
         body
       );
-      console.log(res, "response======>");
       setLoggedin(true);
       setSavemodal(false);
       return true; // Return true if update is successful
@@ -430,8 +360,6 @@ const ProductPage = () => {
       setLoggedin(false);
       return false; // Return false if there's an error
     }
-
-
   };
 
   const OnClickAddButton = async (menu_item) => {
@@ -441,9 +369,7 @@ const ProductPage = () => {
 
   const OnClickReactionpopup = async (item_data, reactionType) => {
     setRestorentMenuTagItemdata((prevState) => {
-      // Find the index of the item in restorentmenutagitemdata
       const newData = prevState.map((menu) => {
-        // Find the index of the item in menu_item_info_list
         const newItemList = menu.menu_item_info_list.map((item) => {
           if (item.id === item_data.id) {
             let updatedItem = { ...item };
@@ -459,7 +385,6 @@ const ProductPage = () => {
                     : updatedItem.loveit_count + 1,
                 };
                 reactionUpdated = true;
-
                 break;
               case "LIKEIT":
                 UpdateReactionInDB(item_data, "likeit");
@@ -595,7 +520,6 @@ const ProductPage = () => {
 
   return (
     <>
-
       <div className=" h-fit min-h-[100vh] ">
       
 {/* 
@@ -724,12 +648,8 @@ const ProductPage = () => {
                                                   className="p-2 flex justify-center items-center gap-7 h-full"
                                                   aria-labelledby="dropdownDividerButton"
                                                 >
-
-
                                                   {/* ReadHeart */}
                                                   <li onClick={() => OnClickReactionpopup(item, 'LOVEIT')} className="tooltip">
-
-
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
                                                         src={RedHeartIcon}
@@ -738,14 +658,11 @@ const ProductPage = () => {
                                                       <span className="text-xs font-normal text-white pt-1">
                                                         {item.loveit_count}
                                                         <span style={{ marginBottom: '20px', left: "20px" }} className="tooltiptextredheart">
-                                                          Had It, Liked It!
+                                                          Had It, Loved It!
                                                         </span>
                                                       </span>
-
                                                     </div>
                                                   </li>
-
-
                                                   <li onClick={() => OnClickReactionpopup(item, 'LIKEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
@@ -754,22 +671,11 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
                                                         {item.likeit_count}
-                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Loved It!</span>
+                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Liked It!</span>
                                                       </span>
 
                                                     </div>
                                                   </li>
-                                                  {/* <li onClick={() => OnClickReactionpopup(item,'DISLIKE')}>
-                                                    <div className="flex flex-col justify-center items-center">
-                                                      <img
-                                                        src={DislikeIcon}
-                                                        alt="hertIcon"
-                                                      />
-                                                      <span className="text-xs font-normal text-white pt-0">
-                                                      {item.dislikeit_count}
-                                                      </span>
-                                                    </div>
-                                                  </li> */}
                                                   <li onClick={() => OnClickReactionpopup(item, 'SAVEIT')} className="tooltip">
                                                     <div className="flex flex-col justify-center items-center">
                                                       <img
@@ -853,19 +759,6 @@ const ProductPage = () => {
                                                   marginBottom: "20px",
                                                 }}
                                               >
-                                                {/* <div className="flex justify-between items-center font-poppins font-bold text-xl text-[#E5B638] pr-[10px]">
-                                                {
-                                                  menu.menu_item_info_list[
-                                                    itemIndex + 1
-                                                  ].name
-                                                }
-                                                <span>
-                                                  <img
-                                                    src={hertIcon3}
-                                                    alt="hertIcon"
-                                                  />
-                                                </span>
-                                              </div> */}
                                                 <div style={{ fontFamily: `var(--primary-font-family-bold)`, fontSize: `var(--primary-font-size)` }} className="flex justify-between items-center text-[#E5B638] w-full pr-[10px] relative responsive-font-size">
                                                   {
                                                     menu.menu_item_info_list[
@@ -903,9 +796,6 @@ const ProductPage = () => {
                                                           </span>
                                                         </div>
                                                       </li>
-
-
-
                                                       <li onClick={() => OnClickReactionpopup(menu.menu_item_info_list[itemIndex + 1], 'LIKEIT')} className="tooltip">
                                                         <div className="flex flex-col justify-center items-center">
                                                           <img
@@ -919,7 +809,7 @@ const ProductPage = () => {
                                                               ].likeit_count
                                                             }
                                                             <span style={{ marginBottom: '20px', left: "-29px" }} className="tooltiptextlikeright">
-                                                              Had It, Liked It!
+                                                              Had It, Loved It!
                                                             </span>
 
                                                           </span>
