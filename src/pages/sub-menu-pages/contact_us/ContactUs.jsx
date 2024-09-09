@@ -62,11 +62,11 @@ export const ContactUs = () => {
         <section className="fp-wrapper-main fp-main--contact-us bottom-form-container">
           <div className="para-container">
             <div className="what-we-believe4 fp-para-section-title bottom-a-line">
-            Contact Us Today!
+              Contact Us Today!
 
             </div>
-            <p className="sb-para" style={{marginTop:"10px"}}>  
-            Ready to add a touch of Indian flavour to your next event? Contact The Hunger’s Point today! We'd be happy to discuss your catering needs and create a menu that will leave a lasting impression on your guests.
+            <p className="sb-para" style={{ marginTop: "10px" }}>
+              Ready to add a touch of Indian flavour to your next event? Contact The Hunger’s Point today! We'd be happy to discuss your catering needs and create a menu that will leave a lasting impression on your guests.
 
             </p>
           </div>
@@ -75,27 +75,27 @@ export const ContactUs = () => {
               <img
                 src={banner_placeholder}
                 alt="contact us"
-                style={{borderRadius:'10px'}}
+                style={{ borderRadius: '10px' }}
                 className="absolute contact-us-side-img top-0 left-0 w-full"
-                // className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
+              // className="absolute contact-us-side-img top-0 left-0 w-full brightness-[30%] contrast-[0.65]"
               />
               <div className="contact-info-container relative z-[2] p-10">
-                <h2 className="text-[30px]" style={{fontSize:`var(--sub-header-font-size)`,fontFamily:`var(--primary-font-family-bold)`,marginBottom:'20px', color:'black'}}>Customer Care</h2>
+                <h2 className="text-[30px]" style={{ fontSize: `var(--sub-header-font-size)`, fontFamily: `var(--primary-font-family-bold)`, marginBottom: '20px', color: 'black' }}>Customer Care</h2>
                 {/* <hr className="my-4" /> */}
-                <div className="mb-2" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>
+                <div className="mb-2" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, color: 'black' }}>
                   Please email your detailed inquiry and deadline for response
                   to the following:
                 </div>
                 <address>
-                  <ul className="font-bold text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>
-                    <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`, fontStyle:"normal"}}>info@hungerpoints.in</li>
-                    <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,fontStyle:"normal"}}>marketing@hungerpoints.in</li>
+                  <ul className="font-bold text-lg" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, color: 'black' }}>
+                    <li style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, fontStyle: "normal" }}>info@thehungerspoint.ca</li>
+                    {/* <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,fontStyle:"normal"}}>marketing@hungerpoints.in</li> */}
                   </ul>
                 </address>
                 <hr className="my-4" />
                 <div className="follow-us">
                   <div className="header-title">
-                    <span className="text-lg" style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,color:'black'}}>Follow us on</span>
+                    <span className="text-lg" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, color: 'black' }}>Follow us on</span>
                   </div>
                   <div className="social-links flex gap-3 mt-3">
                     <a href="/contact-us" target="_blank" rel="noopener noreferrer">
@@ -119,7 +119,7 @@ export const ContactUs = () => {
               </div>
             </div>
             <div className="form-contact-us sub-pages-forms">
-            <FeedbackForm heading={'Get In Touch With Us'} selection={5} feedboack_opt={'Contact Us'}/>
+              <FeedbackForm heading={'Get In Touch With Us'} selection={5} feedboack_opt={'Contact Us'} />
             </div>
           </div>
         </section>
