@@ -742,10 +742,10 @@ const ProductPage = () => {
                                                 </ul>
                                               </div>
                                               <div className="flex gap-4 ">
-                                               <span onClick={()=>reviewItemModalFunction(item,true)}>
+                                               {/* <span onClick={()=>reviewItemModalFunction(item,true)}>
                                                 
                                                 review me
-                                                </span> 
+                                                </span>  */}
                                               <span
                                                 onClick={() =>
                                                   OnClickLikepopup(item.id)
@@ -902,12 +902,12 @@ const ProductPage = () => {
                                                     />
                                                   </span> */}
                                                     <div className="flex gap-4 ">
-                                                    <span onClick={()=>reviewItemModalFunction(menu.menu_item_info_list[
+                                                    {/* <span onClick={()=>reviewItemModalFunction(menu.menu_item_info_list[
                                                       itemIndex + 1
                                                     ],true)}>
                                                 
                                                 review me
-                                                </span> 
+                                                </span>  */}
                                               <span
                                                onClick={() =>
                                                 OnClickLikepopup(menu.menu_item_info_list[
