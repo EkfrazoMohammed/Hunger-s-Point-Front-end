@@ -86,13 +86,13 @@ export const ContactUs = () => {
                   Please email your detailed inquiry and deadline for response
                   to the following:
                 </div>
-                <address>
+                <address >
                   <ul className="font-bold text-lg" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, color: 'black' }}>
-                    <li style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, fontStyle: "normal" }}>info@thehungerspoint.ca</li>
+                    <li style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, fontStyle: "normal" }} className="my-2">info@thehungerspoint.ca</li>
                     {/* <li style={{fontSize:`var(--primary-font-size)`,fontFamily:`var(--primary-font-family)`,fontStyle:"normal"}}>marketing@hungerpoints.in</li> */}
                   </ul>
                 </address>
-                <hr className="my-4" />
+                {/* <hr className="my-4" /> */}
                 <div className="follow-us">
                   <div className="header-title">
                     <span className="text-lg" style={{ fontSize: `var(--primary-font-size)`, fontFamily: `var(--primary-font-family)`, color: 'black' }}>Follow us on</span>
