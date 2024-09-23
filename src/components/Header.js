@@ -399,9 +399,16 @@ const Header = () => {
                   </div>
 
                 </li>
-                <li className="flex items-center">
+                {/* <li className="flex items-center">
                   <div class={`menu-item cursor-pointer ${selectedRoute === "/productpage" ? 'selected-route' : ''}`} onClick={() => handleRout("/productpage?id=1")}>
                     <div class="menu-text relative">Menu</div>
+                  </div>
+                </li> */}
+                <li className="flex items-center">
+                  <div class={`menu-item cursor-pointer ${selectedRoute === "/productpage" ? 'selected-route' : ''}`}>
+                    <Link to="https://order.toasttab.com/online/thehungerspoint">
+                    <div class="menu-text relative">Menu</div>
+                    </Link>
                   </div>
                 </li>
                 <li className="flex items-center">

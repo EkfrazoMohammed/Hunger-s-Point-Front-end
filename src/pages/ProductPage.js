@@ -715,7 +715,7 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
                                                         {item.likeit_count}
-                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Liked It!</span>
+                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It, Liked It!</span>
                                                       </span>
 
                                                     </div>
@@ -863,9 +863,8 @@ const ProductPage = () => {
                                                       />
                                                       <span className="text-xs font-normal text-white pt-0">
                                                         {item.likeit_count}
-                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It,Liked It!</span>
+                                                        <span style={{ marginBottom: '20px', alignContent: 'center' }} className="tooltiptextlike">Had It, Liked It!</span>
                                                       </span>
-
                                                     </div>
                                                   </li>
                                                   <li
