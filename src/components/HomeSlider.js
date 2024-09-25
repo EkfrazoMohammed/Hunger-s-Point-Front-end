@@ -1,12 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
-
 import banner1 from "../assets/Home_banner_1.jpg"
 import banner2 from "../assets/hunger2_banner.jpg"
 import banner3 from "../assets/homebanner22.jpg"
 import banner4 from "../assets/Home_banner_4.jpg"
 import banner5 from "../assets/homebanner33.jpg"
 import homebanner from '../assets/hunger_new_banner_1.jpg';
+import open_now_banner from "../assets/ashik_open_now1.png"
 import homebanner2 from '../assets/hunger_new_banner_2.jpg';
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ export default function SimpleSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: homebanner,
+      imgSrc: open_now_banner,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",
@@ -67,7 +67,7 @@ export default function SimpleSlider() {
       {dummyData.map((item, index) => (
         <div key={index} onClick={() => Buttonclicked(item)}>
           
-          <img src={item.imgSrc} alt={`Banner ${index + 1}`} />
+          <img src={item.imgSrc} alt={`Banner ${index + 1}`} style={{maxHeight:'456px',objectFit:"cover"}} />
         </div>
       ))}
     </Slider>

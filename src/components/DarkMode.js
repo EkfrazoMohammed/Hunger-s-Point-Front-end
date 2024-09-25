@@ -152,7 +152,7 @@ const DarkMode = () => {
           src={phcopyrightthin}
         />
         <div className="hunger-points-all">
-          2024, Hunger Points, All rights reserved
+          2024, The Hunger's Point, All rights reserved
         </div>
       </div>
     </section>

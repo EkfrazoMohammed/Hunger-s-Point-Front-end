@@ -123,7 +123,8 @@ const Homepage1 = () => {
           />
         </div>
       </ComingSoonPopUp> */}
-      <Modal isOpen={isPopupVisible} onClose={hidePopup} width="80%">
+      
+      {/* <Modal isOpen={isPopupVisible} onClose={hidePopup} width="80%">
       <div>
           <img
             src="https://hunger.thestorywallcafe.com/media/new_coming_soon.jpg"
@@ -133,7 +134,7 @@ const Homepage1 = () => {
           />
         </div>
 
-      </Modal>
+      </Modal> */}
       <MetaDecorator
         description={content.pageDescription}
         title={content.pageTitle}

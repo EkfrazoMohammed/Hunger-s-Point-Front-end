@@ -44,7 +44,9 @@ const Basket = () => {
   }, [navigate]);
 
   const onEpbackIconClick = useCallback(() => {
-    navigate("/productpage?id=1");
+    // navigate("/productpage?id=1");
+    window.location.href = "https://order.toasttab.com/online/thehungerspoint";
+    // navigate("https://order.toasttab.com/online/thehungerspoint");
   }, [navigate]);
 
   return (

@@ -14,8 +14,12 @@ const VIPContainer = () => {
             !
           </div>
         </div>
-        {/* loginWithRedirect() */}
-        <button  onClick={() => {toast.success("The Hunger's Point coming soon at Punjab center!");}} className="buttons-states-dark61">
+        {/* loginWithRedirect() 
+        // onClick={() => {toast.success("The Hunger's Point coming soon at Punjab center!");}} 
+        */}
+        <button  
+        onClick={() => loginWithRedirect()}  
+        className="buttons-states-dark61">
           <div className="button73" style={{fontFamily:`var(--primary-font-family)`}}>Sign Up Now!</div>
         </button>
       </div>

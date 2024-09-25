@@ -69,9 +69,9 @@ const Header = () => {
   }, [navigate]);
 
   const onbasketclick = useCallback(() => {
-    // handleRout("/basket")
-    // navigate("/basket");
-    toast.success("The Hunger's Point coming soon at Punjab center!");
+    handleRout("/basket")
+    navigate("/basket");
+    // toast.success("The Hunger's Point coming soon at Punjab center!");
   }, [navigate]);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -332,15 +332,23 @@ const Header = () => {
 
                 </div>)}
 
+                {!emailToFetch && (<div onClick={() => {loginWithRedirect()}} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 lg:py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
+                  <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
+                    Login
+                  </div>
+                </div>)}
 
+                {/* 
+                
+                loginWithRedirect()
 
-                {/* loginWithRedirect() */}
 
                 {!emailToFetch && (<div onClick={() => {toast.success("The Hunger's Point coming soon at Punjab center!");}} className="bg-[#c21f24] h-7 rounded-md flex flex-row items-center justify-center px-3 lg:py-5 box-border cursor-pointer hover:bg-[#e8454a] hover:border-[#e8454a] hover:box-border mt-1">
                   <div className="relative leading-[13px] uppercase text-[#fff] text-[12px] font-normal">
                     Login
                   </div>
                 </div>)}
+                 */}
                 <button onClick={toggleSubMenu} className={`hamburger-sub ${isOpen ? "sub-open" : ""}`} ref={toggleSubMenuRef}>
                   <div className="burger-line bl-close"></div>
                   <div className="burger-line"></div>
