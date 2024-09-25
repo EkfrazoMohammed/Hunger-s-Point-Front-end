@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // >
       <Auth0Provider
         domain="dev-1tf50qcuwagmluch.us.auth0.com"
-        clientId="PpYijKCtunMVlmqVIPEgb5fS0NBVi9cn"
+        clientId="UYezr9R0cufycc9Sm11O2blfTaNNpNG1"
         authorizationParams={{
           redirect_uri: window.location.origin
         }}
-      >
+      > 
         <Provider store={store}>
           <BrowserRouter>
             <App />
