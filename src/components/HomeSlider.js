@@ -1,9 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
-import banner1 from "../assets/Home_banner_1.jpg"
-import banner2 from "../assets/hunger2_banner.jpg"
-import banner3 from "../assets/homebanner22.jpg"
-import banner4 from "../assets/Home_banner_4.jpg"
+import banner1 from "../assets/Hunger_s Point Website Banners-01.jpg"
+import banner2 from "../assets/Hunger_s Point Website Banners-02.jpg"
+import banner3 from "../assets/Hunger_s Point Website Banners-03.jpg"
+import banner4 from "../assets/Hunger_s Point Website Banners-04.jpg"
 import banner5 from "../assets/homebanner33.jpg"
 import homebanner from '../assets/hunger_new_banner_1.jpg';
 import open_now_banner from "../assets/ashik_open_now1.png"
@@ -34,7 +34,25 @@ export default function SimpleSlider() {
       title: "Lorem ipsum dolor sit amet consectetur.",
       description: "Ante eget vel dis Lorem ipsum dolor",
       buttonText: "Order Online Now!",
-      imgSrc: open_now_banner,
+      imgSrc:banner1,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc:banner2,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc:banner3,
+    },
+    {
+      title: "Lorem ipsum dolor sit amet consectetur.",
+      description: "Ante eget vel dis Lorem ipsum dolor",
+      buttonText: "Order Online Now!",
+      imgSrc:banner4,
     },
     {
       title: "Lorem ipsum dolor sit amet consectetur.",

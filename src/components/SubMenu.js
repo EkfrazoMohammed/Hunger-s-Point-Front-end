@@ -20,6 +20,7 @@ const SubMenu = ({ isOpen, handleClose, toggleSubMenuRef }) => {
 
   return (
     <div className={`submenu ${isOpen ? 'open' : ''}`} ref={submenuRef} >
+        <Link  to="https://order.toasttab.com/online/thehungerspoint" preventScrollReset={true} onClick={handleClose} style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}}>Menu</Link>
       <Link to="events" preventScrollReset={true} onClick={handleClose} style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}}>Event</Link>
       <Link to="careers" preventScrollReset={true} onClick={handleClose}  style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}}>Careers</Link>
       <Link to="franchise" preventScrollReset={true} onClick={handleClose} style={{fontSize:`var(--primary-font-size)`, fontFamily:`var(--primary-font-family)`}}>Franchise</Link>
