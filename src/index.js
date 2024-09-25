@@ -9,6 +9,7 @@ import store from "./redux/store";
 import { Auth0Provider } from '@auth0/auth0-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+console.log(window.location.origin)
 // Wait for the DOM content to be loaded before rendering
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -16,9 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check if the root element exists before rendering
   if (root) {
     createRoot(root).render( // Use createRoot instead of ReactDOM.render
+      // <Auth0Provider
+      //   domain="dev-y24syn1vymgn015q.us.auth0.com"
+      //   clientId="GPzjEz93nlg0Lz2cp4zV6JxWvpzGHgmg"
+      //   authorizationParams={{
+      //     redirect_uri: window.location.origin
+      //   }}
+      // >
       <Auth0Provider
-        domain="dev-y24syn1vymgn015q.us.auth0.com"
-        clientId="GPzjEz93nlg0Lz2cp4zV6JxWvpzGHgmg"
+        domain="dev-1tf50qcuwagmluch.us.auth0.com"
+        clientId="PpYijKCtunMVlmqVIPEgb5fS0NBVi9cn"
         authorizationParams={{
           redirect_uri: window.location.origin
         }}
