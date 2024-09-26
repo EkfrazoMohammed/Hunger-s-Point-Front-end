@@ -54,12 +54,12 @@ export default function SimpleSlider() {
       buttonText: "Order Online Now!",
       imgSrc:banner4,
     },
-    {
-      title: "Lorem ipsum dolor sit amet consectetur.",
-      description: "Ante eget vel dis Lorem ipsum dolor",
-      buttonText: "Order Online Now!",
-      imgSrc: homebanner2,
-    },
+    // {
+    //   title: "Lorem ipsum dolor sit amet consectetur.",
+    //   description: "Ante eget vel dis Lorem ipsum dolor",
+    //   buttonText: "Order Online Now!",
+    //   imgSrc: homebanner2,
+    // },
     // {
     //   title: "Lorem ipsum dolor sit amet consectetur.",
     //   description: "Ante eget vel dis Lorem ipsum dolor",
